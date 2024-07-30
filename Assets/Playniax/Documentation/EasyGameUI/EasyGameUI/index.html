@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<title>EasyGameUI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>EasyGameUI</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Getting Started</a>
+<a href="../Classes/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Classes</a>
+
+<div class="w3-container"><br></div><a href="../Reskinning/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Reskinning</a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>EasyGameUI</small><b> / EasyGameUI</b></h1>Namespace <b>  Playniax.Ignition</b><br><br>Inherits from <b> MonoBehaviour</b><br><br>Script can be found in <b>Assets/Playniax/Framework/EasyGameUI/Editor/EasyGameUI.cs</b><br><hr class="solid"><h2>Class EasyGameUI</h2><u><b>Description</b></u><br><br>The EasyGameUI will manage the different screens and can hold game data that has to be maintained throughout the game session like number of lives, current level, purchases, etc.<br><br><table><tr><th>Public fields</th><th>Description</th></tr><tr><td><code>Mode mode</code></td><td>Operation Mode.</td></tr><tr><td><code><span style="color:#0000ff">string </span>backgroundSceneName = "Background Scene"</code></td><td>Background scene to load.</td></tr><tr><td><code>PlayerSettings playerSettings</code></td><td>The number of lives, etc.</td></tr><tr><td><code>PreLevelSettings preLevelSettings</code></td><td>The scene(s) containing the intro(s).</td></tr><tr><td><code>PostLevelSettings postLevelSettings</code></td><td>The transition scene will be shown after each level is completed.</td></tr><tr><td><code>AdvertismentSettings advertisementSettings</code></td><td>The scene(s) containing the ad(s).</td></tr><tr><td><code><span style="color:#0000ff">bool </span>showLoadingProgress = <span style="color:#0000ff">true</span></code></td><td>Whether the loading progress screen is showed during loading.</td></tr><tr><td><code>Font font</code></td><td>Fallback font.</td></tr></table><br><table><tr><th>Public Methods</th><th>Description</th></tr><tr><td><code><span style="color:#0000ff;">static </span>Font GetFont(Font font)</code></td><td>Returns the fallback font.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>ExitIntermission()</code></td><td>Exit Intermission.<br><br>An intermission can be an advertisement scene, pre level scene or post level scene.</td></tr><tr><td><code><span style="color:#0000ff;">void </span><span style="color:#5491af;">AboutButton</span>()</code></td><td>Is called when player selects the about button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span><span style="color:#5491af;">BackButton</span>()</code></td><td>Is called when player selects the back button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span><span style="color:#5491af;">ExitButton</span>()</code></td><td>Is called when player selects the exit button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>GameOver()</code></td><td>Will show the Game Over page. Usually this is managed by the EasyGameUI or other helpers but there might be circumstances where you want to manage it yourself.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>GameOver(<span style="color:#0000ff;">float </span>delay)</code></td><td>Will show the Game Over page but after some delay. Usually this is managed by the EasyGameUI but there might be circumstances where you want to manage it yourself.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>ResetButton()</code></td><td>Is called when player selects the reset button.</td></tr><tr><td><code>virtual <span style="color:#0000ff;">string </span>ResetGame()</code></td><td>Resets the game.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>ResetYes()</code></td><td>Is called when player selects the yes button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>ResetNo()</code></td><td>Is called when player selects the no button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>SettingsButton()</code></td><td>Is called when player selects the settings button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>ShopButton()</code></td><td>Is called when player selects the shop button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>LevelUp()</code></td><td>Will stop current level and load the next level.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>Reload()</code></td><td>Will stop current level and reload it.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>PauseButton()</code></td><td>Is called when player selects the pause button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>PlayButton()</code></td><td>Is called when player selects the play button.</td></tr><tr><td><code><span style="color:#0000ff;">void </span>ReplayButton()</code></td><td>Is called when player selects the replay button.</td></tr></table><h2>Class EasyGameUI.AdvertismentSettings</h2><u><b>Description</b></u><br><br>Add the scenes for the advertisements here.<br><br><table><tr><th>Public fields</th><th>Description</th></tr><tr><td><code><span style="color:#0000ff">bool </span>allow = <span style="color:#0000ff">true</span></code></td><td>Whether to allow.</td></tr><tr><td><code>string[] sceneName</code></td><td>Scenes to load.</td></tr></table><h2>Class EasyGameUI.LevelSettings</h2><u><b>Description</b></u><br><br>Add the scenes for the game levels here.<br><br><table><tr><th>Public fields</th><th>Description</th></tr><tr><td><code>string[] sceneName</code></td><td>List of levels.</td></tr><tr><td><code><span style="color:#0000ff">bool </span>startPausedWhenGameIsUsedAsBackground</code></td><td>Whether to start the game paused when the game is used as background.</td></tr><tr><td><code><span style="color:#0000ff">bool </span>DisableHomePageWhenGameIsUsedAsBackground</code></td><td>Whether to ignore the home page when the game is used as background.</td></tr></table><h2>Class EasyGameUI.PlayerSettings</h2><u><b>Description</b></u><br><br>Set the total of lives for the player here.<br><br><table><tr><th>Public fields</th><th>Description</th></tr><tr><td><code><span style="color:#0000ff">int </span>lives = 3</code></td><td>Number of lives for the player.</td></tr><tr><td><code><span style="color:#0000ff">bool </span>newGameEverytime = <span style="color:#0000ff">true</span></code></td><td>Whether to reset the game.</td></tr></table><h2>Class EasyGameUI.PreLevelSettings</h2><u><b>Description</b></u><br><br>Add the scenes to be loaded before each level here.<br><br><table><tr><th>Public fields</th><th>Description</th></tr><tr><td><code><span style="color:#0000ff">bool </span>allow = <span style="color:#0000ff">true</span></code></td><td>Whether to allow.</td></tr><tr><td><code>string[] sceneName</code></td><td>Scenes to load.</td></tr></table><h2>Class EasyGameUI.PostLevelSettings</h2><u><b>Description</b></u><br><br>Add the scenes to be loaded after each level here.<br><br><table><tr><th>Public fields</th><th>Description</th></tr><tr><td><code><span style="color:#0000ff">bool </span>allow = <span style="color:#0000ff">true</span></code></td><td>Whether to allow.</td></tr><tr><td><code>string[] sceneName</code></td><td>Scenes to load.</td></tr></table><br>Some examples of how to use the public fields or methods:<br><br>Get the totatl number of lives:
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+Debug.Log(EasyGameUI.instance.playerSettings.lives)
+
+</div></pre>The lives counter during the game:
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+Debug.Log(PlayerData.Get(0).lives)
+
+</div></pre>Where the zero indicates the player's index (0 = actually player 1, 1 = player 2, and so forth)<br><br>Load the next level:
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+EasyGameUI.instance.Levelup() 
+
+</div></pre>Stop the game and show the Game Over page:
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+EasyGameUI.instance.GameOver() 
+
+</div></pre></div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/packages/2d/textures-materials/background-pack-01-barren-planet-222632">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/73c5de91-f424-43bc-8c0f-342049ee7769.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/textures-materials/background-pack-02-magic-forest-231157">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/c78e492a-847a-4a37-94e2-bf5efbddcb6c.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/textures-materials/background-pack-03-northern-landscape-231160">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/d88d0982-8d49-4e0c-9999-723891b62900.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

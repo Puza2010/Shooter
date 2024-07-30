@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<title>Coppacar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>Coppacar</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-purple"><i class=""></i><b>Getting Started</b></a>
+<a href="../Classes/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Classes</a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>Coppacar</small><b> / Getting Started</b></h1>Coppacar can be found in the <b>Assets/Playniax/Coppacar</b> folder.<br><br>The folder contains the levels and UI.<br><br>Main in-game textures can be found there also.<br><br>Coppacar uses the Playniax Frameworks like <a href="../../Ignition/Introduction/index.html">Ignition</a>, <a href="../../Pyro/Introduction/index.html">Pyro</a> and <a href="../../MazeAI/Introduction/index.html">MazeAI</a> and are all included.<br><br>Coppacar also uses the <a href="../../EasyGameUI/Introduction/index.html">EasyGameUI</a> as a level manager.<h2>The Hierarchy</h2>Open one of the levels and have a look at the Hierarchy:<br><br><img style="border:1px solid black;" src="hierarchy.png"><br><br><b>Engine</b> contains the Lives Manager and the Music Player.<br><br>The Lives Manager manages the number of lives the player has and you can set them by changing the <b>Test Lives</b> variable.<br><br>Note that the <a href="../../EasyGameUI/Introduction/index.html">EasyGameUI</a> will overule the <b>Test Lives</b> variable if present.<br><br><b>Player</b> is the player with the necessary script for the player logic.<br><br>The Player GameObject also contains the virtual joypad and some UI components that display the score and number of lives.<br><br><b>Enemy Spawner</b> is responsible for spawning the police cars from the police station.<br><br>There are 2 type of police cars.<br><br><b>Police Car (slow)</b> and <b>Police Car (fast)</b> share the same script named <b>Enemy.cs</b> but have slightly different settings and are used by the <b>Enemy Spawner</b> as prefabs.<br><br><b>Explosion Cartoon</b> is the particle effect for when a car is destroyed.<br><br>Note that this is not using the Unity particle system but a custom made particle engine by Playniax.<br><br><b>Grid</b> is the tilemap.<h2>The Tilemaps</h2>Coppacar uses 5 tilemaps.<br><br><img style="border:1px solid black;" src="grid.png"><br><br>For reskinning you can remove or add as many tilemaps as you need.<br><br>4 of 5 tilemaps are visible or enabled and the tilemap named <b>Maze</b> is invisible or disabled.<br><br>The <b>Maze</b> tilemap is the used to draw or mark the actual maze.<h2>The Tileset</h2>Coppacar has 4 tilesets and can be found at <b>Assets/Playniax/Coppacar/Tilemaps</b><br><br><img style="border:1px solid black;" src="tilesets.png"><h2>The player script</h2>The variables in the player script determine the tilemap and the obstacles, speed, start direction, pickups, etc for the player.<br><br><img style="border:1px solid black;" src="player.png"><br><br><b>speed</b> determines the speed of which the player moves.<br><br><b>Tilemap</b> is set to <b>Maze</b> and is used to detect collisions with obstacles.<br><br>Only one obstacle (Element 0) is defined in this case <b>gid_169</b> and as a virtual reference the tile looks like:<br><br><img style="border:1px solid black;" src="gid_169.png"><br><br>The <b>Smart Start</b> option has 2 modes and helps you to set the start position of the player.<br><br>In this case the player starts at a position marked by a tile in the <b>Maze</b> tilemap.<br><br>You can see the marker when you turn on or enable the <b>Maze</b> tilemap in the grid and the marker looks like:<br><br><img style="border:1px solid black;" src="gid_176.png"><br><br>Here is an example with the <b>Maze</b> tilemap turned on:<br><br><img style="border:1px solid black;" src="maze.png"><h3>Animation</h3>The player supports 4 directions and with each direction you can set the sprite frames.<br><br>The directions are left, right, up and down and the settings for this can be found in the player script.<br><br><img style="border:1px solid black;" src="player frame time.png"><br><br>The first element (Element 0) is the actual car that is displayed when the player is not armored.<br><br>The other elements (in this case Element 1 to 13) are used to animate the transition from normal to armored and the last element (in this case Element 13) stays visible when the player is armored.<br><br>The animation will play in reverse once the armor is gone.<br><br><b>Frame Time</b> determines the animation speed.<h3>Pickup Settings</h3>The player script contain a number of variables to define the pickups.<br><br><img style="border:1px solid black;" src="pickup settings.png"><br><br>The <b>Tilemap</b> variable has to point to the Tilemap that contain the pickups like money, armor and extra lives.<br><br><b>Money Reward</b> is used to determine how much the money is worth.<br><br><b>Money</b> is used to identify the money.<br><br><b>Money Sound</b> is used to determine what sound to play when you collect the money.<br><br><b>Shield Time</b> determines how long the player stays armored.<br><br><b>Shield</b> is used by the engine to identify the shield.<br><br><b>Shield Sound</b> is used by the engine to determine what sound to play when you collect a shield to armor your car.<br><br><b>One Up</b> is used to identify the extra life.<br><br><b>One Up Sound</b> is used to determine what sound to play when you collect extra life.<h2>The enemy script</h2>The enemy script has  a few of the same options as the player script like the variables obstacles, speed and start direction for example.<br><br><img style="border:1px solid black;" src="enemy.png"><br><br><b>speed</b> determines the speed of which the enemy or in this case the cop car moves.<br><br><b>Tilemap</b> is set to <b>Maze</b> and is used to detect collisions with obstacles so the settings are the same as the player.<br><br>The obstacle is also the same as the player.<br><br>The enemy starts from the police station and uses <b>gid_131</b> as an identifier on the <b>Layer 3</b> tilemap so no invisible marker is used as the player does.<h3>Animation</h3>The enemy also supports 4 directions and with each direction you can set the sprite frames.<br><br>The directions are left, right, up and down and the settings for this can be found in the enemy script.<br><br>The elements are animated and play in a loop.<br><br><b>Frame Time</b> determines the animation speed.<h2>The Enemy Spawner</h2>Most of the Enemy Spawner settings should be obvious but here are some notes.<br><br><b>Counter</b> is set to -1 wihich means it will spawn endlessly. If you change this to 5 for example it will only spawn 5 objects.<br><br><b>Start Position</b> must not be changed and can be ignored because the spawned objects have their own logic for this.<br><br><b>Timer</b> is the initial pause before the spawner starts and is also used as a timer.<br><br><b>Delay</b> is the interval between each spawn call.<br><br><b>Track Progress</b> does nothing in this game and can be ignored.</div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/packages/templates/systems/galaga-essentials-208558">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/aab943ad-5523-42e0-b22c-a582c5b38627.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/environments/space-shooter-art-pack-01-102249">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/aa91464d-2cb0-4a92-8ae5-583d89c6b1db.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/environments/space-shooter-art-pack-02-161040">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/019eaaf1-eff1-4615-9166-7c098c1c1b36.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

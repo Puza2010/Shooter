@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<title>Recoil</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>Recoil</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-purple"><i class=""></i><b>Getting Started</b></a>
+<a href="../Reskin/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Reskin</a>
+<a href="../Classes/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Classes</a>
+
+<div class="w3-container"><br></div><a href="../Game Manager/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Game Manager</a>
+
+<div class="w3-container"><br></div><a href="../Dependencies/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Dependencies</a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>Recoil</small><b> / Getting Started</b></h1>Recoil can be found in the <b>Assets/Byteman/Recoil</b> folder.<br><br>Recoil includes a demo level or scene, named <b>Recoil Random Level</b>.<br><br>The hierarchy appears as follows:<br><br><img style="border:1px solid black;" src="hierarchy.png"><br><br>Recoil features only one demo scene, as it employs a script capable of generating random levels.<br><br>Therefore, each time the scene initiates, the gameplay experience will differ.<br><br>Here's a quick description of the objects in the hierarchy:<br><br><b>Player Dash</b> - This display appears at the top of the screen, indicating the remaining lives, bullets, and gems for the player to collect.<br><b>Player</b> - Refers to the player sprite.<br><b>Background Manager</b> - Responsible for generating backgrounds selected from a collection of prefabs.<br><b>Collision Monitor</b> - Determines which objects can collide within the game environment.<br><b>Timing Helper</b> - Manages the game's target frame rate, time scale, and v-sync count.<br><b>Light & Light 2</b> - Controls scene lighting.<br><b>Portal</b> - Functions as an object spawner within the game.<br><b>Player Lives Helper</b> - Monitors the player's status and awards additional lives until reaching the maximum limit.<br><b>Tilemap</b> - Represents the game's tilemap.<br><b>Level Generator</b> - Randomly generates game levels by converting the tilemap into 3D and adding collectible objects for the player.<h2>Level Generator</h2>The Level Generator has 4 types of classes or scripts attached to it:<br><br><img style="border:1px solid black;" src="level generator.png"><br><br><b>World Borders</b> - Specifies the width and height of the level.<br><b>Random Tiles</b> - Utilizes a set of prefabs to generate the level randomly.<br><b>Tile To 3D</b> - Transforms the 2D tilemap into a 3D tilemap.<br><b>Tile To Object</b> - Converts a 2D tile into a 3D object using a specified prefab.<h3>World Borders</h3><b>Width</b> and <b>Height</b> specify the dimensions of the level.<br><br><img style="border:1px solid black;" src="world borders.png"><br><br>The World Borders script will draw a rectangle using the specified <b>Border Tile</b>, and the Random Tiles script will use the width and height variables to fill the area.<br><br>Make sure a <b>Tilemap</b> is assigned.<h3>Random Tiles</h3><b>Random Tiles</b> utilizes a set of prefabs to generate the level randomly.<br><br><img style="border:1px solid black;" src="random tiles.png"><br><br>The demo level comes with 21 prefabs named Block 1 to 21, and the Unity built-in tile editor can be used to edit these blocks.<br><br>Whenever the game starts, a level will be generated using these blocks.<br><br>The script will attempt to fill the level with these blocks, using the border tiles as boundaries.<br><br>Parameters explained:<br><br><b>Count</b> - Determines how many blocks will be copied.<br><b>Prefabs</b> - An array of prefabs to randomly choose from.<br><b>Fail Safe</b> - The number of attempts to find free space for each block.<br><b>Void Tile</b> - The script uses a tile or marker to define the borders of a block. These borders are used to maintain space between the blocks, allowing the player room to maneuver.<br><b>Free Area</b> - Defines the area that must remain free of tiles, usually the starting position of the player, to prevent the player from getting stuck.<br><br>This is an example of a prefab:<br><br><img style="border:1px solid black;" src="block example.png"><br><br>Note that the block has a border around it with the <b>void</b> tile.<br><br>The void tile must match the void tile variable specified in the script, and it must be included in the tile palette, as shown here:<br><br><img style="border:1px solid black;" src="tile palette.png"><br><br>In this case the first tile in the row is the void tile.<br><br>The other tiles from left to right are: wall, coin, bullet, and gem.<br><br>The system is set up in such a way that you can draw a level or prefab block using the Unity built-in tile editor, and the level generator will convert it into a 3D environment.<h3>Tile To 3D</h3><b>Tile To 3D</b> - Transforms the 2D tilemap into a 3D tilemap.<br><br><img style="border:1px solid black;" src="tile to 3d.png"><br><br>Some parameters explained:<br><br><b>Id</b> - Represents the tile in the tilemap that needs to be converted into a cube.<br><b>Texture</b> - Specifies the skin of the cube.<br><br>Other parameters should be self-explanatory or are beyond the scope of / not relevant to this project.<h3>Tile To Object</h3><b>Tile To Object</b> - Converts a 2D tile into a 3D object using a specified prefab.<br><br><img style="border:1px solid black;" src="tile to object.png"><br><br>Some parameters explained:<br><br><b>Id</b> - Represents the tile in the tilemap that needs to be converted into a 3D object.<br><b>Prefab</b> - Specifies the 3D object to which the tile has to be converted.<br><br>Other parameters should be self-explanatory or are beyond the scope of / not relevant to this project.<br><br>Scripts must be executed in the order specified by the <b>order</b> parameter.</div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/publishers/30574"><img src="../../Data/ads/playniax_1.png"></a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

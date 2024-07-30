@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<title>EasyGameUI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>EasyGameUI</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-purple"><i class=""></i><b>Getting Started</b></a>
+<a href="../Classes/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Classes</a>
+
+<div class="w3-container"><br></div><a href="../Reskinning/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Reskinning</a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>EasyGameUI</small><b> / Getting Started</b></h1>The core files of the EasyGameUI are located in the <b>Assets/Playniax/Framework/EasyGameUI</b> folder.<br><br>The EasyGameUI provides three generic themes, which can be located in the <b>Assets/Playniax/Framework/EasyGameUI/Scenes</b> folder.<br><br>Other themes can be located in the <b>Assets/Playniax/EasyGameUI (Themes)</b> folder but depend on whether you purchased additional themes.<br><br>Additionally, a small test game is bundled with the EasyGameUI, available in the <b>Assets/Playniax/Framework/EasyGameUI (Test Game)</b> folder.<br><br>To integrate the EasyGameUI into your game, ensure that one of the provided themes is set as the initial scene to start, as EasyGameUI needs to run in the background seamlessly.<br><br>For reference, I suggest opening the file <b>Assets/Playniax/Framework/EasyGameUI/Scenes/Minimalistic</b>.<br><br>Now, navigate to the Hierarchy window and click on the EasyGameUI object.<br><br>This action will display the EasyGameUI in the Inspector window.<h2>Main Settings</h2>The EasyGameUI interface is organized into four sections: <b>Main Settings</b>, <b>Advanced Settings</b>, <b>Editor Simulation Keys</b> and <b>Folder Filter</b>.<br><br>Let's start discussing the <b>Main Settings</b>.<br><br><img style="border:1px solid black;" src="main settings.png"><br><br><b>Mode</b> can be set to Use <b>Use Background Scene</b> or <b>Use Game As Background</b>:<br><br><img style="border:1px solid black;" src="mode.png"><br><br>When <b>Mode</b> is set to <b>Use Background Scene</b>, the SimpleGameUI will load the scene specified with the <b>Background Scene Name</b> property and run in the background<br><br>The EasyGameUI loads a scene called <b>Background Scene</b> by default:<br><br><img style="border:1px solid black;" src="background scene name.png"><br><br><b>Background Scene</b> is located in the <b>Assets/Playniax/Framework/EasyGameUI/Scenes</b> folder.<br><br>A background scene typically serves as a title screen backdrop behind the game's user interface.<br><br>It's advised to make a copy of <b>Background Scene</b> and use the copy instead if you need to make changes.<br><br>When <b>Mode</b> is set to <b>Use Game As Background</b>, the SimpleGameUI will load the first scene specified with the Level Settings and run in the background.<br><br>Scenes to be loaded as levels for your game are specified with the <b>Level Settings</b> properties under <b>Scene Name</b>:<br><br><img style="border:1px solid black;" src="level settings.png"><br><br>When specifying scenes, ensure to use their respective names.<br><br>There are 2 other properties worth mentioning:<br><br><img style="border:1px solid black;" src="worth mentioning.png"><br><br>When <b>startPausedWhenGameIsUsedAsBackground</b> is enabled, the level will start paused after loading.<br><br>And when <b>DisableHomePageWhenGameIsUsedAsBackground</b> is enabled, the EasyGameUI will ignore the Home screen, and the pause screen becomes the home screen.<br><br>As you may know, Unity's SceneManager requires scenes to be added to the Build Settings.<br><br>EasyGameUI will attempt to add all specified scenes to the Build Settings automatically when you launch the EasyGameUI for the Unity Editor but more about this later.<br><br>Under <b>Player Settings</b>, you can specify the total number of lives the player has and whether the game restarts after a <b>Game Over</b> or not. <br><br>During the game the lives counter is stored in <b>PlayerData.Get(0).lives</b>, where the zero indicates the player's index (0 = actually player 1, 1 = player 2, and so forth).<h2>Advanced Settings</h2>The most notable properties under <b>Advanced Settings</b> are <b>Pre Level Settings</b>, <b>Post Level Settings</b>, and <b>Advertisement Settings</b>:<br><br><img style="border:1px solid black;" src="advanced settings.png"><br><br>Under <b>Pre Level Settings</b>, you can specify the scenes that need to be loaded before each level.<br><br>This can include elements such as an introductory sequence, a level map, or a shop, for example.<br><br>Under <b>Post Level Settings</b>, you can specify the scenes that need to be loaded after every level.<br><br>This could include elements such as transition screens, for example.<br><br>Under <b>Advertisement Settings</b>, you can specify the scenes where your advertisements will be displayed.<br><br>It's important to note that the EasyGameUI will not automatically continue loading when these scenes are displayed.<br><br>You will need to instruct the EasyGameUI when to exit the scene and load the next.<br><br>This can be achieved with a simple line of code:
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+<span style="color:#ff00ff;">if </span>(EasyGameUI.instance) EasyGameUI.instance.ExitIntermission();
+
+</div></pre><h2>The simulator keys</h2>The EasyGameUI comes with a few built-in keys to simulate events.<br><br>Here are its keys along with their corresponding events:<br><br><img style="border:1px solid black;" src="simulator keys.png"><br><br>Pressing the Left Shift key simultaneously with the G key will prompt SimpleGameUI to end the game and display the Game Over screen.<br><br>Similarly, pressing Left Shift with the N key will end the current level and load the next one.<br><br>To restart the game, press Left Shift along with the R key.<br><br>Lastly, pressing Left Shift together with the L key will either restart or reload the current level.<h2>Build Settings Helper</h2>As mentioned, Unity's SceneManager necessitates scenes to be included in the Build Settings for successful loading.<br><br>Whenever you launch the EasyGameUI from the Unity Editor, it will automatically attempt to add all specified scenes to the Build Settings if they are not already included.<br><br>If scenes need to be added, you will receive a message notifying you of this action:<br><br><img style="border:1px solid black;" src="problems.png"><br><br>You can also manually initiate this process by selecting the <b>Add Scenes To Build</b> button located at the bottom of the EasyGameUI in the inspector panel:<br><br><img style="border:1px solid black;" src="add scenes to build.png"><br><br>It's important to note that EasyGameUI will search through the entire Unity project, which isn't always ideal.<br><br>Under Search In Folders, you can specify the folders:<br><br><img style="border:1px solid black;" src="search in folders.png"><br><br>Additionally, there is a helper button that can automatically set the folder of your current project:<br><br><img style="border:1px solid black;" src="set current scene folder.png"><br><br>And, for convenience, the EasyGameUI includes a button to open the Unity Build Settings window directly:<br><br><img style="border:1px solid black;" src="open build settings.png"><br><br>In conclusion, this tutorial has covered the essential aspects of setting up and utilizing EasyGameUI within your Unity project.<br><br>As you continue to work with EasyGameUI, remember to refer back to this documentation for guidance.<br><br>Feel free to experiment with the various settings and features.<br><br>For more detailed information, please refer to the <a href="../Classes/index.html">Classes</a> section.<br><br>And as mentioned previously, a small test game is included with EasyGameUI, located in the <b>Assets/Playniax/Framework/EasyGameUI (Test Game)</b> folder.<br><br>You can explore its scripts to understand how it interacts with the SimpleGameUI<br><br>Finally, below is a video showcasing an earlier version of EasyGameUI, which may still offer valuable insights and information:<br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/gztpFqmBxi4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/publishers/30574"><img src="../../Data/ads/playniax_1.png"></a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

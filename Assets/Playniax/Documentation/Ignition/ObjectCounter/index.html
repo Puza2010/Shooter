@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<title>Ignition</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>Ignition</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Getting Started</a>
+<a href="../Classes/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Classes</a>
+
+<div class="w3-container"><br></div><a href="../ScrollBox Scripting/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>ScrollBox Scripting</a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>Ignition</small><b> / ObjectCounter</b></h1>Namespace <b>  Playniax.Ignition</b><br><br>Inherits from <b> MonoBehaviour</b><br><br>Script can be found in <b>Assets/Playniax/Framework/Ignition/Framework/Core/Scripts (MonoBehaviour)/ObjectCounter.cs</b><br><hr class="solid"><h2>Class ObjectCounter</h2><u><b>Description</b></u><br><br>The ObjectCounter keeps track of the number of GameObjects enabled in the scene.<br><br>In order for this to work, you need to add the ObjectCounter component to the GameObjects that need to be included in the count.<br><br>Example can be found in <b>Assets/Playniax/Framework/Ignition/Scenes/01 - Framework/ObjectCounter/Scenes/ObjectCounter.unity</b><br><br>Example script can be found in <b>Assets/Playniax/Framework/Ignition/Scenes/01 - Framework/ObjectCounter/Scripts (MonoBehaviour)/ObjectCounter_Example_Spawner.cs</b>
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+<span style="color:#0000ff;">using </span>UnityEngine;
+<span style="color:#0000ff;">using </span>UnityEngine.UI;
+
+<span style="color:#0000ff;">public </span><span style="color:#0000ff;">class </span>ObjectCounter_Example_Spawner : MonoBehaviour
+{
+    <span style="color:#0000ff;">public </span>GameObject prefab;
+    <span style="color:#0000ff;">public </span><span style="color:#0000ff;">float </span>interval = .2f;
+    private <span style="color:#0000ff;">float </span>timer = 0.0f;
+
+    <span style="color:#0000ff;">public </span>Text text;
+
+    <span style="color:#0000ff;">void </span>Awake()
+    {
+        <span style="color:#ff00ff;">if </span>(prefab && prefab.scene.rootCount > 0) prefab.SetActive(<span style="color:#0000ff;">false</span>);
+    }
+
+    <span style="color:#0000ff;">void </span>Update()
+    {<span style="color:#008800;">
+        // Spawn the objects.</span>
+        timer += Time.deltaTime;
+
+        <span style="color:#ff00ff;">if </span>(timer >= interval)
+        {
+            timer = 0;
+
+            GameObject instance = Instantiate(prefab);
+            instance.SetActive(<span style="color:#0000ff;">true</span>);
+        }
+    }
+}
+
+</div></pre>Example script can be found in <b>Assets/Playniax/Framework/Ignition/Scenes/01 - Framework/ObjectCounter/Scripts (MonoBehaviour)/ObjectCounter_Example_Bullet.cs</b>
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+<span style="color:#0000ff;">using </span>UnityEngine;
+<span style="color:#0000ff;">using </span>Playniax.Ignition;
+
+<span style="color:#0000ff;">public </span><span style="color:#0000ff;">class </span>ObjectCounter_Example_Bullet : MonoBehaviour
+{
+    <span style="color:#0000ff;">void </span>Start()
+    {
+        _renderer = GetComponent<</>Renderer>();
+
+        _direction = <span style="color:#0000ff;">new </span>Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
+    }
+
+    <span style="color:#0000ff;">void </span>Update()
+    {
+        transform.localPosition += _direction * 10 * Time.deltaTime;
+        <span style="color:#ff00ff;">if </span>(CameraHelpers.IsVisible(_renderer) == <span style="color:#0000ff;">false</span>) gameObject.SetActive(<span style="color:#0000ff;">false</span>);
+    }
+
+    Vector3 _direction;
+    Renderer _renderer;
+}
+
+</div></pre>Example script can be found in <b>Assets/Playniax/Framework/Ignition/Scenes/01 - Framework/ObjectCounter/Scripts (MonoBehaviour)/ObjectCounter_Example_UI.cs</b>
+<pre><div class="w3-container w3-pre notranslate w3-light-grey" style="overflow-x:auto;max-height:480px">
+<span style="color:#0000ff;">using </span>UnityEngine;
+<span style="color:#0000ff;">using </span>UnityEngine.UI;
+<span style="color:#0000ff;">using </span>Playniax.Ignition;
+
+<span style="color:#0000ff;">public </span><span style="color:#0000ff;">class </span>ObjectCounter_Example_UI : MonoBehaviour
+{
+    <span style="color:#0000ff;">public </span>Text text;
+
+    <span style="color:#0000ff;">void </span>Awake()
+    {
+        <span style="color:#ff00ff;">if </span>(text == <span style="color:#0000ff;">null</span>) text = GetComponent<</>Text>();
+    }
+
+    <span style="color:#0000ff;">void </span>Update()
+    {<span style="color:#008800;">
+        // Get and display the number of objects.</span>
+        text.text = "The ObjectCounter counts " + ObjectCounter.count.ToString() + " objects.";
+    }
+}
+
+</div></pre></div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/publishers/30574"><img src="../../Data/ads/playniax_1.png"></a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<title>Galaga Essentials</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>Galaga Essentials</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-purple"><i class=""></i><b>Getting Started</b></a>
+<a href="../Classes/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Classes</a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>Galaga Essentials</small><b> / Getting Started</b></h1>Galaga Essentials can be found in the <b>Assets/Playniax/Galaga Essentials</b> folder.<br><br>The demo scene can be found there also and can be used as a template or a new scene can be created and the Unity menu can be used to add the necessary GameObjects.<h2>Prefabs</h2>The Galaga Essentials comes with a set of prefabs.<br><br>Prefabs can be found at <b>Assets/Playniax/Galaga Essentials/Prefabs</b><br><br>They are categorized in backgrounds, enemies, players, etc and they have the necessary scripts attached.<br><br><b>IMPORTANT!</b> In order for the prefabs to interact with eachother you must add the <b>Engine</b> prefab to your scene.<br><br>The engine prefab can be found at <b>Assets/Playniax/Framework/Prototyping/Prefabs/Engine/Pyro</b><br><br>The engine handles the collisions, sounds and visual effects.<h2>Setup</h2>To setup a Galaga game you can do the following:<br><br>1. Create a new 2d scene.<br>2. Add a player sprite to your scene.<br>3. Add a galaga formation grid to your scene.<br>4. Add a Galaga spawner to your scene.<h3>1. Create a new 2d scene</h3>We assume you know  how to create a new scene in Unity.<h3>2. Add a player sprite to your scene</h3>To add a player sprite to your scene you have atleast 2 options:<br><br>1. Drag the prefab to your scene.<br>2. Use the Unity menu and select <b>Playniax > Galaga Essentials > Sprites > Players > Player (Galaga Style)</b>.<h3>3. Add a galaga formation grid to your scene</h3>To add a galaga formation grid to your scene you have atleast 2 options:<br><br>1. Drag the prefab to your scene.<br>2. Use the Unity menu and select <b>Playniax > Galaga Essentials > Misc > Galala Grid</b>.<br><br>The formation grid as seen from the Scene view:<br><br><img style="border:1px solid black;" src="grid.png"><h3>4. Add a Galaga spawner to your scene</h3>Use the Unity menu and select <b>Playniax > Galaga Essentials > Sequencer > Galaga Spawner</b> to add a spawner to your scene.<br><br>Now the hierarchy should look something like this:<br><br><img style="border:1px solid black;" src="hierarchy.png"><h2>The sequencer explained</h2>The sequencer executes the supported scripts on a GameObject (that is a child of the sequencer) in order they appear in the Hierarchy from top to bottom.<br><br>Select the <b>Wave</b> in the sequencer:<br><br><img style="border:1px solid black;" src="wave x.png"><br><br>The inspector should show the spawner settings:<br><br><img style="border:1px solid black;" src="sequence.png"><br><br><b>Prefabs</b> are the actual sprites to be spawned. <br><br>There are 9 enemy prefabs to choose from and they can be found in <b>Assets/Playniax/Galaga Essentials/Prefabs/Enemies</b>.<br><br>You can set more than one prefab and the spawner will choose one randomly.<br><br>The <b>Entrance</b> and <b>Exit</b> settings determine where the sprites enter and leave the screen.<br><br>The <b>Spawning Mode</b> setting determines if a single wave or double wave.<br><br>The <b>Counter</b> setting determines number of sprites are in a wave.<br><br>The <b>Interval</b> setting determines how much distance there is between each sprite in a wave.<br><br>The <b>Cargo Settings</b> and <b>Surprise Settings</b> can be used to leave an item or pickup (like for example a new weapon or coins) after the sprite of an attack wave is destroyed:<br><br><img style="border:1px solid black;" src="cargo.png"><br><br>The available pickups can be found in <b>Assets/Playniax/Framework/Prototyping/Prefabs/Players (Pickups)</b><br><br>Note that the prefabs used at <b>Cargo Settings</b> are released by all or half of the spawned sprites (depending on the release mode) and that the prefab used at <b>Surprise Settings</b> only by one of them.<br><br>Both <b>Cargo Settings</b> and <b>Surprise Settings</b> have an option called <b>Effect Settings</b> and is used to determine the direction of the released item to move.<br><br><img style="border:1px solid black;" src="effect settings.png"><br><br>The <b>Bullets Settings</b> determine if the sprite fire bullets or not:<br><br><img style="border:1px solid black;" src="bullet settings.png"><br><br>Available bullet prefabs can be found in <b>Assets/Playniax/Framework/Prototyping/Prefabs/Enemies (Bullets)</b><br><br>To add a new spawner simply duplicate one and change the settings or insert one using the Unity menu.<h3>The Message command</h3>It is possible to show messages between spawner operations.<br><br>To add a message simply use the Unity menu and select <b>Playniax > Galaga Essentials > Sequencer > Message</b>.<br><br><img style="border:1px solid black;" src="message.png"><br><br>By default a message will display the text <b>Get Ready For Wave 1</b> where %WAVE% fetches the correct wave number.<br><br><img style="border:1px solid black;" src="get ready.png"><br><br>You can determine how long the text is displayed by setting the sustain and fade time.<br><br>The sequencer moves on after the text was displayed.<h3>The Wait command</h3>Once a spawner is finished the sequencer continues with the next (if present).<br><br>It is possible to create a delay or pause, in other words to have it wait until the previous spawner is done and the attack wave is destroyed.<br><br>It is possible to create a delay or pause between each sequencer operation.<br><br>If you don't add a delay or pause the sequencer will wait for the operation to be finished but not for all the spawnerd objects to be destroyed.<br><br>But first rename <b>Wave</b> to <b>Wave 1</b> for easier reference.<br><br>Now add a wait command by using the Unity menu and select <b>Playniax > Sequencer > Wait For Sequence To Be Finished</b><br><br>The sequencer should now wait until the last spawned objects are completly destroyed and move on to the next (if present).<br><br>For example:<br><br><img style="border:1px solid black;" src="wait.png"><br><br>This will first show a message, then Wave 1 will start but the sequencer will wait for Wave 1 to be destroyed.<br><br>After Wave 1 is destroyed a new message will be shown followed by Wave 2<br><br>You can repeat this as manny times as needed and make a cool game.<br><br>Just make sure all these GameObjects are (or stay) a child object of the sequencer.<br><br>Have a look at <a href="../../Sequencer/Introduction/index.html">Sequencer</a> for more information about the sequencer.<h2>SHMUP Builder</h2>We recently added a new tool called <a href="../../SHMUP Builder/Introduction/index.html">SHMUP Builder</a>.<br><br>SHMUP Builder can help you to create your own space shooter. <br><br>This tool is fairly easy to use and powerful enough for more experienced users.<br><br>Thanks to the included assets you can start right away to have fun!</div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/publishers/30574"><img src="../../Data/ads/playniax_1.png"></a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,321 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5891618736089336369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174130813013105593}
+  - component: {fileID: 1041383129465145869}
+  - component: {fileID: 1493879504462248262}
+  - component: {fileID: 432197750910152645}
+  - component: {fileID: -8239270648679989229}
+  - component: {fileID: 7960289608351002100}
+  - component: {fileID: 6922080966510117371}
+  - component: {fileID: 8110423009774571561}
+  - component: {fileID: 5398216424479705667}
+  - component: {fileID: 3553989579115119978}
+  - component: {fileID: 2766072412752334441}
+  - component: {fileID: 7068583498182004097}
+  - component: {fileID: 2598520151968293281}
+  - component: {fileID: 2325510159029002535}
+  - component: {fileID: 8956459077607609490}
+  - component: {fileID: 4514772196955104451}
+  - component: {fileID: 1425720456527138020}
+  - component: {fileID: 6193677678143563478}
+  - component: {fileID: 4244508894483300309}
+  m_Layer: 0
+  m_Name: Collision Monitor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &174130813013105593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1041383129465145869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player
+  group2: Obstacle
+  ignoreSuspension: 1
+--- !u!114 &1493879504462248262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player
+  group2: Pickup
+  ignoreSuspension: 1
+--- !u!114 &432197750910152645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player
+  group2: Enemy
+  ignoreSuspension: 0
+--- !u!114 &-8239270648679989229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player
+  group2: Player Bullet
+  ignoreSuspension: 0
+--- !u!114 &7960289608351002100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player
+  group2: Enemy Bullet
+  ignoreSuspension: 0
+--- !u!114 &6922080966510117371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player Bullet
+  group2: Enemy
+  ignoreSuspension: 0
+--- !u!114 &8110423009774571561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player Bullet
+  group2: Obstacle
+  ignoreSuspension: 0
+--- !u!114 &5398216424479705667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Enemy
+  group2: Obstacle
+  ignoreSuspension: 0
+--- !u!114 &3553989579115119978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Enemy Bullet
+  group2: Obstacle
+  ignoreSuspension: 0
+--- !u!114 &2766072412752334441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player
+  group2: Enemy Missile
+  ignoreSuspension: 0
+--- !u!114 &7068583498182004097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player Bullet
+  group2: Enemy Missile
+  ignoreSuspension: 0
+--- !u!114 &2598520151968293281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player Missile
+  group2: Player Missile
+  ignoreSuspension: 0
+--- !u!114 &2325510159029002535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Enemy
+  group2: Player Missile
+  ignoreSuspension: 0
+--- !u!114 &8956459077607609490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Enemy Missile
+  group2: Enemy Missile
+  ignoreSuspension: 0
+--- !u!114 &4514772196955104451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player
+  group2: Enemy Laser
+  ignoreSuspension: 1
+--- !u!114 &1425720456527138020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Player Bullet
+  group2: Enemy Laser
+  ignoreSuspension: 0
+--- !u!114 &6193677678143563478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Enemy
+  group2: Enemy Laser
+  ignoreSuspension: 0
+--- !u!114 &4244508894483300309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891618736089336369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ee4b12b422f9041a0e89c392d5bf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group1: Enemy Bullet
+  group2: Enemy Laser
+  ignoreSuspension: 0

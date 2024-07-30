@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<title>Ignition</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>Ignition</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Getting Started</a>
+<a href="../Classes/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Classes</a>
+
+<div class="w3-container"><br></div><a href="../ScrollBox Scripting/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-purple"><i class=""></i><b>ScrollBox Scripting</b></a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>Ignition</small><b> / ScrollBox Scripting</b></h1>The <a href="../ScrollBox/index.html">ScrollBox</a> is a UI component.<br><br>The ScrollBox supports text, url links and images and it has its own scripting language. It also has a mini ‘filesystem’ so the assets can be easily loaded. A scrollbox can be used to display information about your game / app or display instructions etc.<br><br><img style="border:1px solid black; width:75%;" src="sample.gif"><br><br>To add ScrollBox to your scene simple select: <b>GameObject > UI > Playniax > Ignition > ScrollBox</b> in the Unity Menu.<br><br>This will create a ScrollBox and 3 files in the same folder as your scene. These 3 files are: 'script.txt', 'prologue.txt' and 'how to play.txt'.<br><br>'script.txt' is the actual script used by the ScrollBox and the other scripts are called by the script as data.<br><br>Keep in mind that this is an example for your convenience.<br><br>The ScrollBox has its own scripting language and a script may look something like this:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+textAligning=left
+verticalSpacing=true
+lineSpacing=2
+imageRowSpacing=24
+scale=1
+font=Arial
+
+color=0.23,0.60,0.92,0.99
+fontSize=64
+text=KEEP MINING
+textColor=1,1,1
+fontSize=32
+textAsset=prologue
+y+=64
+
+color=0.23,0.60,0.92,0.99
+fontSize=64
+text=HOW TO PLAY
+color=1,1,1
+fontSize=32
+textAsset=how to play
+
+</div></pre>textAligning determines if the text is positioned in the middle, left of right side of the scrollbox:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+textAligning=middle
+
+</div></pre>imageAligning determines if the image is positioned in the middle, left of right side of the scrollbox:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+imageAligning=middle
+
+</div></pre>When verticalSpacing is set to true the scrollbox will add space automatically between each object based on the objects height:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+verticalSpacing=true
+
+</div></pre>With lineSpacing you can set the extra space between each line:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+lineSpacing=2
+
+</div></pre> <br>With imageRowSpacing the scrollbox will add space automatically between each image:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+imageRowSpacing=24
+
+</div></pre>With scale you can set the render scale:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+scale=1
+
+</div></pre>With font you can set the font style:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+font=Arial
+
+</div></pre>With fontSize you can set the size of the font:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+fontSize=64
+
+</div></pre>With color you can set the color:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+textColor=0.23,0.60,0.92,0.99
+
+</div></pre>With text you can set a line of text ( can be used to force a line break):
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+text=KEEP MINING
+text=Keep mining is a fun gamebla bla blablabla bla
+
+</div></pre>With textAsset you can load a text file that will be added to the scrollbox (don’t forget to add the text file to the AssetBank):
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+textAsset=Keep Mining How To Play
+
+</div></pre>To create extra space you can increase the y variable (for example 32 pixels):
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+y+=32
+
+</div></pre> <br>It’s also possible to set ‘hard’ coordinates:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+x=8
+y=128
+
+</div></pre>You can also set and save settings (index can be 0 to 15 so you can store 16 settings):
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+saveSettings=0
+
+</div></pre>And load settings:
+<pre><div class="w3-container w3-pre notranslate w3-black w3-text-green" style="overflow-x:auto;max-height:480px">
+loadSettings=0
+
+</div></pre>The inspector view:<br><br><img style="border:1px solid black;" src="inspector.png"><br><br>ScrollBox uses <a href="../AssetBank/index.html">AssetBank</a> to load assets like fonts, images, etc.<br><br>In order for assets to load they need to be added to the AssetBank.</div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/packages/2d/textures-materials/background-pack-01-barren-planet-222632">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/73c5de91-f424-43bc-8c0f-342049ee7769.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/textures-materials/background-pack-02-magic-forest-231157">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/c78e492a-847a-4a37-94e2-bf5efbddcb6c.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/textures-materials/background-pack-03-northern-landscape-231160">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/d88d0982-8d49-4e0c-9999-723891b62900.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

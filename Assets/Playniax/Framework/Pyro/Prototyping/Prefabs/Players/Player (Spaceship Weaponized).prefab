@@ -1,0 +1,1283 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3997985681973076687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3997985681973076697}
+  - component: {fileID: 3997985681973076696}
+  - component: {fileID: 3997985681973076695}
+  - component: {fileID: 3997985681973076699}
+  - component: {fileID: 3997985681973076698}
+  - component: {fileID: 3997985681973076701}
+  - component: {fileID: 3510030161154869461}
+  - component: {fileID: 9178826766004554930}
+  - component: {fileID: 3997985681973076702}
+  - component: {fileID: 3997985681973076674}
+  - component: {fileID: 3826852053313055610}
+  - component: {fileID: 3997985681973076694}
+  - component: {fileID: 3997985681973076679}
+  - component: {fileID: 3997985681973076678}
+  - component: {fileID: 3997985681973076681}
+  - component: {fileID: 3997985681973076680}
+  - component: {fileID: 3612023886613480576}
+  - component: {fileID: 3997985681973076683}
+  - component: {fileID: 3997985681973076682}
+  - component: {fileID: 3997985681973076684}
+  - component: {fileID: 7293027359591541273}
+  - component: {fileID: 3997985681973076693}
+  - component: {fileID: 3997985681973076692}
+  - component: {fileID: 3135567362163097861}
+  - component: {fileID: 3780900888291989477}
+  - component: {fileID: 835356867300547929}
+  - component: {fileID: 3997985681973076676}
+  - component: {fileID: 3997985681973076677}
+  - component: {fileID: 1851630372104010110}
+  - component: {fileID: 4797685135566869323}
+  m_Layer: 0
+  m_Name: Player (Spaceship Weaponized)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3997985681973076697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5434095005474892774}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3997985681973076696
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 4bf22a03ae55deb4ba41c1857e7947d4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.96, y: 1.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &3997985681973076695
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73e076f6d7491a64ca7d0ff488ddb85b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &3997985681973076699
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32
+--- !u!114 &3997985681973076698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557780fd7adf90044af115e19176a158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Player 1
+--- !u!114 &3997985681973076701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3dbe5784db7f74c9de0fb45bd8ff55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: -1
+  id: Main Gun
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  prefab: {fileID: 5322387968320073750, guid: 2d1a1a5f2def3b4469db3484b31fc8ba, type: 3}
+  parent: {fileID: 0}
+  ignoreParent: 0
+  layer: 0
+  prefabSmartOverrides: 1
+  mode: 3
+  position: {x: 0.6, y: 0, z: 0}
+  scale: 1
+  speed: 18
+  speedRange: 0
+  randomSettings:
+    intensity: 1
+    intensitySpread: 10
+  targetEnemySettings:
+    toughestFirst: 0
+    targetRange: 0
+    detectTiles: 1
+  targetPlayerSettings:
+    targetRange: 0
+    detectTiles: 1
+    intensity: 1
+    intensitySpread: 10
+  directionSettings:
+    rotation: {x: 0, y: 0, z: 0}
+    triggerSettings:
+      mode: 0
+      Button1: 350
+      Button2: 0
+      autofire: 0
+      rapidFire: 0
+    intensity: 1
+    intensitySpread: 10
+    detectTiles: 1
+  pointInSpaceSettings:
+    position: {x: 0, y: 0, z: 0}
+  overrideCollisionSettings:
+    useTheseSettings: 0
+    structuralIntegrity: 1
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  powerSettings:
+    useTheseSettings: 0
+    powerRange: 1000
+    visualize: 0
+    visualizeScale: 0.25
+  effectsSettings:
+    prefab: {fileID: 0}
+    scale: 1
+--- !u!114 &3510030161154869461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5bece39f4ae6243a84f473f08e8f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: Cannon
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  group: 0
+  prefab: {fileID: 2810408086072053405, guid: 41ff4fa9a2cab6c4a8c0f2923dd70a58, type: 3}
+  parent: {fileID: 0}
+  spawnPoints:
+  - name: 
+    group: 0
+    position: {x: 0.5, y: -0.3, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    speed: 20
+  - name: 
+    group: 0
+    position: {x: 0.5, y: 0.3, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    speed: 20
+  scale: 1
+  rotation: {x: 0, y: 0, z: 0}
+  triggerSettings:
+    mode: 0
+    Button1: 350
+    Button2: 0
+    autofire: 0
+    rapidFire: 0
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  overrideCollisionSettings:
+    useTheseSettings: 0
+    structuralIntegrity: 1
+  powerSettings:
+    useTheseSettings: 0
+    powerRange: 1000
+    visualize: 0
+    visualizeScale: 0.25
+  effectsSettings:
+    prefab: {fileID: 0}
+    scale: 1
+  prefabSmartOverrides: 1
+  drawGizmos: 0
+--- !u!114 &9178826766004554930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5bece39f4ae6243a84f473f08e8f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: 3 Way Shooter
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  group: 0
+  prefab: {fileID: 787315027656738199, guid: 19fd17be2f9fd664584feaf2cb200bcc, type: 3}
+  parent: {fileID: 0}
+  spawnPoints:
+  - name: 
+    group: 0
+    position: {x: 0.575, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 180}
+    speed: 19
+  - name: 
+    group: 0
+    position: {x: 0.75, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 90}
+    speed: 19
+  - name: 
+    group: 0
+    position: {x: 0.75, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: -90}
+    speed: 19
+  scale: 1
+  rotation: {x: 0, y: 0, z: 0}
+  triggerSettings:
+    mode: 0
+    Button1: 350
+    Button2: 0
+    autofire: 0
+    rapidFire: 0
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  overrideCollisionSettings:
+    useTheseSettings: 0
+    structuralIntegrity: 1
+  powerSettings:
+    useTheseSettings: 0
+    powerRange: 1000
+    visualize: 0
+    visualizeScale: 0.25
+  effectsSettings:
+    prefab: {fileID: 0}
+    scale: 1
+  prefabSmartOverrides: 1
+  drawGizmos: 0
+--- !u!114 &3997985681973076702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3dbe5784db7f74c9de0fb45bd8ff55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: Phaser
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  prefab: {fileID: 7468486278026618430, guid: 5677dcf62ecec4a49a7d57ea364122f4, type: 3}
+  parent: {fileID: 0}
+  ignoreParent: 0
+  layer: 0
+  prefabSmartOverrides: 1
+  mode: 1
+  position: {x: 0, y: 0, z: 0}
+  scale: 1
+  speed: 22
+  speedRange: 0
+  randomSettings:
+    intensity: 1
+    intensitySpread: 10
+  targetEnemySettings:
+    toughestFirst: 1
+    targetRange: 0
+    detectTiles: 1
+  targetPlayerSettings:
+    targetRange: 0
+    detectTiles: 1
+    intensity: 1
+    intensitySpread: 10
+  directionSettings:
+    rotation: {x: 0, y: 0, z: 5}
+    triggerSettings:
+      mode: 0
+      Button1: 350
+      Button2: 0
+      autofire: 0
+      rapidFire: 0
+    intensity: 1
+    intensitySpread: 10
+    detectTiles: 1
+  pointInSpaceSettings:
+    position: {x: 0, y: 0, z: 0}
+  overrideCollisionSettings:
+    useTheseSettings: 0
+    structuralIntegrity: 1
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  powerSettings:
+    useTheseSettings: 0
+    powerRange: 1000
+    visualize: 0
+    visualizeScale: 0.25
+  effectsSettings:
+    prefab: {fileID: 0}
+    scale: 1
+--- !u!114 &3997985681973076674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e58905d06b4e0498f4bcf1b539a485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: Laser
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  prefab: {fileID: 1069129441568076, guid: d55cb3335f107db4f86cab2647a02a40, type: 3}
+  playerIndex: 0
+  size: 1
+  orderInLayer: 22
+  range: 7
+  damage: 1
+  ttl: 0.125
+  index: 0
+  audioProperties:
+    audioClip: {fileID: 8300000, guid: 9dd0e65a4fbd16240ad5fb0e9442fd69, type: 3}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 2
+    enabled: 1
+--- !u!114 &3826852053313055610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eaea3e8468a2d94fa949d780056d578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 1
+    intervalRange: 0
+    counter: 0
+  id: Missiles
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  prefab: {fileID: 7145978568385870582, guid: eb719c2606074964b81a6c0925855fc8, type: 3}
+  parent: {fileID: 0}
+  position: {x: 0, y: 0, z: 0}
+  scale: 1
+--- !u!114 &3997985681973076694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1092cb9f60721949bb8dae608342762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Main Gun Ammo
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    deactivatedId: Deactivated
+    reloadedId: Reloaded
+  spawner: {fileID: 0}
+  spawnerId: Main Gun
+  mode: 0
+  increase: 250
+  max: 500
+  activatedText: Gun Activated  Activated At %
+  deactivatedText: Gun Deactivated
+  reloadedText: Main Gun At %
+  load: 0
+--- !u!114 &3997985681973076679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1092cb9f60721949bb8dae608342762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Cannon Ammo
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    deactivatedId: Deactivated
+    reloadedId: Reloaded
+  spawner: {fileID: 0}
+  spawnerId: Cannon
+  mode: 0
+  increase: 250
+  max: 1000
+  activatedText: Cannons Activated At %
+  deactivatedText: Cannons Deactivated
+  reloadedText: Cannons At %
+  load: 0
+--- !u!114 &3997985681973076678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1092cb9f60721949bb8dae608342762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Phaser Ammo
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    deactivatedId: Deactivated
+    reloadedId: Reloaded
+  spawner: {fileID: 0}
+  spawnerId: Phaser
+  mode: 0
+  increase: 250
+  max: 1000
+  activatedText: Phaser Activated At %
+  deactivatedText: Phaser Deactivated
+  reloadedText: Phaser At %
+  load: 0
+--- !u!114 &3997985681973076681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1092cb9f60721949bb8dae608342762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: 3 Way Shooter Ammo
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    deactivatedId: Deactivated
+    reloadedId: Reloaded
+  spawner: {fileID: 0}
+  spawnerId: 3 Way Shooter
+  mode: 0
+  increase: 250
+  max: 1000
+  activatedText: 3 Way Shooter Activated At %
+  deactivatedText: 3 Way Shooter Deactivated
+  reloadedText: Gun At %
+  load: 0
+--- !u!114 &3997985681973076680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c807487d1a2ee478357415efbcc4ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Laser Ammo
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    deactivatedId: Deactivated
+    reloadedId: Reloaded
+  spawner: {fileID: 0}
+  spawnerId: Laser
+  mode: 0
+  increase: 50
+  max: 200
+  activatedText: Laser Activated At %
+  deactivatedText: Laser Deactivated
+  reloadedText: Laser At %
+--- !u!114 &3612023886613480576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1092cb9f60721949bb8dae608342762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Missiles Ammo
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    deactivatedId: Deactivated
+    reloadedId: Reloaded
+  spawner: {fileID: 0}
+  spawnerId: Missiles
+  mode: 0
+  increase: 25
+  max: 50
+  activatedText: Missiles Activated At %
+  deactivatedText: Missiles Deactivated
+  reloadedText: Missiles At %
+  load: 0
+--- !u!114 &3997985681973076683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479eb19cdd89f3e4ea68737b9c0286a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Shield
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    reloadedId: Reloaded
+  prefab: {fileID: 5825313023868159098, guid: 8c39c0ec1f2d4f74d88db278dffa386a, type: 3}
+  mode: 0
+  increase: 50
+  max: 200
+  activatedText: Shield Activated At %
+  reloadedText: Shield At %
+--- !u!114 &3997985681973076682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0558d99d31b0390429ae193b4e70fc84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Nuke
+  group: Player
+  delay: 1
+  emitter: Nuke
+--- !u!114 &3997985681973076684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941424a1797a7d44baede4f42c512652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Health
+  group: Player
+  delay: 1
+  messengerSettings:
+    genericId: Generic
+  mode: 0
+  increase: 25
+  max: 100
+  text: Integrity at %
+  onPickupDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7293027359591541273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3053baa908a7e948abc08ee17244782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Extra Life
+  group: Player
+  delay: 1
+  messengerSettings:
+    genericId: Generic
+  playerIndex: 0
+  text: One Up
+--- !u!114 &3997985681973076693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17bd976d555852b47bddcdca365fe10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Wrecking Ball
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    reloadedId: Reloaded
+  prefab: {fileID: 2914729422674145614, guid: 78259d2bd6251b5489aa0be0ff2b791e, type: 3}
+  mode: 0
+  increase: 25
+  max: 100
+  distance: 0.75
+  speed: 15
+  activatedText: Wrecking Ball Activated At %
+  reloadedText: Wrecking Ball At %
+--- !u!114 &3997985681973076692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc182b2acd73bbe4f8321a6c1bb231fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Speed
+  group: Player
+  delay: 1
+  messengerSettings:
+    genericId: Generic
+  mode: 0
+  increase: 0.5
+  max: 3
+  text: Speed At %
+  additionalSettings:
+    autoDecrease: 1
+    decrease: 0.5
+    sustain: 180
+    min: 0
+    text: Speed at %
+--- !u!114 &3135567362163097861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad011997164e21c41b6d74aa5999b395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Energy Beam
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+    reloadedId: Reloaded
+  prefab: {fileID: 8105222091345716376, guid: 9918a3a8eb8db784abe5cabab38a2cf0, type: 3}
+  mode: 0
+  increase: 25
+  max: 100
+  activatedText: Energy Beam Activated At %
+  reloadedText: Energy Beam At %
+--- !u!114 &3780900888291989477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c34f39af0ada3a408a927268192b9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Drone
+  group: Player
+  delay: 1
+  messengerSettings:
+    activatedId: Activated
+  prefab: {fileID: 2636175273757595107, guid: 7f2f0b3e70a596b44ab1705851f4ae85, type: 3}
+  activatedText: Drone Activated
+--- !u!114 &835356867300547929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1f3a18020792a4cb9859d1f7604981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: Coin
+  group: Player
+  delay: 1
+  playerIndex: 0
+  audioSettings:
+  - audioClip: {fileID: 8300000, guid: 6433384a1880b8c45ba867a68356c589, type: 3}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+--- !u!114 &3997985681973076676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98f9ae6b5ef2444fad5a7e6ac109f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  mode: 2
+  playerIndex: 0
+  swipeSettings:
+    speed: 1
+    rotation: 0
+    rotationSpeed: 250
+    friction: 1
+    velocity: {x: 0, y: 0, z: 0}
+    boundaries: 1
+    horizontal: 1
+    vertical: 1
+    allowScrolling: 0
+  zigZagSettings:
+    controlKey: 0
+    rotationSpeed: 100
+    speed: 1
+    speedIncrease: 0
+    friction: 0
+    allowScrolling: 0
+  wasdSettings:
+    horizontalName: Horizontal
+    horizontal: 1
+    verticalName: Vertical
+    vertical: 1
+    speed: 8
+    boundaries: 1
+    allowScrolling: 0
+  mouseSettings:
+    steps: {x: 16, y: 16}
+    requireMouseButton: 0
+    horizontal: 1
+    vertical: 1
+    allowScrolling: 0
+  rocketSettings:
+    horizontal: Horizontal
+    vertical: Vertical
+    rotationSpeed: 250
+    speed: 10
+    gravityScale: 1
+    gravityEnabled: 0
+    friction: 1
+    frictionEnabled: 1
+    velocity: {x: 0, y: 0, z: 0}
+    allowScrolling: 0
+    fuel: 50
+    fuelScale: 100
+    unlimitedFuel: 1
+    fillFuelTankWhileLanded: 0
+    reverseScale: 1
+    thrusterSettings:
+      left: []
+      right: []
+      up: []
+      down: []
+    landingSettings:
+      maxTilt: 10
+      contact: 0
+      tilemap: {fileID: 0}
+      testCollider: {fileID: 0}
+--- !u!114 &3997985681973076677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be82b93f4842c94c82743b17a137e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: 
+  group: Player
+  delay: 1
+  _material: Metal
+  _structuralIntegrity: 100
+  autoPoints: 1
+  _points: 0
+  playerIndex: -1
+  playerLivesCount: 0
+  _indestructible: 0
+  _friend: {fileID: 0}
+  parent: {fileID: 0}
+  shield: {fileID: 0}
+  isParentShield: 0
+  dontDestroy: 0
+  bodyCount: 0
+  outroSettings:
+    effectsSettings:
+    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402,
+        type: 3}
+      scale: 1
+      orderInLayer: 0
+      sizeInPixels: 80
+    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724,
+        type: 3}
+      scale: 1
+      orderInLayer: 1
+      sizeInPixels: 80
+    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66,
+        type: 3}
+      scale: 1
+      orderInLayer: 2
+      sizeInPixels: 80
+    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3,
+        type: 3}
+      scale: 1
+      orderInLayer: 3
+      sizeInPixels: 80
+    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e,
+        type: 3}
+      scale: 1
+      orderInLayer: 4
+      sizeInPixels: 80
+    messengerSettings:
+      messengerId: Score
+      text: 
+      enabled: 1
+    audioSettings:
+      audioClip: {fileID: 8300000, guid: f25d7e945a04bc34f9d6c8c199fd55f0, type: 3}
+      volumeScale: 1
+      panStereo: 0
+      pitch: 1
+      enabled: 1
+    ignoreParentForEffects: 0
+    enabled: 1
+  cargoSettings:
+    prefab: []
+    scale: 1
+    effectSettings:
+      motion: 0
+      motionSpeed: 1
+      magnetic: 0
+      magneticRange: 1
+      magneticSpeed: 3
+      killOffCamera: 1
+  eventSettings:
+    onAwake:
+      m_PersistentCalls:
+        m_Calls: []
+    onGhost:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4797685135566869323}
+          m_TargetAssemblyTypeName: Playniax.Pyro.CameraShake, Assembly-CSharp
+          m_MethodName: Shake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onOutro:
+      m_PersistentCalls:
+        m_Calls: []
+  spriteRenderer: {fileID: 0}
+  generateBoxCollider: 1
+  ghostMaterial: {fileID: 2100000, guid: bb7b330a3d22c9f4f9e1d0fab8c1c266, type: 2}
+  ghostSustain: 3
+  additionalSettings:
+    spriteRenderer: []
+--- !u!114 &1851630372104010110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669aae502e387164d8fff5ceaeb3f067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  flickerSettings:
+    count: 15
+    sustain: 1
+    spriteRenderer: []
+    collisionBase:
+    - {fileID: 0}
+  scaleSettings:
+    duration: 1
+    startScale: {x: 0, y: 0, z: 0}
+    targetScale: {x: 1, y: 1, z: 1}
+    inheritTargetScale: 0
+    destroy: 1
+--- !u!114 &4797685135566869323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3997985681973076687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff96280507a0e1b4d9d893aa6e028867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  interval: 10
+  range: {x: 1, y: 1, z: 1}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.7389851
+      outSlope: 1.7389851
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.032562375
+      value: 0.056625485
+      inSlope: 0.8402268
+      outSlope: 0.8402268
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.058531407
+      outSlope: -0.058531407
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &4656776161750649511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5434095005474892774}
+  - component: {fileID: 929662031408108344}
+  - component: {fileID: 2492630664981693645}
+  m_Layer: 0
+  m_Name: Thrust
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5434095005474892774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656776161750649511}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3997985681973076697}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &929662031408108344
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656776161750649511}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 10bb4e360a2ac43bead1bc27520289b7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 559c1a0aff7289943806eeb1e95f3268, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.36, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &2492630664981693645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656776161750649511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fa5f85bad16a4dabba099d86eb9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  fadeInSettings:
+    speed: 1
+  fadeOutSettings:
+    speed: 1
+  pingPongSettings:
+    speed: 10
+    min: 0.25
+    max: 1
+    startRandom: 0
+  spriteRenderer: {fileID: 0}

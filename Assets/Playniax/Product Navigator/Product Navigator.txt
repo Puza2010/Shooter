@@ -1,0 +1,2 @@
+mainAssetTitle = "Space Shooter Art Pack 02"
+mainAssetPath = "Assets/Playniax/Space Shooter Art Pack 02/Scenes"

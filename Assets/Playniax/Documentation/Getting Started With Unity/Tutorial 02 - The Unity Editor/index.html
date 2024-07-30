@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<title>Getting Started With Unity</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="Playniax is a small independent software company based in the Netherlands. Our main focus lies on the development of tools and assets to help game developers achieve their gaming projects." />
+<meta name="author" content="Playniax" />
+<meta name="keywords" content="games, engine, 2d, apps, mobile, programming, c64, amiga, retro, platformer, space shooter, programming, android, ios, desktop, mac, osx" />
+
+<link rel="stylesheet" href="../../Data/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Arial", sans-serif
+}
+
+body {
+  background-color: #ffffff
+}
+
+h1 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Purple;
+  color: #ffffff;
+}
+
+h2,h3,h4,h5,h6 {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: Black;
+  color: White;
+}
+
+table {
+  background-color: #dddddd;
+  font-family: Arila, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+tr:nth-child(1) {
+  background-color: #ddddfc;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+</style>
+
+<body class="w3-content" style="max-width:inherit">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse" style="background-color:#dddddd;z-index:3;width:256px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-left w3-xlarge w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <center>
+    <a href="http://www.playniax.com/"><img src="../../Data/playniax.png" style="width:50%;"></a><br>
+    </center>
+  </div>
+  <div class="w3-bar-block">
+	<div class="w3-center w3-container"><h3>Getting Started With Unity</h3></div><a href="../Introduction/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Introduction</a>
+<a href="../Getting Started/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Getting Started</a>
+
+<div class="w3-container"><br></div><a href="../Tutorial 01 - Creating A New Unity Project/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-black"><i class=""></i>Tutorial 01 - Creating A New Unity Project</a>
+<a href="../Tutorial 02 - The Unity Editor/index.html" onclick="w3_close()" class="w3-center w3-bar-item w3-button w3-padding w3-text-purple"><i class=""></i><b>Tutorial 02 - The Unity Editor</b></a>
+
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main" style="margin-left:256px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+
+    <div class="w3-container">
+
+		<div class="w3-bar w3-light-grey">
+
+		  <div class="w3-dropdown-hover">
+<a href="../../Home/index.html" class="w3-button w3-light-grey">&#127968 Home</a>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Asset Packs</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Space Shooter Art Pack 02/index.html" class="w3-bar-item w3-button">Space Shooter Art Pack 02</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Playniax Framework</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Ignition/index.html" class="w3-bar-item w3-button">Ignition</a>
+<a href="../../Pyro/index.html" class="w3-bar-item w3-button">Pyro</a>
+<a href="../../Sequencer/index.html" class="w3-bar-item w3-button">Sequencer</a>
+<hr class="solid"><a href="../../EasyGameUI/index.html" class="w3-bar-item w3-button">EasyGameUI</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tools</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../SHMUP Builder/index.html" class="w3-bar-item w3-button">SHMUP Builder</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Tutorials</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="../../Getting Started With Unity/index.html" class="w3-bar-item w3-button">Getting Started With Unity</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Misc</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://www.playniax.com/download/" class="w3-bar-item w3-button">Download</a>
+<hr class="solid"><a href="https://www.paypal.me/Playniax/" class="w3-bar-item w3-button">Donate</a>
+</div>
+</div>
+<div class="w3-dropdown-hover">
+<button class="w3-button w3-light-grey">Shop</button>
+<div class="w3-dropdown-content w3-bar-block w3-card-4">
+<a href="https://assetstore.unity.com/publishers/30574/" class="w3-bar-item w3-button">Unity Asset Store</a>
+</div>
+</div>
+
+
+		</div>
+
+    </div>
+
+  </header>
+
+<!-- First Grid -->
+<div class="w3-container">
+
+<h1><small>Getting Started With Unity</small><b> / Tutorial 02 - The Unity Editor</b></h1>The default layout of Unity starts with 5 windows:<br><ul style="list-style-type: disc;"><li><strong>Scene View</strong>&nbsp;- allows you to look at and directly interact with GameObjects in your Scene.</li><li><strong>Project Window</strong> - shows all of the assets we have available to build your project. Assets are files saved on your hard-drive. Project window makes it easier to get quick access to these files so you don't have to switch between your OS file manager and Unity game engine editor. You'll also quickly find your scripts, textures, 3D models, audio files and more. You'll also have access to previously saved Unity scenes.</li><li><strong>Hierarchy window</strong> - displays all of the GameObjects you are currently using in your scene. GameObjects can be moved and rearranged as you please.</li><li><strong>Inspector Window</strong> - Inspector shows you the details of the selected asset from a Project Window or a GameObject from either Scene or Hierarchy window. You&rsquo;ll see all the parameters of an item on the right side.</li><li><strong>Game View</strong>&nbsp;- serves as a preview of your application in the editor. By using the controls in the toolbar you&rsquo;ll have the ability to play test your application at any time.</li></ul>On top of your editor you’ll find the toolbar with play controls (play, pause, and play frame-by-frame).<br><br>The toolbar also contains:<br><ul style="list-style-type: disc;"><li><strong>Transform tools</strong>&nbsp;- allows you to manipulate and navigate gameobject in the scene (moving, scaling, rotating etc.)</li><li><strong>Gizmo toggles</strong>&nbsp;- allows you to switch the center or pivot position of your game objects and choose between local or global world space navigation&nbsp;</li><li><strong>Play Controls</strong>&nbsp;lets you play test the game</li><li><strong>Unity Services and account</strong>&nbsp;- you will be able to upload and download your projects from the Cloud. The account drop down allows you to sign in and out of your account from Unity Editor.</li><li><strong>Layers and Layout menu</strong>&nbsp;- quickly shows you the layers of your game. The drop down allows you to switch between saved layouts in your unity Interface.</li></ul>The windows layouts can be customized but the default settings are recommended for the beginners.<br><br>Once you develop your own building habits you can switch to another layout view.<br><br>A 2D platform game layout may look different than a first person shooter 3D game.<br><br>The default layout on a Windows PC:<br><br><img style="border:1px solid black; width:100%;" src="editordefault.png"></div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-center">
+<b><span style="color:grey;">More from Playniax</span></b>
+
+<br>
+
+<a href="https://assetstore.unity.com/packages/templates/systems/galaga-essentials-208558">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/aab943ad-5523-42e0-b22c-a582c5b38627.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/environments/space-shooter-art-pack-01-102249">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/aa91464d-2cb0-4a92-8ae5-583d89c6b1db.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+<a href="https://assetstore.unity.com/packages/2d/environments/space-shooter-art-pack-02-161040">
+<img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/019eaaf1-eff1-4615-9166-7c098c1c1b36.webp" class="w3-round" alt="Random Name" style="height:128px">
+</a>
+
+</footer>
+
+
+<br>
+
+<!-- End page content -->
+</div>
+
+<script>
+
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
