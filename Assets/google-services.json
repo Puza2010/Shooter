@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "788036565382",
+    "project_id": "rogue-shoot-em-up",
+    "storage_bucket": "rogue-shoot-em-up.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788036565382:android:d5dcdc0eabd29656965407",
+        "android_client_info": {
+          "package_name": "com.PuzaGames.RogueShootemUp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMX5EGodBNlhCOKTG44qCH3A7rEolrWIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
