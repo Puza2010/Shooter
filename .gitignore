@@ -8,6 +8,9 @@
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 [Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+[Aa]ssets/Firebase/Plugins/x86_64/FirebaseCppApp-12_1_0.bundle
+[Aa]ssets/Firebase/Plugins/x86_64/FirebaseCppApp-12_1_0.dll
+[Aa]ssets/Firebase/Plugins/x86_64/FirebaseCppApp-12_1_0.so
 .vs/
 .idea/
 *.sln
