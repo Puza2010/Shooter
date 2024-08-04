@@ -1,9 +1,8 @@
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
-using UnityEngine;
-using System.Threading.Tasks;
 using Firebase.Extensions;
+using UnityEngine;
 
 public class FirebaseInitializer : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class FirebaseInitializer : MonoBehaviour
                 {
                     FirebaseApp app = FirebaseApp.DefaultInstance;
                     auth = FirebaseAuth.DefaultInstance;
-                    databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
+                    databaseReference = FirebaseDatabase.GetInstance("https://rogue-shoot-em-up-default-rtdb.europe-west1.firebasedatabase.app/").RootReference;
                     SignInAnonymously();
                 }
                 else
