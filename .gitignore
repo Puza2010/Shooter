@@ -11,6 +11,8 @@
 [Aa]ssets/Firebase/Plugins/x86_64/FirebaseCppApp-12_1_0.bundle
 [Aa]ssets/Firebase/Plugins/x86_64/FirebaseCppApp-12_1_0.dll
 [Aa]ssets/Firebase/Plugins/x86_64/FirebaseCppApp-12_1_0.so
+Assets/google-services.json
+Assets/google-services.json.meta
 .vs/
 .idea/
 *.sln
