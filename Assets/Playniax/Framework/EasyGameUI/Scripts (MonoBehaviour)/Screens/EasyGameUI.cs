@@ -733,11 +733,15 @@ namespace Playniax.Ignition
                     effects.SetPauseFader(-1);
 
                     TimingHelper.Paused = false;
+
+                    FirebaseScoreUpdater.Instance.StartGame(); // Start the score updating counter
                 }
                 else
                 {
                     // Consider skipping the preLevelSettings the first time here?
                     StartCoroutine(Load(_StartGame, inGame.gameObject, false, true, null, preLevelSettings.sceneName, null, null));
+                    
+                    FirebaseScoreUpdater.Instance.StartGame(); // Start the score updating counter
                 }
             }
             else if (pause && pause.gameObject.activeInHierarchy == true && inGame && inGame.gameObject.activeInHierarchy == false)
@@ -749,6 +753,8 @@ namespace Playniax.Ignition
                 effects.SetPauseFader(-1);
 
                 TimingHelper.Paused = false;
+
+                FirebaseScoreUpdater.Instance.StartGame(); // Start the score updating counter
             }
         }
 

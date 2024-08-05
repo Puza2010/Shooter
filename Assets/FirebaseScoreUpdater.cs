@@ -19,6 +19,7 @@ public class FirebaseScoreUpdater : MonoBehaviour
     private float elapsedTime;
     private int previousRank = -1;
     private bool isFirstMessage = true;
+    private bool isGameActive = false; // Flag to check if the game has started
 
     private void Awake()
     {
@@ -96,14 +97,19 @@ public class FirebaseScoreUpdater : MonoBehaviour
         currentScore = score;
     }
 
+    public void StartGame()
+    {
+        isGameActive = true; // Set the flag to true when the game starts
+    }
+
     private IEnumerator UpdateScoreRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(10);
-            elapsedTime += 10f;
-            if (!string.IsNullOrEmpty(userId))
+            if (isGameActive && !string.IsNullOrEmpty(userId)) // Check if the game is active
             {
+                elapsedTime += 10f;
                 SaveScore(currentScore, userId, currentRunId, Mathf.FloorToInt(elapsedTime));
             }
         }

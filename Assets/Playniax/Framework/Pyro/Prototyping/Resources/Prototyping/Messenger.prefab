@@ -48,11 +48,11 @@ MonoBehaviour:
   - id: Score
     display: 0
     offset: {x: 0, y: 0, z: 0}
-    sustain: 1.5
+    sustain: 0.75
     fadeTime: 0.75
-    font: {fileID: 12800000, guid: eef19c64d0cc359409093a76357dc910, type: 3}
-    fontSize: 21
-    fontStyle: 0
+    font: {fileID: 0}
+    fontSize: 30
+    fontStyle: 2
     color: {r: 0, g: 1, b: 0, a: 1}
     velocity: {x: 0, y: 0.25, z: 0}
     targetScale: {x: 0.95, y: 0.95, z: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
       volumeScale: 1
       panStereo: 0
       pitch: 1
-      enabled: 1
+      enabled: 0
     queued: 0
     enabled: 1
   - id: Activated
