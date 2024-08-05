@@ -208,7 +208,7 @@ public class FirebaseScoreUpdater : MonoBehaviour
                 }
 
                 // Convert screen space position to world space
-                Vector3 screenPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, Camera.main.nearClipPlane + 10f));
+                Vector3 screenPosition = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.9f, Camera.main.nearClipPlane + 10f));
                 Messenger.instance.Create("Score", message, screenPosition);
             }
             else
