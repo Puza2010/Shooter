@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5322387968320073833}
   - component: {fileID: 5153178866397162761}
   - component: {fileID: -7012305907779638909}
+  - component: {fileID: 2814568546299838997}
   m_Layer: 0
   m_Name: Enemy Bullet (Generic Red)
   m_TagString: Untagged
@@ -178,20 +179,18 @@ MonoBehaviour:
   playerLivesCount: 0
   _indestructible: 0
   _friend: {fileID: 0}
+  parent: {fileID: 0}
   shield: {fileID: 0}
   isParentShield: 0
   dontDestroy: 0
-  destroyParent: 0
   bodyCount: 0
   outroSettings:
     effectsSettings:
-    - prefab: {fileID: 7171875656762592319, guid: 8d49fe0918f5de0488a59b6abe08fddb,
-        type: 3}
+    - prefab: {fileID: 7171875656762592319, guid: 8d49fe0918f5de0488a59b6abe08fddb, type: 3}
       scale: 1
       orderInLayer: 0
       sizeInPixels: 64
-    - prefab: {fileID: 5261537793468470991, guid: 054d18561a2652546a60b7a39c0fd5ff,
-        type: 3}
+    - prefab: {fileID: 5261537793468470991, guid: 054d18561a2652546a60b7a39c0fd5ff, type: 3}
       scale: 1
       orderInLayer: 1
       sizeInPixels: 64
@@ -205,11 +204,8 @@ MonoBehaviour:
       panStereo: 0
       pitch: 1
       enabled: 1
-    ignoreParent: 0
+    ignoreParentForEffects: 0
     enabled: 1
-    emitterId: Explosion Red
-    emitterScale: 0.25
-    allowLegacyEffects: 1
   cargoSettings:
     prefab: []
     scale: 1
@@ -255,6 +251,8 @@ MonoBehaviour:
   blockSize: {x: 1, y: 1, z: 0}
   offset: {x: 0, y: 0, z: 0}
   delay: 1
+  tearMode: 0
+  tearPower: 0.25
   gizmoColor: {r: 1, g: 0, b: 1, a: 0.5}
   showGizmos: 1
 --- !u!114 &-7012305907779638909
@@ -267,6 +265,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2eabc0c476b749489a338c106111c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+--- !u!114 &2814568546299838997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322387968320073750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f87b36d53d939549ba9ef48a4a34f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0

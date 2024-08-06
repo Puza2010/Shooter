@@ -30,17 +30,13 @@ namespace Playniax.Pyro
             laser.Fire(playerIndex, orderInLayer, origin, target, ttl, size, damage);
 
             if (audioProperties != null) audioProperties.Play();
-
-            target.scoreBase.Ghost();
         }
+
         public void Fire(int playerindex, int orderInLayer, GameObject origin, LaserTarget target, float ttl = .25f, float size = 1, int damage = 1)
         {
             if (origin == null || target == null) return;
             if (origin.gameObject == null || target.gameObject == null) return;
             if (origin.gameObject.activeSelf == false || target.isActiveAndEnabled == false) return;
-
-            if (target.scoreBase == null) return;
-            if (target.scoreBase.isActiveAndEnabled == false) return;
 
             gameObject.SetActive(true);
 
@@ -55,8 +51,6 @@ namespace Playniax.Pyro
             _target = target;
             _ttl = ttl;
             _ttlTimer = ttl;
-
-            _target.scoreBase.isTargeted = gameObject;
 
             _UpdateLaser();
         }
@@ -95,23 +89,9 @@ namespace Playniax.Pyro
 
                 if (_ttlTimer < 0)
                 {
-                    _target.scoreBase.structuralIntegrity -= _damage;
-
-                    if (_target.scoreBase.structuralIntegrity <= 0)
-                    {
-                        _target.scoreBase.structuralIntegrity = 0;
-
-                        if (_playerIndex >= 0) PlayerData.Get(_playerIndex).scoreboard += _target.scoreBase.points;
-
-                        //_target.gameSprite.isTargeted = null;
-
-                        _target.scoreBase.Kill();
-
-                        _target = null;
-                    }
-
+                    Destroy(_target.gameObject); // Destroy the target (bullet or enemy)
+                    _target = null;
                     gameObject.SetActive(false);
-
                     Destroy(gameObject);
                 }
             }
@@ -119,18 +99,13 @@ namespace Playniax.Pyro
             {
                 _origin = null;
                 _target = null;
-
                 gameObject.SetActive(false);
-
                 Destroy(gameObject);
             }
-
         }
 
         int _playerIndex = -1;
-
         int _damage = 1;
-
         float _size = 1;
         float _ttl = 1;
         float _ttlTimer = 1;
