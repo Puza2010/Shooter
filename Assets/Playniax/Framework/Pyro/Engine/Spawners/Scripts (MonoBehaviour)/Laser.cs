@@ -9,12 +9,12 @@ namespace Playniax.Pyro
         public SpriteRenderer sourceGlow;
         public SpriteRenderer targetGlow;
 
-        public static void Fire(GameObject prefab, int playerIndex, int orderInLayer, Timer timer, GameObject origin, float range = 0, float ttl = .25f, float size = 1, int damage = 1, AudioProperties audioProperties = null, int index = 0)
+        public static void Fire(GameObject prefab, int playerIndex, int orderInLayer, Timer timer, GameObject origin, string targetTag, float range = 0, float ttl = .25f, float size = 1, int damage = 1, AudioProperties audioProperties = null, int index = 0)
         {
             if (origin == null) return;
             if (prefab == null) return;
 
-            var target = LaserTarget.GetClosest(index, origin, range);
+            var target = LaserTarget.GetClosest(index, origin, targetTag, range);
             if (target == null) return;
 
             if (timer.counter == 0) return;

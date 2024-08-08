@@ -32,6 +32,9 @@ namespace Playniax.Pyro
         [Tooltip("Properties for audio of the laser.")]
         public AudioProperties audioProperties;
 
+        [Tooltip("Tag of the target type.")]
+        public string targetTag; // Add this line
+
         public override void OnInitialize()
         {
             if (prefab.scene.rootCount > 0) prefab.SetActive(false);
@@ -39,7 +42,7 @@ namespace Playniax.Pyro
 
         public override void UpdateSpawner()
         {
-            Laser.Fire(prefab, playerIndex, orderInLayer, timer, gameObject, range, ttl, size, damage, audioProperties, index);
+            Laser.Fire(prefab, playerIndex, orderInLayer, timer, gameObject, targetTag, range, ttl, size, damage, audioProperties, index);
         }
     }
 }

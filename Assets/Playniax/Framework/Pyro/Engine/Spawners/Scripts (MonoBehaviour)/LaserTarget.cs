@@ -11,7 +11,7 @@ namespace Playniax.Pyro
 
         public int index;
 
-        public static LaserTarget GetClosest(int index, GameObject source, float targetRange = 0)
+        public static LaserTarget GetClosest(int index, GameObject source, string targetTag, float targetRange = 0)
         {
             if (list.Count == 0) return null;
 
@@ -23,9 +23,7 @@ namespace Playniax.Pyro
                 if (list[i] == null) continue;
                 if (list[i].gameObject == null) continue;
                 if (list[i].isActiveAndEnabled == false) continue;
-                // if (list[i].scoreBase == null) continue;
-                // if (list[i].scoreBase.isVisible == false) continue;
-                // if (list[i].scoreBase.isTargeted != null) continue;
+                if (!list[i].gameObject.CompareTag(targetTag)) continue; // Check target tag
                 if (list[i].index != index) continue;
                 if (_InRange(source, list[i].gameObject, targetRange) == false) continue;
 
@@ -40,7 +38,6 @@ namespace Playniax.Pyro
 
             for (int i = 0; i < _targets.Count; i++)
             {
-                // if (_targets[i].scoreBase.structuralIntegrity > target.scoreBase.structuralIntegrity && _targets[i] != target && _targets[i].gameObject.activeInHierarchy == true && Vector3.Distance(source.transform.position, _targets[i].gameObject.transform.position) < Vector3.Distance(source.transform.position, target.gameObject.transform.position)) target = _targets[i];
                 if (Vector3.Distance(source.transform.position, _targets[i].gameObject.transform.position) < Vector3.Distance(source.transform.position, target.gameObject.transform.position)) target = _targets[i];
             }
 
@@ -58,7 +55,7 @@ namespace Playniax.Pyro
 
             return true;
         }
-        
+
         void OnEnable()
         {
             list.Add(this);
