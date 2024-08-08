@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2814568546299838997}
   m_Layer: 0
   m_Name: Enemy Bullet (Generic Red)
-  m_TagString: bulletRed
+  m_TagString: genericBulletRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
