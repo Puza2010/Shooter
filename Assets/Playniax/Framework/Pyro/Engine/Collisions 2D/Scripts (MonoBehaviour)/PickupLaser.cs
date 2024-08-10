@@ -83,5 +83,10 @@ namespace Playniax.Pyro
             }
             return null;
         }
+        
+        public void IncreaseLaserCharges()
+        {
+                spawner.timer.counter = max;
+        }
     }
 }

@@ -6,14 +6,20 @@ using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Playniax.Pyro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Playniax.Ignition
 {
     // The EasyGameUI will manage the different screens and can hold game data that has to be maintained throughout the game session like number of lives, current level, purchases, etc.
     public class EasyGameUI : MonoBehaviour
     {
+        public GameObject skillSelectionPanel; // Assign in Inspector
+        public Button confirmButton; // Assign in Inspector
+        private PickupLaser pickupLaser; // Make this private to assign dynamically
+        
         [System.Serializable]
         // Add the scenes for the advertisements here.
         public class AdvertismentSettings
@@ -865,6 +871,22 @@ namespace Playniax.Ignition
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
         }
+        
+        void Start()
+        {
+            // Initialize skill selection panel
+            if (skillSelectionPanel)
+            {
+                skillSelectionPanel.SetActive(false);
+                if (confirmButton)
+                {
+                    confirmButton.onClick.AddListener(OnConfirmButtonClick);
+                }
+            }
+
+            // Show the skill selection panel after 5 seconds (or any event)
+            Invoke("ShowSkillSelectionPanel", 5f); // Adjust this timing as needed
+        }
 
         void Update()
         {
@@ -1128,5 +1150,24 @@ namespace Playniax.Ignition
         SimpleShare _simpleShare;
         Shop _shop;
         float _timer;
+        
+        public void ShowSkillSelectionPanel()
+        {
+            Time.timeScale = 0; // Pause the game
+            if (skillSelectionPanel) skillSelectionPanel.SetActive(true);
+        }
+
+        public void OnConfirmButtonClick()
+        {
+            Time.timeScale = 1; // Unpause the game
+            if (skillSelectionPanel) skillSelectionPanel.SetActive(false);
+
+            pickupLaser = FindObjectOfType<PickupLaser>(); // Find the Player's PickupLaser component
+
+            if (pickupLaser != null)
+            {
+                pickupLaser.IncreaseLaserCharges();
+            }
+        }
     }
 }

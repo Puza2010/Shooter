@@ -33,7 +33,7 @@ namespace Playniax.Pyro
         public AudioProperties audioProperties;
 
         [Tooltip("Tag of the target type.")]
-        public string targetTag; // Add this line
+        public string targetTag = "genericBulletRed"; // Add this line
 
         public override void OnInitialize()
         {
