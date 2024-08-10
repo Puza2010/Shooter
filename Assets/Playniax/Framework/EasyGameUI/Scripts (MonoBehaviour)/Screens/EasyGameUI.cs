@@ -18,6 +18,8 @@ namespace Playniax.Ignition
     {
         public GameObject skillSelectionPanel; // Assign in Inspector
         public Button confirmButton; // Assign in Inspector
+        public GameObject skillSelectionPanel2; // Assign in Inspector
+        public Button confirmButton2; // Assign in Inspector
         private PickupLaser pickupLaser; // Make this private to assign dynamically
         
         [System.Serializable]
@@ -883,9 +885,19 @@ namespace Playniax.Ignition
                     confirmButton.onClick.AddListener(OnConfirmButtonClick);
                 }
             }
+            
+            if (skillSelectionPanel2)
+            {
+                skillSelectionPanel2.SetActive(false);
+                if (confirmButton2)
+                {
+                    confirmButton2.onClick.AddListener(OnConfirmButtonClick2);
+                }
+            }
 
             // Show the skill selection panel after 5 seconds (or any event)
             Invoke("ShowSkillSelectionPanel", 5f); // Adjust this timing as needed
+            Invoke("ShowSkillSelectionPanel2", 15f); // Adjust this timing as needed
         }
 
         void Update()
@@ -1156,6 +1168,12 @@ namespace Playniax.Ignition
             Time.timeScale = 0; // Pause the game
             if (skillSelectionPanel) skillSelectionPanel.SetActive(true);
         }
+        
+        public void ShowSkillSelectionPanel2()
+        {
+            Time.timeScale = 0; // Pause the game
+            if (skillSelectionPanel2) skillSelectionPanel2.SetActive(true);
+        }
 
         public void OnConfirmButtonClick()
         {
@@ -1166,7 +1184,34 @@ namespace Playniax.Ignition
 
             if (pickupLaser != null)
             {
+                // Increase laser charges
                 pickupLaser.IncreaseLaserCharges();
+
+                // Change the interval of the laser spawner to 0.5f
+                if (pickupLaser.spawner != null)
+                {
+                    pickupLaser.spawner.timer.interval = 1f;  // Change interval to 0.5f
+                }
+            }
+        }
+        
+        public void OnConfirmButtonClick2()
+        {
+            Time.timeScale = 1; // Unpause the game
+            if (skillSelectionPanel2) skillSelectionPanel2.SetActive(false);
+
+            pickupLaser = FindObjectOfType<PickupLaser>(); // Find the Player's PickupLaser component
+
+            if (pickupLaser != null)
+            {
+                // Increase laser charges
+                pickupLaser.IncreaseLaserCharges();
+
+                // Change the interval of the laser spawner to 0.5f
+                if (pickupLaser.spawner != null)
+                {
+                    pickupLaser.spawner.timer.interval = 0.15f;  // Change interval to 0.5f
+                }
             }
         }
     }

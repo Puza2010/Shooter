@@ -233,12 +233,12 @@ GameObject:
   - component: {fileID: 48525865}
   - component: {fileID: 48525864}
   - component: {fileID: 48525863}
+  - component: {fileID: 48525857}
   - component: {fileID: 48525862}
   - component: {fileID: 48525861}
   - component: {fileID: 48525860}
   - component: {fileID: 48525859}
   - component: {fileID: 48525858}
-  - component: {fileID: 48525857}
   - component: {fileID: 48525856}
   - component: {fileID: 48525855}
   - component: {fileID: 48525854}
@@ -945,7 +945,7 @@ MonoBehaviour:
   allowResidue: 1
   onlyFireBelowMaxVelocity: 0
   maxVelocity: 1
-  prefab: {fileID: 1069129441568076, guid: d55cb3335f107db4f86cab2647a02a40, type: 3}
+  prefab: {fileID: 1069129441568076, guid: 5ccc50276918afd4ab0f742f25ae7589, type: 3}
   playerIndex: 0
   size: 1
   orderInLayer: 22
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   - {fileID: 1469967496214558859, guid: 555015d758c647944be03e2c46428a6b, type: 3}
   startPosition: 0
   margin: 0
-  counter: 100
+  counter: 30
   timer: 0
   interval: 0.1
   intervalRange: 0
