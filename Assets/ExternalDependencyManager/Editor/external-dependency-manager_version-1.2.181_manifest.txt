@@ -1,5 +1,3 @@
-Assets/ExternalDependencyManager/Editor/1.2.181/Google.IOSResolver.dll
-Assets/ExternalDependencyManager/Editor/1.2.181/Google.IOSResolver.pdb
 Assets/ExternalDependencyManager/Editor/1.2.181/Google.JarResolver.dll
 Assets/ExternalDependencyManager/Editor/1.2.181/Google.JarResolver.pdb
 Assets/ExternalDependencyManager/Editor/1.2.181/Google.PackageManagerResolver.dll
