@@ -37,7 +37,16 @@ namespace Playniax.Pyro
 
         public override void OnInitialize()
         {
-            if (prefab.scene.rootCount > 0) prefab.SetActive(false);
+            if (prefab == null)
+            {
+                return;
+            }
+
+            // Initialize other components or set defaults
+            if (prefab.scene.rootCount > 0) 
+            {
+                prefab.SetActive(false);
+            }
         }
 
         public override void UpdateSpawner()

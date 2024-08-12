@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 48525866}
   - component: {fileID: 48525865}
   - component: {fileID: 48525864}
-  - component: {fileID: 48525863}
   - component: {fileID: 48525857}
   - component: {fileID: 48525862}
   - component: {fileID: 48525861}
@@ -253,9 +252,10 @@ GameObject:
   - component: {fileID: 48525845}
   - component: {fileID: 48525844}
   - component: {fileID: 48525843}
+  - component: {fileID: 48525873}
   m_Layer: 0
   m_Name: Player (Defenstar Style Topview)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -922,44 +922,6 @@ MonoBehaviour:
   parent: {fileID: 0}
   position: {x: 0, y: 0, z: 0}
   scale: 1
---- !u!114 &48525863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48525842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66e58905d06b4e0498f4bcf1b539a485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bootTime: 0
-  automatically: 1
-  timer:
-    timer: 0
-    interval: 0.15
-    intervalRange: 0
-    counter: 0
-  id: Laser
-  allowResidue: 1
-  onlyFireBelowMaxVelocity: 0
-  maxVelocity: 1
-  prefab: {fileID: 1069129441568076, guid: 5ccc50276918afd4ab0f742f25ae7589, type: 3}
-  playerIndex: 0
-  size: 1
-  orderInLayer: 22
-  range: 7
-  damage: 1
-  ttl: 0.125
-  index: 0
-  audioProperties:
-    audioClip: {fileID: 8300000, guid: 9dd0e65a4fbd16240ad5fb0e9442fd69, type: 3}
-    volumeScale: 1
-    panStereo: 0
-    pitch: 2
-    enabled: 1
-  targetTag: genericBulletRed
 --- !u!114 &48525864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1387,6 +1349,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &48525873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48525842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e58905d06b4e0498f4bcf1b539a485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootTime: 0
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: -1
+  id: 
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  prefab: {fileID: 1069129441568076, guid: d55cb3335f107db4f86cab2647a02a40, type: 3}
+  playerIndex: -1
+  size: 1
+  orderInLayer: 100
+  range: 0
+  damage: 1000
+  ttl: 0.25
+  index: 0
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  targetTag: bulletGreen
 --- !u!1 &149624436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   - {fileID: 1469967496214558859, guid: 555015d758c647944be03e2c46428a6b, type: 3}
   startPosition: 0
   margin: 0
-  counter: 30
+  counter: 8
   timer: 0
   interval: 0.1
   intervalRange: 0
@@ -2012,6 +2012,133 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8dae241d429c00428c40e748a3c3883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &723665058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 723665059}
+  - component: {fileID: 723665060}
+  m_Layer: 0
+  m_Name: Demo Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &723665059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723665058}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1175750245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723665060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723665058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf9d51749019154980a23d9542d6abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 5289484317464370905, guid: a9a2146ecf2a9e440a018a4a7a3460fe, type: 3}
+  startPosition: 6
+  margin: 0
+  counter: 8
+  timer: 0
+  interval: 0.1
+  intervalRange: 0
+  offCameraMode: 1
+  offCameraDirections: 0
+  bulletSettings:
+    useTheseSettings: 1
+    prefab: {fileID: 787315027656738199, guid: 19adcfa8f1df3ff4aa882327b8286768, type: 3}
+    position: {x: 0, y: 0, z: 0}
+    mode: 0
+    scale: 1
+    interval: 2
+    intervalRange: 6
+    speed: 4
+    speedRange: 0
+    counter: -1
+    effectsSettings:
+      prefab: {fileID: 0}
+      scale: 1
+    audioProperties:
+      audioClip: {fileID: 0}
+      volumeScale: 1
+      panStereo: 0
+      pitch: 1
+      enabled: 1
+    overrideCollisionSettings:
+      useTheseSettings: 0
+      structuralIntegrity: 1
+  cargoSettings:
+    prefab: []
+    scale: 1
+    effectSettings:
+      motion: 0
+      motionSpeed: 1
+      magnetic: 0
+      magneticRange: 1
+      magneticSpeed: 3
+      killOffCamera: 1
+    releaseMode: 0
+  surpriseSettings:
+    prefab: {fileID: 0}
+    scale: 1
+    effectSettings:
+      motion: 0
+      motionSpeed: 1
+      magnetic: 0
+      magneticRange: 1
+      magneticSpeed: 3
+      killOffCamera: 1
+    markerSettings:
+      prefab: {fileID: 0}
+      position: {x: 0, y: 0, z: 0}
+      scale: 1
+      colorOverride: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+      overrideCollisionSettings:
+        useTheseSettings: 0
+        structuralIntegrity: 1
+  childSettings:
+    prefab: {fileID: 0}
+    position: {x: 0, y: 0, z: 0}
+    scale: 1
+    random: 0
+    overrideCollisionSettings:
+      useTheseSettings: 0
+      structuralIntegrity: 1
+  simpleAISettings:
+    minSpeed: 2
+    maxSpeed: 4
+    minReflex: 1
+    maxReflex: 3
+    rotateTowards: 0
+    rotationSpeed: 250
+    ignoreTarget: 0
+    direction: 0
+    directionRange: 360
+    enabled: 1
+  bodyCount: 0
 --- !u!1 &728827232
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,6 +2418,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 723665059}
   - {fileID: 579104105}
   - {fileID: 496618045}
   - {fileID: 479019837}
@@ -2855,8 +2983,8 @@ MonoBehaviour:
   offCameraMode: 1
   offCameraDirections: 0
   bulletSettings:
-    useTheseSettings: 0
-    prefab: {fileID: 5322387968320073750, guid: 39f623aafcac9d749a061be9f79b5ced, type: 3}
+    useTheseSettings: 1
+    prefab: {fileID: 2810408086072053405, guid: 917a1ba60e081e04eb65de722f980863, type: 3}
     position: {x: 0, y: 0, z: 0}
     mode: 0
     scale: 1

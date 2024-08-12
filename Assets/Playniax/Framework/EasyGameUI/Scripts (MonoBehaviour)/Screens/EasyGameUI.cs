@@ -6,6 +6,7 @@ using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Playniax.Pyro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,9 +19,14 @@ namespace Playniax.Ignition
     {
         public GameObject skillSelectionPanel; // Assign in Inspector
         public Button confirmButton; // Assign in Inspector
+
         public GameObject skillSelectionPanel2; // Assign in Inspector
         public Button confirmButton2; // Assign in Inspector
-        private PickupLaser pickupLaser; // Make this private to assign dynamically
+
+        private LaserSpawner redLaserSpawner;
+        private LaserSpawner blueLaserSpawner;
+        public GameObject redLaserPrefab; // Assign in Inspector
+        public GameObject blueLaserPrefab; // Assign in Inspector
         
         [System.Serializable]
         // Add the scenes for the advertisements here.
@@ -876,7 +882,7 @@ namespace Playniax.Ignition
         
         void Start()
         {
-            // Initialize skill selection panel
+            // Initialize the first skill selection panel
             if (skillSelectionPanel)
             {
                 skillSelectionPanel.SetActive(false);
@@ -885,7 +891,8 @@ namespace Playniax.Ignition
                     confirmButton.onClick.AddListener(OnConfirmButtonClick);
                 }
             }
-            
+
+            // Initialize the second skill selection panel
             if (skillSelectionPanel2)
             {
                 skillSelectionPanel2.SetActive(false);
@@ -895,9 +902,11 @@ namespace Playniax.Ignition
                 }
             }
 
-            // Show the skill selection panel after 5 seconds (or any event)
-            Invoke("ShowSkillSelectionPanel", 5f); // Adjust this timing as needed
-            Invoke("ShowSkillSelectionPanel2", 15f); // Adjust this timing as needed
+            // Show the first skill selection panel after 5 seconds
+            Invoke("ShowSkillSelectionPanel", 5f);
+
+            // Show the second skill selection panel after 7 seconds
+            Invoke("ShowSkillSelectionPanel2", 15f);
         }
 
         void Update()
@@ -1163,13 +1172,13 @@ namespace Playniax.Ignition
         Shop _shop;
         float _timer;
         
-        public void ShowSkillSelectionPanel()
+        void ShowSkillSelectionPanel()
         {
             Time.timeScale = 0; // Pause the game
             if (skillSelectionPanel) skillSelectionPanel.SetActive(true);
         }
-        
-        public void ShowSkillSelectionPanel2()
+
+        void ShowSkillSelectionPanel2()
         {
             Time.timeScale = 0; // Pause the game
             if (skillSelectionPanel2) skillSelectionPanel2.SetActive(true);
@@ -1180,37 +1189,62 @@ namespace Playniax.Ignition
             Time.timeScale = 1; // Unpause the game
             if (skillSelectionPanel) skillSelectionPanel.SetActive(false);
 
-            pickupLaser = FindObjectOfType<PickupLaser>(); // Find the Player's PickupLaser component
-
-            if (pickupLaser != null)
+            var player = GameObject.FindWithTag("Player");
+            if (player != null)
             {
-                // Increase laser charges
-                pickupLaser.IncreaseLaserCharges();
-
-                // Change the interval of the laser spawner to 0.5f
-                if (pickupLaser.spawner != null)
+                // Check if a LaserSpawner with the same targetTag already exists
+                var existingSpawner = player.GetComponents<LaserSpawner>()
+                    .FirstOrDefault(ls => ls.targetTag == "genericBulletRed");
+        
+                if (existingSpawner == null)
                 {
-                    pickupLaser.spawner.timer.interval = 1f;  // Change interval to 0.5f
+                    if (redLaserPrefab != null)
+                    {
+                        // Add and configure the LaserSpawner component
+                        redLaserSpawner = player.AddComponent<LaserSpawner>();
+                        redLaserSpawner.prefab = redLaserPrefab;  // Assign the prefab
+                        redLaserSpawner.targetTag = "genericBulletRed";
+
+                        // Charge the specific laser spawner
+                        var pickupLaser = player.GetComponent<PickupLaser>();
+                        if (pickupLaser != null)
+                        {
+                            pickupLaser.IncreaseLaserCharges(redLaserSpawner);
+                        }
+                    }
                 }
             }
         }
-        
+
+
         public void OnConfirmButtonClick2()
         {
             Time.timeScale = 1; // Unpause the game
             if (skillSelectionPanel2) skillSelectionPanel2.SetActive(false);
 
-            pickupLaser = FindObjectOfType<PickupLaser>(); // Find the Player's PickupLaser component
-
-            if (pickupLaser != null)
+            var player = GameObject.FindWithTag("Player");
+            if (player != null)
             {
-                // Increase laser charges
-                pickupLaser.IncreaseLaserCharges();
+                // Check if a LaserSpawner with the same targetTag already exists
+                var existingSpawner = player.GetComponents<LaserSpawner>()
+                    .FirstOrDefault(ls => ls.targetTag == "bulletBlue");
 
-                // Change the interval of the laser spawner to 0.5f
-                if (pickupLaser.spawner != null)
+                if (existingSpawner == null)
                 {
-                    pickupLaser.spawner.timer.interval = 0.15f;  // Change interval to 0.5f
+                    if (blueLaserPrefab != null)
+                    {
+                        // Add and configure the LaserSpawner component
+                        blueLaserSpawner = player.AddComponent<LaserSpawner>();
+                        blueLaserSpawner.prefab = blueLaserPrefab;  // Assign the prefab
+                        blueLaserSpawner.targetTag = "bulletBlue";
+
+                        // Charge the specific laser spawner
+                        var pickupLaser = player.GetComponent<PickupLaser>();
+                        if (pickupLaser != null)
+                        {
+                            pickupLaser.IncreaseLaserCharges(blueLaserSpawner);
+                        }
+                    }
                 }
             }
         }
