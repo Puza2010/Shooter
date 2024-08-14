@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Playniax.Pyro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,15 +19,16 @@ namespace Playniax.Ignition
     public class EasyGameUI : MonoBehaviour
     {
         public GameObject skillSelectionPanel; // Assign in Inspector
-        public Button confirmButton; // Assign in Inspector
+        public Image redLaserSkillButton; // Assign in Inspector
+        public Image blueLaserSkillButton; // Assign in Inspector
+        public TMP_Text redLaserSkillText; // Assign in Inspector
+        public TMP_Text blueLaserSkillText; // Assign in Inspector
 
-        public GameObject skillSelectionPanel2; // Assign in Inspector
-        public Button confirmButton2; // Assign in Inspector
-
-        private LaserSpawner redLaserSpawner;
-        private LaserSpawner blueLaserSpawner;
         public GameObject redLaserPrefab; // Assign in Inspector
         public GameObject blueLaserPrefab; // Assign in Inspector
+
+        private Dictionary<string, Skill> skills;
+        private Skill selectedSkill;
         
         [System.Serializable]
         // Add the scenes for the advertisements here.
@@ -882,31 +884,30 @@ namespace Playniax.Ignition
         
         void Start()
         {
-            // Initialize the first skill selection panel
+            // Initialize the skill selection panel
             if (skillSelectionPanel)
             {
                 skillSelectionPanel.SetActive(false);
-                if (confirmButton)
-                {
-                    confirmButton.onClick.AddListener(OnConfirmButtonClick);
-                }
+
+                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Red Laser Level 1"));
+                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Blue Laser Level 1"));
             }
 
-            // Initialize the second skill selection panel
-            if (skillSelectionPanel2)
+            // Initialize the skill dictionary
+            skills = new Dictionary<string, Skill>
             {
-                skillSelectionPanel2.SetActive(false);
-                if (confirmButton2)
-                {
-                    confirmButton2.onClick.AddListener(OnConfirmButtonClick2);
-                }
-            }
+                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 5, "genericBulletRed", "Red Laser Level 1") },
+                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.5f, 10, "genericBulletRed", "Red Laser Level 2") },
+                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1") },
+                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.2f, 30, "bulletBlue", "Blue Laser Level 2") },
+                // Add more skills as needed...
+            };
 
             // Show the first skill selection panel after 5 seconds
             Invoke("ShowSkillSelectionPanel", 5f);
 
-            // Show the second skill selection panel after 7 seconds
-            Invoke("ShowSkillSelectionPanel2", 15f);
+            // Show the second skill selection panel after 15 seconds
+            Invoke("ShowNextSkillSelectionPanel", 15f);
         }
 
         void Update()
@@ -1175,78 +1176,101 @@ namespace Playniax.Ignition
         void ShowSkillSelectionPanel()
         {
             Time.timeScale = 0; // Pause the game
-            if (skillSelectionPanel) skillSelectionPanel.SetActive(true);
-        }
+            skillSelectionPanel.SetActive(true);
 
-        void ShowSkillSelectionPanel2()
+            // Update UI for the first skill selection
+            redLaserSkillText.text = skills["Red Laser Level 1"].skillName;
+            blueLaserSkillText.text = skills["Blue Laser Level 1"].skillName;
+        }
+        
+        void ShowNextSkillSelectionPanel()
         {
             Time.timeScale = 0; // Pause the game
-            if (skillSelectionPanel2) skillSelectionPanel2.SetActive(true);
-        }
+            skillSelectionPanel.SetActive(true);
 
-        public void OnConfirmButtonClick()
-        {
-            Time.timeScale = 1; // Unpause the game
-            if (skillSelectionPanel) skillSelectionPanel.SetActive(false);
-
-            var player = GameObject.FindWithTag("Player");
-            if (player != null)
+            // Check what skill was previously selected and update the options accordingly
+            if (selectedSkill == skills["Red Laser Level 1"])
             {
-                // Check if a LaserSpawner with the same targetTag already exists
-                var existingSpawner = player.GetComponents<LaserSpawner>()
-                    .FirstOrDefault(ls => ls.targetTag == "genericBulletRed");
+                redLaserSkillText.text = skills["Red Laser Level 2"].skillName;
+                blueLaserSkillText.text = skills["Blue Laser Level 1"].skillName;
+            }
+            else if (selectedSkill == skills["Blue Laser Level 1"])
+            {
+                redLaserSkillText.text = skills["Red Laser Level 1"].skillName;
+                blueLaserSkillText.text = skills["Blue Laser Level 2"].skillName;
+            }
+
+            // Update the button listeners to reflect the new skills
+            redLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
+            blueLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
+
+            if (selectedSkill == skills["Red Laser Level 1"])
+            {
+                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Red Laser Level 2"));
+                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Blue Laser Level 1"));
+            }
+            else if (selectedSkill == skills["Blue Laser Level 1"])
+            {
+                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Red Laser Level 1"));
+                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Blue Laser Level 2"));
+            }
+        }
         
-                if (existingSpawner == null)
-                {
-                    if (redLaserPrefab != null)
-                    {
-                        // Add and configure the LaserSpawner component
-                        redLaserSpawner = player.AddComponent<LaserSpawner>();
-                        redLaserSpawner.prefab = redLaserPrefab;  // Assign the prefab
-                        redLaserSpawner.targetTag = "genericBulletRed";
-
-                        // Charge the specific laser spawner
-                        var pickupLaser = player.GetComponent<PickupLaser>();
-                        if (pickupLaser != null)
-                        {
-                            pickupLaser.IncreaseLaserCharges(redLaserSpawner);
-                        }
-                    }
-                }
-            }
+        void OnSkillSelected(string skillName)
+        {
+            selectedSkill = skills[skillName];
+            skillSelectionPanel.SetActive(false);
+            ApplySkill(selectedSkill);
         }
-
-
-        public void OnConfirmButtonClick2()
+        
+        void ApplySkill(Skill skill)
         {
             Time.timeScale = 1; // Unpause the game
-            if (skillSelectionPanel2) skillSelectionPanel2.SetActive(false);
 
             var player = GameObject.FindWithTag("Player");
             if (player != null)
             {
-                // Check if a LaserSpawner with the same targetTag already exists
-                var existingSpawner = player.GetComponents<LaserSpawner>()
-                    .FirstOrDefault(ls => ls.targetTag == "bulletBlue");
+                // Find or create a LaserSpawner
+                var laserSpawner = player.GetComponents<LaserSpawner>()
+                    .FirstOrDefault(ls => ls.targetTag == skill.targetTag) ?? player.AddComponent<LaserSpawner>();
 
-                if (existingSpawner == null)
+                // Configure the laser spawner with the selected skill's properties
+                ConfigureLaserSpawner(laserSpawner, skill);
+
+                // Now ensure the max charges are set properly in the PickupLaser component
+                var pickupLaser = player.GetComponent<PickupLaser>();
+                if (pickupLaser != null)
                 {
-                    if (blueLaserPrefab != null)
-                    {
-                        // Add and configure the LaserSpawner component
-                        blueLaserSpawner = player.AddComponent<LaserSpawner>();
-                        blueLaserSpawner.prefab = blueLaserPrefab;  // Assign the prefab
-                        blueLaserSpawner.targetTag = "bulletBlue";
-
-                        // Charge the specific laser spawner
-                        var pickupLaser = player.GetComponent<PickupLaser>();
-                        if (pickupLaser != null)
-                        {
-                            pickupLaser.IncreaseLaserCharges(blueLaserSpawner);
-                        }
-                    }
+                    pickupLaser.max = skill.maxCharges;
+                    pickupLaser.IncreaseLaserCharges(laserSpawner);
                 }
             }
         }
+        
+        void ConfigureLaserSpawner(LaserSpawner laserSpawner, Skill skill)
+        {
+            laserSpawner.prefab = skill.prefab;      // Assign the prefab
+            laserSpawner.targetTag = skill.targetTag;
+            laserSpawner.timer.interval = skill.interval;
+        }
+    }
+}
+
+[System.Serializable]
+public class Skill
+{
+    public GameObject prefab;
+    public float interval;
+    public int maxCharges;
+    public string targetTag;
+    public string skillName;
+
+    public Skill(GameObject prefab, float interval, int maxCharges, string targetTag, string skillName)
+    {
+        this.prefab = prefab;
+        this.interval = interval;
+        this.maxCharges = maxCharges;
+        this.targetTag = targetTag;
+        this.skillName = skillName;
     }
 }
