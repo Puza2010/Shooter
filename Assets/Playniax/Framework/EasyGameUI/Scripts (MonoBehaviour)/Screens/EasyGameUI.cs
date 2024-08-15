@@ -21,7 +21,6 @@ namespace Playniax.Ignition
         public GameObject skillSelectionPanel; // Assign in Inspector
         public GameObject skillButtonPrefab;   // Assign in Inspector (Prefab for the skill button)
         public Transform skillButtonContainer; // Assign in Inspector (Parent transform to hold skill buttons)
-        public TMP_Text skillDescriptionText;  // Assign in Inspector (To show the skill description)
 
         public GameObject redLaserPrefab;  // Assign in Inspector
         public GameObject blueLaserPrefab; // Assign in Inspector
@@ -34,6 +33,7 @@ namespace Playniax.Ignition
         public Sprite purpleLaserImage; // Assign in Inspector (Image for Purple Laser)
 
         private Dictionary<string, Skill> skills;
+        private HashSet<string> acquiredSkills = new HashSet<string>(); // Tracks acquired skills
         private Skill selectedSkill;
         private List<GameObject> skillButtons = new List<GameObject>(); // To keep track of instantiated buttons
         
@@ -1185,8 +1185,12 @@ namespace Playniax.Ignition
             Time.timeScale = 0; // Pause the game
             skillSelectionPanel.SetActive(true);
 
-            // Get a list of skills and shuffle them using UnityEngine.Random
-            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(3).ToList();
+            // Get a list of skills and filter out Level 2 skills if their Level 1 isn't acquired
+            List<Skill> availableSkills = skills.Values
+                .Where(skill => skill.skillName.EndsWith("Level 1") || acquiredSkills.Contains(skill.skillName.Replace("Level 2", "Level 1")))
+                .OrderBy(x => UnityEngine.Random.value)
+                .Take(3)
+                .ToList();
 
             // Clear any existing buttons
             foreach (var button in skillButtons)
@@ -1196,7 +1200,7 @@ namespace Playniax.Ignition
             skillButtons.Clear();
 
             // Create and display the buttons for the three selected skills
-            foreach (var skill in randomSkills)
+            foreach (var skill in availableSkills)
             {
                 GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
                 skillButton.GetComponentInChildren<TMP_Text>().text = skill.skillName;
@@ -1211,8 +1215,12 @@ namespace Playniax.Ignition
             Time.timeScale = 0; // Pause the game
             skillSelectionPanel.SetActive(true);
 
-            // Re-randomize the skills for the next selection
-            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(3).ToList();
+            // Re-randomize the skills for the next selection, applying the same filter as before
+            List<Skill> availableSkills = skills.Values
+                .Where(skill => skill.skillName.EndsWith("Level 1") || acquiredSkills.Contains(skill.skillName.Replace("Level 2", "Level 1")))
+                .OrderBy(x => UnityEngine.Random.value)
+                .Take(3)
+                .ToList();
 
             // Clear any existing buttons
             foreach (var button in skillButtons)
@@ -1222,7 +1230,7 @@ namespace Playniax.Ignition
             skillButtons.Clear();
 
             // Create and display the buttons for the three selected skills
-            foreach (var skill in randomSkills)
+            foreach (var skill in availableSkills)
             {
                 GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
                 skillButton.GetComponentInChildren<TMP_Text>().text = skill.skillName;
@@ -1235,6 +1243,7 @@ namespace Playniax.Ignition
         void OnSkillSelected(string skillName)
         {
             selectedSkill = skills[skillName];
+            acquiredSkills.Add(skillName);  // Mark the skill as acquired
             skillSelectionPanel.SetActive(false);
             ApplySkill(selectedSkill);
         }
