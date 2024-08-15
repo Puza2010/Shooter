@@ -19,16 +19,23 @@ namespace Playniax.Ignition
     public class EasyGameUI : MonoBehaviour
     {
         public GameObject skillSelectionPanel; // Assign in Inspector
-        public Image redLaserSkillButton; // Assign in Inspector
-        public Image blueLaserSkillButton; // Assign in Inspector
-        public TMP_Text redLaserSkillText; // Assign in Inspector
-        public TMP_Text blueLaserSkillText; // Assign in Inspector
+        public GameObject skillButtonPrefab;   // Assign in Inspector (Prefab for the skill button)
+        public Transform skillButtonContainer; // Assign in Inspector (Parent transform to hold skill buttons)
+        public TMP_Text skillDescriptionText;  // Assign in Inspector (To show the skill description)
 
-        public GameObject redLaserPrefab; // Assign in Inspector
+        public GameObject redLaserPrefab;  // Assign in Inspector
         public GameObject blueLaserPrefab; // Assign in Inspector
+        public GameObject greenLaserPrefab;  // Assign in Inspector
+        public GameObject purpleLaserPrefab; // Assign in Inspector
+
+        public Sprite redLaserImage;  // Assign in Inspector (Image for Red Laser)
+        public Sprite blueLaserImage; // Assign in Inspector (Image for Blue Laser)
+        public Sprite greenLaserImage;  // Assign in Inspector (Image for Green Laser)
+        public Sprite purpleLaserImage; // Assign in Inspector (Image for Purple Laser)
 
         private Dictionary<string, Skill> skills;
         private Skill selectedSkill;
+        private List<GameObject> skillButtons = new List<GameObject>(); // To keep track of instantiated buttons
         
         [System.Serializable]
         // Add the scenes for the advertisements here.
@@ -888,19 +895,19 @@ namespace Playniax.Ignition
             if (skillSelectionPanel)
             {
                 skillSelectionPanel.SetActive(false);
-
-                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(redLaserSkillText.text));
-                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(blueLaserSkillText.text));
             }
 
             // Initialize the skill dictionary
             skills = new Dictionary<string, Skill>
             {
-                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 30, "genericBulletRed", "Red Laser Level 1") },
-                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.5f, 30, "genericBulletRed", "Red Laser Level 2") },
-                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 100, "bulletBlue", "Blue Laser Level 1") },
-                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.2f, 300, "bulletBlue", "Blue Laser Level 2") },
-                // Add more skills as needed...
+                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 30, "genericBulletRed", "Red Laser Level 1", redLaserImage) },
+                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.5f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage) },
+                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 100, "bulletBlue", "Blue Laser Level 1", blueLaserImage) },
+                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.2f, 300, "bulletBlue", "Blue Laser Level 2", blueLaserImage) },
+                { "Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 30, "genericBulletGreen", "Green Laser Level 1", greenLaserImage) },
+                { "Green Laser Level 2", new Skill(greenLaserPrefab, 0.2f, 300, "genericBulletGreen", "Green Laser Level 2", greenLaserImage) },
+                { "Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 30, "bulletPurple", "Purple Laser Level 1", purpleLaserImage) },
+                { "Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.2f, 300, "bulletPurple", "Purple Laser Level 2", purpleLaserImage) },
             };
 
             // Show the first skill selection panel after 5 seconds
@@ -1181,18 +1188,22 @@ namespace Playniax.Ignition
             // Get a list of skills and shuffle them using UnityEngine.Random
             List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(2).ToList();
 
-            // Assign the first skill to the red button and the second to the blue button
-            // Since the images are static, keep them tied to the red and blue lasers
-            redLaserSkillText.text = randomSkills.First(skill => skill.targetTag == "genericBulletRed").skillName;
-            blueLaserSkillText.text = randomSkills.First(skill => skill.targetTag == "bulletBlue").skillName;
+            // Clear any existing buttons
+            foreach (var button in skillButtons)
+            {
+                Destroy(button);
+            }
+            skillButtons.Clear();
 
-            // Setup button listeners to match the displayed skills
-            redLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            blueLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
-
-            // Ensure correct skill is applied when the user clicks a button
-            redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(redLaserSkillText.text));
-            blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(blueLaserSkillText.text));
+            // Create and display the buttons for the two selected skills
+            foreach (var skill in randomSkills)
+            {
+                GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
+                skillButton.GetComponentInChildren<TMP_Text>().text = skill.skillName;
+                skillButton.GetComponent<Image>().sprite = skill.skillImage; // Assign the correct image to the button
+                skillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(skill.skillName));
+                skillButtons.Add(skillButton);
+            }
         }
         
         void ShowNextSkillSelectionPanel()
@@ -1203,15 +1214,22 @@ namespace Playniax.Ignition
             // Re-randomize the skills for the next selection
             List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(2).ToList();
 
-            // Update the UI
-            redLaserSkillText.text = randomSkills[0].skillName;
-            blueLaserSkillText.text = randomSkills[1].skillName;
+            // Clear any existing buttons
+            foreach (var button in skillButtons)
+            {
+                Destroy(button);
+            }
+            skillButtons.Clear();
 
-            // Update button listeners to reflect the new skill options
-            redLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            blueLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(randomSkills[0].skillName));
-            blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(randomSkills[1].skillName));
+            // Create and display the buttons for the two selected skills
+            foreach (var skill in randomSkills)
+            {
+                GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
+                skillButton.GetComponentInChildren<TMP_Text>().text = skill.skillName;
+                skillButton.GetComponent<Image>().sprite = skill.skillImage; // Assign the correct image to the button
+                skillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(skill.skillName));
+                skillButtons.Add(skillButton);
+            }
         }
         
         void OnSkillSelected(string skillName)
@@ -1262,13 +1280,15 @@ public class Skill
     public int maxCharges;
     public string targetTag;
     public string skillName;
+    public Sprite skillImage;  // Added for skill image
 
-    public Skill(GameObject prefab, float interval, int maxCharges, string targetTag, string skillName)
+    public Skill(GameObject prefab, float interval, int maxCharges, string targetTag, string skillName, Sprite skillImage)
     {
         this.prefab = prefab;
         this.interval = interval;
         this.maxCharges = maxCharges;
         this.targetTag = targetTag;
         this.skillName = skillName;
+        this.skillImage = skillImage;  // Initialize the skill image
     }
 }
