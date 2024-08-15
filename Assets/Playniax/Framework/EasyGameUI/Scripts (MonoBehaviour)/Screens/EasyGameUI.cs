@@ -889,17 +889,17 @@ namespace Playniax.Ignition
             {
                 skillSelectionPanel.SetActive(false);
 
-                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Red Laser Level 1"));
-                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Blue Laser Level 1"));
+                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(redLaserSkillText.text));
+                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(blueLaserSkillText.text));
             }
 
             // Initialize the skill dictionary
             skills = new Dictionary<string, Skill>
             {
-                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 5, "genericBulletRed", "Red Laser Level 1") },
-                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.5f, 10, "genericBulletRed", "Red Laser Level 2") },
-                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1") },
-                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.2f, 30, "bulletBlue", "Blue Laser Level 2") },
+                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 30, "genericBulletRed", "Red Laser Level 1") },
+                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.5f, 30, "genericBulletRed", "Red Laser Level 2") },
+                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 100, "bulletBlue", "Blue Laser Level 1") },
+                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.2f, 300, "bulletBlue", "Blue Laser Level 2") },
                 // Add more skills as needed...
             };
 
@@ -1178,9 +1178,21 @@ namespace Playniax.Ignition
             Time.timeScale = 0; // Pause the game
             skillSelectionPanel.SetActive(true);
 
-            // Update UI for the first skill selection
-            redLaserSkillText.text = skills["Red Laser Level 1"].skillName;
-            blueLaserSkillText.text = skills["Blue Laser Level 1"].skillName;
+            // Get a list of skills and shuffle them using UnityEngine.Random
+            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(2).ToList();
+
+            // Assign the first skill to the red button and the second to the blue button
+            // Since the images are static, keep them tied to the red and blue lasers
+            redLaserSkillText.text = randomSkills.First(skill => skill.targetTag == "genericBulletRed").skillName;
+            blueLaserSkillText.text = randomSkills.First(skill => skill.targetTag == "bulletBlue").skillName;
+
+            // Setup button listeners to match the displayed skills
+            redLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
+            blueLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
+
+            // Ensure correct skill is applied when the user clicks a button
+            redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(redLaserSkillText.text));
+            blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(blueLaserSkillText.text));
         }
         
         void ShowNextSkillSelectionPanel()
@@ -1188,32 +1200,18 @@ namespace Playniax.Ignition
             Time.timeScale = 0; // Pause the game
             skillSelectionPanel.SetActive(true);
 
-            // Check what skill was previously selected and update the options accordingly
-            if (selectedSkill == skills["Red Laser Level 1"])
-            {
-                redLaserSkillText.text = skills["Red Laser Level 2"].skillName;
-                blueLaserSkillText.text = skills["Blue Laser Level 1"].skillName;
-            }
-            else if (selectedSkill == skills["Blue Laser Level 1"])
-            {
-                redLaserSkillText.text = skills["Red Laser Level 1"].skillName;
-                blueLaserSkillText.text = skills["Blue Laser Level 2"].skillName;
-            }
+            // Re-randomize the skills for the next selection
+            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(2).ToList();
 
-            // Update the button listeners to reflect the new skills
+            // Update the UI
+            redLaserSkillText.text = randomSkills[0].skillName;
+            blueLaserSkillText.text = randomSkills[1].skillName;
+
+            // Update button listeners to reflect the new skill options
             redLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
             blueLaserSkillButton.GetComponent<Button>().onClick.RemoveAllListeners();
-
-            if (selectedSkill == skills["Red Laser Level 1"])
-            {
-                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Red Laser Level 2"));
-                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Blue Laser Level 1"));
-            }
-            else if (selectedSkill == skills["Blue Laser Level 1"])
-            {
-                redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Red Laser Level 1"));
-                blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected("Blue Laser Level 2"));
-            }
+            redLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(randomSkills[0].skillName));
+            blueLaserSkillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(randomSkills[1].skillName));
         }
         
         void OnSkillSelected(string skillName)
@@ -1237,7 +1235,7 @@ namespace Playniax.Ignition
                 // Configure the laser spawner with the selected skill's properties
                 ConfigureLaserSpawner(laserSpawner, skill);
 
-                // Now ensure the max charges are set properly in the PickupLaser component
+                // Ensure the max charges are set properly in the PickupLaser component
                 var pickupLaser = player.GetComponent<PickupLaser>();
                 if (pickupLaser != null)
                 {
