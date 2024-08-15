@@ -1186,7 +1186,7 @@ namespace Playniax.Ignition
             skillSelectionPanel.SetActive(true);
 
             // Get a list of skills and shuffle them using UnityEngine.Random
-            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(2).ToList();
+            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(3).ToList();
 
             // Clear any existing buttons
             foreach (var button in skillButtons)
@@ -1195,7 +1195,7 @@ namespace Playniax.Ignition
             }
             skillButtons.Clear();
 
-            // Create and display the buttons for the two selected skills
+            // Create and display the buttons for the three selected skills
             foreach (var skill in randomSkills)
             {
                 GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
@@ -1212,7 +1212,7 @@ namespace Playniax.Ignition
             skillSelectionPanel.SetActive(true);
 
             // Re-randomize the skills for the next selection
-            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(2).ToList();
+            List<Skill> randomSkills = skills.Values.OrderBy(x => UnityEngine.Random.value).Take(3).ToList();
 
             // Clear any existing buttons
             foreach (var button in skillButtons)
@@ -1221,7 +1221,7 @@ namespace Playniax.Ignition
             }
             skillButtons.Clear();
 
-            // Create and display the buttons for the two selected skills
+            // Create and display the buttons for the three selected skills
             foreach (var skill in randomSkills)
             {
                 GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
