@@ -900,21 +900,31 @@ namespace Playniax.Ignition
             // Initialize the skill dictionary
             skills = new Dictionary<string, Skill>
             {
-                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 30, "genericBulletRed", "Red Laser Level 1", redLaserImage) },
-                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.5f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage) },
-                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 100, "bulletBlue", "Blue Laser Level 1", blueLaserImage) },
-                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.2f, 300, "bulletBlue", "Blue Laser Level 2", blueLaserImage) },
-                { "Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 30, "genericBulletGreen", "Green Laser Level 1", greenLaserImage) },
-                { "Green Laser Level 2", new Skill(greenLaserPrefab, 0.2f, 300, "genericBulletGreen", "Green Laser Level 2", greenLaserImage) },
-                { "Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 30, "bulletPurple", "Purple Laser Level 1", purpleLaserImage) },
-                { "Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.2f, 300, "bulletPurple", "Purple Laser Level 2", purpleLaserImage) },
+                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 10, "genericBulletRed", "Red Laser Level 1", redLaserImage) },
+                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.7f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage) },
+                { "Red Laser Level 3", new Skill(redLaserPrefab, 0.4f, 50, "genericBulletRed", "Red Laser Level 3", redLaserImage) },
+                { "Red Laser Level 4", new Skill(redLaserPrefab, 0.2f, 100, "genericBulletRed", "Red Laser Level 4", redLaserImage) },
+                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage) },
+                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage) },
+                { "Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage) },
+                { "Blue Laser Level 4", new Skill(blueLaserPrefab, 0.2f, 100, "bulletBlue", "Blue Laser Level 4", blueLaserImage) },
+                { "Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 10, "genericBulletGreen", "Green Laser Level 1", greenLaserImage) },
+                { "Green Laser Level 2", new Skill(greenLaserPrefab, 0.7f, 30, "genericBulletGreen", "Green Laser Level 2", greenLaserImage) },
+                { "Green Laser Level 3", new Skill(greenLaserPrefab, 0.4f, 50, "genericBulletGreen", "Green Laser Level 3", greenLaserImage) },
+                { "Green Laser Level 4", new Skill(greenLaserPrefab, 0.2f, 100, "genericBulletGreen", "Green Laser Level 4", greenLaserImage) },
+                { "Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 10, "bulletPurple", "Purple Laser Level 1", purpleLaserImage) },
+                { "Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.7f, 30, "bulletPurple", "Purple Laser Level 2", purpleLaserImage) },
+                { "Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage) },
+                { "Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage) },
             };
 
             // Show the first skill selection panel after 5 seconds
             Invoke("ShowSkillSelectionPanel", 5f);
 
             // Show the second skill selection panel after 15 seconds
-            Invoke("ShowNextSkillSelectionPanel", 15f);
+            Invoke("ShowSkillSelectionPanel", 15f);
+            Invoke("ShowSkillSelectionPanel", 30f);
+            Invoke("ShowSkillSelectionPanel", 45f);
         }
 
         void Update()
@@ -1186,36 +1196,6 @@ namespace Playniax.Ignition
             skillSelectionPanel.SetActive(true);
 
             // Get a list of skills and filter out Level 2 skills if their Level 1 isn't acquired
-            List<Skill> availableSkills = skills.Values
-                .Where(skill => skill.skillName.EndsWith("Level 1") || acquiredSkills.Contains(skill.skillName.Replace("Level 2", "Level 1")))
-                .OrderBy(x => UnityEngine.Random.value)
-                .Take(3)
-                .ToList();
-
-            // Clear any existing buttons
-            foreach (var button in skillButtons)
-            {
-                Destroy(button);
-            }
-            skillButtons.Clear();
-
-            // Create and display the buttons for the three selected skills
-            foreach (var skill in availableSkills)
-            {
-                GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
-                skillButton.GetComponentInChildren<TMP_Text>().text = skill.skillName;
-                skillButton.GetComponent<Image>().sprite = skill.skillImage; // Assign the correct image to the button
-                skillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(skill.skillName));
-                skillButtons.Add(skillButton);
-            }
-        }
-        
-        void ShowNextSkillSelectionPanel()
-        {
-            Time.timeScale = 0; // Pause the game
-            skillSelectionPanel.SetActive(true);
-
-            // Re-randomize the skills for the next selection, applying the same filter as before
             List<Skill> availableSkills = skills.Values
                 .Where(skill => skill.skillName.EndsWith("Level 1") || acquiredSkills.Contains(skill.skillName.Replace("Level 2", "Level 1")))
                 .OrderBy(x => UnityEngine.Random.value)
