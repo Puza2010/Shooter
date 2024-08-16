@@ -917,14 +917,6 @@ namespace Playniax.Ignition
                 { "Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage) },
                 { "Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage) },
             };
-
-            // Show the first skill selection panel after 5 seconds
-            Invoke("ShowSkillSelectionPanel", 5f);
-
-            // Show the second skill selection panel after 15 seconds
-            Invoke("ShowSkillSelectionPanel", 15f);
-            Invoke("ShowSkillSelectionPanel", 30f);
-            Invoke("ShowSkillSelectionPanel", 45f);
         }
 
         void Update()
@@ -1190,12 +1182,12 @@ namespace Playniax.Ignition
         Shop _shop;
         float _timer;
         
-        void ShowSkillSelectionPanel()
+        public void ShowSkillSelectionPanel()
         {
             Time.timeScale = 0; // Pause the game
             skillSelectionPanel.SetActive(true);
 
-            // Get a list of skills and filter out Level 2 skills if their Level 1 isn't acquired
+            // Get a list of skills and filter out Level 2+ skills if their previous level isn't acquired
             List<Skill> availableSkills = skills.Values
                 .Where(skill => skill.skillName.EndsWith("Level 1") || acquiredSkills.Contains(skill.skillName.Replace("Level 2", "Level 1")))
                 .OrderBy(x => UnityEngine.Random.value)
@@ -1222,7 +1214,7 @@ namespace Playniax.Ignition
         
         void OnSkillSelected(string skillName)
         {
-            selectedSkill = skills[skillName];
+            Skill selectedSkill = skills[skillName];
             acquiredSkills.Add(skillName);  // Mark the skill as acquired
             skillSelectionPanel.SetActive(false);
             ApplySkill(selectedSkill);

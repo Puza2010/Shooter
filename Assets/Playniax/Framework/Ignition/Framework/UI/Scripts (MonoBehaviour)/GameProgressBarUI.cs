@@ -2,7 +2,7 @@
 
 namespace Playniax.Ignition.UI
 {
-    // Displays game progress based on spawner and sequencer state.
+    // Displays game progress based on the player's progress in leveling up.
     public class GameProgressBarUI : MonoBehaviour
     {
         public enum Mode { Horizontal, Vertical };
@@ -10,49 +10,34 @@ namespace Playniax.Ignition.UI
         [Tooltip("Mode of operation: Horizontal or Vertical.")]
         public Mode mode;
 
-        [Tooltip("If true, applies the operation only to the selected player.")]
-        public bool selectedPlayerOnly = true;
-
-        [Tooltip("If true, reverses the operation.")]
-        public bool reverse;
+        private Transform _transform;
 
         void Awake()
         {
-            _Update();
-        }
-
-        void Update()
-        {
-            _Update();
-        }
-
-        void _Update()
-        {
             _transform = GetComponent<Transform>();
+            if (_transform == null)
+            {
+                Debug.LogError("GameProgressBarUI: Transform component is missing.");
+            }
+        }
+
+        public void SetProgress(int current, int max)
+        {
             if (_transform == null) return;
 
-            int progressScale = GameData.progressScale;
-            if (progressScale == 0) return;
-
-            int progress = GameData.progress;
-
-            if (reverse) progress = progressScale - progress;
-
-            float scale = 1.0f / progressScale * progress;
+            float scale = 1.0f / max * current;
 
             if (scale < 0) scale = 0;
             if (scale > 1) scale = 1;
 
             if (mode == Mode.Horizontal)
             {
-                _transform.localScale = new Vector3(scale, _transform.localScale.y);
+                _transform.localScale = new Vector3(scale, _transform.localScale.y, _transform.localScale.z);
             }
             else
             {
-                _transform.localScale = new Vector3(_transform.localScale.x, scale);
+                _transform.localScale = new Vector3(_transform.localScale.x, scale, _transform.localScale.z);
             }
         }
-
-        Transform _transform;
     }
 }
