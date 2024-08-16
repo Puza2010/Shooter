@@ -4,47 +4,64 @@ using Playniax.Ignition.UI;
 
 public class PlayerProgress : MonoBehaviour
 {
-    public int currentLevel = 1;  // Starting level
-    public int currentCoins = 0;  // Coins collected in current level
-    public int coinsRequiredForNextLevel = 1;  // Coins needed to reach the next level
-    public GameProgressBarUI progressBarUI;  // Reference to progress bar
-
-    private EasyGameUI easyGameUI;
+    public int currentLevel = 1;
+    public int currentCoins = 0;
+    public int coinsRequiredForNextLevel = 5; // Set this to the correct initial value for the first level
+    public GameProgressBarUI progressBarUI; // Reference to the Progress Bar UI component
 
     void Start()
     {
-        easyGameUI = FindObjectOfType<EasyGameUI>();
-        UpdateProgressBar();
+        // Initialize the correct coins required for the next level
+        coinsRequiredForNextLevel = 4 + currentLevel; // This will correctly set it to 5 for level 1
+
+        // Initialize the progress bar at the start
+        if (progressBarUI != null)
+        {
+            progressBarUI.SetProgress(currentCoins, coinsRequiredForNextLevel);
+        }
     }
 
     public void AddCoin()
     {
         currentCoins++;
+        Debug.Log($"Coin collected. Current Coins: {currentCoins}. Coins required for next level: {coinsRequiredForNextLevel}");
+        CheckLevelUp();
+        UpdateProgressBar();
+    }
+
+    private void CheckLevelUp()
+    {
+        // Only level up when currentCoins is equal to or greater than the required amount
         if (currentCoins >= coinsRequiredForNextLevel)
         {
-            LevelUp();
+            Debug.Log($"Level Up! Before: Level {currentLevel}, Coins: {currentCoins}");
+
+            // Subtract the required coins for leveling up
+            currentCoins -= coinsRequiredForNextLevel;
+
+            // Increase the level
+            currentLevel++;
+
+            // Calculate the next level's coin requirement
+            coinsRequiredForNextLevel = 4 + currentLevel;
+
+            Debug.Log($"After Level Up: New Level {currentLevel}, Coins required for next level: {coinsRequiredForNextLevel}");
+
+            LevelUp(); // Trigger the level-up process
         }
-        UpdateProgressBar();
     }
 
-    void LevelUp()
+    private void UpdateProgressBar()
     {
-        currentLevel++;
-        currentCoins = 0;  // Reset coins for the new level
-        coinsRequiredForNextLevel = currentLevel;  // Increase the requirement based on current level
-
-        // Trigger the skill selection panel from EasyGameUI
-        easyGameUI.ShowSkillSelectionPanel();
-
-        UpdateProgressBar();
-    }
-
-    void UpdateProgressBar()
-    {
-        // Update the progress bar to reflect the current level progress
         if (progressBarUI != null)
         {
             progressBarUI.SetProgress(currentCoins, coinsRequiredForNextLevel);
         }
+    }
+
+    private void LevelUp()
+    {
+        // Show the skill selection panel (or any other level-up logic)
+        EasyGameUI.instance.ShowSkillSelectionPanel();
     }
 }
