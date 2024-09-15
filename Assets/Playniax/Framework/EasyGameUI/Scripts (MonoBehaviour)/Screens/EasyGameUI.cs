@@ -26,11 +26,14 @@ namespace Playniax.Ignition
         public GameObject blueLaserPrefab; // Assign in Inspector
         public GameObject greenLaserPrefab;  // Assign in Inspector
         public GameObject purpleLaserPrefab; // Assign in Inspector
+        public Sprite mainGunImage; // Assign in Inspector
+        public Sprite angledShotsImage; // Assign in Inspector
 
         public Sprite redLaserImage;  // Assign in Inspector (Image for Red Laser)
         public Sprite blueLaserImage; // Assign in Inspector (Image for Blue Laser)
         public Sprite greenLaserImage;  // Assign in Inspector (Image for Green Laser)
         public Sprite purpleLaserImage; // Assign in Inspector (Image for Purple Laser)
+        
 
         private Dictionary<string, Skill> skills;
         private HashSet<string> acquiredSkills = new HashSet<string>(); // Tracks acquired skills
@@ -900,23 +903,35 @@ namespace Playniax.Ignition
             // Initialize the skill dictionary
             skills = new Dictionary<string, Skill>
             {
-                { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 10, "genericBulletRed", "Red Laser Level 1", redLaserImage) },
-                { "Red Laser Level 2", new Skill(redLaserPrefab, 0.7f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage) },
-                { "Red Laser Level 3", new Skill(redLaserPrefab, 0.4f, 50, "genericBulletRed", "Red Laser Level 3", redLaserImage) },
-                { "Red Laser Level 4", new Skill(redLaserPrefab, 0.2f, 100, "genericBulletRed", "Red Laser Level 4", redLaserImage) },
-                { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage) },
-                { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage) },
-                { "Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage) },
-                { "Blue Laser Level 4", new Skill(blueLaserPrefab, 0.2f, 100, "bulletBlue", "Blue Laser Level 4", blueLaserImage) },
-                { "Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 10, "genericBulletGreen", "Green Laser Level 1", greenLaserImage) },
-                { "Green Laser Level 2", new Skill(greenLaserPrefab, 0.7f, 30, "genericBulletGreen", "Green Laser Level 2", greenLaserImage) },
-                { "Green Laser Level 3", new Skill(greenLaserPrefab, 0.4f, 50, "genericBulletGreen", "Green Laser Level 3", greenLaserImage) },
-                { "Green Laser Level 4", new Skill(greenLaserPrefab, 0.2f, 100, "genericBulletGreen", "Green Laser Level 4", greenLaserImage) },
-                { "Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 10, "bulletPurple", "Purple Laser Level 1", purpleLaserImage) },
-                { "Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.7f, 30, "bulletPurple", "Purple Laser Level 2", purpleLaserImage) },
-                { "Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage) },
-                { "Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage) },
+                // { "Red Laser Level 1", new Skill(redLaserPrefab, 1f, 10, "genericBulletRed", "Red Laser Level 1", redLaserImage) },
+                // { "Red Laser Level 2", new Skill(redLaserPrefab, 0.7f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage) },
+                // { "Red Laser Level 3", new Skill(redLaserPrefab, 0.4f, 50, "genericBulletRed", "Red Laser Level 3", redLaserImage) },
+                // { "Red Laser Level 4", new Skill(redLaserPrefab, 0.2f, 100, "genericBulletRed", "Red Laser Level 4", redLaserImage) },
+                // { "Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage) },
+                // { "Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage) },
+                // { "Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage) },
+                // { "Blue Laser Level 4", new Skill(blueLaserPrefab, 0.2f, 100, "bulletBlue", "Blue Laser Level 4", blueLaserImage) },
+                // { "Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 10, "genericBulletGreen", "Green Laser Level 1", greenLaserImage) },
+                // { "Green Laser Level 2", new Skill(greenLaserPrefab, 0.7f, 30, "genericBulletGreen", "Green Laser Level 2", greenLaserImage) },
+                // { "Green Laser Level 3", new Skill(greenLaserPrefab, 0.4f, 50, "genericBulletGreen", "Green Laser Level 3", greenLaserImage) },
+                // { "Green Laser Level 4", new Skill(greenLaserPrefab, 0.2f, 100, "genericBulletGreen", "Green Laser Level 4", greenLaserImage) },
+                // { "Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 10, "bulletPurple", "Purple Laser Level 1", purpleLaserImage) },
+                // { "Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.7f, 30, "bulletPurple", "Purple Laser Level 2", purpleLaserImage) },
+                // { "Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage) },
+                // { "Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage) },
             };
+            
+            skills.Add("Main Gun Level 1", new Skill(null, 0f, 0, "", "Main Gun Level 1", mainGunImage, 1));
+            skills.Add("Main Gun Level 2", new Skill(null, 0f, 0, "", "Main Gun Level 2", mainGunImage, 2));
+            skills.Add("Main Gun Level 3", new Skill(null, 0f, 0, "", "Main Gun Level 3", mainGunImage, 3));
+            skills.Add("Main Gun Level 4", new Skill(null, 0f, 0, "", "Main Gun Level 4", mainGunImage, 4));
+            skills.Add("Main Gun Level 5", new Skill(null, 0f, 0, "", "Main Gun Level 5", mainGunImage, 5));
+            
+            skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1));
+            skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2));
+            skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3));
+            skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4));
+            skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5));
         }
 
         void Update()
@@ -1189,7 +1204,7 @@ namespace Playniax.Ignition
 
             // Get a list of skills and filter out Level 2+ skills if their previous level isn't acquired
             List<Skill> availableSkills = skills.Values
-                .Where(skill => skill.skillName.EndsWith("Level 1") || acquiredSkills.Contains(skill.skillName.Replace("Level 2", "Level 1")))
+                .Where(skill => IsSkillAvailable(skill))
                 .OrderBy(x => UnityEngine.Random.value)
                 .Take(3)
                 .ToList();
@@ -1227,19 +1242,42 @@ namespace Playniax.Ignition
             var player = GameObject.FindWithTag("Player");
             if (player != null)
             {
-                // Find or create a LaserSpawner
-                var laserSpawner = player.GetComponents<LaserSpawner>()
-                    .FirstOrDefault(ls => ls.targetTag == skill.targetTag) ?? player.AddComponent<LaserSpawner>();
-
-                // Configure the laser spawner with the selected skill's properties
-                ConfigureLaserSpawner(laserSpawner, skill);
-
-                // Ensure the max charges are set properly in the PickupLaser component
-                var pickupLaser = player.GetComponent<PickupLaser>();
-                if (pickupLaser != null)
+                // NEW CODE STARTS HERE
+                if (skill.skillName.StartsWith("Angled Shots Level"))
                 {
-                    pickupLaser.max = skill.maxCharges;
-                    pickupLaser.IncreaseLaserCharges(laserSpawner);
+                    // Increase angled shots level
+                    var bulletSpawner = player.GetComponent<BulletSpawner>();
+                    if (bulletSpawner != null)
+                    {
+                        bulletSpawner.angledShotsLevel = skill.level; // Use the level from the skill
+                    }
+                }
+                // NEW CODE ENDS HERE
+                else if (skill.skillName.StartsWith("Main Gun Level"))
+                {
+                    // Existing code for main gun level
+                    var bulletSpawner = player.GetComponent<BulletSpawner>();
+                    if (bulletSpawner != null)
+                    {
+                        bulletSpawner.mainGunLevel = skill.level; // Use the level from the skill
+                    }
+                }
+                else
+                {
+                    // Existing code for laser spawners
+                    var laserSpawner = player.GetComponents<LaserSpawner>()
+                        .FirstOrDefault(ls => ls.targetTag == skill.targetTag) ?? player.AddComponent<LaserSpawner>();
+
+                    // Configure the laser spawner with the selected skill's properties
+                    ConfigureLaserSpawner(laserSpawner, skill);
+
+                    // Ensure the max charges are set properly in the PickupLaser component
+                    var pickupLaser = player.GetComponent<PickupLaser>();
+                    if (pickupLaser != null)
+                    {
+                        pickupLaser.max = skill.maxCharges;
+                        pickupLaser.IncreaseLaserCharges(laserSpawner);
+                    }
                 }
             }
         }
@@ -1249,6 +1287,38 @@ namespace Playniax.Ignition
             laserSpawner.prefab = skill.prefab;      // Assign the prefab
             laserSpawner.targetTag = skill.targetTag;
             laserSpawner.timer.interval = skill.interval;
+        }
+        
+        bool IsSkillAvailable(Skill skill)
+        {
+            // Exclude skills that have already been acquired
+            if (acquiredSkills.Contains(skill.skillName))
+            {
+                return false;
+            }
+
+            // Handle skills dynamically based on their level and prerequisites
+            var match = System.Text.RegularExpressions.Regex.Match(skill.skillName, @"^(.*) Level (\d+)$");
+            if (match.Success)
+            {
+                string baseSkillName = match.Groups[1].Value;
+                int level = int.Parse(match.Groups[2].Value);
+
+                if (level == 1)
+                {
+                    return true; // Level 1 skills are available if not acquired yet
+                }
+                else
+                {
+                    string prerequisiteSkill = $"{baseSkillName} Level {level - 1}";
+                    return acquiredSkills.Contains(prerequisiteSkill);
+                }
+            }
+            else
+            {
+                // Skill name doesn't match expected pattern, exclude it
+                return false;
+            }
         }
     }
 }
@@ -1261,15 +1331,17 @@ public class Skill
     public int maxCharges;
     public string targetTag;
     public string skillName;
-    public Sprite skillImage;  // Added for skill image
+    public Sprite skillImage;
+    public int level; // Level of the skill
 
-    public Skill(GameObject prefab, float interval, int maxCharges, string targetTag, string skillName, Sprite skillImage)
+    public Skill(GameObject prefab, float interval, int maxCharges, string targetTag, string skillName, Sprite skillImage, int level = 0)
     {
         this.prefab = prefab;
         this.interval = interval;
         this.maxCharges = maxCharges;
         this.targetTag = targetTag;
         this.skillName = skillName;
-        this.skillImage = skillImage;  // Initialize the skill image
+        this.skillImage = skillImage;
+        this.level = level; // Initialize the level
     }
 }

@@ -8,6 +8,9 @@ namespace Playniax.Pyro
 {
     public class BulletSpawner : BulletSpawnerBase
     {
+        public int mainGunLevel = 0;
+        public int angledShotsLevel = 0;
+        
 #if UNITY_EDITOR
         [CanEditMultipleObjects]
         [CustomEditor(typeof(BulletSpawner))]
@@ -710,6 +713,81 @@ namespace Playniax.Pyro
                     if (inheritOrderInLayer) _SortingOrder(instance);
 
                     instance.SetActive(true);
+                    
+                    AdjustBulletProperties(instance);
+                    
+
+// Handle angled shots if angledShotsLevel > 0
+if (angledShotsLevel > 0)
+{
+    // Angles offset from the ship's current rotation
+    float[] angleOffsets = { -30f, 30f }; // Adjust these angles as desired
+
+    foreach (float angleOffset in angleOffsets)
+    {
+        // Create a new bullet instance for the angled shot
+        var angledBullet = Instantiate(prefab, transform.position, transform.rotation);
+        if (angledBullet)
+        {
+            // Set up the bullet properties (similar to main gun bullet)
+            if (angledBullet.layer != layer) angledBullet.layer = layer;
+
+            angledBullet.transform.localScale *= scale;
+            angledBullet.transform.Translate(position, Space.Self);
+
+            if (ignoreParent)
+            {
+                if (angledBullet.transform.parent) angledBullet.transform.parent = transform.parent.parent;
+            }
+            else
+            {
+                if (parent)
+                {
+                    angledBullet.transform.parent = parent;
+                }
+                else
+                {
+                    angledBullet.transform.parent = transform.parent;
+                }
+            }
+
+            var angledScoreBase = angledBullet.GetComponent<IScoreBase>();
+
+            PyroHelpers.OverrideStructuralIntegrity(prefab.name, angledBullet, angledScoreBase);
+
+            if (overrideCollisionSettings.useTheseSettings) _OverrideCollisionSettings(angledBullet);
+
+            if (angledScoreBase != null)
+            {
+                if (friendlyFire) angledScoreBase.friend = gameObject;
+
+                if (powerSettings.useTheseSettings)
+                {
+                    if (timer.counter > 0)
+                    {
+                        var m = timer.counter / powerSettings.powerRange;
+
+                        angledScoreBase.structuralIntegrity *= m + 1;
+
+                        if (powerSettings.visualize) angledBullet.transform.localScale *= m * powerSettings.visualizeScale + 1;
+                    }
+                }
+
+                angledScoreBase.structuralIntegrity *= BulletSpawnerSettings.GetStructuralIntegrityMultiplier();
+            }
+
+            if (inheritOrderInLayer) _SortingOrder(angledBullet);
+
+            angledBullet.SetActive(true);
+
+            // Adjust bullet properties based on angledShotsLevel
+            AdjustAngledBulletProperties(angledBullet);
+
+            // Aim the bullet at the specified angle relative to the ship's rotation
+            AimBullet(angledBullet, angleOffset);
+        }
+    }
+}
 
                     AddIntensity();
 
@@ -859,6 +937,76 @@ namespace Playniax.Pyro
             }
         }
 
+        void AdjustBulletProperties(GameObject bullet)
+        {
+            // Adjust size
+            float sizeMultiplier = 0.5f + 0.1f * mainGunLevel; // Bullets get 20% bigger per level
+            bullet.transform.localScale *= sizeMultiplier;
+
+            // Set up destruction after certain time
+            float lifespan = 0.1f + 0.1f * mainGunLevel; // Bullets live 0.1s longer per level
+            Destroy(bullet, lifespan);
+        }
+        
+        void AdjustAngledBulletProperties(GameObject bullet)
+        {
+            // Base size and lifespan matching main gun at level 0
+            float baseSizeMultiplier = 0.5f; // Same as main gun level 0
+            float baseLifespan = 0.1f;       // Same as main gun level 0
+
+            // Increase per level
+            float sizeIncrement = 0.1f;      // Increase size per level
+            float lifespanIncrement = 0.1f;  // Increase lifespan per level
+
+            // Calculate size multiplier
+            float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (angledShotsLevel - 1);
+
+            // Ensure sizeMultiplier doesn't go below baseSizeMultiplier
+            sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
+
+            // Apply size multiplier
+            bullet.transform.localScale *= sizeMultiplier;
+
+            // Calculate lifespan
+            float lifespan = baseLifespan + lifespanIncrement * (angledShotsLevel - 1);
+
+            // Ensure lifespan doesn't go below baseLifespan
+            lifespan = Mathf.Max(lifespan, baseLifespan);
+
+            // Set bullet lifespan
+            Destroy(bullet, lifespan);
+        }
+        
+        void AimBullet(GameObject bullet, float angleOffset)
+        {
+            // Get the ship's current rotation around the Z-axis
+            float shipRotation = transform.eulerAngles.z;
+
+            // Calculate the new angle for the bullet
+            float bulletAngle = shipRotation + angleOffset;
+
+            // Set the bullet's rotation
+            bullet.transform.rotation = Quaternion.Euler(0, 0, bulletAngle);
+
+            var bulletBase = bullet.GetComponent<BulletBase>();
+            if (bulletBase)
+            {
+                // Set the bullet's velocity in the direction it's facing
+                float speedValue = Random.Range(speed, speed + speedRange);
+                bulletBase.velocity = bullet.transform.right * speedValue; // Use bullet's right direction
+            }
+            else
+            {
+                var rb = bullet.GetComponent<Rigidbody2D>();
+                if (rb)
+                {
+                    // Set the bullet's velocity in the direction it's facing
+                    float speedValue = Random.Range(speed, speed + speedRange);
+                    rb.velocity = bullet.transform.right * speedValue; // Use bullet's right direction
+                }
+            }
+        }
+        
         SpriteRenderer _spriteRenderer;
     }
 }
