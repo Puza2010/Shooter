@@ -940,12 +940,30 @@ if (angledShotsLevel > 0)
         void AdjustBulletProperties(GameObject bullet)
         {
             // Adjust size
-            float sizeMultiplier = 0.5f + 0.1f * mainGunLevel; // Bullets get 20% bigger per level
+            float sizeMultiplier = 0.5f + 0.1f * mainGunLevel; // Bullets get bigger per level
             bullet.transform.localScale *= sizeMultiplier;
 
             // Set up destruction after certain time
-            float lifespan = 0.1f + 0.1f * mainGunLevel; // Bullets live 0.1s longer per level
+            float lifespan = 0.1f + 0.1f * mainGunLevel; // Bullets live longer per level
             Destroy(bullet, lifespan);
+
+            // Adjust structuralIntegrity based on mainGunLevel
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                // Base structuralIntegrity
+                float baseStructuralIntegrity = 1f; // Set your base value
+                float integrityIncrement = 0.5f;    // Increase per level
+
+                // Calculate new structuralIntegrity
+                float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * mainGunLevel;
+
+                // Apply the new structuralIntegrity
+                scoreBase.structuralIntegrity = newStructuralIntegrity;
+
+                // Optionally, you can log the value for debugging
+                // Debug.Log($"Main Gun Level: {mainGunLevel}, Bullet Structural Integrity: {newStructuralIntegrity}");
+            }
         }
         
         void AdjustAngledBulletProperties(GameObject bullet)
@@ -960,21 +978,31 @@ if (angledShotsLevel > 0)
 
             // Calculate size multiplier
             float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (angledShotsLevel - 1);
-
-            // Ensure sizeMultiplier doesn't go below baseSizeMultiplier
             sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
-
-            // Apply size multiplier
             bullet.transform.localScale *= sizeMultiplier;
 
             // Calculate lifespan
             float lifespan = baseLifespan + lifespanIncrement * (angledShotsLevel - 1);
-
-            // Ensure lifespan doesn't go below baseLifespan
             lifespan = Mathf.Max(lifespan, baseLifespan);
-
-            // Set bullet lifespan
             Destroy(bullet, lifespan);
+
+            // Adjust structuralIntegrity based on angledShotsLevel
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                // Base structuralIntegrity
+                float baseStructuralIntegrity = 1f; // Same as main gun base value
+                float integrityIncrement = 0.5f;    // Increase per level
+
+                // Calculate new structuralIntegrity
+                float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (angledShotsLevel - 1);
+
+                // Apply the new structuralIntegrity
+                scoreBase.structuralIntegrity = newStructuralIntegrity;
+
+                // Optionally, you can log the value for debugging
+                // Debug.Log($"Angled Shots Level: {angledShotsLevel}, Bullet Structural Integrity: {newStructuralIntegrity}");
+            }
         }
         
         void AimBullet(GameObject bullet, float angleOffset)

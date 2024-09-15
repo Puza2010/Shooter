@@ -12,7 +12,7 @@ public class PlayerProgress : MonoBehaviour
     void Start()
     {
         // Initialize the correct coins required for the next level
-        coinsRequiredForNextLevel = 4 + currentLevel; // This will correctly set it to 5 for level 1
+        coinsRequiredForNextLevel = 1 + currentLevel; // This will correctly set it to 5 for level 1
 
         // Initialize the progress bar at the start
         if (progressBarUI != null)
@@ -43,7 +43,7 @@ public class PlayerProgress : MonoBehaviour
             currentLevel++;
 
             // Calculate the next level's coin requirement
-            coinsRequiredForNextLevel = 4 + currentLevel;
+            coinsRequiredForNextLevel = 1 + currentLevel;
 
             Debug.Log($"After Level Up: New Level {currentLevel}, Coins required for next level: {coinsRequiredForNextLevel}");
 
