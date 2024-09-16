@@ -6,7 +6,7 @@ public class PlayerProgress : MonoBehaviour
 {
     public int currentLevel = 1;
     public int currentCoins = 0;
-    public int coinsRequiredForNextLevel = 5; // Set this to the correct initial value for the first level
+    public int coinsRequiredForNextLevel = 1; // Set this to the correct initial value for the first level
     public GameProgressBarUI progressBarUI; // Reference to the Progress Bar UI component
 
     void Start()

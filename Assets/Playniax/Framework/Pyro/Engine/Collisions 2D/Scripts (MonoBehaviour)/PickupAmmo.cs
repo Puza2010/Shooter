@@ -21,7 +21,7 @@ namespace Playniax.Pyro
 
         public Mode mode;
         public int increase = 250;
-        public int max = 1000;
+        public int max = -1;
 
         public string activatedText = "Gun Activated At %";
         public string deactivatedText = "Gun Deactivated";

@@ -28,6 +28,8 @@ namespace Playniax.Ignition
         public GameObject purpleLaserPrefab; // Assign in Inspector
         public Sprite mainGunImage; // Assign in Inspector
         public Sprite angledShotsImage; // Assign in Inspector
+        public Sprite cannonImage; // Assign in Inspector
+        public Sprite threeWayShooterImage; // Assign in Inspector
 
         public Sprite redLaserImage;  // Assign in Inspector (Image for Red Laser)
         public Sprite blueLaserImage; // Assign in Inspector (Image for Blue Laser)
@@ -932,6 +934,18 @@ namespace Playniax.Ignition
             skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3));
             skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4));
             skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5));
+            
+            skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1));
+            skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2));
+            skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3));
+            skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4));
+            skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5));
+            
+            // Add 3 Way Shooter skills
+            skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1));
+            skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2));
+            skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3));
+            skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4));
         }
 
         void Update()
@@ -1242,24 +1256,50 @@ namespace Playniax.Ignition
             var player = GameObject.FindWithTag("Player");
             if (player != null)
             {
-                // NEW CODE STARTS HERE
-                if (skill.skillName.StartsWith("Angled Shots Level"))
-                {
-                    // Increase angled shots level
-                    var bulletSpawner = player.GetComponent<BulletSpawner>();
-                    if (bulletSpawner != null)
-                    {
-                        bulletSpawner.angledShotsLevel = skill.level; // Use the level from the skill
-                    }
-                }
-                // NEW CODE ENDS HERE
-                else if (skill.skillName.StartsWith("Main Gun Level"))
+                if (skill.skillName.StartsWith("Main Gun Level"))
                 {
                     // Existing code for main gun level
                     var bulletSpawner = player.GetComponent<BulletSpawner>();
                     if (bulletSpawner != null)
                     {
-                        bulletSpawner.mainGunLevel = skill.level; // Use the level from the skill
+                        bulletSpawner.mainGunLevel = skill.level;
+                    }
+                }
+                else if (skill.skillName.StartsWith("Angled Shots Level"))
+                {
+                    // Existing code for angled shots level
+                    var bulletSpawner = player.GetComponent<BulletSpawner>();
+                    if (bulletSpawner != null)
+                    {
+                        bulletSpawner.angledShotsLevel = skill.level;
+                    }
+                }
+                else if (skill.skillName.StartsWith("Cannons Level"))
+                {
+                    // Implemented Cannon skill
+                    var bulletSpawnersList = player.GetComponents<BulletSpawners>();
+                    foreach (var spawner in bulletSpawnersList)
+                    {
+                        if (spawner.id == "Cannon")
+                        {
+                            spawner.cannonLevel = skill.level; // Use the level from the skill
+                            spawner.timer.counter = -1; // Set counter to infinite firing
+                            break; // Found the spawner, exit loop
+                        }
+                    }
+                }
+                else if (skill.skillName.StartsWith("3 Way Shooter Level"))
+                {
+                    // Increase 3 Way Shooter level
+                    var bulletSpawnersList = player.GetComponents<BulletSpawners>();
+                    foreach (var spawner in bulletSpawnersList)
+                    {
+                        if (spawner.id == "3 Way Shooter")
+                        {
+                            spawner.threeWayShooterLevel = skill.level; // Use the level from the skill
+                            spawner.timer.counter = -1; // Set counter to infinite firing
+                            break; // Found the spawner, exit loop
+                        }
                     }
                 }
                 else

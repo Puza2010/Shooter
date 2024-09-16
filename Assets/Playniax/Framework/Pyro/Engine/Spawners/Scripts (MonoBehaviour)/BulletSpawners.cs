@@ -9,6 +9,9 @@ namespace Playniax.Pyro
 {
     public class BulletSpawners : BulletSpawnerBase
     {
+        public int cannonLevel = 0; // Level of the Cannon skill
+        public int threeWayShooterLevel = 0; // Level of the 3 Way Shooter skill
+        
 #if UNITY_EDITOR
 
         // Not finished!
@@ -168,6 +171,21 @@ namespace Playniax.Pyro
         public override void UpdateSpawner()
         {
             if (prefab == null) return;
+            
+            if ((id == "Cannon" && cannonLevel > 0) || (id == "3 Way Shooter" && threeWayShooterLevel > 0))
+            {
+                timer.counter = -1; // Infinite firing
+
+                if (triggerSettings.mode == TriggerSettings.Mode.AlwaysFire)
+                {
+                    if (timer.Update()) OnSpawn();
+                }
+                // Handle other trigger modes as needed
+            }
+            else
+            {
+                timer.counter = 0; // Stop firing
+            }
 
             if (triggerSettings.mode == TriggerSettings.Mode.AlwaysFire)
             {
@@ -219,6 +237,16 @@ namespace Playniax.Pyro
             if (instance)
             {
                 if (instance.layer != layer) instance.layer = layer;
+                
+                // Adjust bullet properties based on spawner id
+                if (id == "Cannon")
+                {
+                    AdjustCannonBulletProperties(instance);
+                }
+                else if (id == "3 Way Shooter")
+                {
+                    AdjustThreeWayShooterBulletProperties(instance);
+                }
 
                 instance.transform.Rotate(rotation);
                 instance.transform.Rotate(spawnPoints[i].rotation);
@@ -293,6 +321,62 @@ namespace Playniax.Pyro
                 var orderInLayer = _spriteRenderer.sortingOrder;
                 _spriteRenderer = instance.GetComponent<SpriteRenderer>();
                 if (_spriteRenderer != null) _spriteRenderer.sortingOrder = orderInLayer + 1;
+            }
+        }
+        
+        // NEW CODE
+        void AdjustCannonBulletProperties(GameObject bullet)
+        {
+            // Adjust size
+            float baseSizeMultiplier = 0.5f; // Base size for level 1
+            float sizeIncrement = 0.1f;      // Increase size per level
+            float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (cannonLevel - 1);
+            sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
+            bullet.transform.localScale *= sizeMultiplier;
+
+            // Adjust lifespan to control range
+            float baseLifespan = 0.1f;       // Base lifespan for level 1
+            float lifespanIncrement = 0.1f;  // Increase lifespan per level
+            float lifespan = baseLifespan + lifespanIncrement * (cannonLevel - 1);
+            lifespan = Mathf.Max(lifespan, baseLifespan);
+            Destroy(bullet, lifespan);
+
+            // Adjust damage via structuralIntegrity
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                float baseStructuralIntegrity = 0.5f; // Half the damage of main gun level 0
+                float integrityIncrement = 0.5f;      // Increase per level
+                float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (cannonLevel - 1);
+                scoreBase.structuralIntegrity = newStructuralIntegrity;
+            }
+        }
+
+// NEW CODE
+        void AdjustThreeWayShooterBulletProperties(GameObject bullet)
+        {
+            // Adjust size
+            float baseSizeMultiplier = 0.5f; // Base size for level 1
+            float sizeIncrement = 0.1f;      // Increase size per level
+            float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (threeWayShooterLevel - 1);
+            sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
+            bullet.transform.localScale *= sizeMultiplier;
+
+            // Adjust lifespan to control range
+            float baseLifespan = 0.1f;       // Base lifespan for level 1
+            float lifespanIncrement = 0.1f;  // Increase lifespan per level
+            float lifespan = baseLifespan + lifespanIncrement * (threeWayShooterLevel - 1);
+            lifespan = Mathf.Max(lifespan, baseLifespan);
+            Destroy(bullet, lifespan);
+
+            // Adjust damage via structuralIntegrity
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                float baseStructuralIntegrity = 0.5f; // Half the damage of main gun level 0
+                float integrityIncrement = 0.5f;      // Increase per level
+                float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (threeWayShooterLevel - 1);
+                scoreBase.structuralIntegrity = newStructuralIntegrity;
             }
         }
 
