@@ -12,7 +12,7 @@ public class PlayerProgress : MonoBehaviour
     void Start()
     {
         // Initialize the correct coins required for the next level
-        coinsRequiredForNextLevel = 1 + currentLevel; // This will correctly set it to 5 for level 1
+        coinsRequiredForNextLevel = 0 + currentLevel; // This will correctly set it to 5 for level 1
 
         // Initialize the progress bar at the start
         if (progressBarUI != null)
