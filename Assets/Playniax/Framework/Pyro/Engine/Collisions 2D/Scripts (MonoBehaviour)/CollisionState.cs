@@ -11,6 +11,9 @@ namespace Playniax.Pyro
     // Collision properties.
     public class CollisionState : CollisionBase2D, IScoreBase
     {
+        private float _maxStructuralIntegrity;
+        public int healthUpgradeLevel = 0; // Level of the Health Upgrade skill
+        
         [System.Serializable]
         // Cargo is released when an object is destroyed.
         public class CargoSettings
@@ -439,10 +442,16 @@ namespace Playniax.Pyro
             additionalSettings.Init();
 
             eventSettings.onAwake.Invoke();
+            
+            // Initialize _maxStructuralIntegrity to the starting structuralIntegrity
+            _maxStructuralIntegrity = structuralIntegrity;
         }
         public virtual void DoDamage(float damage)
         {
             structuralIntegrity -= damage;
+            
+            // Clamp structuralIntegrity to not exceed the maximum
+            // structuralIntegrity = Mathf.Min(structuralIntegrity, _maxStructuralIntegrity);
 
             if (structuralIntegrity <= 0)
             {
@@ -608,6 +617,44 @@ namespace Playniax.Pyro
                     OutroSettings.MessengerSettings.Message(this);
                 }
             }
+        }
+        
+        public float maxStructuralIntegrity
+        {
+            get { return _maxStructuralIntegrity; }
+        }
+        
+        public void IncreaseHealth(int level)
+        {
+            // Store the previous level
+            int previousLevel = healthUpgradeLevel;
+
+            // Update to the new level
+            healthUpgradeLevel = level;
+
+            // Calculate the total increase at the new level
+            float totalIncrease = CalculateTotalIncrease(healthUpgradeLevel);
+
+            // Calculate the total increase at the previous level
+            float previousTotalIncrease = CalculateTotalIncrease(previousLevel);
+
+            // Calculate the amount to increase based on the difference between levels
+            float increaseAmount = totalIncrease - previousTotalIncrease;
+
+            // Update the maximum structural integrity (health)
+            _maxStructuralIntegrity += increaseAmount;
+
+            // Increase current structural integrity (health) by the same amount
+            structuralIntegrity += increaseAmount;
+
+            // Ensure current structural integrity does not exceed the maximum
+            structuralIntegrity = Mathf.Min(structuralIntegrity, _maxStructuralIntegrity);
+        }
+        
+        // Helper method remains the same
+        private float CalculateTotalIncrease(int level)
+        {
+            return 10f * level * (level + 1) / 2f;
         }
 
         Material _defaultMaterial;

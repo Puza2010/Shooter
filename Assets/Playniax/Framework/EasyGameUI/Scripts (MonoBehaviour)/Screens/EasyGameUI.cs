@@ -31,6 +31,7 @@ namespace Playniax.Ignition
         public Sprite cannonImage; // Assign in Inspector
         public Sprite threeWayShooterImage; // Assign in Inspector
         public Sprite speedUpImage; // Assign in Inspector
+        public Sprite increaseHealthImage ; // Assign in Inspector
 
         public Sprite redLaserImage;  // Assign in Inspector (Image for Red Laser)
         public Sprite blueLaserImage; // Assign in Inspector (Image for Blue Laser)
@@ -930,11 +931,11 @@ namespace Playniax.Ignition
             skills.Add("Main Gun Level 4", new Skill(null, 0f, 0, "", "Main Gun Level 4", mainGunImage, 4));
             skills.Add("Main Gun Level 5", new Skill(null, 0f, 0, "", "Main Gun Level 5", mainGunImage, 5));
             
-            skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1));
-            skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2));
-            skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3));
-            skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4));
-            skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5));
+            // skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1));
+            // skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2));
+            // skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3));
+            // skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4));
+            // skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5));
             
             // skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1));
             // skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2));
@@ -953,6 +954,12 @@ namespace Playniax.Ignition
             skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3));
             skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4));
             skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5));
+            
+            skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1));
+            skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2));
+            skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3));
+            skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4));
+            skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5));
         }
 
         void Update()
@@ -1317,6 +1324,14 @@ namespace Playniax.Ignition
                     {
                         // Increase the speed
                         playerControls.IncreaseSpeed(skill.level);
+                    }
+                }
+                else if (skill.skillName.StartsWith("Health Upgrade Level"))
+                {
+                    var collisionState = player.GetComponent<CollisionState>();
+                    if (collisionState != null)
+                    {
+                        collisionState.IncreaseHealth(skill.level);
                     }
                 }
                 else

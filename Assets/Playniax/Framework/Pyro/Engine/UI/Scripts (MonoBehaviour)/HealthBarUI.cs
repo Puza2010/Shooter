@@ -9,64 +9,63 @@ namespace Playniax.Pyro.UI
 
         public string id = "Player 1";
         public Mode mode;
-        public int maximum;
         public bool selectedPlayerOnly = true;
         public bool reverse;
+
+        private Transform _transform;
+
         void Awake()
         {
-            _Update();
+            _transform = GetComponent<Transform>();
         }
+
         void Update()
         {
             _Update();
         }
-        int _GetStructuralIntegrity(string id, bool selectedPlayerOnly)
+
+        void _Update()
         {
-            float count = 0;
+            if (_transform == null) return;
+
+            float structuralIntegrity = 0f;
+            float maxStructuralIntegrity = 0f;
 
             var list = PlayerGroup.GetList();
-            if (list == null) return 0;
+            if (list == null) return;
 
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] && list[i].id == id && list[i].gameObject)
                 {
-                    //if (selectedPlayerOnly && list[i] && list[i].gameObject != PlayerGroup.GetSelected()) continue;
+                    // Uncomment the next line if you want to consider only the selected player
+                    // if (selectedPlayerOnly && list[i].gameObject != PlayerGroup.GetSelected()) continue;
 
-                    var scoreBase = list[i].GetComponent<IScoreBase>();
-                    if (scoreBase != null) count += scoreBase.structuralIntegrity;
+                    var collisionState = list[i].GetComponent<CollisionState>();
+                    if (collisionState != null)
+                    {
+                        structuralIntegrity += collisionState.structuralIntegrity;
+                        maxStructuralIntegrity += collisionState.maxStructuralIntegrity;
+                    }
                 }
             }
 
-            return (int)count;
-        }
-        void _Update()
-        {
-            _transform = GetComponent<Transform>();
-            if (_transform == null) return;
+            if (maxStructuralIntegrity == 0) return;
 
-            var structuralIntegrity = _GetStructuralIntegrity(id, selectedPlayerOnly);
+            if (reverse) structuralIntegrity = maxStructuralIntegrity - structuralIntegrity;
 
-            if (maximum == 0) maximum += structuralIntegrity;
-            if (maximum == 0) return;
+            float scale = structuralIntegrity / maxStructuralIntegrity;
 
-            if (reverse) structuralIntegrity = maximum - structuralIntegrity;
-
-            var scale = 1.0f / maximum * structuralIntegrity;
-
-            if (scale < 0) scale = 0;
-            if (scale > 1) scale = 1;
+            scale = Mathf.Clamp01(scale);
 
             if (mode == Mode.Horizontal)
             {
-                _transform.localScale = new Vector3(scale, _transform.localScale.y);
+                _transform.localScale = new Vector3(scale, _transform.localScale.y, _transform.localScale.z);
             }
             else
             {
-                _transform.localScale = new Vector3(_transform.localScale.x, scale);
+                _transform.localScale = new Vector3(_transform.localScale.x, scale, _transform.localScale.z);
             }
         }
-
-        Transform _transform;
     }
 }

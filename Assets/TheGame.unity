@@ -480,7 +480,7 @@ MonoBehaviour:
   group: Player
   delay: 1
   _material: Metal
-  _structuralIntegrity: 100
+  _structuralIntegrity: 10
   autoPoints: 1
   _points: 0
   playerIndex: -1
@@ -576,6 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98f9ae6b5ef2444fad5a7e6ac109f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedUpLevel: 0
   speed: 1
   mode: 2
   playerIndex: 0
