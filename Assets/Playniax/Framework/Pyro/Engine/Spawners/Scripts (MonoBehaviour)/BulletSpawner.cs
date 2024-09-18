@@ -991,8 +991,8 @@ if (angledShotsLevel > 0)
             if (scoreBase != null)
             {
                 // Base structuralIntegrity
-                float baseStructuralIntegrity = 1f; // Same as main gun base value
-                float integrityIncrement = 0.5f;    // Increase per level
+                float baseStructuralIntegrity = 0.5f; // Same as main gun base value
+                float integrityIncrement = 0.25f;    // Increase per level
 
                 // Calculate new structuralIntegrity
                 float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (angledShotsLevel - 1);

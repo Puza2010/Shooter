@@ -1146,13 +1146,15 @@ MonoBehaviour:
   automatically: 1
   timer:
     timer: 0
-    interval: 0.15
+    interval: 0.3
     intervalRange: 0
     counter: 0
   id: 3 Way Shooter
   allowResidue: 1
   onlyFireBelowMaxVelocity: 0
   maxVelocity: 1
+  cannonLevel: 0
+  threeWayShooterLevel: 0
   group: 0
   prefab: {fileID: 787315027656738199, guid: 19fd17be2f9fd664584feaf2cb200bcc, type: 3}
   parent: {fileID: 0}
@@ -1217,13 +1219,15 @@ MonoBehaviour:
   automatically: 1
   timer:
     timer: 0
-    interval: 0.15
+    interval: 0.3
     intervalRange: 0
     counter: 0
   id: Cannon
   allowResidue: 1
   onlyFireBelowMaxVelocity: 0
   maxVelocity: 1
+  cannonLevel: 0
+  threeWayShooterLevel: 0
   group: 0
   prefab: {fileID: 2810408086072053405, guid: 41ff4fa9a2cab6c4a8c0f2923dd70a58, type: 3}
   parent: {fileID: 0}

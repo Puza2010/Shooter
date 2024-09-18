@@ -346,7 +346,7 @@ namespace Playniax.Pyro
             if (scoreBase != null)
             {
                 float baseStructuralIntegrity = 0.5f; // Half the damage of main gun level 0
-                float integrityIncrement = 0.5f;      // Increase per level
+                float integrityIncrement = 0.25f;      // Increase per level
                 float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (cannonLevel - 1);
                 scoreBase.structuralIntegrity = newStructuralIntegrity;
             }
@@ -373,8 +373,8 @@ namespace Playniax.Pyro
             var scoreBase = bullet.GetComponent<IScoreBase>();
             if (scoreBase != null)
             {
-                float baseStructuralIntegrity = 0.5f; // Half the damage of main gun level 0
-                float integrityIncrement = 0.5f;      // Increase per level
+                float baseStructuralIntegrity = 1.0f / 3.0f; // Half the damage of main gun level 0
+                float integrityIncrement = (1.0f / 3.0f) / 2;      // Increase per level
                 float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (threeWayShooterLevel - 1);
                 scoreBase.structuralIntegrity = newStructuralIntegrity;
             }
