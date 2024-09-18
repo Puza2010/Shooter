@@ -10,6 +10,8 @@ namespace Playniax.Pyro
     [AddComponentMenu("Playniax/Pyro/PlayerControls")]
     public class PlayerControls : MonoBehaviour
     {
+        public int speedUpLevel = 0; // Level of the Speed Up skill
+        
 #if UNITY_EDITOR
         [CanEditMultipleObjects]
         [CustomEditor(typeof(PlayerControls))]
@@ -501,6 +503,12 @@ namespace Playniax.Pyro
             camera.y = position.y;
 
             Camera.main.transform.position = camera;
+        }
+        
+        public void IncreaseSpeed(int level)
+        {
+            speedUpLevel = level;
+            wasdSettings.speed = 4 + speedUpLevel; // Base speed is 4
         }
     }
 }

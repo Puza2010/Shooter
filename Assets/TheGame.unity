@@ -601,7 +601,7 @@ MonoBehaviour:
     horizontal: 1
     verticalName: Vertical
     vertical: 1
-    speed: 8
+    speed: 4
     boundaries: 1
     allowScrolling: 0
   mouseSettings:
