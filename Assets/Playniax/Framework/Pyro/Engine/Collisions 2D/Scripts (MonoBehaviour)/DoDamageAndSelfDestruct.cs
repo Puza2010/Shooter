@@ -37,12 +37,19 @@ namespace Playniax.Pyro
         public OutroSettings outroSettings;
         public override void OnCollision(CollisionBase2D collision)
         {
+            // Check if collision is with the player
+            if (collision.CompareTag("Player"))
+            {
+                // Do not apply damage or effects to the player
+                return;
+            }
+
+            // Proceed with normal collision handling
             _UpdateState(collision);
 
             if (outroSettings.enabled)
             {
                 _PlayEffects();
-
                 outroSettings.audioSettings.Play();
             }
 
