@@ -10,7 +10,8 @@ namespace Playniax.Pyro
     {
         public int mainGunLevel = 0;
         public int angledShotsLevel = 0;
-        
+        public int phaserShotsLevel = 0;
+
 #if UNITY_EDITOR
         [CanEditMultipleObjects]
         [CustomEditor(typeof(BulletSpawner))]
@@ -292,7 +293,7 @@ namespace Playniax.Pyro
         public DirectionSettings directionSettings = new DirectionSettings();
         public PointInSpaceSettings pointInSpaceSettings = new PointInSpaceSettings();
         public CollisionSettings overrideCollisionSettings = new CollisionSettings();
-        public AudioProperties audioProperties =  new AudioProperties ();
+        public AudioProperties audioProperties = new AudioProperties();
         public PowerSettings powerSettings = new PowerSettings();
         public EffectsSettings effectsSettings = new EffectsSettings();
 
@@ -491,6 +492,12 @@ namespace Playniax.Pyro
                     if (instance)
                     {
                         if (instance.layer != layer) instance.layer = layer;
+
+                        // Check the phaserShotsLevel here
+                        if (phaserShotsLevel > 0)
+                        {
+                            AdjustHomingGun(instance);
+                        }
 
                         instance.transform.localScale *= scale;
                         instance.transform.Translate(position, Space.Self);
@@ -965,7 +972,7 @@ if (angledShotsLevel > 0)
                 // Debug.Log($"Main Gun Level: {mainGunLevel}, Bullet Structural Integrity: {newStructuralIntegrity}");
             }
         }
-        
+
         void AdjustAngledBulletProperties(GameObject bullet)
         {
             // Base size and lifespan matching main gun at level 0
@@ -1004,7 +1011,27 @@ if (angledShotsLevel > 0)
                 // Debug.Log($"Angled Shots Level: {angledShotsLevel}, Bullet Structural Integrity: {newStructuralIntegrity}");
             }
         }
-        
+
+        void AdjustHomingGun(GameObject bullet)
+        {
+            // Set timer.counter to -1 for infinite firing
+            timer.counter = -1;
+
+            // Adjust structuralIntegrity based on Phaser Shot Level
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                float baseDamage = 0.25f;  // Base damage for level 1
+                float damageIncrement = 0.25f;  // Increment per level
+
+                // Calculate the phaser's bullet damage based on the level
+                float phaserBulletDamage = baseDamage + damageIncrement * (phaserShotsLevel - 1);
+
+                // Apply the new structuralIntegrity (damage) to the phaser bullet
+                scoreBase.structuralIntegrity = phaserBulletDamage;
+            }
+        }
+
         void AimBullet(GameObject bullet, float angleOffset)
         {
             // Get the ship's current rotation around the Z-axis
@@ -1034,8 +1061,7 @@ if (angledShotsLevel > 0)
                 }
             }
         }
-        
+
         SpriteRenderer _spriteRenderer;
     }
 }
- 

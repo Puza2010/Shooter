@@ -1205,6 +1205,7 @@ MonoBehaviour:
   maxVelocity: 1
   mainGunLevel: 0
   angledShotsLevel: 0
+  phaserShotsLevel: 0
   prefab: {fileID: 7468486278026618430, guid: 5677dcf62ecec4a49a7d57ea364122f4, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1425,6 +1426,7 @@ MonoBehaviour:
   maxVelocity: 1
   mainGunLevel: 0
   angledShotsLevel: 0
+  phaserShotsLevel: 0
   prefab: {fileID: 5322387968320073750, guid: 2d1a1a5f2def3b4469db3484b31fc8ba, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1652,7 +1654,7 @@ MonoBehaviour:
     panStereo: 0
     pitch: 1
     enabled: 1
-  targetTag: bulletGreen
+  targetTag: genericBulletRed
 --- !u!114 &48525874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9450,7 +9452,7 @@ MonoBehaviour:
   offCameraMode: 1
   offCameraDirections: 0
   bulletSettings:
-    useTheseSettings: 0
+    useTheseSettings: 1
     prefab: {fileID: 5322387968320073750, guid: 39f623aafcac9d749a061be9f79b5ced, type: 3}
     position: {x: 0, y: 0, z: 0}
     mode: 0
@@ -10397,7 +10399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1962339431
 AudioSource:
   m_ObjectHideFlags: 0
