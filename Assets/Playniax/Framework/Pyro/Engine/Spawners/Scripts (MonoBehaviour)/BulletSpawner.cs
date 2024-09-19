@@ -1030,6 +1030,19 @@ if (angledShotsLevel > 0)
                 // Apply the new structuralIntegrity (damage) to the phaser bullet
                 scoreBase.structuralIntegrity = phaserBulletDamage;
             }
+
+            // Adjust firing interval based on Phaser Shot Level
+            float baseInterval = 0.4f;  // Base interval for level 1
+            float intervalDecrement = 0.05f;  // Decrease interval by this value per level
+
+            // Calculate the new firing interval
+            float newInterval = baseInterval - intervalDecrement * (phaserShotsLevel - 1);
+
+            // Ensure interval doesn't drop below a reasonable minimum (e.g., 0.1f)
+            newInterval = Mathf.Max(0.1f, newInterval);
+
+            // Apply the new interval to the timer
+            timer.interval = newInterval;
         }
 
         void AimBullet(GameObject bullet, float angleOffset)
