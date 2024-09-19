@@ -47,6 +47,9 @@ namespace Playniax.Ignition
         private Skill selectedSkill;
         private List<GameObject> skillButtons = new List<GameObject>(); // To keep track of instantiated buttons
         
+        private int selectedSkillIndex = 0; // Keeps track of which skill is currently selected
+        private bool isSkillSelectionActive = false; // Tracks if the skill selection is active
+        
         [System.Serializable]
         // Add the scenes for the advertisements here.
         public class AdvertismentSettings
@@ -990,7 +993,13 @@ namespace Playniax.Ignition
                     _onTimerDone = null;
                 }
             }
+
+            if (isSkillSelectionActive)
+            {
+                HandleSkillSelectionInput();
+            }
         }
+
 
         IEnumerator _GameOver()
         {
@@ -1244,6 +1253,7 @@ namespace Playniax.Ignition
         {
             Time.timeScale = 0; // Pause the game
             skillSelectionPanel.SetActive(true);
+            isSkillSelectionActive = true; // Mark skill selection as active
 
             // Get a list of skills and filter out Level 2+ skills if their previous level isn't acquired
             List<Skill> availableSkills = skills.Values
@@ -1260,14 +1270,18 @@ namespace Playniax.Ignition
             skillButtons.Clear();
 
             // Create and display the buttons for the three selected skills
-            foreach (var skill in availableSkills)
+            for (int i = 0; i < availableSkills.Count; i++)
             {
+                Skill skill = availableSkills[i];
                 GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
                 skillButton.GetComponentInChildren<TMP_Text>().text = skill.skillName;
                 skillButton.GetComponent<Image>().sprite = skill.skillImage; // Assign the correct image to the button
                 skillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(skill.skillName));
                 skillButtons.Add(skillButton);
             }
+
+            selectedSkillIndex = 0; // Reset index to the first skill
+            HighlightSelectedSkill(); // Highlight the first skill
         }
         
         void OnSkillSelected(string skillName)
@@ -1275,6 +1289,7 @@ namespace Playniax.Ignition
             Skill selectedSkill = skills[skillName];
             acquiredSkills.Add(skillName);  // Mark the skill as acquired
             skillSelectionPanel.SetActive(false);
+            isSkillSelectionActive = false; // Skill selection is no longer active
             ApplySkill(selectedSkill);
         }
         
@@ -1422,6 +1437,69 @@ namespace Playniax.Ignition
                         pickupLaser.max = skill.maxCharges;
                         pickupLaser.IncreaseLaserCharges(laserSpawner);
                     }
+                }
+            }
+        }
+        
+        void HighlightSelectedSkill()
+        {
+            for (int i = 0; i < skillButtons.Count; i++)
+            {
+                GameObject skillButton = skillButtons[i];
+                Image buttonImage = skillButton.GetComponent<Image>();
+                TMP_Text buttonText = skillButton.GetComponentInChildren<TMP_Text>();
+
+                if (i == selectedSkillIndex)
+                {
+                    // Highlight the selected button
+                    if (buttonImage != null)
+                        buttonImage.color = Color.yellow; // Highlight color
+                    if (buttonText != null)
+                        buttonText.color = Color.black; // Contrasting text color
+                }
+                else
+                {
+                    // Set the color for unselected buttons
+                    if (buttonImage != null)
+                        buttonImage.color = Color.white; // Default color
+                    if (buttonText != null)
+                        buttonText.color = Color.white; // Default text color
+                }
+            }
+        }
+        
+        void HandleSkillSelectionInput()
+        {
+            // Navigate left
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                selectedSkillIndex--;
+                if (selectedSkillIndex < 0)
+                {
+                    selectedSkillIndex = skillButtons.Count - 1; // Wrap around to the last skill
+                }
+                HighlightSelectedSkill();
+            }
+            // Navigate right
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                selectedSkillIndex++;
+                if (selectedSkillIndex >= skillButtons.Count)
+                {
+                    selectedSkillIndex = 0; // Wrap around to the first skill
+                }
+                HighlightSelectedSkill();
+            }
+
+            // Select the skill
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            {
+                // Simulate button click
+                GameObject selectedButton = skillButtons[selectedSkillIndex];
+                Button buttonComponent = selectedButton.GetComponent<Button>();
+                if (buttonComponent != null)
+                {
+                    buttonComponent.onClick.Invoke();
                 }
             }
         }
