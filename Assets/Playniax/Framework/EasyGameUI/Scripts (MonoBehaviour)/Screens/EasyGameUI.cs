@@ -26,6 +26,7 @@ namespace Playniax.Ignition
         public GameObject blueLaserPrefab; // Assign in Inspector
         public GameObject greenLaserPrefab;  // Assign in Inspector
         public GameObject purpleLaserPrefab; // Assign in Inspector
+        public GameObject wreckingBallPrefab;
         
         public Sprite mainGunImage; // Assign in Inspector
         public Sprite angledShotsImage; // Assign in Inspector
@@ -980,11 +981,11 @@ namespace Playniax.Ignition
             // skills.Add("Homing Gun Level 4", new Skill(null, 0f, 0, "", "Homing Gun Level 4", phaserImage, 4));
             // skills.Add("Homing Gun Level 5", new Skill(null, 0f, 0, "", "Homing Gun Level 5", phaserImage, 5));
             
-            skills.Add("Wrecking Ball Level 1", new Skill(null, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1));
-            skills.Add("Wrecking Ball Level 2", new Skill(null, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2));
-            skills.Add("Wrecking Ball Level 3", new Skill(null, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3));
-            skills.Add("Wrecking Ball Level 4", new Skill(null, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4));
-            skills.Add("Wrecking Ball Level 5", new Skill(null, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5));
+            skills.Add("Wrecking Ball Level 1", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1));
+            skills.Add("Wrecking Ball Level 2", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2));
+            skills.Add("Wrecking Ball Level 3", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3));
+            skills.Add("Wrecking Ball Level 4", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4));
+            skills.Add("Wrecking Ball Level 5", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5));
         }
 
         void Update()
@@ -1433,6 +1434,7 @@ namespace Playniax.Ignition
                     var bulletSpawner = player.GetComponent<BulletSpawners>();
                     if (bulletSpawner != null)
                     {
+                        bulletSpawner.prefab = wreckingBallPrefab;
                         bulletSpawner.wreckingBallLevel = skill.level; // Level up the Wrecking Ball skill
                     }
                 }

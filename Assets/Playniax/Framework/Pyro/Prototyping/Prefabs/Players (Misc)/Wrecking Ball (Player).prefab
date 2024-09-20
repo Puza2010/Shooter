@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 8978ead5aa4b47638bb01b61eb013241, type: 3}
+  m_Sprite: {fileID: 21300016, guid: fe8e81921ed555e4385890100b08f373, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   id: 
   group: Player Bullet
   delay: 1
+  healthUpgradeLevel: 0
   _material: Metal
   _structuralIntegrity: 100
   autoPoints: 0
@@ -146,35 +147,30 @@ MonoBehaviour:
   playerLivesCount: 0
   _indestructible: 0
   _friend: {fileID: 0}
+  parent: {fileID: 0}
   shield: {fileID: 0}
   isParentShield: 0
   dontDestroy: 0
-  destroyParent: 0
   bodyCount: 0
   outroSettings:
     effectsSettings:
-    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402,
-        type: 3}
+    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402, type: 3}
       scale: 1
       orderInLayer: 0
       sizeInPixels: 80
-    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724,
-        type: 3}
+    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724, type: 3}
       scale: 1
       orderInLayer: 1
       sizeInPixels: 80
-    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66,
-        type: 3}
+    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66, type: 3}
       scale: 1
       orderInLayer: 2
       sizeInPixels: 80
-    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3,
-        type: 3}
+    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3, type: 3}
       scale: 1
       orderInLayer: 3
       sizeInPixels: 80
-    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e,
-        type: 3}
+    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e, type: 3}
       scale: 1
       orderInLayer: 4
       sizeInPixels: 80
@@ -188,11 +184,8 @@ MonoBehaviour:
       panStereo: 0
       pitch: 1
       enabled: 1
-    ignoreParent: 0
+    ignoreParentForEffects: 0
     enabled: 1
-    emitterId: Explosion Red
-    emitterScale: 1
-    allowLegacyEffects: 1
   cargoSettings:
     prefab: []
     scale: 1
