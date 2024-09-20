@@ -1657,7 +1657,7 @@ MonoBehaviour:
     panStereo: 0
     pitch: 1
     enabled: 1
-  targetTag: genericBulletRed
+  targetTag: sdfg
 --- !u!114 &48525874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10466,7 +10466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1962339431
 AudioSource:
   m_ObjectHideFlags: 0

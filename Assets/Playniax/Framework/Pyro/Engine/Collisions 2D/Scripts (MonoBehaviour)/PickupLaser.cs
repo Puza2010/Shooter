@@ -84,11 +84,11 @@ namespace Playniax.Pyro
             return null;
         }
         
-        public void IncreaseLaserCharges(LaserSpawner targetSpawner)
+        public void TurnOnLaser(LaserSpawner targetSpawner)
         {
             if (targetSpawner != null)
             {
-                targetSpawner.timer.counter = max; // Assuming 'max' is a public or serialized field.
+                targetSpawner.timer.counter = -1; // Assuming 'max' is a public or serialized field.
             }
         }
     }

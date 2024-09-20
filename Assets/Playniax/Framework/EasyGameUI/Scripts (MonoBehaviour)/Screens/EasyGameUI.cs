@@ -953,16 +953,16 @@ namespace Playniax.Ignition
             skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5));
             
             // Add 3 Way Shooter skills
-            skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1));
-            skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2));
-            skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3));
-            skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4));
-            
-            skills.Add("Speed Up Level 1", new Skill(null, 0f, 0, "", "Speed Up Level 1", speedUpImage, 1));
-            skills.Add("Speed Up Level 2", new Skill(null, 0f, 0, "", "Speed Up Level 2", speedUpImage, 2));
-            skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3));
-            skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4));
-            skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5));
+            // skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1));
+            // skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2));
+            // skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3));
+            // skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4));
+            //
+            // skills.Add("Speed Up Level 1", new Skill(null, 0f, 0, "", "Speed Up Level 1", speedUpImage, 1));
+            // skills.Add("Speed Up Level 2", new Skill(null, 0f, 0, "", "Speed Up Level 2", speedUpImage, 2));
+            // skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3));
+            // skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4));
+            // skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5));
             
             skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1));
             skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2));
@@ -976,17 +976,17 @@ namespace Playniax.Ignition
             skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4));
             skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5));
             
-            skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1));
-            skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2));
-            skills.Add("Homing Gun Level 3", new Skill(null, 0f, 0, "", "Homing Gun Level 3", phaserImage, 3));
-            skills.Add("Homing Gun Level 4", new Skill(null, 0f, 0, "", "Homing Gun Level 4", phaserImage, 4));
-            skills.Add("Homing Gun Level 5", new Skill(null, 0f, 0, "", "Homing Gun Level 5", phaserImage, 5));
-            
-            skills.Add("Wrecking Ball Level 1", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1));
-            skills.Add("Wrecking Ball Level 2", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2));
-            skills.Add("Wrecking Ball Level 3", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3));
-            skills.Add("Wrecking Ball Level 4", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4));
-            skills.Add("Wrecking Ball Level 5", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5));
+            // skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1));
+            // skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2));
+            // skills.Add("Homing Gun Level 3", new Skill(null, 0f, 0, "", "Homing Gun Level 3", phaserImage, 3));
+            // skills.Add("Homing Gun Level 4", new Skill(null, 0f, 0, "", "Homing Gun Level 4", phaserImage, 4));
+            // skills.Add("Homing Gun Level 5", new Skill(null, 0f, 0, "", "Homing Gun Level 5", phaserImage, 5));
+            //
+            // skills.Add("Wrecking Ball Level 1", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1));
+            // skills.Add("Wrecking Ball Level 2", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2));
+            // skills.Add("Wrecking Ball Level 3", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3));
+            // skills.Add("Wrecking Ball Level 4", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4));
+            // skills.Add("Wrecking Ball Level 5", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5));
         }
 
         void Update()
@@ -1442,22 +1442,38 @@ namespace Playniax.Ignition
                         }
                     }
                 }
+                else if (skill.skillName.StartsWith("Red Laser Level"))
+                {
+                    ApplyLaserSkill(player, skill, "genericBulletRed", "RedLaserSpawner");
+                }
+                else if (skill.skillName.StartsWith("Blue Laser Level"))
+                {
+                    ApplyLaserSkill(player, skill, "bulletBlue", "BlueLaserSpawner");
+                }
+                else if (skill.skillName.StartsWith("Green Laser Level"))
+                {
+                    ApplyLaserSkill(player, skill, "genericBulletGreen", "GreenLaserSpawner");
+                }
+                else if (skill.skillName.StartsWith("Purple Laser Level"))
+                {
+                    ApplyLaserSkill(player, skill, "bulletPurple", "PurpleLaserSpawner");
+                }
                 else
                 {
                     // Existing code for laser spawners
-                    var laserSpawner = player.GetComponents<LaserSpawner>()
-                        .FirstOrDefault(ls => ls.targetTag == skill.targetTag) ?? player.AddComponent<LaserSpawner>();
-
-                    // Configure the laser spawner with the selected skill's properties
-                    ConfigureLaserSpawner(laserSpawner, skill);
-
-                    // Ensure the max charges are set properly in the PickupLaser component
-                    var pickupLaser = player.GetComponent<PickupLaser>();
-                    if (pickupLaser != null)
-                    {
-                        pickupLaser.max = skill.maxCharges;
-                        pickupLaser.IncreaseLaserCharges(laserSpawner);
-                    }
+                    // var laserSpawner = player.GetComponents<LaserSpawner>()
+                    //     .FirstOrDefault(ls => ls.targetTag == skill.targetTag) ?? player.AddComponent<LaserSpawner>();
+                    //
+                    // // Configure the laser spawner with the selected skill's properties
+                    // ConfigureLaserSpawner(laserSpawner, skill);
+                    //
+                    // // Ensure the max charges are set properly in the PickupLaser component
+                    // var pickupLaser = player.GetComponent<PickupLaser>();
+                    // if (pickupLaser != null)
+                    // {
+                    //     pickupLaser.max = skill.maxCharges;
+                    //     pickupLaser.IncreaseLaserCharges(laserSpawner);
+                    // }
                 }
             }
         }
@@ -1525,11 +1541,28 @@ namespace Playniax.Ignition
             }
         }
         
+        void ApplyLaserSkill(GameObject player, Skill skill, string targetTag, string laserSpawnerTag)
+        {
+            // Find or add the correct LaserSpawner for the specific laser type
+            var laserSpawner = player.GetComponents<LaserSpawner>()
+                .FirstOrDefault(ls => ls.targetTag == targetTag) ?? player.AddComponent<LaserSpawner>();
+
+            // Configure the LaserSpawner with the selected skill's properties
+            ConfigureLaserSpawner(laserSpawner, skill);
+
+            // Ensure the max charges are set properly in the PickupLaser component
+            var pickupLaser = player.GetComponent<PickupLaser>();
+            if (pickupLaser != null)
+            {
+                pickupLaser.TurnOnLaser(laserSpawner);
+            }
+        }
+        
         void ConfigureLaserSpawner(LaserSpawner laserSpawner, Skill skill)
         {
-            laserSpawner.prefab = skill.prefab;      // Assign the prefab
-            laserSpawner.targetTag = skill.targetTag;
-            laserSpawner.timer.interval = skill.interval;
+            laserSpawner.prefab = skill.prefab;       // Assign the prefab
+            laserSpawner.targetTag = skill.targetTag;  // Ensure the correct targetTag is set
+            laserSpawner.timer.interval = skill.interval;  // Set the firing interval
         }
         
         bool IsSkillAvailable(Skill skill)
