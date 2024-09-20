@@ -945,14 +945,13 @@ namespace Playniax.Ignition
             skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3));
             skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4));
             skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5));
-            
-            skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1));
-            skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2));
-            skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3));
-            skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4));
-            skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5));
-            
-            // Add 3 Way Shooter skills
+            //
+            // skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1));
+            // skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2));
+            // skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3));
+            // skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4));
+            // skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5));
+            //
             // skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1));
             // skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2));
             // skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3));
@@ -963,19 +962,19 @@ namespace Playniax.Ignition
             // skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3));
             // skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4));
             // skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5));
-            
-            skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1));
-            skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2));
-            skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3));
-            skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4));
-            skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5));
-            
-            skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1));
-            skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2));
-            skills.Add("Homing Missile Level 3", new Skill(null, 1.0f, 0, "", "Homing Missile Level 3", missileImage, 3));
-            skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4));
-            skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5));
-            
+            //
+            // skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1));
+            // skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2));
+            // skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3));
+            // skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4));
+            // skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5));
+            //
+            // skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1));
+            // skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2));
+            // skills.Add("Homing Missile Level 3", new Skill(null, 1.0f, 0, "", "Homing Missile Level 3", missileImage, 3));
+            // skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4));
+            // skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5));
+            //
             // skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1));
             // skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2));
             // skills.Add("Homing Gun Level 3", new Skill(null, 0f, 0, "", "Homing Gun Level 3", phaserImage, 3));
@@ -1278,17 +1277,44 @@ namespace Playniax.Ignition
             }
             skillButtons.Clear();
 
-            // Create and display the buttons for the three selected skills
             for (int i = 0; i < availableSkills.Count; i++)
             {
                 Skill skill = availableSkills[i];
                 GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
-                skillButton.GetComponentInChildren<TMP_Text>().text = skill.skillName;
-                skillButton.GetComponent<Image>().sprite = skill.skillImage; // Assign the correct image to the button
-                skillButton.GetComponent<Button>().onClick.AddListener(() => OnSkillSelected(skill.skillName));
-                skillButtons.Add(skillButton);
-            }
 
+                // Find the SkillImage and SkillTitle components inside the prefab
+                Image skillImage = skillButton.transform.Find("SkillImage").GetComponent<Image>();
+                TMP_Text skillTitle = skillButton.transform.Find("SkillTextBackground/SkillTitle").GetComponent<TMP_Text>();
+
+                // Set the skill image and name
+                if (skillImage != null)
+                {
+                    skillImage.sprite = skill.skillImage;
+                    skillImage.color = Color.white;
+                }
+
+                if (skillTitle != null)
+                {
+                    skillTitle.text = skill.skillName;
+                }
+                
+                // Set a brown background for the skill title (or its parent)
+                Image skillTextBackground = skillButton.transform.Find("SkillTextBackground")?.GetComponent<Image>();
+                if (skillTextBackground != null)
+                {
+                    skillTextBackground.color = new Color(0.55f, 0.27f, 0.07f); // Brown color for background
+                }
+
+                // Set the button's onClick event to trigger the skill selection
+                Button buttonComponent = skillButton.GetComponent<Button>();
+                if (buttonComponent != null)
+                {
+                    buttonComponent.onClick.AddListener(() => OnSkillSelected(skill.skillName));
+                }
+
+                skillButtons.Add(skillButton); // Add to the list of buttons
+            }
+            
             selectedSkillIndex = 0; // Reset index to the first skill
             HighlightSelectedSkill(); // Highlight the first skill
         }
@@ -1458,23 +1484,6 @@ namespace Playniax.Ignition
                 {
                     ApplyLaserSkill(player, skill, "bulletPurple", "PurpleLaserSpawner");
                 }
-                else
-                {
-                    // Existing code for laser spawners
-                    // var laserSpawner = player.GetComponents<LaserSpawner>()
-                    //     .FirstOrDefault(ls => ls.targetTag == skill.targetTag) ?? player.AddComponent<LaserSpawner>();
-                    //
-                    // // Configure the laser spawner with the selected skill's properties
-                    // ConfigureLaserSpawner(laserSpawner, skill);
-                    //
-                    // // Ensure the max charges are set properly in the PickupLaser component
-                    // var pickupLaser = player.GetComponent<PickupLaser>();
-                    // if (pickupLaser != null)
-                    // {
-                    //     pickupLaser.max = skill.maxCharges;
-                    //     pickupLaser.IncreaseLaserCharges(laserSpawner);
-                    // }
-                }
             }
         }
         
@@ -1483,24 +1492,25 @@ namespace Playniax.Ignition
             for (int i = 0; i < skillButtons.Count; i++)
             {
                 GameObject skillButton = skillButtons[i];
-                Image buttonImage = skillButton.GetComponent<Image>();
-                TMP_Text buttonText = skillButton.GetComponentInChildren<TMP_Text>();
+        
+                // Get the outline component
+                Outline skillButtonOutline = skillButton.GetComponent<Outline>();
 
                 if (i == selectedSkillIndex)
                 {
-                    // Highlight the selected button
-                    if (buttonImage != null)
-                        buttonImage.color = Color.yellow; // Highlight color
-                    if (buttonText != null)
-                        buttonText.color = Color.black; // Contrasting text color
+                    // Highlight the selected button by enabling the outline
+                    if (skillButtonOutline != null)
+                    {
+                        skillButtonOutline.enabled = true; // Enable the outline
+                    }
                 }
                 else
                 {
-                    // Set the color for unselected buttons
-                    if (buttonImage != null)
-                        buttonImage.color = Color.white; // Default color
-                    if (buttonText != null)
-                        buttonText.color = Color.white; // Default text color
+                    // Disable the outline for unselected buttons
+                    if (skillButtonOutline != null)
+                    {
+                        skillButtonOutline.enabled = false; // Disable the outline
+                    }
                 }
             }
         }
