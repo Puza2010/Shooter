@@ -11,6 +11,9 @@ namespace Playniax.Pyro
     {
         public int cannonLevel = 0; // Level of the Cannon skill
         public int threeWayShooterLevel = 0; // Level of the 3 Way Shooter skill
+        public int wreckingBallLevel = 0; // Level of the Wrecking Ball skill
+        private readonly float wreckingBallDistance = 2f;
+        private readonly float wreckingBallSpeed = 3f;
         
 #if UNITY_EDITOR
 
@@ -171,6 +174,15 @@ namespace Playniax.Pyro
         public override void UpdateSpawner()
         {
             if (prefab == null) return;
+            
+            // Check if WreckingBall skill is active and level is greater than 0
+            if (wreckingBallLevel > 0)
+            {
+                timer.counter = -1; // Infinite firing
+
+                // WreckingBall logic is different, we want to update it instead of spawning bullets
+                _UpdateWreckingBall(); // Add this custom method to handle the wrecking ball's orbiting movement
+            }
             
             if ((id == "Cannon" && cannonLevel > 0) || (id == "3 Way Shooter" && threeWayShooterLevel > 0))
             {
@@ -379,6 +391,46 @@ namespace Playniax.Pyro
                 scoreBase.structuralIntegrity = newStructuralIntegrity;
             }
         }
+        
+        void _UpdateWreckingBall()
+        {
+            if (wreckingBallInstance == null)
+            {
+                wreckingBallInstance = Instantiate(prefab, transform);
+                wreckingBallInstance.SetActive(true);
+                wreckingBallScoreBase = wreckingBallInstance.GetComponent<IScoreBase>();
+                if (wreckingBallScoreBase == null) return;
+            }
+            
+            // Make sure the wrecking ball doesn't damage the player
+            wreckingBallScoreBase.friend = gameObject; // Assign the player as a friend to prevent friendly fire
+
+            var playerCollider = gameObject.GetComponent<Collider2D>();
+            var wreckingBallCollider = wreckingBallInstance.GetComponent<Collider2D>();
+
+            if (playerCollider != null && wreckingBallCollider != null)
+            {
+                Physics2D.IgnoreCollision(playerCollider, wreckingBallCollider);
+            }
+
+            // Increase damage and size based on level
+            float baseDamage = 1f; // Base damage
+            float damageIncrement = 1f; // Increase per level
+            wreckingBallScoreBase.structuralIntegrity = baseDamage + damageIncrement * (wreckingBallLevel - 1);
+
+            // Control the orbiting behavior (can adjust based on level as well)
+            var x = Mathf.Cos(wreckingBallPosition) * wreckingBallDistance;
+            var y = Mathf.Sin(wreckingBallPosition) * wreckingBallDistance;
+            wreckingBallInstance.transform.localPosition = new Vector3(x, y);
+
+            float speedIncrementPerLevel = 2f;
+            float currentSpeed = wreckingBallSpeed + (wreckingBallLevel - 1) * speedIncrementPerLevel;
+            wreckingBallPosition += currentSpeed * Time.deltaTime;
+        }
+
+        GameObject wreckingBallInstance;
+        IScoreBase wreckingBallScoreBase;
+        float wreckingBallPosition;
 
         SpriteRenderer _spriteRenderer;
     }

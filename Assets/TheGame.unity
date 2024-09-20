@@ -879,7 +879,7 @@ MonoBehaviour:
   mode: 0
   increase: 25
   max: 100
-  distance: 0.75
+  distance: 5.75
   speed: 15
   activatedText: Wrecking Ball Activated At %
   reloadedText: Wrecking Ball At %
@@ -1285,6 +1285,9 @@ MonoBehaviour:
   maxVelocity: 1
   cannonLevel: 0
   threeWayShooterLevel: 0
+  wreckingBallLevel: 0
+  wreckingBallDistance: 2
+  wreckingBallSpeed: 2
   group: 0
   prefab: {fileID: 787315027656738199, guid: 19fd17be2f9fd664584feaf2cb200bcc, type: 3}
   parent: {fileID: 0}
@@ -1358,6 +1361,9 @@ MonoBehaviour:
   maxVelocity: 1
   cannonLevel: 0
   threeWayShooterLevel: 0
+  wreckingBallLevel: 0
+  wreckingBallDistance: 0
+  wreckingBallSpeed: 0
   group: 0
   prefab: {fileID: 2810408086072053405, guid: 41ff4fa9a2cab6c4a8c0f2923dd70a58, type: 3}
   parent: {fileID: 0}
@@ -10399,7 +10405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1962339431
 AudioSource:
   m_ObjectHideFlags: 0
