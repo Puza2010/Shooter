@@ -1628,35 +1628,45 @@ namespace Playniax.Ignition
         
         bool IsSkillAvailable(Skill skill)
         {
-            // Exclude skills that have already been acquired
-            if (acquiredSkills.Contains(skill.skillName))
+            string baseSkillName = GetBaseSkillName(skill.skillName);
+
+            // Get the highest level of the acquired skill for this base skill
+            int acquiredSkillLevel = acquiredSkills
+                .Where(s => GetBaseSkillName(s) == baseSkillName)
+                .Select(s => GetSkillLevel(s))
+                .DefaultIfEmpty(0)
+                .Max();
+
+            if (acquiredSkillLevel >= skill.level)
             {
+                // The player already has this level or a higher level of the skill
                 return false;
             }
 
-            // Handle skills dynamically based on their level and prerequisites
-            var match = System.Text.RegularExpressions.Regex.Match(skill.skillName, @"^(.*) Level (\d+)$");
+            if (skill.level == acquiredSkillLevel + 1)
+            {
+                // The skill is available if it's the next level up
+                return true;
+            }
+
+            // Otherwise, the skill is not available
+            return false;
+        }
+        
+        int GetSkillLevel(string skillName)
+        {
+            var match = System.Text.RegularExpressions.Regex.Match(skillName, @"^.* Level (\d+)$");
             if (match.Success)
             {
-                string baseSkillName = match.Groups[1].Value;
-                int level = int.Parse(match.Groups[2].Value);
-
-                if (level == 1)
-                {
-                    return true; // Level 1 skills are available if not acquired yet
-                }
-                else
-                {
-                    string prerequisiteSkill = $"{baseSkillName} Level {level - 1}";
-                    return acquiredSkills.Contains(prerequisiteSkill);
-                }
+                return int.Parse(match.Groups[1].Value);
             }
             else
             {
-                // Skill name doesn't match expected pattern, exclude it
-                return false;
+                return 0; // Return 0 if the skill name doesn't match the expected pattern
             }
         }
+
+
         
         void UpdateSkillIconsDisplay()
         {
