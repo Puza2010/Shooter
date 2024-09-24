@@ -39,15 +39,17 @@ namespace Playniax.Ignition
         public Sprite phaserImage;       // Assign the Phaser skill image in the Inspector
         public Sprite wreckingBallImage;       // Assign the Phaser skill image in the Inspector
         public Sprite shieldImage;       // Assign the Phaser skill image in the Inspector
-
         public Sprite redLaserImage;  // Assign in Inspector (Image for Red Laser)
         public Sprite blueLaserImage; // Assign in Inspector (Image for Blue Laser)
         public Sprite greenLaserImage;  // Assign in Inspector (Image for Green Laser)
         public Sprite purpleLaserImage; // Assign in Inspector (Image for Purple Laser)
         
+        public GameObject skillIconsPanel; // Assign the SkillIconsPanel in the Inspector
+        public GameObject skillIconPrefab; // Create a prefab for the skill icon UI element
+        public Canvas skillIconsCanvas; // Assign in Inspector
 
         private Dictionary<string, Skill> skills;
-        private HashSet<string> acquiredSkills = new HashSet<string>(); // Tracks acquired skills
+        private List<string> acquiredSkills = new List<string>(); // Tracks acquired skills in order
         private Skill selectedSkill;
         private List<GameObject> skillButtons = new List<GameObject>(); // To keep track of instantiated buttons
         
@@ -762,6 +764,19 @@ namespace Playniax.Ignition
         // Is called when player selects the play button.
         public void PlayButton()
         {
+            // Activate the Skill Icons Panel
+            if (skillIconsCanvas != null)
+            {
+                skillIconsCanvas.gameObject.SetActive(true);
+                UnityEngine.Debug.Log("SkillIconsCanvas activated.");
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning("SkillIconsCanvas reference is not assigned.");
+            }
+            // Initialize acquired skills and update the display
+            InitializeAcquiredSkills();
+            
             if (home && home.gameObject.activeInHierarchy == true && inGame)
             {
                 if (SceneManager.GetActiveScene().name == _GetLevelIndex())
@@ -780,7 +795,7 @@ namespace Playniax.Ignition
                 {
                     // Consider skipping the preLevelSettings the first time here?
                     StartCoroutine(Load(_StartGame, inGame.gameObject, false, true, null, preLevelSettings.sceneName, null, null));
-                    
+
                     FirebaseScoreUpdater.Instance.StartGame(); // Start the score updating counter
                 }
             }
@@ -795,6 +810,9 @@ namespace Playniax.Ignition
                 TimingHelper.Paused = false;
 
                 FirebaseScoreUpdater.Instance.StartGame(); // Start the score updating counter
+
+                // Activate the Skill Icons Panel
+                skillIconsPanel.SetActive(true);
             }
         }
 
@@ -935,64 +953,68 @@ namespace Playniax.Ignition
                 // { "Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage) },
             };
             
-            // skills.Add("Main Gun Level 1", new Skill(null, 0f, 0, "", "Main Gun Level 1", mainGunImage, 1));
-            // skills.Add("Main Gun Level 2", new Skill(null, 0f, 0, "", "Main Gun Level 2", mainGunImage, 2));
-            // skills.Add("Main Gun Level 3", new Skill(null, 0f, 0, "", "Main Gun Level 3", mainGunImage, 3));
-            // skills.Add("Main Gun Level 4", new Skill(null, 0f, 0, "", "Main Gun Level 4", mainGunImage, 4));
-            // skills.Add("Main Gun Level 5", new Skill(null, 0f, 0, "", "Main Gun Level 5", mainGunImage, 5));
-            //
-            // skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1));
-            // skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2));
-            // skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3));
-            // skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4));
-            // skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5));
-            //
-            // skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1));
-            // skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2));
-            // skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3));
-            // skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4));
-            // skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5));
-            //
-            // skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1));
-            // skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2));
-            // skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3));
-            // skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4));
-            //
-            // skills.Add("Speed Up Level 1", new Skill(null, 0f, 0, "", "Speed Up Level 1", speedUpImage, 1));
-            // skills.Add("Speed Up Level 2", new Skill(null, 0f, 0, "", "Speed Up Level 2", speedUpImage, 2));
-            // skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3));
-            // skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4));
-            // skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5));
-            //
-            // skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1));
-            // skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2));
-            // skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3));
-            // skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4));
-            // skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5));
-            //
-            // skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1));
-            // skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2));
-            // skills.Add("Homing Missile Level 3", new Skill(null, 1.0f, 0, "", "Homing Missile Level 3", missileImage, 3));
-            // skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4));
-            // skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5));
-            //
-            // skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1));
-            // skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2));
-            // skills.Add("Homing Gun Level 3", new Skill(null, 0f, 0, "", "Homing Gun Level 3", phaserImage, 3));
-            // skills.Add("Homing Gun Level 4", new Skill(null, 0f, 0, "", "Homing Gun Level 4", phaserImage, 4));
-            // skills.Add("Homing Gun Level 5", new Skill(null, 0f, 0, "", "Homing Gun Level 5", phaserImage, 5));
-            //
-            // skills.Add("Wrecking Ball Level 1", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1));
-            // skills.Add("Wrecking Ball Level 2", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2));
-            // skills.Add("Wrecking Ball Level 3", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3));
-            // skills.Add("Wrecking Ball Level 4", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4));
-            // skills.Add("Wrecking Ball Level 5", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5));
+            skills.Add("Main Gun Level 1", new Skill(null, 0f, 0, "", "Main Gun Level 1", mainGunImage, 1));
+            skills.Add("Main Gun Level 2", new Skill(null, 0f, 0, "", "Main Gun Level 2", mainGunImage, 2));
+            skills.Add("Main Gun Level 3", new Skill(null, 0f, 0, "", "Main Gun Level 3", mainGunImage, 3));
+            skills.Add("Main Gun Level 4", new Skill(null, 0f, 0, "", "Main Gun Level 4", mainGunImage, 4));
+            skills.Add("Main Gun Level 5", new Skill(null, 0f, 0, "", "Main Gun Level 5", mainGunImage, 5));
+            
+            skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1));
+            skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2));
+            skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3));
+            skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4));
+            skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5));
+            
+            skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1));
+            skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2));
+            skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3));
+            skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4));
+            skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5));
+            
+            skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1));
+            skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2));
+            skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3));
+            skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4));
+            
+            skills.Add("Speed Up Level 1", new Skill(null, 0f, 0, "", "Speed Up Level 1", speedUpImage, 1));
+            skills.Add("Speed Up Level 2", new Skill(null, 0f, 0, "", "Speed Up Level 2", speedUpImage, 2));
+            skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3));
+            skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4));
+            skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5));
+            
+            skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1));
+            skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2));
+            skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3));
+            skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4));
+            skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5));
+            
+            skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1));
+            skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2));
+            skills.Add("Homing Missile Level 3", new Skill(null, 1.0f, 0, "", "Homing Missile Level 3", missileImage, 3));
+            skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4));
+            skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5));
+            
+            skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1));
+            skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2));
+            skills.Add("Homing Gun Level 3", new Skill(null, 0f, 0, "", "Homing Gun Level 3", phaserImage, 3));
+            skills.Add("Homing Gun Level 4", new Skill(null, 0f, 0, "", "Homing Gun Level 4", phaserImage, 4));
+            skills.Add("Homing Gun Level 5", new Skill(null, 0f, 0, "", "Homing Gun Level 5", phaserImage, 5));
+            
+            skills.Add("Wrecking Ball Level 1", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1));
+            skills.Add("Wrecking Ball Level 2", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2));
+            skills.Add("Wrecking Ball Level 3", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3));
+            skills.Add("Wrecking Ball Level 4", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4));
+            skills.Add("Wrecking Ball Level 5", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5));
             
             skills.Add("Shield Level 1", new Skill(null, 0f, 0, "", "Shield Level 1", shieldImage, 1));
             skills.Add("Shield Level 2", new Skill(null, 0f, 0, "", "Shield Level 2", shieldImage, 2));
             skills.Add("Shield Level 3", new Skill(null, 0f, 0, "", "Shield Level 3", shieldImage, 3));
             skills.Add("Shield Level 4", new Skill(null, 0f, 0, "", "Shield Level 4", shieldImage, 4));
             skills.Add("Shield Level 5", new Skill(null, 0f, 0, "", "Shield Level 5", shieldImage, 5));
+            
+            // Add the starting skill(s)
+            acquiredSkills.Add("Main Gun Level 1"); // Replace with your actual starting skill
+            UpdateSkillIconsDisplay(); // Update the skill icons display
         }
 
         void Update()
@@ -1322,9 +1344,30 @@ namespace Playniax.Ignition
         void OnSkillSelected(string skillName)
         {
             Skill selectedSkill = skills[skillName];
-            acquiredSkills.Add(skillName);  // Mark the skill as acquired
+
+            // Find the index of the existing skill in acquiredSkills
+            string baseSkillName = GetBaseSkillName(skillName);
+            int index = acquiredSkills.FindIndex(s => GetBaseSkillName(s) == baseSkillName);
+
+            if (index != -1)
+            {
+                // Skill is already acquired; replace it with the new level
+                acquiredSkills[index] = skillName;
+            }
+            else
+            {
+                // Add the new skill
+                acquiredSkills.Add(skillName);
+            }
+
+            // Update the skill icons display
+            UpdateSkillIconsDisplay();
+
+            // Close the skill selection panel
             skillSelectionPanel.SetActive(false);
             isSkillSelectionActive = false; // Skill selection is no longer active
+
+            // Apply the skill
             ApplySkill(selectedSkill);
         }
         
@@ -1613,6 +1656,65 @@ namespace Playniax.Ignition
                 // Skill name doesn't match expected pattern, exclude it
                 return false;
             }
+        }
+        
+        void UpdateSkillIconsDisplay()
+        {
+            // Clear existing icons
+            foreach (Transform child in skillIconsPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            // Add icons for each acquired skill
+            foreach (string skillName in acquiredSkills)
+            {
+                if (skills.TryGetValue(skillName, out Skill skill))
+                {
+                    // Instantiate a new skill icon
+                    GameObject skillIcon = Instantiate(skillIconPrefab, skillIconsPanel.transform);
+
+                    // Get the skill icon image component
+                    Image iconImage = skillIcon.transform.Find("SkillIconImage").GetComponent<Image>();
+                    if (iconImage != null)
+                    {
+                        iconImage.sprite = skill.skillImage;
+                        iconImage.color = Color.white;
+                    }
+
+                    // Optionally display the skill level
+                    TMP_Text levelText = skillIcon.transform.Find("LevelText")?.GetComponent<TMP_Text>();
+                    if (levelText != null)
+                    {
+                        levelText.text = "Lv " + skill.level.ToString();
+                    }
+                }
+            }
+        }
+        
+        string GetBaseSkillName(string skillName)
+        {
+            var match = System.Text.RegularExpressions.Regex.Match(skillName, @"^(.*) Level \d+$");
+            if (match.Success)
+            {
+                return match.Groups[1].Value.Trim();
+            }
+            else
+            {
+                return skillName;
+            }
+        }
+        
+        void InitializeAcquiredSkills()
+        {
+            // Clear any existing skills
+            acquiredSkills.Clear();
+
+            // Add the starting skill(s)
+            acquiredSkills.Add("Main Gun Level 1"); // Replace with your actual starting skill
+
+            // Update the skill icons display
+            UpdateSkillIconsDisplay();
         }
     }
 }
