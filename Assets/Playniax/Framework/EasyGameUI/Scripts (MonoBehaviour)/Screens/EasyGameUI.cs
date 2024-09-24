@@ -916,6 +916,24 @@ namespace Playniax.Ignition
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            // Check if the loaded scene is one of the game scenes
+            if (levelSettings.sceneName.Contains("inGame"))
+            {
+                // Game scene loaded
+                if (skillIconsCanvas != null)
+                {
+                    skillIconsCanvas.gameObject.SetActive(true);
+                    InitializeAcquiredSkills(); // Initialize skills if needed
+                }
+            }
+            else
+            {
+                // Not a game scene (e.g., main menu)
+                if (skillIconsCanvas != null)
+                {
+                    skillIconsCanvas.gameObject.SetActive(false);
+                }
+            }
         }
         
         void Start()
@@ -1664,40 +1682,51 @@ namespace Playniax.Ignition
         
         void UpdateSkillIconsDisplay()
         {
-            // Clear existing icons
-            foreach (Transform child in skillIconsPanel.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            int totalSlots = 10;
 
-            // Add icons for each acquired skill
-            foreach (string skillName in acquiredSkills)
+            // Loop through the slots
+            for (int i = 0; i < totalSlots; i++)
             {
-                if (skills.TryGetValue(skillName, out Skill skill))
+                Transform slotTransform = skillIconsPanel.transform.GetChild(i);
+                GameObject skillSlot = slotTransform.gameObject;
+
+                // Get the components
+                Image iconImage = skillSlot.transform.Find("SkillIconImage")?.GetComponent<Image>();
+                TMP_Text levelText = skillSlot.transform.Find("LevelDisplayText")?.GetComponent<TMP_Text>();
+
+                if (i < acquiredSkills.Count)
                 {
-                    // Instantiate a new skill icon
-                    GameObject skillIcon = Instantiate(skillIconPrefab, skillIconsPanel.transform);
-
-                    // Get the skill icon image component
-                    Image iconImage = skillIcon.transform.Find("SkillIconImage").GetComponent<Image>();
-                    if (iconImage != null)
+                    // We have an acquired skill for this slot
+                    string skillName = acquiredSkills[i];
+                    if (skills.TryGetValue(skillName, out Skill skill))
                     {
-                        iconImage.sprite = skill.skillImage;
-                        iconImage.color = Color.white;
+                        // Set the skill icon image
+                        if (iconImage != null)
+                        {
+                            iconImage.sprite = skill.skillImage;
+                            iconImage.color = Color.white; // Make sure the icon is visible
+                        }
+
+                        // Display the current level over max level
+                        if (levelText != null)
+                        {
+                            int currentLevel = GetSkillLevel(skillName);
+                            int maxLevel = 5; // Or get from skill.maxLevel
+                            levelText.text = $"{currentLevel} / {maxLevel}";
+                        }
                     }
-
-                    // Display the current level over max level
-                    TMP_Text levelDisplayText = skillIcon.transform.Find("LevelDisplayText")?.GetComponent<TMP_Text>();
-                    if (levelDisplayText != null)
+                }
+                else
+                {
+                    // Clear level text
+                    if (levelText != null)
                     {
-                        // Set the text to "currentLevel / maxLevel"
-                        int currentLevel = GetSkillLevel(skillName);
-                        int maxLevel = skill.maxLevel;
-                        levelDisplayText.text = $"{currentLevel} / {maxLevel}";
+                        levelText.text = "";
                     }
                 }
             }
         }
+
         
         string GetBaseSkillName(string skillName)
         {
