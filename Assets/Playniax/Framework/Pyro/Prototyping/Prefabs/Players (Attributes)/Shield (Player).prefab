@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5825313023868159089}
   - component: {fileID: 5825313023868159102}
-  - component: {fileID: 5825313023868159103}
-  - component: {fileID: 5825313023868159100}
   - component: {fileID: 5825313023868159101}
   m_Layer: 0
   m_Name: Shield (Player)
@@ -87,139 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5825313023868159103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5825313023868159098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be82b93f4842c94c82743b17a137e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders: []
-  suspended: 0
-  id: 
-  group: Player
-  delay: 1
-  _material: Metal
-  _structuralIntegrity: 100
-  autoPoints: 1
-  _points: 0
-  playerIndex: 0
-  playerLivesCount: 0
-  _indestructible: 0
-  _friend: {fileID: 0}
-  shield: {fileID: 0}
-  isParentShield: 1
-  dontDestroy: 0
-  destroyParent: 0
-  bodyCount: 0
-  outroSettings:
-    effectsSettings:
-    - prefab: {fileID: 8829224107769179892, guid: 0e87990d0bdd2974a85e0754f3206749,
-        type: 3}
-      scale: 1
-      orderInLayer: 0
-      sizeInPixels: 80
-    - prefab: {fileID: 6713654900140887690, guid: c9530f87b0e9b0f46bcb530fd254a306,
-        type: 3}
-      scale: 1
-      orderInLayer: 1
-      sizeInPixels: 80
-    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66,
-        type: 3}
-      scale: 1
-      orderInLayer: 2
-      sizeInPixels: 80
-    - prefab: {fileID: 6827755582703300874, guid: 0c62861c083c36646884fb8e2fecf156,
-        type: 3}
-      scale: 1
-      orderInLayer: 3
-      sizeInPixels: 80
-    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e,
-        type: 3}
-      scale: 1
-      orderInLayer: 4
-      sizeInPixels: 80
-    messengerSettings:
-      messengerId: Score
-      text: 
-      enabled: 1
-    audioSettings:
-      audioClip: {fileID: 0}
-      volumeScale: 1
-      panStereo: 0
-      pitch: 1
-      enabled: 1
-    ignoreParent: 0
-    enabled: 1
-    emitterId: Explosion Blue
-    emitterScale: 1
-    allowLegacyEffects: 1
-  cargoSettings:
-    prefab: []
-    scale: 1
-    effectSettings:
-      motion: 0
-      motionSpeed: 1
-      magnetic: 0
-      magneticRange: 1
-      magneticSpeed: 3
-      killOffCamera: 1
-  eventSettings:
-    onAwake:
-      m_PersistentCalls:
-        m_Calls: []
-    onGhost:
-      m_PersistentCalls:
-        m_Calls: []
-    onOutro:
-      m_PersistentCalls:
-        m_Calls: []
-  spriteRenderer: {fileID: 0}
-  generateBoxCollider: 1
-  ghostMaterial: {fileID: 2100000, guid: bb7b330a3d22c9f4f9e1d0fab8c1c266, type: 2}
-  ghostSustain: 3
-  additionalSettings:
-    spriteRenderer: []
---- !u!58 &5825313023868159100
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5825313023868159098}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.00000047683716}
-  serializedVersion: 2
-  m_Radius: 0.54
 --- !u!114 &5825313023868159101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,8 +102,10 @@ MonoBehaviour:
     speed: 1
   fadeOutSettings:
     speed: 1
+    timer: 0
   pingPongSettings:
     speed: 1
     min: 0.5
     max: 1
     startRandom: 0
+  spriteRenderer: {fileID: 0}

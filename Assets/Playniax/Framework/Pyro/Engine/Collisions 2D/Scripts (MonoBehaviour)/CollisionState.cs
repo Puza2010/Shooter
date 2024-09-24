@@ -2,6 +2,7 @@
 using UnityEditor;
 #endif
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Playniax.Ignition;
@@ -13,6 +14,11 @@ namespace Playniax.Pyro
     {
         private float _maxStructuralIntegrity;
         public int healthUpgradeLevel = 0; // Level of the Health Upgrade skill
+        // Fields for shield management
+        public GameObject shieldPrefab; // Assign your shield prefab in the Inspector
+        private GameObject shieldVisual; // Instance of the shield visual
+        private Coroutine shieldCoroutine;
+        private bool isShieldActive = false;
         
         [System.Serializable]
         // Cargo is released when an object is destroyed.
@@ -512,6 +518,104 @@ namespace Playniax.Pyro
             eventSettings.onOutro.Invoke();
 
             outroSettings.Play(this);
+        }
+        
+        public void ActivateShield(int level)
+        {
+            if (shieldCoroutine != null)
+            {
+                StopCoroutine(shieldCoroutine);
+            }
+
+            if (shieldVisual == null)
+            {
+                // Instantiate the shield visual
+                if (shieldPrefab != null)
+                {
+                    shieldVisual = Instantiate(shieldPrefab, transform);
+                    // Ensure the shield is properly positioned relative to the player
+                    shieldVisual.transform.localPosition = Vector3.zero;
+                    shieldVisual.transform.localRotation = Quaternion.identity;
+                }
+                else
+                {
+                    Debug.LogError("Shield Prefab is not assigned!");
+                    return;
+                }
+            }
+            else
+            {
+                shieldVisual.SetActive(true);
+            }
+
+            // Ensure the SpriteRenderer is enabled
+            var shieldRenderer = shieldVisual.GetComponent<SpriteRenderer>();
+            if (shieldRenderer != null)
+            {
+                shieldRenderer.enabled = true;
+            }
+
+            isShieldActive = true;
+            suspended = true; // Prevent all collisions
+
+            shieldCoroutine = StartCoroutine(ShieldCoroutine(GetShieldDuration(level)));
+        }
+
+        
+        private float GetShieldDuration(int level)
+        {
+            switch (level)
+            {
+                case 1: return 5f;
+                case 2: return 7f;
+                case 3: return 10f;
+                case 4: return 15f;
+                case 5: return 20f;
+                default: return 5f;
+            }
+        }
+        
+        private IEnumerator ShieldCoroutine(float duration)
+        {
+            float timeRemaining = duration;
+
+            // Wait until the last 3 seconds
+            while (timeRemaining > 3f)
+            {
+                timeRemaining -= Time.deltaTime;
+                yield return null;
+            }
+
+            // Start flickering the shield visual during the last 3 seconds
+            float flickerDuration = 3f;
+            SpriteRenderer shieldRenderer = shieldVisual != null ? shieldVisual.GetComponent<SpriteRenderer>() : null;
+            bool rendererEnabled = true;
+            while (flickerDuration > 0f)
+            {
+                if (shieldRenderer != null)
+                {
+                    rendererEnabled = !rendererEnabled;
+                    shieldRenderer.enabled = rendererEnabled;
+                }
+                yield return new WaitForSeconds(0.2f);
+                flickerDuration -= 0.2f;
+            }
+
+            // Ensure the SpriteRenderer is enabled before disabling the shield
+            if (shieldRenderer != null)
+            {
+                shieldRenderer.enabled = true;
+            }
+
+            // Disable shield
+            if (shieldVisual != null)
+            {
+                shieldVisual.SetActive(false);
+            }
+
+            isShieldActive = false;
+            suspended = false; // Allow collisions again
+            shieldCoroutine = null;
         }
 
 #if UNITY_EDITOR
