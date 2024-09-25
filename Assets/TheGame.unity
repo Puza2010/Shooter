@@ -9172,10 +9172,18 @@ MonoBehaviour:
   - {fileID: 2800000, guid: d6cabe576f384e6daf63599d40793978, type: 3}
   - {fileID: 2800000, guid: 789e3dd0c330462d967da883c2757bd8, type: 3}
   - {fileID: 2800000, guid: f21ffe9fbaf44dafb634fe89d3fe4ab6, type: 3}
-  - {fileID: 2800000, guid: 6c23bf7b60d1411ca68066dc10fc321b, type: 3}
-  - {fileID: 2800000, guid: 0d8444216d7440ec911ca529e5f5cf0d, type: 3}
+  - {fileID: 2800000, guid: 7cd0fe6dccbf4c7385313f9f8b1aa514, type: 3}
+  - {fileID: 2800000, guid: 361ac31ae6754c93a6c2a0b861b9d5cc, type: 3}
+  - {fileID: 2800000, guid: f7fd30054e74446c936199de1bfbb7b2, type: 3}
+  - {fileID: 2800000, guid: 422261af5a07485aa8c2f1ea93a6691f, type: 3}
+  - {fileID: 2800000, guid: dc95eacbdd194956bee9b776aa827310, type: 3}
+  - {fileID: 2800000, guid: 5058a2a71ff94723abfb0691a5e0ea19, type: 3}
+  - {fileID: 2800000, guid: be8823f0add741839cdaa2e68915f522, type: 3}
+  - {fileID: 2800000, guid: c7bdc74b8e804e93bdc809460db3e744, type: 3}
+  - {fileID: 2800000, guid: 9284abb849934899b6d7361a91235b9b, type: 3}
+  - {fileID: 2800000, guid: 0fba3ac23ad345c48878dc42649f4755, type: 3}
   timer: 0
-  interval: 15,18
+  interval: 5, 8, 13, 21
   velocity: 1
   spin: 0
   color: {r: 1, g: 1, b: 1, a: 1}
