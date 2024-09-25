@@ -730,13 +730,6 @@ namespace Playniax.Ignition
             }
 
             _loading = false;
-            
-            // Activate the Skill Icons Canvas
-            if (skillIconsCanvas != null)
-            {
-                skillIconsCanvas.gameObject.SetActive(true);
-                InitializeAcquiredSkills(); // Initialize skills if needed
-            }
 
             yield return new WaitForEndOfFrame();
 
@@ -916,24 +909,6 @@ namespace Playniax.Ignition
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            // Check if the loaded scene is one of the game scenes
-            if (levelSettings.sceneName.Contains("inGame"))
-            {
-                // Game scene loaded
-                if (skillIconsCanvas != null)
-                {
-                    skillIconsCanvas.gameObject.SetActive(true);
-                    InitializeAcquiredSkills(); // Initialize skills if needed
-                }
-            }
-            else
-            {
-                // Not a game scene (e.g., main menu)
-                if (skillIconsCanvas != null)
-                {
-                    skillIconsCanvas.gameObject.SetActive(false);
-                }
-            }
         }
         
         void Start()
@@ -1046,6 +1021,28 @@ namespace Playniax.Ignition
             if (isSkillSelectionActive)
             {
                 HandleSkillSelectionInput();
+            }
+            
+            // Check if inGame is active
+            if (inGame != null)
+            {
+                if (inGame.gameObject.activeInHierarchy)
+                {
+                    // inGame is active, ensure skillIconsCanvas is active
+                    if (skillIconsCanvas != null && !skillIconsCanvas.gameObject.activeInHierarchy)
+                    {
+                        skillIconsCanvas.gameObject.SetActive(true);
+                        InitializeAcquiredSkills();
+                    }
+                }
+                else
+                {
+                    // inGame is not active, ensure skillIconsCanvas is inactive
+                    if (skillIconsCanvas != null && skillIconsCanvas.gameObject.activeInHierarchy)
+                    {
+                        skillIconsCanvas.gameObject.SetActive(false);
+                    }
+                }
             }
         }
 
