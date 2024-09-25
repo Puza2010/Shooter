@@ -160,7 +160,7 @@ MonoBehaviour:
     font: {fileID: 0}
     fontSize: 30
     fontStyle: 2
-    color: {r: 1, g: 0, b: 0, a: 1}
+    color: {r: 0, g: 1, b: 0, a: 1}
     velocity: {x: 0, y: 0.25, z: 0}
     targetScale: {x: 0.95, y: 0.95, z: 0}
     orderInLayer: 100
@@ -7881,7 +7881,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5151957919029116962}
   - component: {fileID: 5148901727054412464}
-  - component: {fileID: 5041476551074861420}
   - component: {fileID: 5040952588939006226}
   - component: {fileID: 4928325024690765241}
   m_Layer: 5
@@ -7924,7 +7923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5040952588939006226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7965,7 +7964,7 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 5041476551074861420}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -7998,36 +7997,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5041476551074861420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4928325024690765240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 49d92ecdc502cb342b52da1fbd216690, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &5041478491934905396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8979,7 +8948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ef02470127c944b8d183801db09136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseButton: {fileID: 4928325024690765240}
+  pauseButton: {fileID: 0}
 --- !u!222 &7621041111926450877
 CanvasRenderer:
   m_ObjectHideFlags: 0
