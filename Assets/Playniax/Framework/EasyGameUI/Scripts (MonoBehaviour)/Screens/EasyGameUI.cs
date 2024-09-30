@@ -43,6 +43,7 @@ namespace Playniax.Ignition
         public Sprite blueLaserImage; // Assign in Inspector (Image for Blue Laser)
         public Sprite greenLaserImage;  // Assign in Inspector (Image for Green Laser)
         public Sprite purpleLaserImage; // Assign in Inspector (Image for Purple Laser)
+        public Sprite slowEnemiesImage; // Assign in Inspector
         
         public GameObject skillIconsPanel; // Assign the SkillIconsPanel in the Inspector
         public GameObject skillIconPrefab; // Create a prefab for the skill icon UI element
@@ -499,6 +500,9 @@ namespace Playniax.Ignition
 
             PlayerPrefs.SetInt("levelIndex", 0);
             PlayerPrefs.Save();
+            
+            // Reset enemy speed multiplier
+            EnemyAI.globalSpeedMultiplier = 1.0f;
 
             return levelSettings.sceneName[0];
         }
@@ -998,6 +1002,12 @@ namespace Playniax.Ignition
             skills.Add("Shield Level 3", new Skill(null, 0f, 0, "", "Shield Level 3", shieldImage, 3, 5));
             skills.Add("Shield Level 4", new Skill(null, 0f, 0, "", "Shield Level 4", shieldImage, 4, 5));
             skills.Add("Shield Level 5", new Skill(null, 0f, 0, "", "Shield Level 5", shieldImage, 5, 5));
+            
+            skills.Add("Slow Enemies Level 1", new Skill(null, 0f, 0, "", "Slow Enemies Level 1", slowEnemiesImage, 1, 5));
+            skills.Add("Slow Enemies Level 2", new Skill(null, 0f, 0, "", "Slow Enemies Level 2", slowEnemiesImage, 2, 5));
+            skills.Add("Slow Enemies Level 3", new Skill(null, 0f, 0, "", "Slow Enemies Level 3", slowEnemiesImage, 3, 5));
+            skills.Add("Slow Enemies Level 4", new Skill(null, 0f, 0, "", "Slow Enemies Level 4", slowEnemiesImage, 4, 5));
+            skills.Add("Slow Enemies Level 5", new Skill(null, 0f, 0, "", "Slow Enemies Level 5", slowEnemiesImage, 5, 5));
             
             // Add the starting skill(s)
             acquiredSkills.Add("Main Gun Level 1"); // Replace with your actual starting skill
@@ -1544,6 +1554,13 @@ namespace Playniax.Ignition
                         collisionState.ActivateShield(skill.level);
                     }
                 }
+                else if (skill.skillName.StartsWith("Slow Enemies Level"))
+                {
+                    // Apply the slowdown effect
+                    float slowDownPercentage = 0.05f * skill.level; // 5% per level
+                    EnemyAI.globalSpeedMultiplier = 1.0f - slowDownPercentage;
+                    if (EnemyAI.globalSpeedMultiplier < 0.0f) EnemyAI.globalSpeedMultiplier = 0.01f; // Ensure multiplier doesn't go below 0
+                }
             }
         }
         
@@ -1740,6 +1757,9 @@ namespace Playniax.Ignition
         
         void InitializeAcquiredSkills()
         {
+            // Reset enemy speed multiplier
+            EnemyAI.globalSpeedMultiplier = 1.0f;
+            
             // Clear any existing skills
             acquiredSkills.Clear();
 

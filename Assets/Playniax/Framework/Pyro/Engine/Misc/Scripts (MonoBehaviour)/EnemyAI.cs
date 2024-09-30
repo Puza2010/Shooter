@@ -12,6 +12,8 @@ namespace Playniax.Pyro
     [AddComponentMenu("Playniax/Pyro/EnemyAI")]
     public class EnemyAI : MonoBehaviour
     {
+        public static float globalSpeedMultiplier = 1.0f;
+        
 #if UNITY_EDITOR
         [CanEditMultipleObjects]
         [CustomEditor(typeof(EnemyAI))]
@@ -219,7 +221,7 @@ namespace Playniax.Pyro
                     _speed += Random.Range(minSpeed, maxSpeed) * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
                 }
 
-                instance.transform.position += _speed * Time.deltaTime;
+                instance.transform.position += _speed * EnemyAI.globalSpeedMultiplier * Time.deltaTime;
 
                 if (rotateTowards)
                 {
@@ -275,7 +277,8 @@ namespace Playniax.Pyro
                     instance.transform.rotation = Quaternion.RotateTowards(instance.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                 }
 
-                instance.transform.position += instance.transform.right * speed * Time.deltaTime;
+                instance.transform.position += instance.transform.right * speed * EnemyAI.globalSpeedMultiplier * Time.deltaTime;
+
             }
 
             Vector3 _direction;
@@ -322,7 +325,8 @@ namespace Playniax.Pyro
                 if (range.z != 0 && target.z <= instance._startPosition.z - range.x) target.z = instance._startPosition.z - range.z;
                 if (range.z != 0 && target.z >= instance._startPosition.z + range.x) target.z = instance._startPosition.z + range.z;
 
-                instance.transform.position = Vector3.MoveTowards(instance.transform.position, target, speed * Time.deltaTime);
+                instance.transform.position = Vector3.MoveTowards(instance.transform.position, target, speed * EnemyAI.globalSpeedMultiplier * Time.deltaTime);
+
             }
 
             //Vector3 _speed;
@@ -369,7 +373,8 @@ namespace Playniax.Pyro
                 if (_speed.y > maxSpeed) _speed.y = maxSpeed;
                 if (_speed.y < -maxSpeed) _speed.y = -maxSpeed;
 
-                instance.transform.position += globalPolarity * polarity * _speed * Time.deltaTime;
+                instance.transform.position += globalPolarity * polarity * _speed * EnemyAI.globalSpeedMultiplier * Time.deltaTime;
+
 
                 if (friction != 0) _speed *= 1 / (1 + (Time.deltaTime * friction));
             }
