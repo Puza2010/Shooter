@@ -1208,6 +1208,7 @@ MonoBehaviour:
   mainGunLevel: 0
   angledShotsLevel: 0
   phaserShotsLevel: 0
+  minInterval: 0.01
   prefab: {fileID: 7468486278026618430, guid: 5677dcf62ecec4a49a7d57ea364122f4, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1288,6 +1289,7 @@ MonoBehaviour:
   cannonLevel: 0
   threeWayShooterLevel: 0
   wreckingBallLevel: 0
+  minInterval: 0.01
   group: 0
   prefab: {fileID: 787315027656738199, guid: 19fd17be2f9fd664584feaf2cb200bcc, type: 3}
   parent: {fileID: 0}
@@ -1362,6 +1364,7 @@ MonoBehaviour:
   cannonLevel: 0
   threeWayShooterLevel: 0
   wreckingBallLevel: 0
+  minInterval: 0.01
   group: 0
   prefab: {fileID: 2810408086072053405, guid: 41ff4fa9a2cab6c4a8c0f2923dd70a58, type: 3}
   parent: {fileID: 0}
@@ -1431,6 +1434,7 @@ MonoBehaviour:
   mainGunLevel: 0
   angledShotsLevel: 0
   phaserShotsLevel: 0
+  minInterval: 0.01
   prefab: {fileID: 5322387968320073750, guid: 2d1a1a5f2def3b4469db3484b31fc8ba, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1666,6 +1670,7 @@ MonoBehaviour:
   cannonLevel: 0
   threeWayShooterLevel: 0
   wreckingBallLevel: 0
+  minInterval: 0.01
   group: 0
   prefab: {fileID: 2914729422674145614, guid: 78259d2bd6251b5489aa0be0ff2b791e, type: 3}
   parent: {fileID: 0}
