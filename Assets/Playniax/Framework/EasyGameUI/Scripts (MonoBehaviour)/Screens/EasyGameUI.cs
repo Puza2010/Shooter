@@ -1567,7 +1567,7 @@ namespace Playniax.Ignition
                     // Apply the slowdown effect
                     float slowDownPercentage = 0.1f * skill.level; // 5% per level
                     EnemyAI.globalSpeedMultiplier = 1.0f - slowDownPercentage;
-                    if (EnemyAI.globalSpeedMultiplier < 0.0f) EnemyAI.globalSpeedMultiplier = 0.01f; // Ensure multiplier doesn't go below 0
+                    if (EnemyAI.globalSpeedMultiplier < 0.0f) EnemyAI.globalSpeedMultiplier = 0.2f; // Ensure multiplier doesn't go below 0
                 }
                 else if (skill.skillName.StartsWith("Slow Enemy Bullets Level"))
                 {
