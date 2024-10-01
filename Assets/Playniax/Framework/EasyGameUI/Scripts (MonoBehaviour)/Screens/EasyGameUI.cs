@@ -44,6 +44,7 @@ namespace Playniax.Ignition
         public Sprite greenLaserImage;  // Assign in Inspector (Image for Green Laser)
         public Sprite purpleLaserImage; // Assign in Inspector (Image for Purple Laser)
         public Sprite slowEnemiesImage; // Assign in Inspector
+        public Sprite slowEnemyBulletsImage; // Assign this sprite in the Unity Inspector
         
         public GameObject skillIconsPanel; // Assign the SkillIconsPanel in the Inspector
         public GameObject skillIconPrefab; // Create a prefab for the skill icon UI element
@@ -503,6 +504,8 @@ namespace Playniax.Ignition
             
             // Reset enemy speed multiplier
             EnemyAI.globalSpeedMultiplier = 1.0f;
+            // Reset enemy bullet speed multiplier
+            BulletBase.enemyBulletSpeedMultiplier = 1.0f;
 
             return levelSettings.sceneName[0];
         }
@@ -936,18 +939,18 @@ namespace Playniax.Ignition
             skills.Add("Red Laser Level 2", new Skill(redLaserPrefab, 0.7f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage, 2, 4));
             skills.Add("Red Laser Level 3", new Skill(redLaserPrefab, 0.4f, 50, "genericBulletRed", "Red Laser Level 3", redLaserImage, 3, 4));
             skills.Add("Red Laser Level 4", new Skill(redLaserPrefab, 0.2f, 100, "genericBulletRed", "Red Laser Level 4", redLaserImage, 4, 4));
-            skills.Add("Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage, 1, 4));
-            skills.Add("Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage, 2, 4));
-            skills.Add("Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage, 3, 4));
-            skills.Add("Blue Laser Level 4", new Skill(blueLaserPrefab, 0.2f, 100, "bulletBlue", "Blue Laser Level 4", blueLaserImage, 4, 4));
-            skills.Add("Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 10, "genericBulletGreen", "Green Laser Level 1", greenLaserImage, 1, 4));
-            skills.Add("Green Laser Level 2", new Skill(greenLaserPrefab, 0.7f, 30, "genericBulletGreen", "Green Laser Level 2", greenLaserImage, 2, 4));
-            skills.Add("Green Laser Level 3", new Skill(greenLaserPrefab, 0.4f, 50, "genericBulletGreen", "Green Laser Level 3", greenLaserImage, 3, 4));
-            skills.Add("Green Laser Level 4", new Skill(greenLaserPrefab, 0.2f, 100, "genericBulletGreen", "Green Laser Level 4", greenLaserImage, 4, 4));
-            skills.Add("Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 10, "bulletPurple", "Purple Laser Level 1", purpleLaserImage, 1, 4));
-            skills.Add("Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.7f, 30, "bulletPurple", "Purple Laser Level 2", purpleLaserImage, 2, 4));
-            skills.Add("Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage, 3, 4));
-            skills.Add("Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage, 4, 4));
+            // skills.Add("Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage, 1, 4));
+            // skills.Add("Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage, 2, 4));
+            // skills.Add("Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage, 3, 4));
+            // skills.Add("Blue Laser Level 4", new Skill(blueLaserPrefab, 0.2f, 100, "bulletBlue", "Blue Laser Level 4", blueLaserImage, 4, 4));
+            // skills.Add("Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 10, "genericBulletGreen", "Green Laser Level 1", greenLaserImage, 1, 4));
+            // skills.Add("Green Laser Level 2", new Skill(greenLaserPrefab, 0.7f, 30, "genericBulletGreen", "Green Laser Level 2", greenLaserImage, 2, 4));
+            // skills.Add("Green Laser Level 3", new Skill(greenLaserPrefab, 0.4f, 50, "genericBulletGreen", "Green Laser Level 3", greenLaserImage, 3, 4));
+            // skills.Add("Green Laser Level 4", new Skill(greenLaserPrefab, 0.2f, 100, "genericBulletGreen", "Green Laser Level 4", greenLaserImage, 4, 4));
+            // skills.Add("Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 10, "bulletPurple", "Purple Laser Level 1", purpleLaserImage, 1, 4));
+            // skills.Add("Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.7f, 30, "bulletPurple", "Purple Laser Level 2", purpleLaserImage, 2, 4));
+            // skills.Add("Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage, 3, 4));
+            // skills.Add("Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage, 4, 4));
             
             // skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1, 5));
             // skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2, 5));
@@ -1007,6 +1010,12 @@ namespace Playniax.Ignition
             skills.Add("Slow Enemies Level 3", new Skill(null, 0f, 0, "", "Slow Enemies Level 3", slowEnemiesImage, 3, 5));
             skills.Add("Slow Enemies Level 4", new Skill(null, 0f, 0, "", "Slow Enemies Level 4", slowEnemiesImage, 4, 5));
             skills.Add("Slow Enemies Level 5", new Skill(null, 0f, 0, "", "Slow Enemies Level 5", slowEnemiesImage, 5, 5));
+            
+            skills.Add("Slow Enemy Bullets Level 1", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 1", slowEnemyBulletsImage, 1, 5));
+            skills.Add("Slow Enemy Bullets Level 2", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 2", slowEnemyBulletsImage, 2, 5));
+            skills.Add("Slow Enemy Bullets Level 3", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 3", slowEnemyBulletsImage, 3, 5));
+            skills.Add("Slow Enemy Bullets Level 4", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 4", slowEnemyBulletsImage, 4, 5));
+            skills.Add("Slow Enemy Bullets Level 5", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 5", slowEnemyBulletsImage, 5, 5));
             
             // Add the starting skill(s)
             acquiredSkills.Add("Main Gun Level 1"); // Replace with your actual starting skill
@@ -1556,9 +1565,16 @@ namespace Playniax.Ignition
                 else if (skill.skillName.StartsWith("Slow Enemies Level"))
                 {
                     // Apply the slowdown effect
-                    float slowDownPercentage = 0.5f * skill.level; // 5% per level
+                    float slowDownPercentage = 0.1f * skill.level; // 5% per level
                     EnemyAI.globalSpeedMultiplier = 1.0f - slowDownPercentage;
                     if (EnemyAI.globalSpeedMultiplier < 0.0f) EnemyAI.globalSpeedMultiplier = 0.01f; // Ensure multiplier doesn't go below 0
+                }
+                else if (skill.skillName.StartsWith("Slow Enemy Bullets Level"))
+                {
+                    // Apply the slowdown effect to enemy bullets
+                    float slowDownPercentage = 0.1f * skill.level; // 5% per level
+                    BulletBase.enemyBulletSpeedMultiplier = 1.0f - slowDownPercentage;
+                    if (BulletBase.enemyBulletSpeedMultiplier < 0.0f) BulletBase.enemyBulletSpeedMultiplier = 0.2f;
                 }
             }
         }
@@ -1758,6 +1774,7 @@ namespace Playniax.Ignition
         {
             // Reset enemy speed multiplier
             EnemyAI.globalSpeedMultiplier = 1.0f;
+            BulletBase.enemyBulletSpeedMultiplier = 1.0f;
             
             // Clear any existing skills
             acquiredSkills.Clear();

@@ -372,6 +372,9 @@ namespace Playniax.Pyro
 
         public override void OnSpawn()
         {
+            // Determine if this spawner is attached to the player's ship
+            bool isPlayerSpawner = gameObject.CompareTag("Player");
+            
             if (mode == Mode.TargetPlayer)
             {
                 var target = PlayerGroup.GetRandom();
@@ -403,6 +406,13 @@ namespace Playniax.Pyro
                             {
                                 instance.transform.parent = transform.parent;
                             }
+                        }
+                        
+                        // After instantiating the bullet, set whether it's an enemy bullet
+                        var bulletBase = instance.GetComponent<BulletBase>();
+                        if (bulletBase != null)
+                        {
+                            bulletBase.isEnemyBullet = !isPlayerSpawner; // True if it's an enemy bullet
                         }
 
                         var scoreBase = instance.GetComponent<IScoreBase>();

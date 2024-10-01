@@ -7,10 +7,20 @@ namespace Playniax.Pyro
     public class BulletBase : MonoBehaviour
     {
         public Vector3 velocity;
+        public bool isEnemyBullet = false; // Default to false (player's bullet)
+        public static float enemyBulletSpeedMultiplier = 1.0f; // Add this line
 
         void Update()
         {
-            transform.position += velocity * Time.deltaTime;
+            float speedMultiplier = 1.0f;
+
+            if (isEnemyBullet)
+            {
+                speedMultiplier = enemyBulletSpeedMultiplier;
+            }
+
+            transform.position += velocity * speedMultiplier * Time.deltaTime;
         }
     }
+
 }
