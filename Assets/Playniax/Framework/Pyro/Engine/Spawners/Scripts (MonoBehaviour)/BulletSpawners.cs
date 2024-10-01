@@ -14,6 +14,21 @@ namespace Playniax.Pyro
         public int wreckingBallLevel = 0; // Level of the Wrecking Ball skill
         private readonly float wreckingBallDistance = 2f;
         private readonly float wreckingBallSpeed = 3f;
+        private float baseInterval;
+        public float minInterval = 0.01f; // Minimum firing interval
+
+        void Awake()
+        {
+            baseInterval = timer.interval;
+            ApplyWeaponSpeedMultiplier();
+        }
+
+        public void ApplyWeaponSpeedMultiplier()
+        {
+            timer.interval = baseInterval / weaponSpeedMultiplier;
+            if (timer.interval < minInterval)
+                timer.interval = minInterval;
+        }
         
 #if UNITY_EDITOR
 

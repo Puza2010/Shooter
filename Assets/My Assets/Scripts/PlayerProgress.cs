@@ -43,7 +43,8 @@ public class PlayerProgress : MonoBehaviour
             currentLevel++;
 
             // Calculate the next level's coin requirement
-            coinsRequiredForNextLevel = 1 + currentLevel;
+            // coinsRequiredForNextLevel = 1 + currentLevel;
+            coinsRequiredForNextLevel = 1;
 
             Debug.Log($"After Level Up: New Level {currentLevel}, Coins required for next level: {coinsRequiredForNextLevel}");
 

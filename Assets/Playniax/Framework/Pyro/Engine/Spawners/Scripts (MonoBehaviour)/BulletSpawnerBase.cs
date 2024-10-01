@@ -6,6 +6,7 @@ namespace Playniax.Pyro
     [DefaultExecutionOrder(250)]
     public class BulletSpawnerBase : IgnitionBehaviour
     {
+        public static float weaponSpeedMultiplier = 1.0f;
         public float bootTime;
         public bool automatically = true;
         public Timer timer = new Timer();

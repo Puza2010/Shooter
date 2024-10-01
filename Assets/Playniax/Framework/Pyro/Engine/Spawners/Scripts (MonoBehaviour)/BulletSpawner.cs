@@ -11,6 +11,21 @@ namespace Playniax.Pyro
         public int mainGunLevel = 0;
         public int angledShotsLevel = 0;
         public int phaserShotsLevel = 0;
+        private float baseInterval;
+        public float minInterval = 0.01f; // Minimum firing interval
+        
+        void Awake()
+        {
+            baseInterval = timer.interval;
+            ApplyWeaponSpeedMultiplier();
+        }
+
+        public void ApplyWeaponSpeedMultiplier()
+        {
+            timer.interval = baseInterval / weaponSpeedMultiplier;
+            if (timer.interval < minInterval)
+                timer.interval = minInterval;
+        }
 
 #if UNITY_EDITOR
         [CanEditMultipleObjects]

@@ -45,6 +45,10 @@ namespace Playniax.Ignition
         public Sprite purpleLaserImage; // Assign in Inspector (Image for Purple Laser)
         public Sprite slowEnemiesImage; // Assign in Inspector
         public Sprite slowEnemyBulletsImage; // Assign this sprite in the Unity Inspector
+        public Sprite weaponSpeedImage; // Assign in Inspector (Icon for the Weapon Speed skill)
+        public Sprite extraScoreImage; // Assign in Inspector
+        
+        private int weaponSpeedLevel = 0; // Tracks the current level of the skill
         
         public GameObject skillIconsPanel; // Assign the SkillIconsPanel in the Inspector
         public GameObject skillIconPrefab; // Create a prefab for the skill icon UI element
@@ -502,6 +506,8 @@ namespace Playniax.Ignition
             PlayerPrefs.SetInt("levelIndex", 0);
             PlayerPrefs.Save();
             
+            weaponSpeedLevel = 0;
+            BulletSpawnerBase.weaponSpeedMultiplier = 1.0f; // Reset the multiplier
             // Reset enemy speed multiplier
             EnemyAI.globalSpeedMultiplier = 1.0f;
             // Reset enemy bullet speed multiplier
@@ -927,7 +933,7 @@ namespace Playniax.Ignition
             }
 
             // Initialize the skill dictionary
-            skills = new Dictionary<string, Skill> {};
+            skills = new Dictionary<string, Skill>();
             
             skills.Add("Main Gun Level 1", new Skill(null, 0f, 0, "", "Main Gun Level 1", mainGunImage, 1, 5));
             skills.Add("Main Gun Level 2", new Skill(null, 0f, 0, "", "Main Gun Level 2", mainGunImage, 2, 5));
@@ -935,10 +941,12 @@ namespace Playniax.Ignition
             skills.Add("Main Gun Level 4", new Skill(null, 0f, 0, "", "Main Gun Level 4", mainGunImage, 4, 5));
             skills.Add("Main Gun Level 5", new Skill(null, 0f, 0, "", "Main Gun Level 5", mainGunImage, 5, 5));
             
-            skills.Add("Red Laser Level 1", new Skill(redLaserPrefab, 1f, 10, "genericBulletRed", "Red Laser Level 1", redLaserImage, 1, 4));
-            skills.Add("Red Laser Level 2", new Skill(redLaserPrefab, 0.7f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage, 2, 4));
-            skills.Add("Red Laser Level 3", new Skill(redLaserPrefab, 0.4f, 50, "genericBulletRed", "Red Laser Level 3", redLaserImage, 3, 4));
-            skills.Add("Red Laser Level 4", new Skill(redLaserPrefab, 0.2f, 100, "genericBulletRed", "Red Laser Level 4", redLaserImage, 4, 4));
+            skills.Add("Extra Score", new Skill(null, 0f, 0, "", "Extra Score", extraScoreImage));
+            
+            // skills.Add("Red Laser Level 1", new Skill(redLaserPrefab, 1f, 10, "genericBulletRed", "Red Laser Level 1", redLaserImage, 1, 4));
+            // skills.Add("Red Laser Level 2", new Skill(redLaserPrefab, 0.7f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage, 2, 4));
+            // skills.Add("Red Laser Level 3", new Skill(redLaserPrefab, 0.4f, 50, "genericBulletRed", "Red Laser Level 3", redLaserImage, 3, 4));
+            // skills.Add("Red Laser Level 4", new Skill(redLaserPrefab, 0.2f, 100, "genericBulletRed", "Red Laser Level 4", redLaserImage, 4, 4));
             // skills.Add("Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage, 1, 4));
             // skills.Add("Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage, 2, 4));
             // skills.Add("Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage, 3, 4));
@@ -952,23 +960,23 @@ namespace Playniax.Ignition
             // skills.Add("Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage, 3, 4));
             // skills.Add("Purple Laser Level 4", new Skill(purpleLaserPrefab, 0.2f, 100, "bulletPurple", "Purple Laser Level 4", purpleLaserImage, 4, 4));
             
-            // skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1, 5));
-            // skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2, 5));
-            // skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3, 5));
-            // skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4, 5));
-            // skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5, 5));
-            //
-            // skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1, 5));
-            // skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2, 5));
-            // skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3, 5));
-            // skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4, 5));
-            // skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5, 5));
-            //
-            // skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1, 5));
-            // skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2, 5));
-            // skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3, 5));
-            // skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4, 5));
-            //
+            skills.Add("Angled Shots Level 1", new Skill(null, 0f, 0, "", "Angled Shots Level 1", angledShotsImage, 1, 5));
+            skills.Add("Angled Shots Level 2", new Skill(null, 0f, 0, "", "Angled Shots Level 2", angledShotsImage, 2, 5));
+            skills.Add("Angled Shots Level 3", new Skill(null, 0f, 0, "", "Angled Shots Level 3", angledShotsImage, 3, 5));
+            skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4, 5));
+            skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5, 5));
+            
+            skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1, 5));
+            skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2, 5));
+            skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3, 5));
+            skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4, 5));
+            skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5, 5));
+            
+            skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1, 5));
+            skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2, 5));
+            skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3, 5));
+            skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4, 5));
+            
             // skills.Add("Speed Up Level 1", new Skill(null, 0f, 0, "", "Speed Up Level 1", speedUpImage, 1, 5));
             // skills.Add("Speed Up Level 2", new Skill(null, 0f, 0, "", "Speed Up Level 2", speedUpImage, 2, 5));
             // skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3, 5));
@@ -980,42 +988,48 @@ namespace Playniax.Ignition
             // skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3, 5));
             // skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4, 5));
             // skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5, 5));
-            //
+            
             // skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1, 5));
             // skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2, 5));
             // skills.Add("Homing Missile Level 3", new Skill(null, 1.0f, 0, "", "Homing Missile Level 3", missileImage, 3, 5));
             // skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4, 5));
             // skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5, 5));
-            //
-            // skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1, 5));
-            // skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2, 5));
-            // skills.Add("Homing Gun Level 3", new Skill(null, 0f, 0, "", "Homing Gun Level 3", phaserImage, 3, 5));
-            // skills.Add("Homing Gun Level 4", new Skill(null, 0f, 0, "", "Homing Gun Level 4", phaserImage, 4, 5));
-            // skills.Add("Homing Gun Level 5", new Skill(null, 0f, 0, "", "Homing Gun Level 5", phaserImage, 5, 5));
-            //
-            // skills.Add("Wrecking Ball Level 1", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1, 5));
-            // skills.Add("Wrecking Ball Level 2", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2, 5));
-            // skills.Add("Wrecking Ball Level 3", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3, 5));
-            // skills.Add("Wrecking Ball Level 4", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4, 5));
-            // skills.Add("Wrecking Ball Level 5", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5, 5));
-            //
+            
+            skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1, 5));
+            skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2, 5));
+            skills.Add("Homing Gun Level 3", new Skill(null, 0f, 0, "", "Homing Gun Level 3", phaserImage, 3, 5));
+            skills.Add("Homing Gun Level 4", new Skill(null, 0f, 0, "", "Homing Gun Level 4", phaserImage, 4, 5));
+            skills.Add("Homing Gun Level 5", new Skill(null, 0f, 0, "", "Homing Gun Level 5", phaserImage, 5, 5));
+            
+            skills.Add("Wrecking Ball Level 1", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 1", wreckingBallImage, 1, 5));
+            skills.Add("Wrecking Ball Level 2", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 2", wreckingBallImage, 2, 5));
+            skills.Add("Wrecking Ball Level 3", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 3", wreckingBallImage, 3, 5));
+            skills.Add("Wrecking Ball Level 4", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 4", wreckingBallImage, 4, 5));
+            skills.Add("Wrecking Ball Level 5", new Skill(wreckingBallPrefab, 0f, 0, "", "Wrecking Ball Level 5", wreckingBallImage, 5, 5));
+            
             // skills.Add("Shield Level 1", new Skill(null, 0f, 0, "", "Shield Level 1", shieldImage, 1, 5));
             // skills.Add("Shield Level 2", new Skill(null, 0f, 0, "", "Shield Level 2", shieldImage, 2, 5));
             // skills.Add("Shield Level 3", new Skill(null, 0f, 0, "", "Shield Level 3", shieldImage, 3, 5));
             // skills.Add("Shield Level 4", new Skill(null, 0f, 0, "", "Shield Level 4", shieldImage, 4, 5));
             // skills.Add("Shield Level 5", new Skill(null, 0f, 0, "", "Shield Level 5", shieldImage, 5, 5));
+            //
+            // skills.Add("Slow Enemies Level 1", new Skill(null, 0f, 0, "", "Slow Enemies Level 1", slowEnemiesImage, 1, 5));
+            // skills.Add("Slow Enemies Level 2", new Skill(null, 0f, 0, "", "Slow Enemies Level 2", slowEnemiesImage, 2, 5));
+            // skills.Add("Slow Enemies Level 3", new Skill(null, 0f, 0, "", "Slow Enemies Level 3", slowEnemiesImage, 3, 5));
+            // skills.Add("Slow Enemies Level 4", new Skill(null, 0f, 0, "", "Slow Enemies Level 4", slowEnemiesImage, 4, 5));
+            // skills.Add("Slow Enemies Level 5", new Skill(null, 0f, 0, "", "Slow Enemies Level 5", slowEnemiesImage, 5, 5));
+            //
+            // skills.Add("Slow Enemy Bullets Level 1", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 1", slowEnemyBulletsImage, 1, 5));
+            // skills.Add("Slow Enemy Bullets Level 2", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 2", slowEnemyBulletsImage, 2, 5));
+            // skills.Add("Slow Enemy Bullets Level 3", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 3", slowEnemyBulletsImage, 3, 5));
+            // skills.Add("Slow Enemy Bullets Level 4", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 4", slowEnemyBulletsImage, 4, 5));
+            // skills.Add("Slow Enemy Bullets Level 5", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 5", slowEnemyBulletsImage, 5, 5));
             
-            skills.Add("Slow Enemies Level 1", new Skill(null, 0f, 0, "", "Slow Enemies Level 1", slowEnemiesImage, 1, 5));
-            skills.Add("Slow Enemies Level 2", new Skill(null, 0f, 0, "", "Slow Enemies Level 2", slowEnemiesImage, 2, 5));
-            skills.Add("Slow Enemies Level 3", new Skill(null, 0f, 0, "", "Slow Enemies Level 3", slowEnemiesImage, 3, 5));
-            skills.Add("Slow Enemies Level 4", new Skill(null, 0f, 0, "", "Slow Enemies Level 4", slowEnemiesImage, 4, 5));
-            skills.Add("Slow Enemies Level 5", new Skill(null, 0f, 0, "", "Slow Enemies Level 5", slowEnemiesImage, 5, 5));
-            
-            skills.Add("Slow Enemy Bullets Level 1", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 1", slowEnemyBulletsImage, 1, 5));
-            skills.Add("Slow Enemy Bullets Level 2", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 2", slowEnemyBulletsImage, 2, 5));
-            skills.Add("Slow Enemy Bullets Level 3", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 3", slowEnemyBulletsImage, 3, 5));
-            skills.Add("Slow Enemy Bullets Level 4", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 4", slowEnemyBulletsImage, 4, 5));
-            skills.Add("Slow Enemy Bullets Level 5", new Skill(null, 0f, 0, "", "Slow Enemy Bullets Level 5", slowEnemyBulletsImage, 5, 5));
+            skills.Add("Weapon Speed Level 1", new Skill(null, 0f, 0, "", "Weapon Speed Level 1", weaponSpeedImage, 1, 5));
+            skills.Add("Weapon Speed Level 2", new Skill(null, 0f, 0, "", "Weapon Speed Level 2", weaponSpeedImage, 2, 5));
+            skills.Add("Weapon Speed Level 3", new Skill(null, 0f, 0, "", "Weapon Speed Level 3", weaponSpeedImage, 3, 5));
+            skills.Add("Weapon Speed Level 4", new Skill(null, 0f, 0, "", "Weapon Speed Level 4", weaponSpeedImage, 4, 5));
+            skills.Add("Weapon Speed Level 5", new Skill(null, 0f, 0, "", "Weapon Speed Level 5", weaponSpeedImage, 5, 5));
             
             // Add the starting skill(s)
             acquiredSkills.Add("Main Gun Level 1"); // Replace with your actual starting skill
@@ -1325,6 +1339,12 @@ namespace Playniax.Ignition
                 .OrderBy(x => UnityEngine.Random.value)
                 .Take(3)
                 .ToList();
+            
+            // If no skills are available, add the "Extra Score" skill
+            if (availableSkills.Count == 0)
+            {
+                availableSkills.Add(skills["Extra Score"]);
+            }
 
             // Clear any existing buttons
             foreach (var button in skillButtons)
@@ -1371,24 +1391,32 @@ namespace Playniax.Ignition
         void OnSkillSelected(string skillName)
         {
             Skill selectedSkill = skills[skillName];
-
-            // Find the index of the existing skill in acquiredSkills
-            string baseSkillName = GetBaseSkillName(skillName);
-            int index = acquiredSkills.FindIndex(s => GetBaseSkillName(s) == baseSkillName);
-
-            if (index != -1)
+            
+            if (skillName == "Extra Score")
             {
-                // Skill is already acquired; replace it with the new level
-                acquiredSkills[index] = skillName;
+                // Do not add to acquiredSkills since it's a one-time bonus
             }
             else
             {
-                // Add the new skill
-                acquiredSkills.Add(skillName);
-            }
 
-            // Update the skill icons display
-            UpdateSkillIconsDisplay();
+                // Find the index of the existing skill in acquiredSkills
+                string baseSkillName = GetBaseSkillName(skillName);
+                int index = acquiredSkills.FindIndex(s => GetBaseSkillName(s) == baseSkillName);
+
+                if (index != -1)
+                {
+                    // Skill is already acquired; replace it with the new level
+                    acquiredSkills[index] = skillName;
+                }
+                else
+                {
+                    // Add the new skill
+                    acquiredSkills.Add(skillName);
+                }
+
+                // Update the skill icons display
+                UpdateSkillIconsDisplay();
+            }
 
             // Close the skill selection panel
             skillSelectionPanel.SetActive(false);
@@ -1576,6 +1604,41 @@ namespace Playniax.Ignition
                     BulletBase.enemyBulletSpeedMultiplier = 1.0f - slowDownPercentage;
                     if (BulletBase.enemyBulletSpeedMultiplier < 0.0f) BulletBase.enemyBulletSpeedMultiplier = 0.2f;
                 }
+                else if (skill.skillName.StartsWith("Weapon Speed Level"))
+                {
+                    // Update the weapon speed level
+                    weaponSpeedLevel = skill.level;
+
+                    // Calculate the weapon speed multiplier
+                    float weaponSpeedMultiplier = 1.0f + 0.15f * weaponSpeedLevel; // 10% increase per level
+
+                    // Set the static variable in BulletSpawnerBase
+                    BulletSpawnerBase.weaponSpeedMultiplier = weaponSpeedMultiplier;
+
+                    // Find the player's ship
+                    var playerShip = GameObject.FindGameObjectWithTag("Player");
+                    if (playerShip != null)
+                    {
+                        // Get all BulletSpawner components
+                        var bulletSpawners = playerShip.GetComponentsInChildren<BulletSpawner>();
+                        foreach (var spawner in bulletSpawners)
+                        {
+                            spawner.ApplyWeaponSpeedMultiplier();
+                        }
+
+                        // Get all BulletSpawners components
+                        var bulletSpawners2 = playerShip.GetComponentsInChildren<BulletSpawners>();
+                        foreach (var spawner in bulletSpawners2)
+                        {
+                            spawner.ApplyWeaponSpeedMultiplier();
+                        }
+                    }
+                }
+                else if (skill.skillName == "Extra Score")
+                {
+                    // Add +10,000 points to the player's scoreboard
+                    PlayerData.Get(0).scoreboard += 10000;
+                }
             }
         }
         
@@ -1669,6 +1732,11 @@ namespace Playniax.Ignition
         
         bool IsSkillAvailable(Skill skill)
         {
+            if (skill.skillName == "Extra Score")
+            {
+                return false; // Exclude "Extra Score" from normal skill selection
+            }
+            
             string baseSkillName = GetBaseSkillName(skill.skillName);
 
             // Get the highest level of the acquired skill for this base skill
@@ -1772,6 +1840,8 @@ namespace Playniax.Ignition
         
         void InitializeAcquiredSkills()
         {
+            weaponSpeedLevel = 0;
+            BulletSpawnerBase.weaponSpeedMultiplier = 1.0f; // Reset the multiplier
             // Reset enemy speed multiplier
             EnemyAI.globalSpeedMultiplier = 1.0f;
             BulletBase.enemyBulletSpeedMultiplier = 1.0f;
