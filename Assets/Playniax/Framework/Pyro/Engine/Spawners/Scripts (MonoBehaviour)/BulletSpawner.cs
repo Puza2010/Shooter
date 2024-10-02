@@ -11,17 +11,46 @@ namespace Playniax.Pyro
         public int mainGunLevel = 0;
         public int angledShotsLevel = 0;
         public int phaserShotsLevel = 0;
+        public int randomBouncingShotLevel = 0;
+        public int droneLevel;
         private float baseInterval;
         public float minInterval = 0.01f; // Minimum firing interval
-        public int droneLevel;
         public float bulletDamage = 1f;
         private Drone droneComponent;
+        private Timer randomBouncingShotTimer;
         
         void Awake()
         {
             baseInterval = timer.interval;
             ApplyWeaponSpeedMultiplier();
             droneComponent = GetComponentInParent<Drone>();
+            // Initialize random bouncing shot timer
+            randomBouncingShotTimer = new Timer();
+            randomBouncingShotTimer.counter = -1; // Set to infinite firing
+        }
+        
+        public void ApplyRandomBouncingShotLevel()
+        {
+            if (randomBouncingShotLevel > 0)
+            {
+                randomBouncingShotTimer.counter = -1; // Ensure infinite firing
+                randomBouncingShotTimer.interval = GetRandomBouncingShotInterval();
+                randomBouncingShotTimer.timer = 0f; // Reset timer
+            }
+            else
+            {
+                // If skill level is zero, disable the timer
+                randomBouncingShotTimer.counter = 0;
+            }
+        }
+        
+        float GetRandomBouncingShotInterval()
+        {
+            // Adjusted values for better control
+            float baseBounceInterval = 5f; // Increased base interval at level 1
+            float intervalDecrement = 1f; // Decrease interval per level
+            float interval = baseBounceInterval - (randomBouncingShotLevel - 1) * intervalDecrement;
+            return Mathf.Max(interval, 5f); // Minimum interval of 5 seconds
         }
 
         public void ApplyWeaponSpeedMultiplier()
@@ -344,6 +373,12 @@ namespace Playniax.Pyro
         public override void UpdateSpawner()
         {
             if (prefab == null) return;
+            
+            // Update random bouncing shot timer and spawn bullet if needed
+            if (randomBouncingShotLevel > 0 && randomBouncingShotTimer.Update())
+            {
+                SpawnRandomBouncingBullet();
+            }
 
             if (mode == Mode.Direction)
             {
@@ -770,8 +805,7 @@ namespace Playniax.Pyro
                     {
 
                         AdjustBulletProperties(instance);
-
-
+                        
                         // Handle angled shots if angledShotsLevel > 0
                         if (angledShotsLevel > 0)
                         {
@@ -1160,6 +1194,110 @@ namespace Playniax.Pyro
                     rb.velocity = bullet.transform.right * speedValue; // Use bullet's right direction
                 }
             }
+        }
+
+        void SpawnRandomBouncingBullet()
+        {
+            var instance = Instantiate(prefab, transform.position, Quaternion.identity);
+            if (instance)
+            {
+                instance.SetActive(true);
+
+                // Adjust bullet properties
+                AdjustRandomBouncingBulletProperties(instance);
+
+                // Apply scaling
+                instance.transform.localScale *= scale;
+
+                // Set parent if needed
+                if (parent)
+                {
+                    instance.transform.parent = parent;
+                }
+                else
+                {
+                    instance.transform.parent = transform.parent;
+                }
+
+                // Adjust sorting order if needed
+                if (inheritOrderInLayer) _SortingOrder(instance);
+
+                // Apply effects if any
+                if (effectsSettings.prefab != null) _Effects(instance);
+
+                // Set friendly fire property
+                var scoreBase = instance.GetComponent<IScoreBase>();
+                if (scoreBase != null)
+                {
+                    if (friendlyFire) scoreBase.friend = gameObject;
+                    scoreBase.structuralIntegrity *= BulletSpawnerSettings.GetStructuralIntegrityMultiplier();
+                }
+
+                // Play audio
+                audioProperties.Play();
+            }
+        }
+
+        void AdjustRandomBouncingBulletProperties(GameObject bullet)
+        {
+            // Adjust size
+            float baseSizeMultiplier = 0.5f;
+            float sizeIncrement = 0.1f;
+            float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (randomBouncingShotLevel - 1);
+            bullet.transform.localScale *= sizeMultiplier;
+
+            // Adjust lifespan per level
+            float baseLifespan = 5f;       // Starting lifespan at level 1
+            float lifespanIncrement = 1f;  // Increase lifespan per level
+            float lifespan = baseLifespan + lifespanIncrement * (randomBouncingShotLevel - 1);
+            Destroy(bullet, lifespan);
+
+            // Adjust bullet behavior to pass through enemies
+            var bouncecollider = bullet.GetComponent<Collider2D>();
+            if (bouncecollider != null)
+            {
+                bouncecollider.isTrigger = true;
+            }
+            else
+            {
+                bouncecollider = bullet.AddComponent<BoxCollider2D>();
+                bouncecollider.isTrigger = true;
+            }
+
+            // Ensure the bullet has a BulletBase component
+            var bulletBase = bullet.GetComponent<BulletBase>();
+            if (bulletBase != null)
+            {
+                bulletBase.velocity = GetRandomDirection() * Random.Range(speed, speed + speedRange);
+
+                // Set the bullet as a bouncing bullet
+                bulletBase.isBouncingBullet = true;
+
+                // Set bulletDamage per level
+                bulletBase.bulletDamage = GetRandomBouncingBulletDamage();
+            }
+            else
+            {
+                bulletBase = bullet.AddComponent<BulletBase>();
+                bulletBase.velocity = GetRandomDirection() * Random.Range(speed, speed + speedRange);
+                bulletBase.isBouncingBullet = true;
+                bulletBase.bulletDamage = GetRandomBouncingBulletDamage();
+            }
+        }
+
+        float GetRandomBouncingBulletDamage()
+        {
+            // Adjusted values for damage per level
+            float baseDamage = 0.5f; // Starting damage at level 1
+            float damageIncrement = 0.5f; // Increase damage per level
+            return baseDamage + (randomBouncingShotLevel - 1) * damageIncrement;
+        }
+
+        Vector2 GetRandomDirection()
+        {
+            float angle = Random.Range(-90f, 90f); // 180 degrees range
+            float radian = angle * Mathf.Deg2Rad;
+            return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)).normalized;
         }
 
         SpriteRenderer _spriteRenderer;

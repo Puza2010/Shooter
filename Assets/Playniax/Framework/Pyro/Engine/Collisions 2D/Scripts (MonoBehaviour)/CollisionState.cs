@@ -454,10 +454,16 @@ namespace Playniax.Pyro
         }
         public virtual void DoDamage(float damage)
         {
+            // Log the current structural integrity before taking damage
+            float previousIntegrity = structuralIntegrity;
+            
             structuralIntegrity -= damage;
             
             // Clamp structuralIntegrity to not exceed the maximum
             // structuralIntegrity = Mathf.Min(structuralIntegrity, _maxStructuralIntegrity);
+            
+            // Log the damage and new structural integrity
+            Debug.Log($"{gameObject.name} took {damage} damage. Structural Integrity: {previousIntegrity} -> {structuralIntegrity}");
 
             if (structuralIntegrity <= 0)
             {
@@ -665,37 +671,71 @@ namespace Playniax.Pyro
 
             if (collisionState == null) return;
 
-            //if (playerIndex >= 0 && sprite.playerIndex >= 0 && playerIndex == sprite.playerIndex) return;
+            // Get the BulletBase components to check for bouncing bullets
+            var thisBulletBase = GetComponent<BulletBase>();
+            var otherBulletBase = collisionState.GetComponent<BulletBase>();
 
+            bool thisIsBouncingBullet = thisBulletBase != null && thisBulletBase.isBouncingBullet;
+            bool otherIsBouncingBullet = otherBulletBase != null && otherBulletBase.isBouncingBullet;
+
+            // Avoid friendly fire
             if (collisionState.friend != null && collisionState.friend == gameObject) return;
             if (friend != null && friend == collisionState.gameObject) return;
 
             if (indestructible == true && collisionState.indestructible == true) return;
 
-            if (indestructible)
+            if (thisIsBouncingBullet)
             {
-                if (playerIndex > -1)
+                // This object is a bouncing bullet
+
+                // Apply damage to the other object
+                collisionState.DoDamage(thisBulletBase.bulletDamage);
+
+                // Do not reduce structuralIntegrity of bouncing bullet
+                // Do not destroy bouncing bullet
+
+                // Play collision effects if needed
+                if (collisionState.structuralIntegrity > 0) collisionState.Ghost();
+
+                // Play collision audio if needed
+                if (collisionState.structuralIntegrity > 0) CollisionAudio.Play(material, collisionState.material);
+
+                // Handle scoring if needed
+                if (playerIndex > -1 && collisionState.structuralIntegrity == 0)
                 {
                     PlayerData.Get(playerIndex).scoreboard += collisionState.points;
 
                     OutroSettings.MessengerSettings.Message(collisionState);
                 }
-
-                collisionState.Kill();
             }
-            else if (collisionState.indestructible)
+            else if (otherIsBouncingBullet)
             {
-                if (collisionState.playerIndex > -1)
+                // The other object is a bouncing bullet
+
+                // Apply damage to this object
+                DoDamage(otherBulletBase.bulletDamage);
+
+                // Do not reduce structuralIntegrity of bouncing bullet
+                // Do not destroy bouncing bullet
+
+                // Play collision effects if needed
+                if (structuralIntegrity > 0) Ghost();
+
+                // Play collision audio if needed
+                if (structuralIntegrity > 0) CollisionAudio.Play(material, collisionState.material);
+
+                // Handle scoring if needed
+                if (collisionState.playerIndex > -1 && structuralIntegrity == 0)
                 {
                     PlayerData.Get(collisionState.playerIndex).scoreboard += points;
 
                     OutroSettings.MessengerSettings.Message(this);
                 }
-
-                Kill();
             }
             else
             {
+                // Both objects are not bouncing bullets, proceed with normal collision handling
+
                 var damage1 = structuralIntegrity;
                 var damage2 = collisionState.structuralIntegrity;
 
@@ -705,7 +745,8 @@ namespace Playniax.Pyro
                 if (structuralIntegrity > 0) Ghost();
                 if (collisionState.structuralIntegrity > 0) collisionState.Ghost();
 
-                if (structuralIntegrity > 0 || collisionState.structuralIntegrity > 0) CollisionAudio.Play(material, collisionState.material);
+                if (structuralIntegrity > 0 || collisionState.structuralIntegrity > 0)
+                    CollisionAudio.Play(material, collisionState.material);
 
                 if (playerIndex > -1 && collisionState.structuralIntegrity == 0)
                 {
