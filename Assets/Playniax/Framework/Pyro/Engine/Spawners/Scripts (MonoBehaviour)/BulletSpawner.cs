@@ -13,11 +13,15 @@ namespace Playniax.Pyro
         public int phaserShotsLevel = 0;
         private float baseInterval;
         public float minInterval = 0.01f; // Minimum firing interval
+        public int droneLevel;
+        public float bulletDamage = 1f;
+        private Drone droneComponent;
         
         void Awake()
         {
             baseInterval = timer.interval;
             ApplyWeaponSpeedMultiplier();
+            droneComponent = GetComponentInParent<Drone>();
         }
 
         public void ApplyWeaponSpeedMultiplier()
@@ -725,7 +729,19 @@ namespace Playniax.Pyro
 
                     if (scoreBase != null)
                     {
-                        if (friendlyFire) scoreBase.friend = gameObject;
+                        // Set friend property
+                        if (droneComponent != null)
+                        {
+                            var player = GameObject.FindGameObjectWithTag("Player");
+                            if (player != null)
+                            {
+                                scoreBase.friend = player;
+                            }
+                        }
+                        else
+                        {
+                            if (friendlyFire) scoreBase.friend = gameObject;
+                        }
 
                         if (powerSettings.useTheseSettings)
                         {
@@ -746,80 +762,93 @@ namespace Playniax.Pyro
 
                     instance.SetActive(true);
                     
-                    AdjustBulletProperties(instance);
-                    
-
-// Handle angled shots if angledShotsLevel > 0
-if (angledShotsLevel > 0)
-{
-    // Angles offset from the ship's current rotation
-    float[] angleOffsets = { -30f, 30f }; // Adjust these angles as desired
-
-    foreach (float angleOffset in angleOffsets)
-    {
-        // Create a new bullet instance for the angled shot
-        var angledBullet = Instantiate(prefab, transform.position, transform.rotation);
-        if (angledBullet)
-        {
-            // Set up the bullet properties (similar to main gun bullet)
-            if (angledBullet.layer != layer) angledBullet.layer = layer;
-
-            angledBullet.transform.localScale *= scale;
-            angledBullet.transform.Translate(position, Space.Self);
-
-            if (ignoreParent)
-            {
-                if (angledBullet.transform.parent) angledBullet.transform.parent = transform.parent.parent;
-            }
-            else
-            {
-                if (parent)
-                {
-                    angledBullet.transform.parent = parent;
-                }
-                else
-                {
-                    angledBullet.transform.parent = transform.parent;
-                }
-            }
-
-            var angledScoreBase = angledBullet.GetComponent<IScoreBase>();
-
-            PyroHelpers.OverrideStructuralIntegrity(prefab.name, angledBullet, angledScoreBase);
-
-            if (overrideCollisionSettings.useTheseSettings) _OverrideCollisionSettings(angledBullet);
-
-            if (angledScoreBase != null)
-            {
-                if (friendlyFire) angledScoreBase.friend = gameObject;
-
-                if (powerSettings.useTheseSettings)
-                {
-                    if (timer.counter > 0)
+                    if (droneComponent != null)
                     {
-                        var m = timer.counter / powerSettings.powerRange;
-
-                        angledScoreBase.structuralIntegrity *= m + 1;
-
-                        if (powerSettings.visualize) angledBullet.transform.localScale *= m * powerSettings.visualizeScale + 1;
+                        AdjustDroneBulletProperties(instance);
                     }
-                }
+                    else
+                    {
 
-                angledScoreBase.structuralIntegrity *= BulletSpawnerSettings.GetStructuralIntegrityMultiplier();
-            }
+                        AdjustBulletProperties(instance);
 
-            if (inheritOrderInLayer) _SortingOrder(angledBullet);
 
-            angledBullet.SetActive(true);
+                        // Handle angled shots if angledShotsLevel > 0
+                        if (angledShotsLevel > 0)
+                        {
+                            // Angles offset from the ship's current rotation
+                            float[] angleOffsets = { -30f, 30f }; // Adjust these angles as desired
 
-            // Adjust bullet properties based on angledShotsLevel
-            AdjustAngledBulletProperties(angledBullet);
+                            foreach (float angleOffset in angleOffsets)
+                            {
+                                // Create a new bullet instance for the angled shot
+                                var angledBullet = Instantiate(prefab, transform.position, transform.rotation);
+                                if (angledBullet)
+                                {
+                                    // Set up the bullet properties (similar to main gun bullet)
+                                    if (angledBullet.layer != layer) angledBullet.layer = layer;
 
-            // Aim the bullet at the specified angle relative to the ship's rotation
-            AimBullet(angledBullet, angleOffset);
-        }
-    }
-}
+                                    angledBullet.transform.localScale *= scale;
+                                    angledBullet.transform.Translate(position, Space.Self);
+
+                                    if (ignoreParent)
+                                    {
+                                        if (angledBullet.transform.parent)
+                                            angledBullet.transform.parent = transform.parent.parent;
+                                    }
+                                    else
+                                    {
+                                        if (parent)
+                                        {
+                                            angledBullet.transform.parent = parent;
+                                        }
+                                        else
+                                        {
+                                            angledBullet.transform.parent = transform.parent;
+                                        }
+                                    }
+
+                                    var angledScoreBase = angledBullet.GetComponent<IScoreBase>();
+
+                                    PyroHelpers.OverrideStructuralIntegrity(prefab.name, angledBullet, angledScoreBase);
+
+                                    if (overrideCollisionSettings.useTheseSettings)
+                                        _OverrideCollisionSettings(angledBullet);
+
+                                    if (angledScoreBase != null)
+                                    {
+                                        if (friendlyFire) angledScoreBase.friend = gameObject;
+
+                                        if (powerSettings.useTheseSettings)
+                                        {
+                                            if (timer.counter > 0)
+                                            {
+                                                var m = timer.counter / powerSettings.powerRange;
+
+                                                angledScoreBase.structuralIntegrity *= m + 1;
+
+                                                if (powerSettings.visualize)
+                                                    angledBullet.transform.localScale *=
+                                                        m * powerSettings.visualizeScale + 1;
+                                            }
+                                        }
+
+                                        angledScoreBase.structuralIntegrity *=
+                                            BulletSpawnerSettings.GetStructuralIntegrityMultiplier();
+                                    }
+
+                                    if (inheritOrderInLayer) _SortingOrder(angledBullet);
+
+                                    angledBullet.SetActive(true);
+
+                                    // Adjust bullet properties based on angledShotsLevel
+                                    AdjustAngledBulletProperties(angledBullet);
+
+                                    // Aim the bullet at the specified angle relative to the ship's rotation
+                                    AimBullet(angledBullet, angleOffset);
+                                }
+                            }
+                        }
+                    }
 
                     AddIntensity();
 
@@ -1068,6 +1097,39 @@ if (angledShotsLevel > 0)
 
             // Apply the new interval to the timer
             timer.interval = newInterval;
+        }
+        
+        void AdjustDroneBulletProperties(GameObject bullet)
+        {
+            // Adjust size
+            float baseSizeMultiplier = 0.5f; // Base size at level 1
+            float sizeIncrement = 0.2f;      // Increase size per level
+            float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (droneComponent.droneLevel - 1);
+            sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
+            bullet.transform.localScale *= sizeMultiplier;
+
+            // Set up destruction after certain time
+            float baseLifespan = 0.2f;       // Base lifespan at level 1
+            float lifespanIncrement = 0.1f;  // Increase lifespan per level
+            float lifespan = baseLifespan + lifespanIncrement * (droneComponent.droneLevel - 1);
+            lifespan = Mathf.Max(lifespan, baseLifespan);
+            Destroy(bullet, lifespan);
+
+            // Adjust structuralIntegrity based on droneLevel
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                // Use GetBulletDamageForLevel method
+                scoreBase.structuralIntegrity = GetBulletDamageForLevel(droneComponent.droneLevel);
+            }
+        }
+        
+        private float GetBulletDamageForLevel(int level)
+        {
+            // Define how the bullet damage increases per level
+            float baseDamage = 2.0f; // Base damage at level 1
+            float damageIncrement = 2f; // Damage increase per additional level
+            return baseDamage + (level - 1) * damageIncrement;
         }
 
         void AimBullet(GameObject bullet, float angleOffset)

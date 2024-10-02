@@ -506,7 +506,6 @@ GameObject:
   - component: {fileID: 48525845}
   - component: {fileID: 48525844}
   - component: {fileID: 48525843}
-  - component: {fileID: 48525873}
   - component: {fileID: 48525874}
   - component: {fileID: 48525875}
   - component: {fileID: 48525876}
@@ -1209,6 +1208,8 @@ MonoBehaviour:
   angledShotsLevel: 0
   phaserShotsLevel: 0
   minInterval: 0.01
+  droneLevel: 0
+  bulletDamage: 1
   prefab: {fileID: 7468486278026618430, guid: 5677dcf62ecec4a49a7d57ea364122f4, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1435,6 +1436,8 @@ MonoBehaviour:
   angledShotsLevel: 0
   phaserShotsLevel: 0
   minInterval: 0.01
+  droneLevel: 0
+  bulletDamage: 1
   prefab: {fileID: 5322387968320073750, guid: 2d1a1a5f2def3b4469db3484b31fc8ba, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1590,44 +1593,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &48525873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48525842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66e58905d06b4e0498f4bcf1b539a485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bootTime: 0
-  automatically: 1
-  timer:
-    timer: 0
-    interval: 0.15
-    intervalRange: 0
-    counter: -1
-  id: 
-  allowResidue: 1
-  onlyFireBelowMaxVelocity: 0
-  maxVelocity: 1
-  prefab: {fileID: 1069129441568076, guid: d55cb3335f107db4f86cab2647a02a40, type: 3}
-  playerIndex: -1
-  size: 1
-  orderInLayer: 100
-  range: 0
-  damage: 1000
-  ttl: 0.25
-  index: 0
-  audioProperties:
-    audioClip: {fileID: 0}
-    volumeScale: 1
-    panStereo: 0
-    pitch: 1
-    enabled: 1
-  targetTag: sdfg
 --- !u!114 &48525874
 MonoBehaviour:
   m_ObjectHideFlags: 0

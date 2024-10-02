@@ -4112,6 +4112,7 @@ MonoBehaviour:
   greenLaserPrefab: {fileID: 1069129441568076, guid: 5ccc50276918afd4ab0f742f25ae7589, type: 3}
   purpleLaserPrefab: {fileID: 1069129441568076, guid: e86187ca3424e16459c4c7f2da625377, type: 3}
   wreckingBallPrefab: {fileID: 2914729422674145614, guid: 78259d2bd6251b5489aa0be0ff2b791e, type: 3}
+  dronePrefab: {fileID: 2636175273757595107, guid: 7f2f0b3e70a596b44ab1705851f4ae85, type: 3}
   mainGunImage: {fileID: 21300000, guid: 509616cf90bea0845a8cd97c09ec33c5, type: 3}
   angledShotsImage: {fileID: 21300000, guid: 1a69157fc2ca0174e95d8a4bda77b995, type: 3}
   cannonImage: {fileID: 21300000, guid: 1de3e12e4b9948f459d4c6bb226cd644, type: 3}
@@ -4130,6 +4131,7 @@ MonoBehaviour:
   slowEnemyBulletsImage: {fileID: 21300000, guid: 60a9d7537b4316548a4075199d9346e4, type: 3}
   weaponSpeedImage: {fileID: 21300000, guid: 0b6928c4647e9284f96b39d7e44dec62, type: 3}
   extraScoreImage: {fileID: 21300000, guid: ed09ae8f110a290449d513ea58598a90, type: 3}
+  droneSkillImage: {fileID: 21300000, guid: 9f42d80fe4f42bc4b97208e904bd979e, type: 3}
   skillIconsPanel: {fileID: 1970856152}
   skillIconPrefab: {fileID: 2765491301404840516, guid: 367b29afba937d64c9a65e2600b0760f, type: 3}
   skillIconsCanvas: {fileID: 822612140}

@@ -16,6 +16,22 @@ namespace Playniax.Pyro
         public float adjustmentForce = .05f;
         public bool distanceX = true;
         public bool distanceY;
+        
+        public int droneLevel = 1;
+        public BulletSpawner bulletSpawner; // Reference to the BulletSpawner component
+        
+        void Start()
+        {
+            bulletSpawner = GetComponent<BulletSpawner>();
+            if (bulletSpawner == null)
+            {
+                Debug.LogError("BulletSpawner component not found on the Drone.");
+            }
+            else
+            {
+                UpdateDroneShotPower();
+            }
+        }
 
         void OnEnable()
         {
@@ -81,5 +97,19 @@ namespace Playniax.Pyro
         }
 
         Vector3 _velocity;
+        
+        public void SetDroneLevel(int level)
+        {
+            droneLevel = level;
+            UpdateDroneShotPower();
+        }
+
+        void UpdateDroneShotPower()
+        {
+            if (bulletSpawner != null)
+            {
+                bulletSpawner.droneLevel = droneLevel;
+            }
+        }
     }
 }

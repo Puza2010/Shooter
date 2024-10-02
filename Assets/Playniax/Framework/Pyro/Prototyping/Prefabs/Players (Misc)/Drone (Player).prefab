@@ -102,11 +102,13 @@ MonoBehaviour:
     speed: 1
   fadeOutSettings:
     speed: 1
+    timer: 0
   pingPongSettings:
     speed: 10
     min: 0.25
     max: 1
     startRandom: 0
+  spriteRenderer: {fileID: 0}
 --- !u!1 &2636175273757595107
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,14 +120,12 @@ GameObject:
   - component: {fileID: 2636175273757595134}
   - component: {fileID: 2636175273757595133}
   - component: {fileID: 2636175273757595132}
-  - component: {fileID: 2636175273757595131}
   - component: {fileID: 2636175273757595130}
-  - component: {fileID: 2636175273757595129}
   - component: {fileID: 2636175273757595108}
   - component: {fileID: -6727413527664234530}
   m_Layer: 0
   m_Name: Drone (Player)
-  m_TagString: Untagged
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,51 +219,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &2636175273757595131
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636175273757595107}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.4}
-  m_EdgeRadius: 0
 --- !u!114 &2636175273757595130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3dbe5784db7f74c9de0fb45bd8ff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bootTime: 0
   automatically: 1
   timer:
     timer: 1.5
@@ -286,11 +242,17 @@ MonoBehaviour:
   allowResidue: 1
   onlyFireBelowMaxVelocity: 0
   maxVelocity: 1
+  mainGunLevel: 0
+  angledShotsLevel: 0
+  phaserShotsLevel: 0
+  minInterval: 0.01
+  bulletDamage: 1
   prefab: {fileID: 787315027656738199, guid: 19fd17be2f9fd664584feaf2cb200bcc, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
   layer: 10
-  prefabSmartOverrides: 1
+  friendlyFire: 1
+  inheritOrderInLayer: 1
   mode: 3
   position: {x: 0.5, y: 0, z: 0}
   scale: 1
@@ -300,6 +262,7 @@ MonoBehaviour:
     intensity: 1
     intensitySpread: 10
   targetEnemySettings:
+    index: 0
     toughestFirst: 0
     targetRange: 0
     detectTiles: 1
@@ -338,104 +301,6 @@ MonoBehaviour:
   effectsSettings:
     prefab: {fileID: 0}
     scale: 1
---- !u!114 &2636175273757595129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2636175273757595107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be82b93f4842c94c82743b17a137e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders: []
-  suspended: 0
-  id: 
-  group: Player
-  delay: 1
-  _material: Metal
-  _structuralIntegrity: 100
-  autoPoints: 1
-  _points: 0
-  playerIndex: -1
-  playerLivesCount: 0
-  _indestructible: 0
-  _friend: {fileID: 0}
-  shield: {fileID: 0}
-  isParentShield: 0
-  dontDestroy: 0
-  destroyParent: 0
-  bodyCount: 0
-  outroSettings:
-    effectsSettings:
-    - prefab: {fileID: 8829224107769179892, guid: 0e87990d0bdd2974a85e0754f3206749,
-        type: 3}
-      scale: 1
-      orderInLayer: 0
-      sizeInPixels: 80
-    - prefab: {fileID: 6713654900140887690, guid: c9530f87b0e9b0f46bcb530fd254a306,
-        type: 3}
-      scale: 1
-      orderInLayer: 1
-      sizeInPixels: 80
-    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66,
-        type: 3}
-      scale: 1
-      orderInLayer: 2
-      sizeInPixels: 80
-    - prefab: {fileID: 6827755582703300874, guid: 0c62861c083c36646884fb8e2fecf156,
-        type: 3}
-      scale: 1
-      orderInLayer: 3
-      sizeInPixels: 80
-    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e,
-        type: 3}
-      scale: 1
-      orderInLayer: 4
-      sizeInPixels: 80
-    messengerSettings:
-      messengerId: Score
-      text: 
-      enabled: 1
-    audioSettings:
-      audioClip: {fileID: 8300000, guid: 0418cc2aa45dcbc4987cd9254a70cc43, type: 3}
-      volumeScale: 0.25
-      panStereo: 0
-      pitch: 1
-      enabled: 1
-    ignoreParent: 0
-    enabled: 1
-    emitterId: Explosion Blue
-    emitterScale: 1
-    allowLegacyEffects: 1
-  cargoSettings:
-    prefab: []
-    scale: 1
-    effectSettings:
-      motion: 0
-      motionSpeed: 1
-      magnetic: 0
-      magneticRange: 1
-      magneticSpeed: 3
-      killOffCamera: 1
-  eventSettings:
-    onAwake:
-      m_PersistentCalls:
-        m_Calls: []
-    onGhost:
-      m_PersistentCalls:
-        m_Calls: []
-    onOutro:
-      m_PersistentCalls:
-        m_Calls: []
-  spriteRenderer: {fileID: 0}
-  generateBoxCollider: 1
-  ghostMaterial: {fileID: 2100000, guid: bb7b330a3d22c9f4f9e1d0fab8c1c266, type: 2}
-  ghostSustain: 3
-  additionalSettings:
-    spriteRenderer: []
 --- !u!114 &2636175273757595108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +321,8 @@ MonoBehaviour:
   adjustmentForce: 0.05
   distanceX: 1
   distanceY: 0
+  droneLevel: 1
+  bulletSpawner: {fileID: 0}
 --- !u!114 &-6727413527664234530
 MonoBehaviour:
   m_ObjectHideFlags: 0
