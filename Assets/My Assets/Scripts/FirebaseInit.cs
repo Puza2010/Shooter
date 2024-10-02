@@ -46,18 +46,15 @@ public class FirebaseInitializer : MonoBehaviour
         {
             if (task.IsCanceled)
             {
-                Debug.LogError("SignInAnonymouslyAsync was canceled.");
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("SignInAnonymouslyAsync encountered an error: " + task.Exception);
                 return;
             }
 
             AuthResult authResult = task.Result;
             FirebaseUser newUser = authResult.User;
-            Debug.LogFormat("User signed in anonymously: {0} ({1})", newUser.DisplayName, newUser.UserId);
         });
     }
 

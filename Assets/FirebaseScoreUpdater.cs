@@ -67,18 +67,15 @@ public class FirebaseScoreUpdater : MonoBehaviour
         {
             if (task.IsCanceled)
             {
-                Debug.LogError("SignInAnonymouslyAsync was canceled.");
                 return;
             }
             if (task.IsFaulted)
             {
-                Debug.LogError($"SignInAnonymouslyAsync encountered an error: {task.Exception}");
                 return;
             }
 
             AuthResult authResult = task.Result;
             userId = authResult.User.UserId;
-            Debug.LogFormat("User signed in anonymously: {0} ({1})", authResult.User.DisplayName, userId);
             StartNewRun();
             StartCoroutine(UpdateScoreRoutine());
         });
@@ -162,7 +159,6 @@ public class FirebaseScoreUpdater : MonoBehaviour
 
                 if (scoresAtTime.Count == 0)
                 {
-                    Debug.Log("No scores found for this time interval.");
                     return;
                 }
 
@@ -172,7 +168,6 @@ public class FirebaseScoreUpdater : MonoBehaviour
                 // Find the rank of the current score
                 int currentRank = scoresAtTime.FindIndex(s => s <= currentScore) + 1;
 
-                Debug.Log($"Current score: {currentScore} is at position {currentRank} at {time}s among previous runs.");
 
                 // Determine the correct suffix for the rank
                 string rankSuffix = GetRankSuffix(currentRank);

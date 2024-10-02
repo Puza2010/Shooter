@@ -24,7 +24,6 @@ public class PlayerProgress : MonoBehaviour
     public void AddCoin()
     {
         currentCoins++;
-        Debug.Log($"Coin collected. Current Coins: {currentCoins}. Coins required for next level: {coinsRequiredForNextLevel}");
         CheckLevelUp();
         UpdateProgressBar();
     }
@@ -34,8 +33,6 @@ public class PlayerProgress : MonoBehaviour
         // Only level up when currentCoins is equal to or greater than the required amount
         if (currentCoins >= coinsRequiredForNextLevel)
         {
-            Debug.Log($"Level Up! Before: Level {currentLevel}, Coins: {currentCoins}");
-
             // Subtract the required coins for leveling up
             currentCoins -= coinsRequiredForNextLevel;
 
@@ -45,9 +42,7 @@ public class PlayerProgress : MonoBehaviour
             // Calculate the next level's coin requirement
             // coinsRequiredForNextLevel = 1 + currentLevel;
             coinsRequiredForNextLevel = 1;
-
-            Debug.Log($"After Level Up: New Level {currentLevel}, Coins required for next level: {coinsRequiredForNextLevel}");
-
+            
             LevelUp(); // Trigger the level-up process
         }
     }
