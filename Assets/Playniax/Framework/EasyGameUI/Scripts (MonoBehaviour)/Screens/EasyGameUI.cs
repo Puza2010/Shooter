@@ -750,6 +750,23 @@ namespace Playniax.Ignition
             _loading = false;
 
             yield return new WaitForEndOfFrame();
+            
+            // Activate or deactivate skillIconsCanvas based on the new scene
+            if (inGame != null && inGame.gameObject.activeInHierarchy)
+            {
+                if (skillIconsCanvas != null && !skillIconsCanvas.gameObject.activeInHierarchy)
+                {
+                    skillIconsCanvas.gameObject.SetActive(true);
+                    InitializeAcquiredSkills();
+                }
+            }
+            else
+            {
+                if (skillIconsCanvas != null && skillIconsCanvas.gameObject.activeInHierarchy)
+                {
+                    skillIconsCanvas.gameObject.SetActive(false);
+                }
+            }
 
             if (onLoaded != null) onLoaded();
         }
@@ -815,13 +832,26 @@ namespace Playniax.Ignition
                 TimingHelper.Paused = false;
 
                 FirebaseScoreUpdater.Instance.StartGame(); // Start the score updating counter
+                
+                // Activate the Skill Icons Canvas
+                if (skillIconsCanvas != null)
+                {
+                    skillIconsCanvas.gameObject.SetActive(true);
+                    InitializeAcquiredSkills();
+                }
             }
         }
 
         // Is called when player selects the replay button.
         public void ReplayButton()
         {
-            StartCoroutine(Load(_StartGame, inGame.gameObject, false, true, advertisementSettings.sceneName, preLevelSettings.sceneName, null, null));
+            StartCoroutine(Load(_StartGame, inGame.gameObject, false, true, advertisementSettings.sceneName, preLevelSettings.sceneName, null, () => {
+                if (skillIconsCanvas != null)
+                {
+                    skillIconsCanvas.gameObject.SetActive(true);
+                    InitializeAcquiredSkills();
+                }
+            }));
         }
 
         void Awake()
@@ -1068,28 +1098,6 @@ namespace Playniax.Ignition
             {
                 HandleSkillSelectionInput();
             }
-            
-            // Check if inGame is active
-            if (inGame != null)
-            {
-                if (inGame.gameObject.activeInHierarchy)
-                {
-                    // inGame is active, ensure skillIconsCanvas is active
-                    if (skillIconsCanvas != null && !skillIconsCanvas.gameObject.activeInHierarchy)
-                    {
-                        skillIconsCanvas.gameObject.SetActive(true);
-                        InitializeAcquiredSkills();
-                    }
-                }
-                else
-                {
-                    // inGame is not active, ensure skillIconsCanvas is inactive
-                    if (skillIconsCanvas != null && skillIconsCanvas.gameObject.activeInHierarchy)
-                    {
-                        skillIconsCanvas.gameObject.SetActive(false);
-                    }
-                }
-            }
         }
 
 
@@ -1108,6 +1116,12 @@ namespace Playniax.Ignition
             gameOver.gameObject.SetActive(true);
 
             effects.SetPauseFader(1);
+            
+            // Deactivate the Skill Icons Canvas
+            if (skillIconsCanvas != null && skillIconsCanvas.gameObject.activeInHierarchy)
+            {
+                skillIconsCanvas.gameObject.SetActive(false);
+            }
 
             TimingHelper.Paused = true;
         }
@@ -1185,6 +1199,12 @@ namespace Playniax.Ignition
 
             //TimingHelper.Paused = startPaused;
             TimingHelper.Paused = true;
+            
+            // Deactivate the Skill Icons Canvas
+            if (skillIconsCanvas != null && skillIconsCanvas.gameObject.activeInHierarchy)
+            {
+                skillIconsCanvas.gameObject.SetActive(false);
+            }
         }
 
         void _Screenshot()
