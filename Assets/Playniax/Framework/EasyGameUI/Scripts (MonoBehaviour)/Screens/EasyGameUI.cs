@@ -815,9 +815,6 @@ namespace Playniax.Ignition
                 TimingHelper.Paused = false;
 
                 FirebaseScoreUpdater.Instance.StartGame(); // Start the score updating counter
-
-                // Activate the Skill Icons Panel
-                skillIconsPanel.SetActive(true);
             }
         }
 
