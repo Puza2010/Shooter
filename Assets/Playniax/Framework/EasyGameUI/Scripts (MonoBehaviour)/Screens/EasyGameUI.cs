@@ -30,6 +30,8 @@ namespace Playniax.Ignition
         public GameObject wreckingBallPrefab;
         public GameObject dronePrefab; // Assign in Inspector
         
+        public Sprite emptySkillSlotImage; // Assign in Inspector
+        
         public Sprite mainGunImage; // Assign in Inspector
         public Sprite angledShotsImage; // Assign in Inspector
         public Sprite cannonImage; // Assign in Inspector
@@ -1809,7 +1811,6 @@ namespace Playniax.Ignition
         {
             int totalSlots = 10;
 
-            // Loop through the slots
             for (int i = 0; i < totalSlots; i++)
             {
                 Transform slotTransform = skillIconsPanel.transform.GetChild(i);
@@ -1843,6 +1844,13 @@ namespace Playniax.Ignition
                 }
                 else
                 {
+                    // No acquired skill for this slot; set to empty slot image
+                    if (iconImage != null)
+                    {
+                        iconImage.sprite = emptySkillSlotImage;
+                        iconImage.color = Color.white; // Ensure the icon is visible
+                    }
+
                     // Clear level text
                     if (levelText != null)
                     {
@@ -1851,6 +1859,7 @@ namespace Playniax.Ignition
                 }
             }
         }
+
 
         
         string GetBaseSkillName(string skillName)

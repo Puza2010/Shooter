@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &52386619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4113,6 +4113,7 @@ MonoBehaviour:
   purpleLaserPrefab: {fileID: 1069129441568076, guid: e86187ca3424e16459c4c7f2da625377, type: 3}
   wreckingBallPrefab: {fileID: 2914729422674145614, guid: 78259d2bd6251b5489aa0be0ff2b791e, type: 3}
   dronePrefab: {fileID: 2636175273757595107, guid: 7f2f0b3e70a596b44ab1705851f4ae85, type: 3}
+  emptySkillSlotImage: {fileID: 21300000, guid: ffdf1fa9168526a45847749127a1efdf, type: 3}
   mainGunImage: {fileID: 21300000, guid: 509616cf90bea0845a8cd97c09ec33c5, type: 3}
   angledShotsImage: {fileID: 21300000, guid: 1a69157fc2ca0174e95d8a4bda77b995, type: 3}
   cannonImage: {fileID: 21300000, guid: 1de3e12e4b9948f459d4c6bb226cd644, type: 3}
@@ -7342,7 +7343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1048640714331145656
 MonoBehaviour:
   m_ObjectHideFlags: 0
