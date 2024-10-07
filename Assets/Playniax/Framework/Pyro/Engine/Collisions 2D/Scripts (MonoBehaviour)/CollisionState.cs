@@ -463,7 +463,7 @@ namespace Playniax.Pyro
             // structuralIntegrity = Mathf.Min(structuralIntegrity, _maxStructuralIntegrity);
             
             // Log the damage and new structural integrity
-            Debug.Log($"{gameObject.name} took {damage} damage. Structural Integrity: {previousIntegrity} -> {structuralIntegrity}");
+            // Debug.Log($"{gameObject.name} took {damage} damage. Structural Integrity: {previousIntegrity} -> {structuralIntegrity}");
 
             if (structuralIntegrity <= 0)
             {
@@ -490,8 +490,6 @@ namespace Playniax.Pyro
         }
         public virtual void Kill()
         {
-            if (playerLivesCount == true && playerIndex > -1 && FindObjectsOfType<PlayerLivesHelper>().Length == 0) PlayerData.Get(playerIndex).lives -= 1;
-
             GameData.bodyCount += bodyCount ? 1 : 0;
 
             OnOutro();
@@ -507,10 +505,18 @@ namespace Playniax.Pyro
                 if (parent)
                 {
                     Destroy(parent.gameObject);
+                    if (gameObject.CompareTag("Player"))
+                    {
+                        EasyGameUI.instance.GameOver();
+                    }
                 }
                 else
                 {
                     Destroy(gameObject);
+                    if (gameObject.CompareTag("Player"))
+                    {
+                        EasyGameUI.instance.GameOver();
+                    }
                 }
             }
         }
