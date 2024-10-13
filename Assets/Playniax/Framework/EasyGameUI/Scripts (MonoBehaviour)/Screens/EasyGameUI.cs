@@ -1124,6 +1124,19 @@ namespace Playniax.Ignition
             }
 
             TimingHelper.Paused = true;
+            
+            // Get the player's score
+            int playerScore = PlayerData.Get(0).scoreboard;
+
+            // Call GameOverUI.ShowGameOver
+            GameOverUI gameOverUI = FindObjectOfType<GameOverUI>();
+            if (gameOverUI != null)
+            {
+                gameOverUI.ShowGameOver(playerScore);
+            }
+            
+            // Save player progress
+            PlayerProgression.Instance.SavePlayerProgress();
         }
 
         string _GetBackgroundScene()
@@ -1783,7 +1796,7 @@ namespace Playniax.Ignition
             {
                 return false; // Exclude "Extra Score" from normal skill selection
             }
-            
+
             string baseSkillName = GetBaseSkillName(skill.skillName);
 
             // Get the highest level of the acquired skill for this base skill
@@ -1797,6 +1810,12 @@ namespace Playniax.Ignition
             {
                 // The player already has this level or a higher level of the skill
                 return false;
+            }
+
+            // Check if the skill is unlocked in player progression
+            if (!PlayerProgression.Instance.unlockedSkills.Contains(baseSkillName))
+            {
+                return false; // Skill is not unlocked
             }
 
             if (skill.level == acquiredSkillLevel + 1)

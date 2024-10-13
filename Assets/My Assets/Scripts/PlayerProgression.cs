@@ -96,6 +96,12 @@ public class PlayerProgression : MonoBehaviour
         {
             unlockedSkills = new List<string> { "Main Gun" }; // Main Gun is unlocked by default
         }
+
+        // Ensure skills corresponding to current level are unlocked
+        for (int lvl = 1; lvl <= playerLevel; lvl++)
+        {
+            UnlockSkillsAtLevel(lvl);
+        }
     }
 
     // Save player progress to persistent storage
@@ -155,5 +161,10 @@ public class PlayerProgression : MonoBehaviour
                 }
             }
         }
+    }
+    
+    void OnApplicationQuit()
+    {
+        SavePlayerProgress();
     }
 }
