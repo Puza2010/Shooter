@@ -7534,13 +7534,14 @@ GameObject:
   - component: {fileID: 1048640712289763757}
   - component: {fileID: 1048640712289763756}
   - component: {fileID: 5215851359485165750}
+  - component: {fileID: 5215851359485165751}
   m_Layer: 5
   m_Name: Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1048640714331145656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7743,7 +7744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1847471527598274594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8308,6 +8309,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1271e93e534f9f04d9c2c759347dd44b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5215851359485165751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048640712289763758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04796cb1f85f361478950ef60092a392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuItems:
+  - {fileID: 1048641920}
+  - {fileID: 988067815}
+  - {fileID: 8929931914130450035}
+  - {fileID: 940484103}
+  selectedScale: {x: 1.25, y: 1.25, z: 1.25}
+  normalScale: {x: 1, y: 1, z: 1}
+  selectedColor: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &5267527459914593085
 MonoBehaviour:
   m_ObjectHideFlags: 0
