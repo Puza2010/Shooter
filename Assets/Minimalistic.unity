@@ -3748,7 +3748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14cfd7b242e4a24ca7c0d326e665989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionMarkIcon: {fileID: 21300000, guid: ffdf1fa9168526a45847749127a1efdf, type: 3}
+  questionMarkIcon: {fileID: 21300000, guid: 73cebc51688d73f48abda143738f5790, type: 3}
   mainGunIcon: {fileID: 21300000, guid: 509616cf90bea0845a8cd97c09ec33c5, type: 3}
   cannonsIcon: {fileID: 21300000, guid: 1de3e12e4b9948f459d4c6bb226cd644, type: 3}
   speedUpIcon: {fileID: 21300000, guid: 5668b30f5a7db6848867029dbf3549be, type: 3}
@@ -9050,7 +9050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1847471527598274594
 MonoBehaviour:
   m_ObjectHideFlags: 0
