@@ -47,6 +47,7 @@ public class UnlocksMenuUI : MonoBehaviour
         var playerProgression = PlayerProgression.Instance;
         var unlockedSkills = playerProgression.unlockedSkills;
         int playerLevel = playerProgression.playerLevel;
+        bool hasPlayedGame = playerProgression.HasPlayedGame(); // We'll create this method
 
         // Define the skills and their unlock levels in the order they appear in the grid
         List<SkillUnlockInfo> skillUnlockInfos = new List<SkillUnlockInfo>
@@ -93,10 +94,10 @@ public class UnlocksMenuUI : MonoBehaviour
                 }
                 else
                 {
-                    // Display level requirement or question mark
+                    // Display level requirement
                     skillIcon.sprite = GetQuestionMarkIcon();
                     skillIcon.color = Color.gray;
-                    if (skillInfo.skillName == "Main Gun" || (playerLevel >= skillInfo.unlockLevel && skillInfo.unlockLevel == 0))
+                    if (skillInfo.skillName == "Main Gun")
                     {
                         skillIcon.sprite = GetSkillIcon("Main Gun");
                         skillIcon.color = Color.white;

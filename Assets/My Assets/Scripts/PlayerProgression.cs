@@ -7,6 +7,12 @@ public class PlayerProgression : MonoBehaviour
 
     public int playerLevel = 1;
     public int totalXP = 0;
+    
+    // New flag to track if the player has played the game
+    private bool hasPlayedGame = false;
+    private bool justPlayedFirstGame = false;
+    
+    public List<string> initialSkills = new List<string>();
 
     // Experience required for each level
     public Dictionary<int, int> levelXPRequirements = new Dictionary<int, int>();
@@ -64,6 +70,7 @@ public class PlayerProgression : MonoBehaviour
     void InitializeSkillsUnlockedAtLevel()
     {
         skillsUnlockedAtLevel[1] = new List<string> { "Cannons", "Speed Up", "Weapon Speed", "Homing Missile" };
+        initialSkills = skillsUnlockedAtLevel[1];
         skillsUnlockedAtLevel[2] = new List<string> { "Homing Gun", "Red Laser" };
         skillsUnlockedAtLevel[3] = new List<string> { "Angled Shots" };
         skillsUnlockedAtLevel[4] = new List<string> { "Slow Enemies" };
@@ -97,10 +104,16 @@ public class PlayerProgression : MonoBehaviour
             unlockedSkills = new List<string> { "Main Gun" }; // Main Gun is unlocked by default
         }
 
-        // Ensure skills corresponding to current level are unlocked
-        for (int lvl = 1; lvl <= playerLevel; lvl++)
+        // Load hasPlayedGame flag
+        hasPlayedGame = PlayerPrefs.GetInt("HasPlayedGame", 0) == 1;
+
+        // If the player has played the game, unlock skills corresponding to their level
+        if (hasPlayedGame)
         {
-            UnlockSkillsAtLevel(lvl);
+            for (int lvl = 1; lvl <= playerLevel; lvl++)
+            {
+                UnlockSkillsAtLevel(lvl);
+            }
         }
     }
 
@@ -110,6 +123,7 @@ public class PlayerProgression : MonoBehaviour
         PlayerPrefs.SetInt("PlayerLevel", playerLevel);
         PlayerPrefs.SetInt("TotalXP", totalXP);
         PlayerPrefs.SetString("UnlockedSkills", string.Join(",", unlockedSkills));
+        PlayerPrefs.SetInt("HasPlayedGame", hasPlayedGame ? 1 : 0);
         PlayerPrefs.Save();
     }
 
@@ -117,7 +131,30 @@ public class PlayerProgression : MonoBehaviour
     public void AddExperience(int xpToAdd)
     {
         totalXP += xpToAdd;
+
+        if (!hasPlayedGame)
+        {
+            hasPlayedGame = true;
+            justPlayedFirstGame = true; // Indicates that the player just played their first game
+            UnlockSkillsAtLevel(1);      // Unlock level 1 skills
+        }
+        else
+        {
+            justPlayedFirstGame = false;
+        }
+
         CheckForLevelUp();
+        SavePlayerProgress();
+    }
+    
+    public bool HasJustPlayedFirstGame()
+    {
+        return justPlayedFirstGame;
+    }
+    
+    public void ResetJustPlayedFirstGameFlag()
+    {
+        justPlayedFirstGame = false;
     }
 
     // Check if the player has enough XP to level up
@@ -161,6 +198,17 @@ public class PlayerProgression : MonoBehaviour
                 }
             }
         }
+    }
+    
+    public bool HasPlayedGame()
+    {
+        return hasPlayedGame;
+    }
+    
+    public void SetHasPlayedGame(bool value)
+    {
+        hasPlayedGame = value;
+        SavePlayerProgress();
     }
     
     public void ResetProgress()

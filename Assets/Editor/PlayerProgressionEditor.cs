@@ -15,5 +15,11 @@ public class PlayerProgressionEditor : Editor
             progression.ResetProgress();
             Debug.Log("Player progression reset to level 1.");
         }
+
+        if (GUILayout.Button("Set HasPlayedGame to False"))
+        {
+            progression.SetHasPlayedGame(false);
+            Debug.Log("hasPlayedGame set to false.");
+        }
     }
 }

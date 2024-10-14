@@ -8,7 +8,8 @@ public class GameOverUI : MonoBehaviour
 {
     public Image levelProgressBar; // Assign in Inspector
     public TMP_Text levelText; // Assign in Inspector
-    public TMP_Text unlockedSkillsText; // Assign in Inspector (Optional)
+    public Transform unlockedSkillsContainer; // Assign in Inspector
+    public GameObject skillIconPrefab; // Assign in Inspector
 
     private PlayerProgression playerProgression;
     private int xpGainedThisGame = 0;
@@ -43,12 +44,55 @@ public class GameOverUI : MonoBehaviour
         // Determine which skills were newly unlocked
         newUnlockedSkills = GetNewlyUnlockedSkills(startingLevel, targetLevel);
 
-        // Clear unlocked skills text
-        unlockedSkillsText.text = "";
+        // Include Level 1 skills if the player just played their first game
+        if (playerProgression.HasJustPlayedFirstGame())
+        {
+            // Reset the flag
+            playerProgression.ResetJustPlayedFirstGameFlag();
+            
+            if (playerProgression.skillsUnlockedAtLevel.ContainsKey(1))
+            {
+                newUnlockedSkills.AddRange(playerProgression.skillsUnlockedAtLevel[1]);
+            }
+        }
 
-        // Start the animation coroutine
+        // Clear previous skill icons
+        foreach (Transform child in unlockedSkillsContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Display newly unlocked skills
+        foreach (string skillName in newUnlockedSkills)
+        {
+            GameObject iconGO = Instantiate(skillIconPrefab, unlockedSkillsContainer);
+            Image iconImage = iconGO.GetComponent<Image>();
+            iconImage.sprite = SkillIconManager.Instance.GetSkillIcon(skillName);
+        }
+
+        // Update level text and progress bar
+        // levelText.text = "Level " + playerProgression.playerLevel;
+        // levelProgressBar.fillAmount = CalculateLevelProgress();
+
+        // Optionally start animation coroutine if needed
         StartCoroutine(AnimateLevelProgress());
     }
+    
+    private float CalculateLevelProgress()
+    {
+        int currentXP = playerProgression.totalXP;
+        int xpForCurrentLevel = GetXPForLevel(playerProgression.playerLevel);
+        int xpForNextLevel = GetXPForLevel(playerProgression.playerLevel + 1);
+
+        if (xpForNextLevel - xpForCurrentLevel == 0)
+        {
+            return 1f; // Max level reached
+        }
+
+        float progress = (float)(currentXP - xpForCurrentLevel) / (xpForNextLevel - xpForCurrentLevel);
+        return progress;
+    }
+
 
     IEnumerator AnimateLevelProgress()
     {
@@ -58,6 +102,12 @@ public class GameOverUI : MonoBehaviour
         int xpNeededForCurrentLevel = GetXPForLevel(currentLevel);
 
         levelText.text = "Level " + currentLevel;
+        
+        // Clear previous skill icons only once at the start
+        foreach (Transform child in unlockedSkillsContainer)
+        {
+            Destroy(child.gameObject);
+        }
         
         while (currentXP < targetXP)
         {
@@ -93,21 +143,20 @@ public class GameOverUI : MonoBehaviour
             // Check for level up
             if (currentXP >= targetXPForNextLevel && currentLevel < targetLevel)
             {
-                // Display unlocked skills for this level
-                ShowUnlockedSkillsAtLevel(currentLevel + 1);
-
-                // Wait briefly before starting next level animation
-                yield return new WaitForSecondsRealtime(0.5f); // Use WaitForSecondsRealtime
-
-                // Level up
                 currentLevel++;
                 levelText.text = "Level " + currentLevel;
 
-                // Reset progress bar for next level
+                // Display unlocked skills for this level
+                ShowUnlockedSkillsAtLevel(currentLevel);
+
+                // Wait briefly before continuing the animation
+                yield return new WaitForSecondsRealtime(0.5f);
+
+                // Update XP thresholds for next level
                 xpNeededForCurrentLevel = targetXPForNextLevel;
                 targetXPForNextLevel = GetXPForLevel(currentLevel + 1);
 
-                // Reset fill amount
+                // Reset fill amount for next level
                 levelProgressBar.fillAmount = 0f;
             }
         }
@@ -141,16 +190,34 @@ public class GameOverUI : MonoBehaviour
         if (playerProgression.skillsUnlockedAtLevel.ContainsKey(level))
         {
             List<string> unlockedSkillsThisLevel = playerProgression.skillsUnlockedAtLevel[level];
-            string skillsText = "Unlocked:\n" + string.Join(", ", unlockedSkillsThisLevel);
-            unlockedSkillsText.text = skillsText;
+
+            // Do NOT clear previous skill icons
+            // Remove or comment out the code that destroys child objects
+
+            // Instantiate skill icons
+            foreach (string skillName in unlockedSkillsThisLevel)
+            {
+                GameObject iconGO = Instantiate(skillIconPrefab, unlockedSkillsContainer);
+                Image iconImage = iconGO.GetComponent<Image>();
+                iconImage.sprite = SkillIconManager.Instance.GetSkillIcon(skillName);
+            }
 
             // Optionally, add an animation or effect when new skills are unlocked
         }
     }
-
     List<string> GetNewlyUnlockedSkills(int startingLevel, int targetLevel)
     {
         List<string> newlyUnlocked = new List<string>();
+
+        // Include Level 1 skills if the player just played their first game
+        if (playerProgression.HasJustPlayedFirstGame())
+        {
+            if (playerProgression.skillsUnlockedAtLevel.ContainsKey(1))
+            {
+                newlyUnlocked.AddRange(playerProgression.skillsUnlockedAtLevel[1]);
+            }
+        }
+
         for (int lvl = startingLevel + 1; lvl <= targetLevel; lvl++)
         {
             if (playerProgression.skillsUnlockedAtLevel.ContainsKey(lvl))
@@ -158,6 +225,8 @@ public class GameOverUI : MonoBehaviour
                 newlyUnlocked.AddRange(playerProgression.skillsUnlockedAtLevel[lvl]);
             }
         }
+
         return newlyUnlocked;
     }
+
 }

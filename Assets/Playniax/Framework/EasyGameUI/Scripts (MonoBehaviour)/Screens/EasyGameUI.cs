@@ -1794,7 +1794,7 @@ namespace Playniax.Ignition
         {
             if (skill.skillName == "Extra Score")
             {
-                return false; // Exclude "Extra Score" from normal skill selection
+                return true; // Allow "Extra Score" to be available
             }
 
             string baseSkillName = GetBaseSkillName(skill.skillName);
@@ -1812,21 +1812,28 @@ namespace Playniax.Ignition
                 return false;
             }
 
-            // Check if the skill is unlocked in player progression
-            if (!PlayerProgression.Instance.unlockedSkills.Contains(baseSkillName))
-            {
-                return false; // Skill is not unlocked
-            }
+            bool isUnlockedSkill = PlayerProgression.Instance.unlockedSkills.Contains(baseSkillName);
+            bool isInitialSkill = PlayerProgression.Instance.initialSkills.Contains(baseSkillName);
 
-            if (skill.level == acquiredSkillLevel + 1)
+            // Allow initial skills during the first game (when hasPlayedGame is false)
+            if (!PlayerProgression.Instance.HasPlayedGame() && isInitialSkill && skill.level == 1)
             {
-                // The skill is available if it's the next level up
                 return true;
             }
 
-            // Otherwise, the skill is not available
-            return false;
+            // After the first game, only allow unlocked skills
+            if (isUnlockedSkill)
+            {
+                // The skill is available if it's the next level up
+                if (skill.level == acquiredSkillLevel + 1)
+                {
+                    return true;
+                }
+            }
+
+            return false; // Skill is not available
         }
+
         
         int GetSkillLevel(string skillName)
         {
