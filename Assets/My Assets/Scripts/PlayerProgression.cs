@@ -69,8 +69,10 @@ public class PlayerProgression : MonoBehaviour
     // Initialize which skills are unlocked at each level
     void InitializeSkillsUnlockedAtLevel()
     {
+        initialSkills = new List<string> { "Main Gun", "Cannons", "Speed Up", "Weapon Speed", "Homing Missile" };
+
+        // Level 1 unlocked skills (excluding Main Gun since it's always unlocked)
         skillsUnlockedAtLevel[1] = new List<string> { "Cannons", "Speed Up", "Weapon Speed", "Homing Missile" };
-        initialSkills = skillsUnlockedAtLevel[1];
         skillsUnlockedAtLevel[2] = new List<string> { "Homing Gun", "Red Laser" };
         skillsUnlockedAtLevel[3] = new List<string> { "Angled Shots" };
         skillsUnlockedAtLevel[4] = new List<string> { "Slow Enemies" };

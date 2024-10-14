@@ -18,6 +18,7 @@ public class GameOverUI : MonoBehaviour
     private int startingLevel;
     private int targetLevel;
     private List<string> newUnlockedSkills = new List<string>();
+    private HashSet<string> displayedSkills = new HashSet<string>();
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class GameOverUI : MonoBehaviour
     // Call this method when the game ends, passing the score from the game
     public void ShowGameOver(int score)
     {
+        displayedSkills.Clear();
         xpGainedThisGame = score; // Assuming score equals XP gained
 
         // Calculate starting and target XP
@@ -47,13 +49,12 @@ public class GameOverUI : MonoBehaviour
         // Include Level 1 skills if the player just played their first game
         if (playerProgression.HasJustPlayedFirstGame())
         {
-            // Reset the flag
-            playerProgression.ResetJustPlayedFirstGameFlag();
-            
             if (playerProgression.skillsUnlockedAtLevel.ContainsKey(1))
             {
                 newUnlockedSkills.AddRange(playerProgression.skillsUnlockedAtLevel[1]);
             }
+            // Reset the flag
+            playerProgression.ResetJustPlayedFirstGameFlag();
         }
 
         // Clear previous skill icons
@@ -65,32 +66,18 @@ public class GameOverUI : MonoBehaviour
         // Display newly unlocked skills
         foreach (string skillName in newUnlockedSkills)
         {
-            GameObject iconGO = Instantiate(skillIconPrefab, unlockedSkillsContainer);
-            Image iconImage = iconGO.GetComponent<Image>();
-            iconImage.sprite = SkillIconManager.Instance.GetSkillIcon(skillName);
+            if (!displayedSkills.Contains(skillName))
+            {
+                displayedSkills.Add(skillName);
+                Debug.Log($"Displaying unlocked skill: {skillName}");
+                GameObject iconGO = Instantiate(skillIconPrefab, unlockedSkillsContainer);
+                Image iconImage = iconGO.GetComponent<Image>();
+                iconImage.sprite = SkillIconManager.Instance.GetSkillIcon(skillName);
+            }
         }
 
-        // Update level text and progress bar
-        // levelText.text = "Level " + playerProgression.playerLevel;
-        // levelProgressBar.fillAmount = CalculateLevelProgress();
-
-        // Optionally start animation coroutine if needed
+        // Start the animation coroutine
         StartCoroutine(AnimateLevelProgress());
-    }
-    
-    private float CalculateLevelProgress()
-    {
-        int currentXP = playerProgression.totalXP;
-        int xpForCurrentLevel = GetXPForLevel(playerProgression.playerLevel);
-        int xpForNextLevel = GetXPForLevel(playerProgression.playerLevel + 1);
-
-        if (xpForNextLevel - xpForCurrentLevel == 0)
-        {
-            return 1f; // Max level reached
-        }
-
-        float progress = (float)(currentXP - xpForCurrentLevel) / (xpForNextLevel - xpForCurrentLevel);
-        return progress;
     }
 
 
@@ -102,12 +89,6 @@ public class GameOverUI : MonoBehaviour
         int xpNeededForCurrentLevel = GetXPForLevel(currentLevel);
 
         levelText.text = "Level " + currentLevel;
-        
-        // Clear previous skill icons only once at the start
-        foreach (Transform child in unlockedSkillsContainer)
-        {
-            Destroy(child.gameObject);
-        }
         
         while (currentXP < targetXP)
         {
@@ -191,20 +172,20 @@ public class GameOverUI : MonoBehaviour
         {
             List<string> unlockedSkillsThisLevel = playerProgression.skillsUnlockedAtLevel[level];
 
-            // Do NOT clear previous skill icons
-            // Remove or comment out the code that destroys child objects
-
             // Instantiate skill icons
             foreach (string skillName in unlockedSkillsThisLevel)
             {
-                GameObject iconGO = Instantiate(skillIconPrefab, unlockedSkillsContainer);
-                Image iconImage = iconGO.GetComponent<Image>();
-                iconImage.sprite = SkillIconManager.Instance.GetSkillIcon(skillName);
+                if (!displayedSkills.Contains(skillName))
+                {
+                    displayedSkills.Add(skillName);
+                    GameObject iconGO = Instantiate(skillIconPrefab, unlockedSkillsContainer);
+                    Image iconImage = iconGO.GetComponent<Image>();
+                    iconImage.sprite = SkillIconManager.Instance.GetSkillIcon(skillName);
+                }
             }
-
-            // Optionally, add an animation or effect when new skills are unlocked
         }
     }
+
     List<string> GetNewlyUnlockedSkills(int startingLevel, int targetLevel)
     {
         List<string> newlyUnlocked = new List<string>();

@@ -1438,15 +1438,13 @@ namespace Playniax.Ignition
         void OnSkillSelected(string skillName)
         {
             Skill selectedSkill = skills[skillName];
-            
+
             if (skillName == "Extra Score")
             {
                 // Do not add to acquiredSkills since it's a one-time bonus
             }
             else
             {
-
-                // Find the index of the existing skill in acquiredSkills
                 string baseSkillName = GetBaseSkillName(skillName);
                 int index = acquiredSkills.FindIndex(s => GetBaseSkillName(s) == baseSkillName);
 
@@ -1815,25 +1813,37 @@ namespace Playniax.Ignition
             bool isUnlockedSkill = PlayerProgression.Instance.unlockedSkills.Contains(baseSkillName);
             bool isInitialSkill = PlayerProgression.Instance.initialSkills.Contains(baseSkillName);
 
-            // Allow initial skills during the first game (when hasPlayedGame is false)
-            if (!PlayerProgression.Instance.HasPlayedGame() && isInitialSkill && skill.level == 1)
+            if (!PlayerProgression.Instance.HasPlayedGame())
             {
-                return true;
-            }
-
-            // After the first game, only allow unlocked skills
-            if (isUnlockedSkill)
-            {
-                // The skill is available if it's the next level up
-                if (skill.level == acquiredSkillLevel + 1)
+                if (isInitialSkill)
                 {
-                    return true;
+                    // During first game, allow initial skills up to their max level
+                    if (skill.level == acquiredSkillLevel + 1)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    // Other skills are not available during first game
+                    return false;
+                }
+            }
+            else
+            {
+                // After first game, allow unlocked skills
+                if (isUnlockedSkill)
+                {
+                    // The skill is available if it's the next level up
+                    if (skill.level == acquiredSkillLevel + 1)
+                    {
+                        return true;
+                    }
                 }
             }
 
             return false; // Skill is not available
         }
-
         
         int GetSkillLevel(string skillName)
         {

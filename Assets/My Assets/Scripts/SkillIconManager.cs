@@ -78,7 +78,7 @@ public class SkillIconManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"No skill icon found for {skillName}, returning question mark icon");
+            Debug.LogWarning($"No skill icon found for {skillName}, returning question mark icon");
             return questionMarkIcon;
         }
     }
