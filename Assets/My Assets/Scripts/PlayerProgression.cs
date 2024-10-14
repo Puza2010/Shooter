@@ -163,6 +163,14 @@ public class PlayerProgression : MonoBehaviour
         }
     }
     
+    public void ResetProgress()
+    {
+        playerLevel = 1;
+        totalXP = 0;
+        unlockedSkills = new List<string> { "Main Gun" }; // Reset to default unlocked skills
+        SavePlayerProgress();
+    }
+    
     void OnApplicationQuit()
     {
         SavePlayerProgress();
