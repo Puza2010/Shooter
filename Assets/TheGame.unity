@@ -1609,7 +1609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 1
   currentCoins: 0
-  coinsRequiredForNextLevel: 1
+  coinsRequiredForNextLevel: 5
   progressBarUI: {fileID: 1755793846}
 --- !u!114 &48525875
 MonoBehaviour:
@@ -10481,7 +10481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1962339431
 AudioSource:
   m_ObjectHideFlags: 0

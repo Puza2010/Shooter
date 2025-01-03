@@ -5053,7 +5053,7 @@ MonoBehaviour:
   weaponSpeedImage: {fileID: 21300000, guid: 0b6928c4647e9284f96b39d7e44dec62, type: 3}
   extraScoreImage: {fileID: 21300000, guid: ed09ae8f110a290449d513ea58598a90, type: 3}
   droneSkillImage: {fileID: 21300000, guid: 9f42d80fe4f42bc4b97208e904bd979e, type: 3}
-  bouncingShotsImage: {fileID: 0}
+  bouncingShotsImage: {fileID: 21300000, guid: 38d44e09c5ebb2f4f9bb4eaa7ae43629, type: 3}
   skillIconsPanel: {fileID: 1970856152}
   skillIconPrefab: {fileID: 2765491301404840516, guid: 367b29afba937d64c9a65e2600b0760f, type: 3}
   skillIconsCanvas: {fileID: 822612140}

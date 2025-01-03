@@ -6,13 +6,13 @@ public class PlayerProgress : MonoBehaviour
 {
     public int currentLevel = 1;
     public int currentCoins = 0;
-    public int coinsRequiredForNextLevel = 1; // Set this to the correct initial value for the first level
+    public int coinsRequiredForNextLevel = 5; // Set this to the correct initial value for the first level
     public GameProgressBarUI progressBarUI; // Reference to the Progress Bar UI component
 
     void Start()
     {
         // Initialize the correct coins required for the next level
-        coinsRequiredForNextLevel = 0 + currentLevel; // This will correctly set it to 5 for level 1
+        coinsRequiredForNextLevel = coinsRequiredForNextLevel + currentLevel; // This will correctly set it to 5 for level 1
 
         // Initialize the progress bar at the start
         if (progressBarUI != null)
@@ -40,8 +40,7 @@ public class PlayerProgress : MonoBehaviour
             currentLevel++;
 
             // Calculate the next level's coin requirement
-            // coinsRequiredForNextLevel = 1 + currentLevel;
-            coinsRequiredForNextLevel = 1;
+            coinsRequiredForNextLevel = 1 + currentLevel;
             
             LevelUp(); // Trigger the level-up process
         }

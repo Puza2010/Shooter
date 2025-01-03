@@ -18,7 +18,7 @@ namespace Playniax.Pyro
         public float bulletDamage = 1f;
         private Drone droneComponent;
         private Timer randomBouncingShotTimer;
-        
+
         void Awake()
         {
             baseInterval = timer.interval;
@@ -1203,13 +1203,10 @@ namespace Playniax.Pyro
             {
                 instance.SetActive(true);
 
-                // Adjust bullet properties
+                // Rest of your existing bullet setup code...
                 AdjustRandomBouncingBulletProperties(instance);
-
-                // Apply scaling
                 instance.transform.localScale *= scale;
-
-                // Set parent if needed
+                
                 if (parent)
                 {
                     instance.transform.parent = parent;
@@ -1219,13 +1216,9 @@ namespace Playniax.Pyro
                     instance.transform.parent = transform.parent;
                 }
 
-                // Adjust sorting order if needed
                 if (inheritOrderInLayer) _SortingOrder(instance);
-
-                // Apply effects if any
                 if (effectsSettings.prefab != null) _Effects(instance);
 
-                // Set friendly fire property
                 var scoreBase = instance.GetComponent<IScoreBase>();
                 if (scoreBase != null)
                 {
@@ -1233,7 +1226,6 @@ namespace Playniax.Pyro
                     scoreBase.structuralIntegrity *= BulletSpawnerSettings.GetStructuralIntegrityMultiplier();
                 }
 
-                // Play audio
                 audioProperties.Play();
             }
         }

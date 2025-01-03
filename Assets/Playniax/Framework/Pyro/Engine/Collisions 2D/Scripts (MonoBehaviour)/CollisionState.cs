@@ -6,6 +6,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Playniax.Ignition;
+using System.Collections.Generic;
 
 namespace Playniax.Pyro
 {
@@ -414,6 +415,8 @@ namespace Playniax.Pyro
             set { _structuralIntegrity = value; }
         }
 
+        private HashSet<GameObject> hitByBullets = new HashSet<GameObject>();
+
         public override void Awake()
         {
             base.Awake();
@@ -674,8 +677,13 @@ namespace Playniax.Pyro
         void _UpdateState(CollisionBase2D collision)
         {
             var collisionState = collision as CollisionState;
-
             if (collisionState == null) return;
+
+            // Avoid friendly fire
+            if (collisionState.friend != null && collisionState.friend == gameObject) return;
+            if (friend != null && friend == collisionState.gameObject) return;
+
+            if (indestructible == true && collisionState.indestructible == true) return;
 
             // Get the BulletBase components to check for bouncing bullets
             var thisBulletBase = GetComponent<BulletBase>();
@@ -684,21 +692,19 @@ namespace Playniax.Pyro
             bool thisIsBouncingBullet = thisBulletBase != null && thisBulletBase.isBouncingBullet;
             bool otherIsBouncingBullet = otherBulletBase != null && otherBulletBase.isBouncingBullet;
 
-            // Avoid friendly fire
-            if (collisionState.friend != null && collisionState.friend == gameObject) return;
-            if (friend != null && friend == collisionState.gameObject) return;
-
-            if (indestructible == true && collisionState.indestructible == true) return;
-
             if (thisIsBouncingBullet)
             {
                 // This object is a bouncing bullet
+                if (collisionState.hitByBullets.Contains(gameObject))
+                {
+                    return; // Skip if we've already hit this enemy
+                }
+
+                // Add this bullet to the enemy's hit list
+                collisionState.hitByBullets.Add(gameObject);
 
                 // Apply damage to the other object
                 collisionState.DoDamage(thisBulletBase.bulletDamage);
-
-                // Do not reduce structuralIntegrity of bouncing bullet
-                // Do not destroy bouncing bullet
 
                 // Play collision effects if needed
                 if (collisionState.structuralIntegrity > 0) collisionState.Ghost();
@@ -710,19 +716,22 @@ namespace Playniax.Pyro
                 if (playerIndex > -1 && collisionState.structuralIntegrity == 0)
                 {
                     PlayerData.Get(playerIndex).scoreboard += collisionState.points;
-
                     OutroSettings.MessengerSettings.Message(collisionState);
                 }
             }
             else if (otherIsBouncingBullet)
             {
                 // The other object is a bouncing bullet
+                if (hitByBullets.Contains(collisionState.gameObject))
+                {
+                    return; // Skip if we've already been hit by this bullet
+                }
+
+                // Add this bullet to our hit list
+                hitByBullets.Add(collisionState.gameObject);
 
                 // Apply damage to this object
                 DoDamage(otherBulletBase.bulletDamage);
-
-                // Do not reduce structuralIntegrity of bouncing bullet
-                // Do not destroy bouncing bullet
 
                 // Play collision effects if needed
                 if (structuralIntegrity > 0) Ghost();
@@ -734,14 +743,12 @@ namespace Playniax.Pyro
                 if (collisionState.playerIndex > -1 && structuralIntegrity == 0)
                 {
                     PlayerData.Get(collisionState.playerIndex).scoreboard += points;
-
                     OutroSettings.MessengerSettings.Message(this);
                 }
             }
             else
             {
-                // Both objects are not bouncing bullets, proceed with normal collision handling
-
+                // Normal collision handling for non-bouncing bullets
                 var damage1 = structuralIntegrity;
                 var damage2 = collisionState.structuralIntegrity;
 
@@ -757,19 +764,27 @@ namespace Playniax.Pyro
                 if (playerIndex > -1 && collisionState.structuralIntegrity == 0)
                 {
                     PlayerData.Get(playerIndex).scoreboard += collisionState.points;
-
                     OutroSettings.MessengerSettings.Message(collisionState);
                 }
 
                 if (collisionState.playerIndex > -1 && structuralIntegrity == 0)
                 {
                     PlayerData.Get(collisionState.playerIndex).scoreboard += points;
-
                     OutroSettings.MessengerSettings.Message(this);
                 }
             }
         }
-        
+
+        void OnTriggerExit2D(Collider2D other)
+        {
+            var collisionState = other.GetComponent<CollisionState>();
+            if (collisionState != null)
+            {
+                collisionState.hitByBullets.Remove(gameObject);
+                hitByBullets.Remove(other.gameObject);
+            }
+        }
+
         public float maxStructuralIntegrity
         {
             get { return _maxStructuralIntegrity; }
