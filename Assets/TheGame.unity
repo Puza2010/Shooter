@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 48525874}
   - component: {fileID: 48525875}
   - component: {fileID: 48525876}
+  - component: {fileID: 48525877}
   m_Layer: 0
   m_Name: Player (Defenstar Style Topview)
   m_TagString: Player
@@ -1211,6 +1212,7 @@ MonoBehaviour:
   droneLevel: 0
   minInterval: 0.01
   bulletDamage: 1
+  bouncingBulletPrefab: {fileID: 0}
   prefab: {fileID: 7468486278026618430, guid: 5677dcf62ecec4a49a7d57ea364122f4, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1440,6 +1442,7 @@ MonoBehaviour:
   droneLevel: 0
   minInterval: 0.01
   bulletDamage: 1
+  bouncingBulletPrefab: {fileID: 9110453774150568653, guid: 2eb95385ff0bdf045b7a63b79b8bcf46, type: 3}
   prefab: {fileID: 5322387968320073750, guid: 2d1a1a5f2def3b4469db3484b31fc8ba, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
@@ -1741,6 +1744,91 @@ PolygonCollider2D:
       - {x: 0.04, y: -0.21}
       - {x: 0.32999998, y: -0.11}
   m_UseDelaunayMesh: 0
+--- !u!114 &48525877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48525842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3dbe5784db7f74c9de0fb45bd8ff55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootTime: 0
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: Bouncing Shot
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  mainGunLevel: 0
+  angledShotsLevel: 0
+  phaserShotsLevel: 0
+  randomBouncingShotLevel: 0
+  droneLevel: 0
+  minInterval: 0.01
+  bulletDamage: 1
+  bouncingBulletPrefab: {fileID: 0}
+  prefab: {fileID: 9110453774150568653, guid: 2eb95385ff0bdf045b7a63b79b8bcf46, type: 3}
+  parent: {fileID: 0}
+  ignoreParent: 0
+  layer: 0
+  friendlyFire: 1
+  inheritOrderInLayer: 1
+  mode: 3
+  position: {x: 0, y: 0, z: 0}
+  scale: 1
+  speed: 8
+  speedRange: 0
+  randomSettings:
+    intensity: 1
+    intensitySpread: 10
+  targetEnemySettings:
+    index: 0
+    toughestFirst: 0
+    targetRange: 0
+    detectTiles: 1
+  targetPlayerSettings:
+    targetRange: 0
+    detectTiles: 1
+    intensity: 1
+    intensitySpread: 10
+  directionSettings:
+    rotation: {x: 0, y: 0, z: 0}
+    triggerSettings:
+      mode: 0
+      Button1: 330
+      Button2: 32
+      autofire: 0
+      rapidFire: 0
+    intensity: 1
+    intensitySpread: 10
+    detectTiles: 1
+  pointInSpaceSettings:
+    position: {x: 0, y: 0, z: 0}
+  overrideCollisionSettings:
+    useTheseSettings: 0
+    structuralIntegrity: 1
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  powerSettings:
+    useTheseSettings: 0
+    powerRange: 1000
+    visualize: 0
+    visualizeScale: 0.25
+  effectsSettings:
+    prefab: {fileID: 0}
+    scale: 1
 --- !u!1 &102112067
 GameObject:
   m_ObjectHideFlags: 0

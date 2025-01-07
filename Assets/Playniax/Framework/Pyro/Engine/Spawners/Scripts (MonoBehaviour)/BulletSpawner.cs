@@ -18,6 +18,9 @@ namespace Playniax.Pyro
         public float bulletDamage = 1f;
         private Drone droneComponent;
         private Timer randomBouncingShotTimer;
+        
+        [SerializeField]
+        private GameObject bouncingBulletPrefab;
 
         void Awake()
         {
@@ -72,8 +75,8 @@ namespace Playniax.Pyro
             SerializedProperty targetEnemySettings;
             SerializedProperty targetPlayerSettings;
             SerializedProperty effectsSettings;
-
             SerializedProperty overrideCollisionSettings;
+            SerializedProperty bouncingBulletPrefab;
 
             SerializedProperty audioProperties;
 
@@ -91,6 +94,7 @@ namespace Playniax.Pyro
                 audioProperties = serializedObject.FindProperty("audioProperties");
 
                 overrideCollisionSettings = serializedObject.FindProperty("overrideCollisionSettings");
+                bouncingBulletPrefab = serializedObject.FindProperty("bouncingBulletPrefab");
             }
             public override void OnInspectorGUI()
             {
@@ -114,6 +118,7 @@ namespace Playniax.Pyro
                 myScript.maxVelocity = EditorGUILayout.FloatField("Max Velocity", myScript.maxVelocity);
                 myScript.id = EditorGUILayout.TextField("Id", myScript.id);
                 myScript.prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", myScript.prefab, typeof(GameObject), true);
+                EditorGUILayout.PropertyField(bouncingBulletPrefab, new GUIContent("Bouncing Bullet Prefab"));
                 myScript.parent = (Transform)EditorGUILayout.ObjectField("Parent", myScript.parent, typeof(Transform), true);
                 myScript.ignoreParent = EditorGUILayout.Toggle("Ignore Parent", myScript.ignoreParent);
                 myScript.layer = EditorGUILayout.IntField("Layer", myScript.layer);
@@ -1198,12 +1203,10 @@ namespace Playniax.Pyro
 
         void SpawnRandomBouncingBullet()
         {
-            var instance = Instantiate(prefab, transform.position, Quaternion.identity);
+            var instance = Instantiate(bouncingBulletPrefab != null ? bouncingBulletPrefab : prefab, transform.position, Quaternion.identity);
             if (instance)
             {
                 instance.SetActive(true);
-
-                // Rest of your existing bullet setup code...
                 AdjustRandomBouncingBulletProperties(instance);
                 instance.transform.localScale *= scale;
                 
