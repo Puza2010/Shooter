@@ -707,6 +707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedUpLevel: 0
+  engineFireLevel: 0
+  engineFireZonePrefab: {fileID: 2100921839096941568, guid: e5e25f9375082b84a8f3d1f108316e65, type: 3}
   speed: 1
   mode: 2
   playerIndex: 0

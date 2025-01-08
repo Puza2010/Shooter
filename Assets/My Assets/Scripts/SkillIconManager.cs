@@ -26,7 +26,7 @@ public class SkillIconManager : MonoBehaviour
     public Sprite slowEnemyBulletsIcon; // Assign in Inspector
     public Sprite purpleLaserIcon; // Assign in Inspector
     public Sprite randomBouncingShotIcon; // Assign in Inspector
-    public Sprite extraScoreIcon; // Assign in Inspector
+    public Sprite engineFireIcon; // Assign in Inspector
 
     private Dictionary<string, Sprite> skillIcons = new Dictionary<string, Sprite>();
 
@@ -65,8 +65,8 @@ public class SkillIconManager : MonoBehaviour
         skillIcons["Drone"] = droneIcon;
         skillIcons["Slow Enemy Bullets"] = slowEnemyBulletsIcon;
         skillIcons["Purple Laser"] = purpleLaserIcon;
-        skillIcons["Random Bouncing Shot"] = randomBouncingShotIcon;
-        skillIcons["Extra Score"] = extraScoreIcon;
+        skillIcons["Bouncing Shot"] = randomBouncingShotIcon;
+        skillIcons["Engine Fire"] = engineFireIcon;
     }
 
     public Sprite GetSkillIcon(string skillName)

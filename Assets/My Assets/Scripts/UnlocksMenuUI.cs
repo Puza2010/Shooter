@@ -70,8 +70,8 @@ public class UnlocksMenuUI : MonoBehaviour
             new SkillUnlockInfo("Drone", 12),
             new SkillUnlockInfo("Slow Enemy Bullets", 14),
             new SkillUnlockInfo("Purple Laser", 16),
-            new SkillUnlockInfo("Random Bouncing Shot", 18),
-            new SkillUnlockInfo("Extra Score", 20),
+            new SkillUnlockInfo("Bouncing Shot", 18),
+            new SkillUnlockInfo("Engine Fire", 20),
         };
 
         for (int i = 0; i < skillSlots.Count; i++)

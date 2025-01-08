@@ -85,8 +85,8 @@ public class PlayerProgression : MonoBehaviour
         skillsUnlockedAtLevel[12] = new List<string> { "Drone" };
         skillsUnlockedAtLevel[14] = new List<string> { "Slow Enemy Bullets" };
         skillsUnlockedAtLevel[16] = new List<string> { "Purple Laser" };
-        skillsUnlockedAtLevel[18] = new List<string> { "Random Bouncing Shot" };
-        skillsUnlockedAtLevel[20] = new List<string> { "Extra Score" };
+        skillsUnlockedAtLevel[18] = new List<string> { "Bouncing Shot" };
+        skillsUnlockedAtLevel[20] = new List<string> { "Engine Fire" };
     }
 
     // Load player progress from persistent storage

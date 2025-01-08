@@ -52,6 +52,7 @@ namespace Playniax.Ignition
         public Sprite extraScoreImage; // Assign in Inspector
         public Sprite droneSkillImage; // Assign in Inspector
         public Sprite bouncingShotsImage; // Assign in Inspector
+        public Sprite engineFireImage; // Assign in Inspector (Image for Engine Fire skill)
         
         private int weaponSpeedLevel = 0; // Tracks the current level of the skill
         
@@ -1069,11 +1070,17 @@ namespace Playniax.Ignition
             // skills.Add("Drone Level 4", new Skill(null, 0f, 0, "", "Drone Level 4", droneSkillImage, 4, 5));
             // skills.Add("Drone Level 5", new Skill(null, 0f, 0, "", "Drone Level 5", droneSkillImage, 5, 5));
             
-            skills.Add("Random Bouncing Shot Level 1", new Skill(null, 0f, 0, "", "Random Bouncing Shot Level 1", bouncingShotsImage, 1, 5));
-            skills.Add("Random Bouncing Shot Level 2", new Skill(null, 0f, 0, "", "Random Bouncing Shot Level 2", bouncingShotsImage, 2, 5));
-            skills.Add("Random Bouncing Shot Level 3", new Skill(null, 0f, 0, "", "Random Bouncing Shot Level 3", bouncingShotsImage, 3, 5));
-            skills.Add("Random Bouncing Shot Level 4", new Skill(null, 0f, 0, "", "Random Bouncing Shot Level 4", bouncingShotsImage, 4, 5));
-            skills.Add("Random Bouncing Shot Level 5", new Skill(null, 0f, 0, "", "Random Bouncing Shot Level 5", bouncingShotsImage, 5, 5));
+            skills.Add("Bouncing Shot Level 1", new Skill(null, 0f, 0, "", "Bouncing Shot Level 1", bouncingShotsImage, 1, 5));
+            skills.Add("Bouncing Shot Level 2", new Skill(null, 0f, 0, "", "Bouncing Shot Level 2", bouncingShotsImage, 2, 5));
+            skills.Add("Bouncing Shot Level 3", new Skill(null, 0f, 0, "", "Bouncing Shot Level 3", bouncingShotsImage, 3, 5));
+            skills.Add("Bouncing Shot Level 4", new Skill(null, 0f, 0, "", "Bouncing Shot Level 4", bouncingShotsImage, 4, 5));
+            skills.Add("Bouncing Shot Level 5", new Skill(null, 0f, 0, "", "Bouncing Shot Level 5", bouncingShotsImage, 5, 5));
+
+            skills.Add("Engine Fire Level 1", new Skill(null, 0f, 0, "", "Engine Fire Level 1", engineFireImage, 1, 5));
+            skills.Add("Engine Fire Level 2", new Skill(null, 0f, 0, "", "Engine Fire Level 2", engineFireImage, 2, 5));
+            skills.Add("Engine Fire Level 3", new Skill(null, 0f, 0, "", "Engine Fire Level 3", engineFireImage, 3, 5));
+            skills.Add("Engine Fire Level 4", new Skill(null, 0f, 0, "", "Engine Fire Level 4", engineFireImage, 4, 5));
+            skills.Add("Engine Fire Level 5", new Skill(null, 0f, 0, "", "Engine Fire Level 5", engineFireImage, 5, 5));
             
             // Add the starting skill(s)
             acquiredSkills.Add("Main Gun Level 1"); // Replace with your actual starting skill
@@ -1688,13 +1695,21 @@ namespace Playniax.Ignition
                 {
                     ApplyDroneSkill(skill.level);
                 }
-                else if (skill.skillName.StartsWith("Random Bouncing Shot Level"))
+                else if (skill.skillName.StartsWith("Bouncing Shot Level"))
                 {
                     var bulletSpawner = player.GetComponent<BulletSpawner>();
                     if (bulletSpawner != null)
                     {
                         bulletSpawner.randomBouncingShotLevel = skill.level;
                         bulletSpawner.ApplyRandomBouncingShotLevel();
+                    }
+                }
+                else if (skill.skillName.StartsWith("Engine Fire Level"))
+                {
+                    var playerControls = player.GetComponent<PlayerControls>();
+                    if (playerControls != null)
+                    {
+                        playerControls.engineFireLevel = skill.level;
                     }
                 }
             }

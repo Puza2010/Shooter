@@ -11,7 +11,11 @@ namespace Playniax.Pyro
     public class PlayerControls : MonoBehaviour
     {
         public int speedUpLevel = 0; // Level of the Speed Up skill
-        
+        public int engineFireLevel = 0;
+        public GameObject engineFireZonePrefab;
+        private float engineFireSpawnTimer = 0f;
+        private float engineFireSpawnInterval = 0.1f; // Spawn fire zone every 0.5 seconds when moving
+
 #if UNITY_EDITOR
         [CanEditMultipleObjects]
         [CustomEditor(typeof(PlayerControls))]
@@ -22,6 +26,8 @@ namespace Playniax.Pyro
             SerializedProperty wasdSettings;
             SerializedProperty mouseSettings;
             SerializedProperty rocketSettings;
+            SerializedProperty engineFireZonePrefab;
+
             void OnEnable()
             {
                 swipeSettings = serializedObject.FindProperty("swipeSettings");
@@ -29,6 +35,7 @@ namespace Playniax.Pyro
                 wasdSettings = serializedObject.FindProperty("wasdSettings");
                 mouseSettings = serializedObject.FindProperty("mouseSettings");
                 rocketSettings = serializedObject.FindProperty("rocketSettings");
+                engineFireZonePrefab = serializedObject.FindProperty("engineFireZonePrefab");
             }
             override public void OnInspectorGUI()
             {
@@ -44,6 +51,7 @@ namespace Playniax.Pyro
 
                 myScript.speed = EditorGUILayout.FloatField(new GUIContent("Speed", "Movement speed of the player."), myScript.speed);
                 myScript.playerIndex = EditorGUILayout.IntField(new GUIContent("Player Index", "Index of the player."), myScript.playerIndex);
+                EditorGUILayout.PropertyField(engineFireZonePrefab, new GUIContent("Engine Fire Zone Prefab", "Prefab for the engine fire effect"));
                 myScript.mode = (Mode)EditorGUILayout.EnumPopup(new GUIContent("Mode", "Control mode of the player."), myScript.mode);
 
                 if (myScript.mode == Mode.Swipe)
@@ -447,6 +455,8 @@ namespace Playniax.Pyro
 
         void Update()
         {
+            if (suspended) return;
+
             if (mode == Mode.Mouse)
             {
                 mouseSettings.Update(this);
@@ -467,6 +477,8 @@ namespace Playniax.Pyro
             {
                 rocketSettings.Update(this);
             }
+
+            SpawnEngineFireZone();
         }
 
         void LateUpdate()
@@ -509,6 +521,42 @@ namespace Playniax.Pyro
         {
             speedUpLevel = level;
             wasdSettings.speed = 4 + speedUpLevel; // Base speed is 4
+        }
+
+        private void SpawnEngineFireZone()
+        {
+            if (engineFireLevel <= 0 || engineFireZonePrefab == null) return;
+
+            engineFireSpawnTimer += Time.deltaTime;
+            if (engineFireSpawnTimer >= engineFireSpawnInterval)
+            {
+                // Only spawn fire if the ship is moving
+                if (IsMoving())
+                {
+                    GameObject fireZone = Instantiate(engineFireZonePrefab, transform.position, Quaternion.identity);
+                    EngineFireZone fireZoneScript = fireZone.GetComponent<EngineFireZone>();
+                    if (fireZoneScript != null)
+                    {
+                        // Base damage is 1, each level adds 2
+                        fireZoneScript.damage = 1f + (engineFireLevel - 1) * 2f;
+                    }
+                }
+                engineFireSpawnTimer = 0f;
+            }
+        }
+
+        private bool IsMoving()
+        {
+            if (mode == Mode.WASD)
+            {
+                return Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+            }
+            else if (mode == Mode.Swipe)
+            {
+                return swipeSettings.velocity.magnitude > 0.1f;
+            }
+            // Add other movement mode checks as needed
+            return false;
         }
     }
 }
