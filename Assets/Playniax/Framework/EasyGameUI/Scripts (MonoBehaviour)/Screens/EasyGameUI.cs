@@ -1444,7 +1444,7 @@ namespace Playniax.Ignition
             HighlightSelectedSkill(); // Highlight the first skill
         }
         
-        void OnSkillSelected(string skillName)
+        public void OnSkillSelected(string skillName)
         {
             Skill selectedSkill = null;
             
