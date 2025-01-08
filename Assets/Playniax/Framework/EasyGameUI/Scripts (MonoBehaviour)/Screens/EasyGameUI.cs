@@ -1393,11 +1393,14 @@ namespace Playniax.Ignition
                 .OrderBy(x => UnityEngine.Random.value)
                 .Take(3)
                 .ToList();
-            
-            // If no skills are available, add the "Extra Score" skill
+
+            // Check if there are no available skills
             if (availableSkills.Count == 0)
             {
-                availableSkills.Add(skills["Extra Score"]);
+                // Create a list with just the Extra Score skill
+                availableSkills = new List<Skill> { 
+                    new Skill(null, 0f, 0, "", "Extra Score", extraScoreImage) 
+                };
             }
 
             // Clear any existing buttons
@@ -1407,6 +1410,7 @@ namespace Playniax.Ignition
             }
             skillButtons.Clear();
 
+            // Create buttons for each available skill
             for (int i = 0; i < availableSkills.Count; i++)
             {
                 Skill skill = availableSkills[i];
@@ -1444,11 +1448,30 @@ namespace Playniax.Ignition
         
         void OnSkillSelected(string skillName)
         {
-            Skill selectedSkill = skills[skillName];
+            Skill selectedSkill = null;
+            
+            // For Extra Score, we don't need to get it from the skills dictionary
+            if (skillName == "Extra Score")
+            {
+                selectedSkill = new Skill(null, 0f, 0, "", "Extra Score", extraScoreImage);
+            }
+            else
+            {
+                selectedSkill = skills[skillName];
+            }
 
             if (skillName == "Extra Score")
             {
                 // Do not add to acquiredSkills since it's a one-time bonus
+                // Close the skill selection panel
+                skillSelectionPanel.SetActive(false);
+                isSkillSelectionActive = false;
+                
+                // Apply the skill (add points)
+                ApplySkill(selectedSkill);
+                
+                // Resume the game
+                Time.timeScale = 1;
             }
             else
             {
@@ -1468,14 +1491,17 @@ namespace Playniax.Ignition
 
                 // Update the skill icons display
                 UpdateSkillIconsDisplay();
+
+                // Close the skill selection panel
+                skillSelectionPanel.SetActive(false);
+                isSkillSelectionActive = false;
+
+                // Apply the skill
+                ApplySkill(selectedSkill);
+                
+                // Resume the game
+                Time.timeScale = 1;
             }
-
-            // Close the skill selection panel
-            skillSelectionPanel.SetActive(false);
-            isSkillSelectionActive = false; // Skill selection is no longer active
-
-            // Apply the skill
-            ApplySkill(selectedSkill);
         }
         
         void ApplySkill(Skill skill)
@@ -1807,7 +1833,7 @@ namespace Playniax.Ignition
         {
             if (skill.skillName == "Extra Score")
             {
-                return true; // Allow "Extra Score" to be available
+                return false; // Never make Extra Score directly available through normal skill selection
             }
 
             string baseSkillName = GetBaseSkillName(skill.skillName);
