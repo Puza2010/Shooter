@@ -14,8 +14,8 @@ public class DamageNumber : MonoBehaviour
     void Awake()
     {
         textMesh = GetComponent<TextMeshPro>();
-        textMesh.color = new Color(1f, 0f, 0f, 1f);
-        textColor = textMesh.color;
+        textColor = Color.white; // Default color is white
+        textMesh.color = textColor;
     }
     
     void Update()
@@ -40,6 +40,29 @@ public class DamageNumber : MonoBehaviour
         int damageInt = Mathf.FloorToInt(damage);
         if (damageInt > 0)
         {
+            // Set color based on damage value
+            if (damageInt >= 50)
+            {
+                textColor = new Color(0.5f, 0f, 0f, 1f); // Dark red
+            }
+            else if (damageInt >= 30)
+            {
+                textColor = Color.red;
+            }
+            else if (damageInt >= 20)
+            {
+                textColor = new Color(1f, 0.27f, 0f, 1f); // Stronger orange
+            }
+            else if (damageInt >= 10)
+            {
+                textColor = Color.yellow;
+            }
+            else
+            {
+                textColor = Color.white;
+            }
+            
+            textMesh.color = textColor;
             textMesh.text = damageInt.ToString();
         }
     }

@@ -20,7 +20,7 @@ public class DamageNumberSpawner : MonoBehaviour
     
     public void SpawnDamageNumber(float damage, Vector3 position)
     {
-        if (damageNumberPrefab == null || damage <= 0) return;
+        if (damageNumberPrefab == null) return;
         
         GameObject numberObj = Instantiate(damageNumberPrefab, position, Quaternion.identity);
         DamageNumber damageNumber = numberObj.GetComponent<DamageNumber>();
