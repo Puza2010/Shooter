@@ -43,7 +43,7 @@ public class DamageNumber : MonoBehaviour
             // Set color based on damage value
             if (damageInt >= 50)
             {
-                textColor = new Color(0.5f, 0f, 0f, 1f); // Dark red
+                textColor = new Color(0.5f, 0f, 0.8f, 1f); // Strong violet
             }
             else if (damageInt >= 30)
             {

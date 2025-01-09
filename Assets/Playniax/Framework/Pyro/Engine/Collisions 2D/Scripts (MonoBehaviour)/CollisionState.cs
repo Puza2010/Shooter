@@ -250,11 +250,12 @@ namespace Playniax.Pyro
                 {
                     if (Messenger.instance == null || collisionState.outroSettings.messengerSettings.enabled == false) return;
 
-                    if (collisionState.outroSettings.messengerSettings.text == "" && collisionState.points > 0)
+                    // Skip displaying score points, but still show other messages
+                    /*if (collisionState.outroSettings.messengerSettings.text == "" && collisionState.points > 0)
                     {
                         Messenger.instance.Create(collisionState.outroSettings.messengerSettings.messengerId, collisionState.points.ToString() + "+", collisionState.transform.position);
                     }
-                    else if (collisionState.outroSettings.messengerSettings.text != "")
+                    else*/ if (collisionState.outroSettings.messengerSettings.text != "")
                     {
                         Messenger.instance.Create(collisionState.outroSettings.messengerSettings.messengerId, collisionState.outroSettings.messengerSettings.text, collisionState.transform.position);
                     }
