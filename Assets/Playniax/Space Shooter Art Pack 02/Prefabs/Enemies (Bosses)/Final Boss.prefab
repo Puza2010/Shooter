@@ -548,11 +548,13 @@ MonoBehaviour:
     speed: 1
   fadeOutSettings:
     speed: 2
+    timer: 0
   pingPongSettings:
     speed: 1
     min: 0.25
     max: 1
     startRandom: 0
+  spriteRenderer: {fileID: 0}
 --- !u!1 &4301970947976315323
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +654,7 @@ GameObject:
   - component: {fileID: 6433018982446359678}
   m_Layer: 0
   m_Name: Final Boss
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -921,8 +923,7 @@ MonoBehaviour:
       intervalRange: 5
       counter: -1
     bulletSettings:
-      prefab: {fileID: 5322387968320073750, guid: 2b721e43e517b96418a75428a5f3859c,
-        type: 3}
+      prefab: {fileID: 5322387968320073750, guid: 2b721e43e517b96418a75428a5f3859c, type: 3}
       position: {x: -0.75, y: -0.08, z: 0}
       speed: 16
       frames:
@@ -930,8 +931,7 @@ MonoBehaviour:
         right: 47
       count: 10
       interval: 0.15
-      effectPrefab: {fileID: 5188265847410995166, guid: 286c57e909d15684db4a4503bdc2af85,
-        type: 3}
+      effectPrefab: {fileID: 5188265847410995166, guid: 286c57e909d15684db4a4503bdc2af85, type: 3}
     animation: Gun (Top)
     state: 0
   bottomGunSettings:
@@ -941,8 +941,7 @@ MonoBehaviour:
       intervalRange: 5
       counter: -1
     bulletSettings:
-      prefab: {fileID: 5322387968320073750, guid: 2b721e43e517b96418a75428a5f3859c,
-        type: 3}
+      prefab: {fileID: 5322387968320073750, guid: 2b721e43e517b96418a75428a5f3859c, type: 3}
       position: {x: -0.75, y: 0.08, z: 0}
       speed: 16
       frames:
@@ -950,8 +949,7 @@ MonoBehaviour:
         right: 47
       count: 10
       interval: 0.15
-      effectPrefab: {fileID: 5188265847410995166, guid: 286c57e909d15684db4a4503bdc2af85,
-        type: 3}
+      effectPrefab: {fileID: 5188265847410995166, guid: 286c57e909d15684db4a4503bdc2af85, type: 3}
     animation: Gun (Bottom)
     state: 0
   topGeneratorSettings:
@@ -984,6 +982,8 @@ MonoBehaviour:
   id: 
   group: Enemy
   delay: 1
+  healthUpgradeLevel: 0
+  shieldPrefab: {fileID: 0}
   _material: Metal
   _structuralIntegrity: 500
   autoPoints: 1
@@ -999,28 +999,23 @@ MonoBehaviour:
   bodyCount: 0
   outroSettings:
     effectsSettings:
-    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402,
-        type: 3}
+    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402, type: 3}
       scale: 1
       orderInLayer: 0
       sizeInPixels: 80
-    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724,
-        type: 3}
+    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724, type: 3}
       scale: 1
       orderInLayer: 1
       sizeInPixels: 80
-    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66,
-        type: 3}
+    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66, type: 3}
       scale: 1
       orderInLayer: 2
       sizeInPixels: 80
-    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3,
-        type: 3}
+    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3, type: 3}
       scale: 1
       orderInLayer: 3
       sizeInPixels: 80
-    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e,
-        type: 3}
+    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e, type: 3}
       scale: 1
       orderInLayer: 4
       sizeInPixels: 80
@@ -1091,6 +1086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f87b36d53d939549ba9ef48a4a34f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4301970948104608658
 GameObject:
   m_ObjectHideFlags: 0

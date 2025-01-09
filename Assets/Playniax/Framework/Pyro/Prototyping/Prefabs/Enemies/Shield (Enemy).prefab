@@ -107,7 +107,7 @@ MonoBehaviour:
   healthUpgradeLevel: 0
   shieldPrefab: {fileID: 0}
   _material: Metal
-  _structuralIntegrity: 100
+  _structuralIntegrity: 1000
   autoPoints: 1
   _points: 0
   playerIndex: -1

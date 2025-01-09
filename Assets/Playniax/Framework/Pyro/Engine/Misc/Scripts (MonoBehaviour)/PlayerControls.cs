@@ -538,7 +538,7 @@ namespace Playniax.Pyro
                     if (fireZoneScript != null)
                     {
                         // Base damage is 1, each level adds 2
-                        fireZoneScript.damage = 1f + (engineFireLevel - 1) * 2f;
+                        fireZoneScript.damage = 10f + (engineFireLevel - 1) * 10f;
                     }
                 }
                 engineFireSpawnTimer = 0f;

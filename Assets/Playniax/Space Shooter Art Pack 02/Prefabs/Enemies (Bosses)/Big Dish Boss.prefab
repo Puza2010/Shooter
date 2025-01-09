@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3911287246297430160}
   m_Layer: 0
   m_Name: Big Dish Boss
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,8 +231,7 @@ MonoBehaviour:
       frameTime: 0.05
       spriteRenderer: {fileID: 3911287246297430190}
   fireballSettings:
-    prefab: {fileID: 5322387968320073750, guid: 935b497382f343c4f98cc3d6743ea4f4,
-      type: 3}
+    prefab: {fileID: 5322387968320073750, guid: 935b497382f343c4f98cc3d6743ea4f4, type: 3}
     timer:
       timer: 0
       interval: 0.01
@@ -244,8 +243,7 @@ MonoBehaviour:
     scale: 1
     step: 15
   powerballSettings:
-    prefab: {fileID: 5322387968320073750, guid: 9c1d21059a89ba741ad84993ab4edcf6,
-      type: 3}
+    prefab: {fileID: 5322387968320073750, guid: 9c1d21059a89ba741ad84993ab4edcf6, type: 3}
     timer:
       timer: 0
       interval: 0.15

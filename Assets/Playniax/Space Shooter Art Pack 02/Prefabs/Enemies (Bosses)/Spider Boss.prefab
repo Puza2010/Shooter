@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6516073409150898850}
   m_Layer: 0
   m_Name: Spider Boss
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3dbe5784db7f74c9de0fb45bd8ff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bootTime: 0
   automatically: 0
   timer:
     timer: 0
@@ -216,11 +217,20 @@ MonoBehaviour:
   allowResidue: 1
   onlyFireBelowMaxVelocity: 0
   maxVelocity: 1
+  mainGunLevel: 0
+  angledShotsLevel: 0
+  phaserShotsLevel: 0
+  randomBouncingShotLevel: 0
+  droneLevel: 0
+  minInterval: 0.01
+  bulletDamage: 1
+  bouncingBulletPrefab: {fileID: 0}
   prefab: {fileID: 5322387968320073750, guid: 39f623aafcac9d749a061be9f79b5ced, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
   layer: 10
-  prefabSmartOverrides: 1
+  friendlyFire: 1
+  inheritOrderInLayer: 1
   mode: 2
   position: {x: 0, y: 0, z: 0}
   scale: 1
@@ -230,6 +240,7 @@ MonoBehaviour:
     intensity: 1
     intensitySpread: 10
   targetEnemySettings:
+    index: 0
     toughestFirst: 0
     targetRange: 0
     detectTiles: 1
@@ -285,6 +296,8 @@ MonoBehaviour:
   id: 
   group: Enemy
   delay: 1
+  healthUpgradeLevel: 0
+  shieldPrefab: {fileID: 0}
   _material: Metal
   _structuralIntegrity: 100
   autoPoints: 1
@@ -293,35 +306,30 @@ MonoBehaviour:
   playerLivesCount: 0
   _indestructible: 0
   _friend: {fileID: 0}
+  parent: {fileID: 0}
   shield: {fileID: 0}
   isParentShield: 0
   dontDestroy: 0
-  destroyParent: 0
   bodyCount: 0
   outroSettings:
     effectsSettings:
-    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402,
-        type: 3}
+    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402, type: 3}
       scale: 1
       orderInLayer: 0
       sizeInPixels: 80
-    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724,
-        type: 3}
+    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724, type: 3}
       scale: 1
       orderInLayer: 1
       sizeInPixels: 80
-    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66,
-        type: 3}
+    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66, type: 3}
       scale: 1
       orderInLayer: 2
       sizeInPixels: 80
-    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3,
-        type: 3}
+    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3, type: 3}
       scale: 1
       orderInLayer: 3
       sizeInPixels: 80
-    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e,
-        type: 3}
+    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e, type: 3}
       scale: 1
       orderInLayer: 4
       sizeInPixels: 80
@@ -335,11 +343,8 @@ MonoBehaviour:
       panStereo: 0
       pitch: 1
       enabled: 1
-    ignoreParent: 0
+    ignoreParentForEffects: 0
     enabled: 1
-    emitterId: Explosion Red
-    emitterScale: 1
-    allowLegacyEffects: 1
   cargoSettings:
     prefab: []
     scale: 1
@@ -390,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f87b36d53d939549ba9ef48a4a34f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7290916699229287830
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,8 +498,10 @@ MonoBehaviour:
     speed: 1
   fadeOutSettings:
     speed: 1
+    timer: 0
   pingPongSettings:
     speed: 2
     min: 0.5
     max: 1
     startRandom: 1
+  spriteRenderer: {fileID: 0}

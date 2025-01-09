@@ -1052,8 +1052,8 @@ namespace Playniax.Pyro
             if (scoreBase != null)
             {
                 // Base structuralIntegrity
-                float baseStructuralIntegrity = 1f; // Set your base value
-                float integrityIncrement = 0.5f;    // Increase per level
+                float baseStructuralIntegrity = 10f; // Set your base value
+                float integrityIncrement = 5f;    // Increase per level
 
                 // Calculate new structuralIntegrity
                 float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * mainGunLevel;
@@ -1091,8 +1091,8 @@ namespace Playniax.Pyro
             if (scoreBase != null)
             {
                 // Base structuralIntegrity
-                float baseStructuralIntegrity = 0.5f; // Same as main gun base value
-                float integrityIncrement = 0.25f;    // Increase per level
+                float baseStructuralIntegrity = 5f; // Same as main gun base value
+                float integrityIncrement = 2f;    // Increase per level
 
                 // Calculate new structuralIntegrity
                 float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (angledShotsLevel - 1);
@@ -1114,8 +1114,8 @@ namespace Playniax.Pyro
             var scoreBase = bullet.GetComponent<IScoreBase>();
             if (scoreBase != null)
             {
-                float baseDamage = 0.25f;  // Base damage for level 1
-                float damageIncrement = 0.25f;  // Increment per level
+                float baseDamage = 3f;  // Base damage for level 1
+                float damageIncrement = 3f;  // Increment per level
 
                 // Calculate the phaser's bullet damage based on the level
                 float phaserBulletDamage = baseDamage + damageIncrement * (phaserShotsLevel - 1);
@@ -1166,8 +1166,8 @@ namespace Playniax.Pyro
         private float GetBulletDamageForLevel(int level)
         {
             // Define how the bullet damage increases per level
-            float baseDamage = 2.0f; // Base damage at level 1
-            float damageIncrement = 2f; // Damage increase per additional level
+            float baseDamage = 20f; // Base damage at level 1
+            float damageIncrement = 20f; // Damage increase per additional level
             return baseDamage + (level - 1) * damageIncrement;
         }
 
@@ -1283,8 +1283,8 @@ namespace Playniax.Pyro
         float GetRandomBouncingBulletDamage()
         {
             // Adjusted values for damage per level
-            float baseDamage = 0.5f; // Starting damage at level 1
-            float damageIncrement = 0.5f; // Increase damage per level
+            float baseDamage = 5f; // Starting damage at level 1
+            float damageIncrement = 5f; // Increase damage per level
             return baseDamage + (randomBouncingShotLevel - 1) * damageIncrement;
         }
 
