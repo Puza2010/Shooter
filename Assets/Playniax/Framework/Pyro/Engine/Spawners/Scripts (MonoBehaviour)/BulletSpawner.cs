@@ -1052,7 +1052,7 @@ namespace Playniax.Pyro
             if (scoreBase != null)
             {
                 // Base structuralIntegrity
-                float baseStructuralIntegrity = 10f; // Set your base value
+                float baseStructuralIntegrity = Random.Range(7f, 11f); // Random value between 7-10
                 float integrityIncrement = 5f;    // Increase per level
 
                 // Calculate new structuralIntegrity
@@ -1091,7 +1091,7 @@ namespace Playniax.Pyro
             if (scoreBase != null)
             {
                 // Base structuralIntegrity
-                float baseStructuralIntegrity = 5f; // Same as main gun base value
+                float baseStructuralIntegrity = Random.Range(4f, 7f); // Same as main gun base value
                 float integrityIncrement = 2f;    // Increase per level
 
                 // Calculate new structuralIntegrity
@@ -1114,7 +1114,7 @@ namespace Playniax.Pyro
             var scoreBase = bullet.GetComponent<IScoreBase>();
             if (scoreBase != null)
             {
-                float baseDamage = 3f;  // Base damage for level 1
+                float baseDamage = Random.Range(2f, 4f);  // Base damage for level 1
                 float damageIncrement = 3f;  // Increment per level
 
                 // Calculate the phaser's bullet damage based on the level
@@ -1166,7 +1166,7 @@ namespace Playniax.Pyro
         private float GetBulletDamageForLevel(int level)
         {
             // Define how the bullet damage increases per level
-            float baseDamage = 20f; // Base damage at level 1
+            float baseDamage = Random.Range(20f, 31f); // Base damage at level 1
             float damageIncrement = 20f; // Damage increase per additional level
             return baseDamage + (level - 1) * damageIncrement;
         }
@@ -1283,7 +1283,7 @@ namespace Playniax.Pyro
         float GetRandomBouncingBulletDamage()
         {
             // Adjusted values for damage per level
-            float baseDamage = 5f; // Starting damage at level 1
+            float baseDamage = Random.Range(4f, 6f); // Starting damage at level 1
             float damageIncrement = 5f; // Increase damage per level
             return baseDamage + (randomBouncingShotLevel - 1) * damageIncrement;
         }
