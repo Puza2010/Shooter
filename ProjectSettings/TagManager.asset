@@ -7,6 +7,11 @@ TagManager:
   - bulletBlue
   - genericBulletRed
   - Drone
+  - Undefined
+  - bulletPurple
+  - bulletGreen
+  - genericBulletGreen
+  - enemy
   layers:
   - Default
   - TransparentFX

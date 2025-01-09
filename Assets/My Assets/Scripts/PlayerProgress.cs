@@ -35,7 +35,7 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Purple Laser Level 3");
         // EasyGameUI.instance.OnSkillSelected("Purple Laser Level 4");
 
-        EasyGameUI.instance.OnSkillSelected("Angled Shots Level 1");
+        // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 1");
         // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 2");
         // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 3");
         // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 4");

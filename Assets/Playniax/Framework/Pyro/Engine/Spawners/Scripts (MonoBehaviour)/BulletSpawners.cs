@@ -401,7 +401,7 @@ namespace Playniax.Pyro
             if (scoreBase != null)
             {
                 float baseStructuralIntegrity = 1.0f / 3.0f; // Half the damage of main gun level 0
-                float integrityIncrement = (1.0f / 3.0f) / 2;      // Increase per level
+                float integrityIncrement = (1.0f / 3.0f);      // Increase per level
                 float newStructuralIntegrity = baseStructuralIntegrity + integrityIncrement * (threeWayShooterLevel - 1);
                 scoreBase.structuralIntegrity = newStructuralIntegrity;
             }

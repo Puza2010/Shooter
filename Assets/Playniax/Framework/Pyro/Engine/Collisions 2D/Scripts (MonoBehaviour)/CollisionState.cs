@@ -457,21 +457,23 @@ namespace Playniax.Pyro
         }
         public virtual void DoDamage(float damage)
         {
-            // Log the current structural integrity before taking damage
             float previousIntegrity = structuralIntegrity;
-            
             structuralIntegrity -= damage;
+            float actualDamageDealt = previousIntegrity - structuralIntegrity;
             
-            // Clamp structuralIntegrity to not exceed the maximum
-            // structuralIntegrity = Mathf.Min(structuralIntegrity, _maxStructuralIntegrity);
-            
-            // Log the damage and new structural integrity
-            // Debug.Log($"{gameObject.name} took {damage} damage. Structural Integrity: {previousIntegrity} -> {structuralIntegrity}");
+            // Only show damage numbers if this object has the Enemy tag
+            if (gameObject.CompareTag("enemy"))
+            {
+                // Spawn damage number
+                if (DamageNumberSpawner.instance != null)
+                {
+                    DamageNumberSpawner.instance.SpawnDamageNumber(actualDamageDealt, transform.position);
+                }
+            }
 
             if (structuralIntegrity <= 0)
             {
                 structuralIntegrity = 0;
-
                 Kill();
             }
         }
