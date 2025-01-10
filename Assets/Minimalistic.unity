@@ -1624,6 +1624,7 @@ MonoBehaviour:
   initialSkills: []
   unlockedSkills:
   - Main Gun
+  unlockedSuperSkills: []
 --- !u!4 &328617819
 Transform:
   m_ObjectHideFlags: 0
@@ -1657,7 +1658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &408327076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5072,6 +5073,7 @@ MonoBehaviour:
   skillSelectionPanel: {fileID: 2052050598}
   skillButtonPrefab: {fileID: 2740893493385370346, guid: 974a34e380d9548429a8791f403cd7a2, type: 3}
   skillButtonContainer: {fileID: 296862780}
+  superSkillButtonPrefab: {fileID: 6272019553860073679, guid: be2a8e4f6b156f5458c61ec3b71b8536, type: 3}
   redLaserPrefab: {fileID: 1069129441568076, guid: d55cb3335f107db4f86cab2647a02a40, type: 3}
   blueLaserPrefab: {fileID: 1069129441568076, guid: d417284bcc6cd8245845cd85803ab144, type: 3}
   greenLaserPrefab: {fileID: 1069129441568076, guid: 5ccc50276918afd4ab0f742f25ae7589, type: 3}
@@ -5100,6 +5102,7 @@ MonoBehaviour:
   droneSkillImage: {fileID: 21300000, guid: 9f42d80fe4f42bc4b97208e904bd979e, type: 3}
   bouncingShotsImage: {fileID: 21300000, guid: 38d44e09c5ebb2f4f9bb4eaa7ae43629, type: 3}
   engineFireImage: {fileID: 21300000, guid: 5833b5ca3d46f8b439be69a61a5491d5, type: 3}
+  gunsBlazingIcon: {fileID: 21300000, guid: bcd68a8e1d141cf46a25b5d5284cf5e6, type: 3}
   skillIconsPanel: {fileID: 1970856152}
   skillIconPrefab: {fileID: 2765491301404840516, guid: 367b29afba937d64c9a65e2600b0760f, type: 3}
   skillIconsCanvas: {fileID: 822612140}

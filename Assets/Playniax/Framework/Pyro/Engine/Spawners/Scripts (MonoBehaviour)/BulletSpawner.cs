@@ -389,11 +389,23 @@ namespace Playniax.Pyro
             {
                 if (directionSettings.triggerSettings.mode == DirectionSettings.TriggerSettings.Mode.AlwaysFire)
                 {
-                    if (timer.Update()) OnSpawn();
+            if (timer.Update())
+            {
+                        if (id == "Guns Blazing")
+                            FireGunsBlazingPattern();
+                        else
+                            OnSpawn();
+                    }
                 }
                 else if (directionSettings.triggerSettings.mode == DirectionSettings.TriggerSettings.Mode.SmartFire && BulletSpawnerHelper.count > 0)
                 {
-                    if (timer.Update()) OnSpawn();
+                    if (timer.Update())
+                    {
+                        if (id == "Guns Blazing")
+                    FireGunsBlazingPattern();
+                        else
+                            OnSpawn();
+                    }
                 }
                 else if (directionSettings.triggerSettings.mode == DirectionSettings.TriggerSettings.Mode.ControlledFire)
                 {
@@ -401,7 +413,13 @@ namespace Playniax.Pyro
                     {
                         if (Input.GetKey(directionSettings.triggerSettings.Button1) || Input.GetKey(directionSettings.triggerSettings.Button2))
                         {
-                            if (timer.Update()) OnSpawn();
+                            if (timer.Update())
+                            {
+                                if (id == "Guns Blazing")
+                                    FireGunsBlazingPattern();
+                                else
+                                    OnSpawn();
+                            }
                         }
                         else if (directionSettings.triggerSettings.rapidFire == true)
                         {
@@ -412,15 +430,78 @@ namespace Playniax.Pyro
                     {
                         if (Input.GetKeyDown(directionSettings.triggerSettings.Button1) || Input.GetKeyDown(directionSettings.triggerSettings.Button2))
                         {
-                            if (timer.Countdown()) OnSpawn();
+                            if (timer.Countdown())
+                            {
+                                if (id == "Guns Blazing")
+                                    FireGunsBlazingPattern();
+                                else
+                                    OnSpawn();
+                            }
                         }
                     }
                 }
             }
             else
             {
-                if (timer.Update()) OnSpawn();
+                if (timer.Update())
+                {
+                    if (id == "Guns Blazing")
+                        FireGunsBlazingPattern();
+                    else
+                    OnSpawn();
+                }
             }
+        }
+
+        private void FireGunsBlazingPattern()
+        {
+            float[] angles = { 45f, 135f, 180f, 225f, 270f, 315f, 360f };
+            float damage = 25f;
+            float speed = 10f;
+
+            foreach (float angle in angles)
+            {
+                FireBulletAtAngle(angle, damage, speed);
+            }
+        }
+
+        private void FireBulletAtAngle(float angle, float damage, float speed)
+        {
+            if (prefab == null) return;
+
+            var bullet = Instantiate(prefab, transform.position, Quaternion.Euler(0, 0, angle));
+
+            var bulletBase = bullet.GetComponent<BulletBase>();
+            if (bulletBase != null)
+            {
+                float radians = angle * Mathf.Deg2Rad;
+                Vector2 direction = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
+                
+                bulletBase.velocity = direction * speed;
+                bulletBase.bulletDamage = damage;
+            }
+
+            if (parent)
+            {
+                bullet.transform.parent = parent;
+            }
+            else
+            {
+                bullet.transform.parent = transform.parent;
+            }
+
+            if (inheritOrderInLayer) _SortingOrder(bullet);
+            if (effectsSettings.prefab != null) _Effects(bullet);
+
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                if (friendlyFire) scoreBase.friend = gameObject;
+                scoreBase.structuralIntegrity *= BulletSpawnerSettings.GetStructuralIntegrityMultiplier();
+            }
+
+            audioProperties.Play();
+            bullet.SetActive(true);
         }
 
         public override void OnInitialize()
@@ -431,6 +512,12 @@ namespace Playniax.Pyro
 
         public override void OnSpawn()
         {
+            if (id == "Guns Blazing")
+            {
+                FireGunsBlazingPattern();
+                return;
+            }
+
             // Determine if this spawner is attached to the player's ship
             bool isPlayerSpawner = gameObject.CompareTag("Player");
             

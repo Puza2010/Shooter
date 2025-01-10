@@ -1,5 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Playniax.Pyro;
+using System;
+using Playniax.Ignition;
+using System.Linq;
 
 public class PlayerProgression : MonoBehaviour
 {
@@ -22,6 +26,10 @@ public class PlayerProgression : MonoBehaviour
 
     // List of unlocked skills
     public List<string> unlockedSkills = new List<string>();
+
+    // Add these fields to the PlayerProgression class
+    public List<string> unlockedSuperSkills = new List<string>();
+    public Dictionary<string, SuperSkill> availableSuperSkills = new Dictionary<string, SuperSkill>();
 
     void Awake()
     {
@@ -87,6 +95,9 @@ public class PlayerProgression : MonoBehaviour
         skillsUnlockedAtLevel[16] = new List<string> { "Purple Laser" };
         skillsUnlockedAtLevel[18] = new List<string> { "Bouncing Shot" };
         skillsUnlockedAtLevel[20] = new List<string> { "Engine Fire" };
+
+        // Add this to InitializeSkillsUnlockedAtLevel()
+        InitializeSuperSkills();
     }
 
     // Load player progress from persistent storage
@@ -224,5 +235,155 @@ public class PlayerProgression : MonoBehaviour
     void OnApplicationQuit()
     {
         SavePlayerProgress();
+    }
+
+    // Add this to InitializeSkillsUnlockedAtLevel()
+    void InitializeSuperSkills()
+    {
+        // Initialize Guns Blazing super skill
+        List<SuperSkillRequirement> gunsBlazingReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Angled Shots", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "3 Way Shooter", requiredLevel = 4 }
+        };
+        
+        List<string> gunsBlazingDisables = new List<string>
+        {
+            "Angled Shots",
+            "3 Way Shooter"
+        };
+
+        SuperSkill gunsBlazingSkill = new SuperSkill(
+            "Guns Blazing",
+            "Unleash a devastating barrage of bullets in 7 directions!",
+            gunsBlazingReqs,
+            gunsBlazingDisables
+        );
+
+        availableSuperSkills.Add("Guns Blazing", gunsBlazingSkill);
+    }
+
+    // Add this method to check for newly unlocked super skills
+    public List<string> CheckNewlyUnlockedSuperSkills()
+    {
+        List<string> newlyUnlocked = new List<string>();
+
+        foreach (var superSkill in availableSuperSkills)
+        {
+            if (!unlockedSuperSkills.Contains(superSkill.Key))
+            {
+                Debug.Log($"Checking requirements for {superSkill.Key}");
+                bool allRequirementsMet = true;
+                
+                // First check if we have both required skills unlocked at all
+                foreach (var req in superSkill.Value.requirements)
+                {
+                    bool hasSkill = unlockedSkills.Any(s => s.StartsWith($"{req.skillName} Level "));
+                    if (!hasSkill)
+                    {
+                        Debug.Log($"Missing required skill: {req.skillName}");
+                        allRequirementsMet = false;
+                        break;
+                    }
+                }
+
+                // Only check levels if we have all required skills
+                if (allRequirementsMet)
+                {
+                    foreach (var req in superSkill.Value.requirements)
+                    {
+                        int currentLevel = GetSkillLevel(req.skillName);
+                        Debug.Log($"Checking {req.skillName}: Current Level = {currentLevel}, Required Level = {req.requiredLevel}");
+                        if (currentLevel < req.requiredLevel)
+                        {
+                            Debug.Log($"Skill {req.skillName} level too low: {currentLevel} < {req.requiredLevel}");
+                            allRequirementsMet = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (allRequirementsMet)
+                {
+                    Debug.Log($"Super Skill {superSkill.Key} unlocked!");
+                    newlyUnlocked.Add(superSkill.Key);
+                }
+                else
+                {
+                    Debug.Log($"Super Skill {superSkill.Key} requirements not met");
+                }
+            }
+        }
+
+        return newlyUnlocked;
+    }
+
+    // Add this method to handle super skill activation
+    public void ActivateSuperSkill(string superSkillName)
+    {
+        if (!availableSuperSkills.ContainsKey(superSkillName)) return;
+
+        SuperSkill skill = availableSuperSkills[superSkillName];
+        
+        // Disable the required skills first
+        foreach (var skillToDisable in skill.skillsToDisable)
+        {
+            if (EasyGameUI.instance != null)
+            {
+                EasyGameUI.instance.DisableSkill(skillToDisable);
+            }
+        }
+
+        // Find and activate the super skill
+        var player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            // Find ALL bullet spawners on the player
+            var bulletSpawners = player.GetComponentsInChildren<BulletSpawner>();
+            foreach (var spawner in bulletSpawners)
+            {
+                if (spawner.id == superSkillName)
+                {
+                    spawner.timer.counter = -1; // Enable infinite firing
+                    Debug.Log($"Activated {superSkillName} spawner");
+                }
+            }
+        }
+
+        unlockedSuperSkills.Add(superSkillName);
+        SavePlayerProgress();
+    }
+
+    public void DisableSkill(string skillName)
+    {
+        var player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            var bulletSpawner = player.GetComponentInChildren<BulletSpawner>();
+            if (bulletSpawner != null)
+            {
+                if (skillName == "Angled Shots" || skillName == "3 Way Shooter")
+                {
+                    bulletSpawner.timer.counter = 0;
+                }
+            }
+        }
+    }
+
+    // Add this method to PlayerProgression class
+    private int GetSkillLevel(string skillName)
+    {
+        Debug.Log($"Checking skill level for: {skillName}");
+        
+        // Get the current level from EasyGameUI's acquired skills
+        var currentSkill = EasyGameUI.instance.acquiredSkills
+            .Where(s => s.StartsWith(skillName))
+            .Select(s => EasyGameUI.instance.skills[s])
+            .OrderByDescending(s => s.level)
+            .FirstOrDefault();
+
+        int level = currentSkill?.level ?? 0;
+        Debug.Log($"Found level {level} for {skillName}");
+        return level;
     }
 }

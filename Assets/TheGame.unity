@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 48525875}
   - component: {fileID: 48525876}
   - component: {fileID: 48525877}
+  - component: {fileID: 48525878}
   m_Layer: 0
   m_Name: Player (Defenstar Style Topview)
   m_TagString: Player
@@ -610,7 +611,7 @@ MonoBehaviour:
   healthUpgradeLevel: 0
   shieldPrefab: {fileID: 5825313023868159098, guid: 8c39c0ec1f2d4f74d88db278dffa386a, type: 3}
   _material: Metal
-  _structuralIntegrity: 10
+  _structuralIntegrity: 1000
   autoPoints: 1
   _points: 0
   playerIndex: -1
@@ -1784,6 +1785,91 @@ MonoBehaviour:
   friendlyFire: 1
   inheritOrderInLayer: 1
   mode: 3
+  position: {x: 0, y: 0, z: 0}
+  scale: 1
+  speed: 8
+  speedRange: 0
+  randomSettings:
+    intensity: 1
+    intensitySpread: 10
+  targetEnemySettings:
+    index: 0
+    toughestFirst: 0
+    targetRange: 0
+    detectTiles: 1
+  targetPlayerSettings:
+    targetRange: 0
+    detectTiles: 1
+    intensity: 1
+    intensitySpread: 10
+  directionSettings:
+    rotation: {x: 0, y: 0, z: 0}
+    triggerSettings:
+      mode: 0
+      Button1: 330
+      Button2: 32
+      autofire: 0
+      rapidFire: 0
+    intensity: 1
+    intensitySpread: 10
+    detectTiles: 1
+  pointInSpaceSettings:
+    position: {x: 0, y: 0, z: 0}
+  overrideCollisionSettings:
+    useTheseSettings: 0
+    structuralIntegrity: 1
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  powerSettings:
+    useTheseSettings: 0
+    powerRange: 1000
+    visualize: 0
+    visualizeScale: 0.25
+  effectsSettings:
+    prefab: {fileID: 0}
+    scale: 1
+--- !u!114 &48525878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48525842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3dbe5784db7f74c9de0fb45bd8ff55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootTime: 0
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: Guns Blazing
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  mainGunLevel: 0
+  angledShotsLevel: 0
+  phaserShotsLevel: 0
+  randomBouncingShotLevel: 0
+  droneLevel: 0
+  minInterval: 0.01
+  bulletDamage: 1
+  bouncingBulletPrefab: {fileID: 0}
+  prefab: {fileID: 2810408086072053405, guid: 41ff4fa9a2cab6c4a8c0f2923dd70a58, type: 3}
+  parent: {fileID: 0}
+  ignoreParent: 0
+  layer: 0
+  friendlyFire: 1
+  inheritOrderInLayer: 1
+  mode: 0
   position: {x: 0, y: 0, z: 0}
   scale: 1
   speed: 8
