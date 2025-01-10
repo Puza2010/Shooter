@@ -201,7 +201,6 @@ namespace Playniax.Pyro
             
             if ((id == "Cannon" && cannonLevel > 0) || (id == "3 Way Shooter" && threeWayShooterLevel > 0))
             {
-                timer.counter = -1; // Infinite firing
 
                 if (triggerSettings.mode == TriggerSettings.Mode.AlwaysFire)
                 {

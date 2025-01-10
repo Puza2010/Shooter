@@ -1502,7 +1502,6 @@ namespace Playniax.Ignition
         
         public void OnSkillSelected(string skillName)
         {
-            UnityEngine.Debug.Log($"Selected skill: {skillName}");
             
             Skill selectedSkill = null;
             
@@ -1544,13 +1543,11 @@ namespace Playniax.Ignition
                 {
                     // Skill is already acquired; replace it with the new level
                     acquiredSkills[index] = skillName;
-                    UnityEngine.Debug.Log($"Updated skill to: {skillName}"); // Add this
                 }
                 else
                 {
                     // Add the new skill
                     acquiredSkills.Add(skillName);
-                    UnityEngine.Debug.Log($"Added new skill: {skillName}"); // Add this
                 }
 
                 // Update the skill icons display
@@ -2129,13 +2126,19 @@ namespace Playniax.Ignition
                 var player = GameObject.FindWithTag("Player");
                 if (player != null)
                 {
-                    var bulletSpawner = player.GetComponentInChildren<BulletSpawner>();
-                    if (bulletSpawner != null)
+                    var allSpawners = player.GetComponentsInChildren<BulletSpawner>();
+                    foreach (var spawner in allSpawners)
                     {
-                        bulletSpawner.id = "Guns Blazing";
-                        bulletSpawner.timer.counter = -1; // Enable infinite firing
-                        bulletSpawner.mode = BulletSpawner.Mode.Direction; // Set to Direction mode for fixed angle firing
-                        bulletSpawner.directionSettings.triggerSettings.mode = BulletSpawner.DirectionSettings.TriggerSettings.Mode.AlwaysFire;
+                        // First disable Angled Shots and 3 Way Shooter
+                        if (spawner.id == "Angled Shots" || spawner.id == "3 Way Shooter")
+                        {
+                            spawner.timer.counter = 0; // Disable these skills
+                        }
+                        // Then enable Guns Blazing
+                        else if (spawner.id == "Guns Blazing")
+                        {
+                            spawner.timer.counter = -1; // Enable infinite firing
+                        }
                     }
                 }
             }

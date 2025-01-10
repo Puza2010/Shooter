@@ -272,7 +272,6 @@ public class PlayerProgression : MonoBehaviour
         {
             if (!unlockedSuperSkills.Contains(superSkill.Key))
             {
-                Debug.Log($"Checking requirements for {superSkill.Key}");
                 bool allRequirementsMet = true;
                 
                 // First check if we have both required skills unlocked at all
@@ -281,7 +280,6 @@ public class PlayerProgression : MonoBehaviour
                     bool hasSkill = unlockedSkills.Any(s => s.StartsWith($"{req.skillName} Level "));
                     if (!hasSkill)
                     {
-                        Debug.Log($"Missing required skill: {req.skillName}");
                         allRequirementsMet = false;
                         break;
                     }
@@ -293,10 +291,8 @@ public class PlayerProgression : MonoBehaviour
                     foreach (var req in superSkill.Value.requirements)
                     {
                         int currentLevel = GetSkillLevel(req.skillName);
-                        Debug.Log($"Checking {req.skillName}: Current Level = {currentLevel}, Required Level = {req.requiredLevel}");
                         if (currentLevel < req.requiredLevel)
                         {
-                            Debug.Log($"Skill {req.skillName} level too low: {currentLevel} < {req.requiredLevel}");
                             allRequirementsMet = false;
                             break;
                         }
@@ -305,12 +301,7 @@ public class PlayerProgression : MonoBehaviour
 
                 if (allRequirementsMet)
                 {
-                    Debug.Log($"Super Skill {superSkill.Key} unlocked!");
                     newlyUnlocked.Add(superSkill.Key);
-                }
-                else
-                {
-                    Debug.Log($"Super Skill {superSkill.Key} requirements not met");
                 }
             }
         }
@@ -323,29 +314,30 @@ public class PlayerProgression : MonoBehaviour
     {
         if (!availableSuperSkills.ContainsKey(superSkillName)) return;
 
-        SuperSkill skill = availableSuperSkills[superSkillName];
-        
-        // Disable the required skills first
-        foreach (var skillToDisable in skill.skillsToDisable)
-        {
-            if (EasyGameUI.instance != null)
-            {
-                EasyGameUI.instance.DisableSkill(skillToDisable);
-            }
-        }
-
-        // Find and activate the super skill
         var player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-            // Find ALL bullet spawners on the player
-            var bulletSpawners = player.GetComponentsInChildren<BulletSpawner>();
-            foreach (var spawner in bulletSpawners)
+            // Enable Guns Blazing
+            var singleSpawners = player.GetComponentsInChildren<BulletSpawner>();
+            foreach (var spawner in singleSpawners)
             {
                 if (spawner.id == superSkillName)
                 {
-                    spawner.timer.counter = -1; // Enable infinite firing
-                    Debug.Log($"Activated {superSkillName} spawner");
+                    spawner.timer.counter = -1;
+                    Debug.Log($"Enabled {superSkillName}");
+                }
+            }
+
+            // Disable 3 Way Shooter
+            var multiSpawners = player.GetComponentsInChildren<BulletSpawners>();
+            foreach (var spawner in multiSpawners)
+            {
+                if (spawner.id == "3 Way Shooter")
+                {
+                    Debug.Log(spawner.timer.counter);
+                    spawner.timer.counter = 0;
+                    Debug.Log($"Disabled 3 Way Shooter");
+                    Debug.Log(spawner.timer.counter);
                 }
             }
         }
@@ -373,8 +365,6 @@ public class PlayerProgression : MonoBehaviour
     // Add this method to PlayerProgression class
     private int GetSkillLevel(string skillName)
     {
-        Debug.Log($"Checking skill level for: {skillName}");
-        
         // Get the current level from EasyGameUI's acquired skills
         var currentSkill = EasyGameUI.instance.acquiredSkills
             .Where(s => s.StartsWith(skillName))
@@ -383,7 +373,6 @@ public class PlayerProgression : MonoBehaviour
             .FirstOrDefault();
 
         int level = currentSkill?.level ?? 0;
-        Debug.Log($"Found level {level} for {skillName}");
         return level;
     }
 }
