@@ -317,7 +317,30 @@ public class PlayerProgression : MonoBehaviour
         var player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-            // Enable Guns Blazing
+            // Only disable Angled Shots and 3 Way Shooter for Guns Blazing
+            if (superSkillName == "Guns Blazing")
+            {
+                // Disable Angled Shots
+                var mainSpawner = player.GetComponent<BulletSpawner>();
+                if (mainSpawner != null)
+                {
+                    mainSpawner.angledShotsLevel = 0;
+                    Debug.Log("Disabled Angled Shots");
+                }
+
+                // Disable 3 Way Shooter
+                var multiSpawners = player.GetComponentsInChildren<BulletSpawners>();
+                foreach (var spawner in multiSpawners)
+                {
+                    if (spawner.id == "3 Way Shooter")
+                    {
+                        spawner.timer.counter = 0;
+                        Debug.Log($"Disabled 3 Way Shooter");
+                    }
+                }
+            }
+
+            // Enable the super skill
             var singleSpawners = player.GetComponentsInChildren<BulletSpawner>();
             foreach (var spawner in singleSpawners)
             {
@@ -325,19 +348,6 @@ public class PlayerProgression : MonoBehaviour
                 {
                     spawner.timer.counter = -1;
                     Debug.Log($"Enabled {superSkillName}");
-                }
-            }
-
-            // Disable 3 Way Shooter
-            var multiSpawners = player.GetComponentsInChildren<BulletSpawners>();
-            foreach (var spawner in multiSpawners)
-            {
-                if (spawner.id == "3 Way Shooter")
-                {
-                    Debug.Log(spawner.timer.counter);
-                    spawner.timer.counter = 0;
-                    Debug.Log($"Disabled 3 Way Shooter");
-                    Debug.Log(spawner.timer.counter);
                 }
             }
         }
