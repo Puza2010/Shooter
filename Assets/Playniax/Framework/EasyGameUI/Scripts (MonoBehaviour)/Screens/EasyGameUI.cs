@@ -2063,6 +2063,11 @@ namespace Playniax.Ignition
 
             // Add the starting skill(s)
             acquiredSkills.Add("Main Gun Level 1"); // Replace with your actual starting skill
+            acquiredSkills.Add("Main Gun Level 2");
+            acquiredSkills.Add("Angled Shots Level 1");
+            acquiredSkills.Add("Angled Shots Level 2");
+            acquiredSkills.Add("3 Way Shooter Level 1");
+            acquiredSkills.Add("3 Way Shooter Level 2");
 
             // Update the skill icons display
             UpdateSkillIconsDisplay();
