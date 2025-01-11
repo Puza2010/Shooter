@@ -1011,17 +1011,17 @@ namespace Playniax.Ignition
             skills.Add("3 Way Shooter Level 3", new Skill(null, 0f, 0, "", "3 Way Shooter Level 3", threeWayShooterImage, 3, 5));
             skills.Add("3 Way Shooter Level 4", new Skill(null, 0f, 0, "", "3 Way Shooter Level 4", threeWayShooterImage, 4, 5));
             
-            // skills.Add("Speed Up Level 1", new Skill(null, 0f, 0, "", "Speed Up Level 1", speedUpImage, 1, 5));
-            // skills.Add("Speed Up Level 2", new Skill(null, 0f, 0, "", "Speed Up Level 2", speedUpImage, 2, 5));
-            // skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3, 5));
-            // skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4, 5));
-            // skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5, 5));
+            skills.Add("Speed Up Level 1", new Skill(null, 0f, 0, "", "Speed Up Level 1", speedUpImage, 1, 5));
+            skills.Add("Speed Up Level 2", new Skill(null, 0f, 0, "", "Speed Up Level 2", speedUpImage, 2, 5));
+            skills.Add("Speed Up Level 3", new Skill(null, 0f, 0, "", "Speed Up Level 3", speedUpImage, 3, 5));
+            skills.Add("Speed Up Level 4", new Skill(null, 0f, 0, "", "Speed Up Level 4", speedUpImage, 4, 5));
+            skills.Add("Speed Up Level 5", new Skill(null, 0f, 0, "", "Speed Up Level 5", speedUpImage, 5, 5));
             
-            // skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1, 5));
-            // skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2, 5));
-            // skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3, 5));
-            // skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4, 5));
-            // skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5, 5));
+            skills.Add("Health Upgrade Level 1", new Skill(null, 0f, 0, "", "Health Upgrade Level 1", increaseHealthImage, 1, 5));
+            skills.Add("Health Upgrade Level 2", new Skill(null, 0f, 0, "", "Health Upgrade Level 2", increaseHealthImage, 2, 5));
+            skills.Add("Health Upgrade Level 3", new Skill(null, 0f, 0, "", "Health Upgrade Level 3", increaseHealthImage, 3, 5));
+            skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4, 5));
+            skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5, 5));
             
             // skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1, 5));
             // skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2, 5));
@@ -1384,68 +1384,88 @@ namespace Playniax.Ignition
         
         public void ShowSkillSelectionPanel()
         {
-            if (skillSelectionPanel == null) return;
+            if (skillSelectionPanel == null || skillButtonContainer == null) return;
 
-            // Clear any existing buttons
+            // Clear existing buttons
             foreach (var button in skillButtons)
             {
                 Destroy(button);
             }
             skillButtons.Clear();
 
+            List<string> availableSkills = new List<string>();
+
             // Check for super skills first
             var newSuperSkills = PlayerProgression.Instance.CheckNewlyUnlockedSuperSkills();
-            
-            if (newSuperSkills.Count > 0)
+            foreach (var superSkillName in newSuperSkills)
             {
-                // If we have super skills, only show those
-                foreach (var superSkillName in newSuperSkills)
+                AddSuperSkillOption(superSkillName);
+                availableSkills.Add(superSkillName);
+            }
+
+            // Get all available regular skills and randomize them
+            var availableRegularSkills = skills
+                .Where(s => IsSkillAvailable(s.Value))
+                .OrderBy(x => UnityEngine.Random.value)
+                .Take(3 - availableSkills.Count)
+                .ToList();
+
+            // If no regular skills are available and no super skills, show single Extra Score option
+            if (availableRegularSkills.Count == 0 && availableSkills.Count == 0)
+            {
+                // Create single Extra Score option
+                GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
+                Image skillImage = skillButton.transform.Find("SkillImage").GetComponent<Image>();
+                TMP_Text skillTitle = skillButton.transform.Find("SkillTextBackground/SkillTitle").GetComponent<TMP_Text>();
+
+                if (skillImage != null)
                 {
-                    AddSuperSkillOption(superSkillName);
+                    skillImage.sprite = extraScoreImage;
+                    skillImage.color = Color.white;
                 }
+
+                if (skillTitle != null)
+                {
+                    skillTitle.text = "Extra Score";
+                }
+
+                Button buttonComponent = skillButton.GetComponent<Button>();
+                if (buttonComponent != null)
+                {
+                    buttonComponent.onClick.AddListener(() => OnSkillSelected("Extra Score"));
+                }
+
+                skillButtons.Add(skillButton);
             }
             else
             {
-                // If no super skills, show normal skill options
-                List<Skill> availableSkills = skills.Values
-                    .Where(skill => IsSkillAvailable(skill))
-                    .OrderBy(x => UnityEngine.Random.value)
-                    .Take(3)
-                    .ToList();
-
-                if (availableSkills.Count == 0)
+                // Add the randomly selected regular skills
+                foreach (var skill in availableRegularSkills)
                 {
-                    availableSkills = new List<Skill> { 
-                        new Skill(null, 0f, 0, "", "Extra Score", extraScoreImage) 
-                    };
-                }
-
-                // Create buttons for each available skill
-                foreach (var skill in availableSkills)
-                {
+                    // Create regular skill button
                     GameObject skillButton = Instantiate(skillButtonPrefab, skillButtonContainer);
-                    
                     Image skillImage = skillButton.transform.Find("SkillImage").GetComponent<Image>();
                     TMP_Text skillTitle = skillButton.transform.Find("SkillTextBackground/SkillTitle").GetComponent<TMP_Text>();
 
                     if (skillImage != null)
                     {
-                        skillImage.sprite = skill.skillImage;
+                        skillImage.sprite = skill.Value.skillImage;
                         skillImage.color = Color.white;
                     }
 
                     if (skillTitle != null)
                     {
-                        skillTitle.text = skill.skillName;
+                        skillTitle.text = skill.Key;
                     }
 
                     Button buttonComponent = skillButton.GetComponent<Button>();
                     if (buttonComponent != null)
                     {
-                        buttonComponent.onClick.AddListener(() => OnSkillSelected(skill.skillName));
+                        buttonComponent.onClick.AddListener(() => OnSkillSelected(skill.Key));
                     }
 
                     skillButtons.Add(skillButton);
+                    availableSkills.Add(skill.Key);
                 }
             }
 
