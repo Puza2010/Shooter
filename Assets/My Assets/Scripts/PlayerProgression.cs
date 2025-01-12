@@ -261,6 +261,27 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Guns Blazing", gunsBlazingSkill);
+
+        // Initialize Quad Cannons super skill
+        List<SuperSkillRequirement> quadCannonsReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Cannons", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Drone", requiredLevel = 5 }
+        };
+        
+        List<string> quadCannonsDisables = new List<string>
+        {
+            "Cannons"
+        };
+
+        SuperSkill quadCannonsSkill = new SuperSkill(
+            "Quad Cannons",
+            "Double your side firepower with four devastating cannons!",
+            quadCannonsReqs,
+            quadCannonsDisables
+        );
+
+        availableSuperSkills.Add("Quad Cannons", quadCannonsSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -336,6 +357,24 @@ public class PlayerProgression : MonoBehaviour
                     {
                         spawner.timer.counter = 0;
                         Debug.Log($"Disabled 3 Way Shooter");
+                    }
+                }
+            }
+            else if (superSkillName == "Quad Cannons")
+            {
+                // Disable regular Cannons
+                var multiSpawners = player.GetComponentsInChildren<BulletSpawners>();
+                foreach (var spawner in multiSpawners)
+                {
+                    if (spawner.id == "Cannon")
+                    {
+                        spawner.timer.counter = 0;
+                        Debug.Log("Disabled regular Cannons");
+                    }
+                    else if (spawner.id == "Quad Cannons")
+                    {
+                        spawner.timer.counter = -1;
+                        Debug.Log("Enabled Quad Cannons");
                     }
                 }
             }

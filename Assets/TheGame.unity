@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 48525876}
   - component: {fileID: 48525877}
   - component: {fileID: 48525878}
+  - component: {fileID: 48525879}
   m_Layer: 0
   m_Name: Player (Defenstar Style Topview)
   m_TagString: Player
@@ -1917,6 +1918,86 @@ MonoBehaviour:
   effectsSettings:
     prefab: {fileID: 0}
     scale: 1
+--- !u!114 &48525879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48525842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5bece39f4ae6243a84f473f08e8f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootTime: 0
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: Quad Cannons
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  cannonLevel: 0
+  threeWayShooterLevel: 0
+  wreckingBallLevel: 0
+  minInterval: 0.01
+  group: 0
+  prefab: {fileID: 787315027656738199, guid: 19fd17be2f9fd664584feaf2cb200bcc, type: 3}
+  parent: {fileID: 0}
+  layer: 0
+  inheritOrderInLayer: 1
+  friendlyFire: 1
+  scale: 1
+  rotation: {x: 0, y: 0, z: 0}
+  spawnPoints:
+  - name: 
+    group: 0
+    position: {x: 0.5, y: 0.2, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    speed: 16
+  - name: 
+    group: 0
+    position: {x: 0.5, y: 0.4, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    speed: 16
+  - name: 
+    group: 0
+    position: {x: 0.5, y: -0.2, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    speed: 16
+  - name: 
+    group: 0
+    position: {x: 0.5, y: -0.4, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    speed: 16
+  triggerSettings:
+    mode: 0
+    Button1: 330
+    Button2: 32
+    autofire: 0
+    rapidFire: 0
+  audioProperties:
+    audioClip: {fileID: 0}
+    volumeScale: 1
+    panStereo: 0
+    pitch: 1
+    enabled: 1
+  overrideCollisionSettings:
+    useTheseSettings: 0
+    structuralIntegrity: 1
+  powerSettings:
+    useTheseSettings: 0
+    powerRange: 1000
+    visualize: 0
+    visualizeScale: 0.25
+  effectsSettings:
+    prefab: {fileID: 0}
+    scale: 1
+  drawGizmos: 0
 --- !u!1 &102112067
 GameObject:
   m_ObjectHideFlags: 0

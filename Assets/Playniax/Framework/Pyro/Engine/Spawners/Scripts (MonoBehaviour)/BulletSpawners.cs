@@ -199,18 +199,18 @@ namespace Playniax.Pyro
                 _UpdateWreckingBall(); // Add this custom method to handle the wrecking ball's orbiting movement
             }
             
-            if ((id == "Cannon" && cannonLevel > 0) || (id == "3 Way Shooter" && threeWayShooterLevel > 0))
+            if ((id == "Cannon" && cannonLevel > 0) || 
+                (id == "3 Way Shooter" && threeWayShooterLevel > 0) ||
+                (id == "Quad Cannons" && timer.counter == -1))
             {
-
                 if (triggerSettings.mode == TriggerSettings.Mode.AlwaysFire)
                 {
                     if (timer.Update()) OnSpawn();
                 }
-                // Handle other trigger modes as needed
             }
             else
             {
-                timer.counter = 0; // Stop firing
+                timer.counter = 0;
             }
 
             if (triggerSettings.mode == TriggerSettings.Mode.AlwaysFire)
@@ -250,8 +250,26 @@ namespace Playniax.Pyro
         }
         public override void OnSpawn()
         {
-            for (int i = 0; i < spawnPoints.Length; i++)
-                if (spawnPoints[i].group == group) OnSpawn(i);
+            if (id == "Quad Cannons")
+            {
+                for (int i = 0; i < spawnPoints.Length; i++)
+                {
+                    if (spawnPoints[i].group == group)
+                    {
+                        OnSpawn(i);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < spawnPoints.Length; i++)
+                {
+                    if (spawnPoints[i].group == group)
+                    {
+                        OnSpawn(i);
+                    }
+                }
+            }
 
             audioProperties.Play();
         }
@@ -264,7 +282,6 @@ namespace Playniax.Pyro
             {
                 if (instance.layer != layer) instance.layer = layer;
                 
-                // Adjust bullet properties based on spawner id
                 if (id == "Cannon")
                 {
                     AdjustCannonBulletProperties(instance);
@@ -272,6 +289,10 @@ namespace Playniax.Pyro
                 else if (id == "3 Way Shooter")
                 {
                     AdjustThreeWayShooterBulletProperties(instance);
+                }
+                else if (id == "Quad Cannons")
+                {
+                    AdjustQuadCannonsBulletProperties(instance);
                 }
 
                 instance.transform.Rotate(rotation);
@@ -350,24 +371,20 @@ namespace Playniax.Pyro
             }
         }
         
-        // NEW CODE
         void AdjustCannonBulletProperties(GameObject bullet)
         {
-            // Adjust size
             float baseSizeMultiplier = 0.5f; // Base size for level 1
             float sizeIncrement = 0.1f;      // Increase size per level
             float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (cannonLevel - 1);
             sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
             bullet.transform.localScale *= sizeMultiplier;
 
-            // Adjust lifespan to control range
             float baseLifespan = 0.1f;       // Base lifespan for level 1
             float lifespanIncrement = 0.1f;  // Increase lifespan per level
             float lifespan = baseLifespan + lifespanIncrement * (cannonLevel - 1);
             lifespan = Mathf.Max(lifespan, baseLifespan);
             Destroy(bullet, lifespan);
 
-            // Adjust damage via structuralIntegrity
             var scoreBase = bullet.GetComponent<IScoreBase>();
             if (scoreBase != null)
             {
@@ -378,24 +395,20 @@ namespace Playniax.Pyro
             }
         }
 
-// NEW CODE
         void AdjustThreeWayShooterBulletProperties(GameObject bullet)
         {
-            // Adjust size
             float baseSizeMultiplier = 0.5f; // Base size for level 1
             float sizeIncrement = 0.1f;      // Increase size per level
             float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (threeWayShooterLevel - 1);
             sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
             bullet.transform.localScale *= sizeMultiplier;
 
-            // Adjust lifespan to control range
             float baseLifespan = 0.1f;       // Base lifespan for level 1
             float lifespanIncrement = 0.1f;  // Increase lifespan per level
             float lifespan = baseLifespan + lifespanIncrement * (threeWayShooterLevel - 1);
             lifespan = Mathf.Max(lifespan, baseLifespan);
             Destroy(bullet, lifespan);
 
-            // Adjust damage via structuralIntegrity
             var scoreBase = bullet.GetComponent<IScoreBase>();
             if (scoreBase != null)
             {
@@ -416,8 +429,7 @@ namespace Playniax.Pyro
                 if (wreckingBallScoreBase == null) return;
             }
             
-            // Make sure the wrecking ball doesn't damage the player
-            wreckingBallScoreBase.friend = gameObject; // Assign the player as a friend to prevent friendly fire
+            wreckingBallScoreBase.friend = gameObject;
 
             var playerCollider = gameObject.GetComponent<Collider2D>();
             var wreckingBallCollider = wreckingBallInstance.GetComponent<Collider2D>();
@@ -427,12 +439,10 @@ namespace Playniax.Pyro
                 Physics2D.IgnoreCollision(playerCollider, wreckingBallCollider);
             }
 
-            // Increase damage and size based on level
-            float baseDamage = Random.Range(4f, 7f); // Base damage
-            float damageIncrement = 5f; // Increase per level
+            float baseDamage = Random.Range(4f, 7f);
+            float damageIncrement = 5f;
             wreckingBallScoreBase.structuralIntegrity = baseDamage + damageIncrement * (wreckingBallLevel - 1);
 
-            // Control the orbiting behavior (can adjust based on level as well)
             var x = Mathf.Cos(wreckingBallPosition) * wreckingBallDistance;
             var y = Mathf.Sin(wreckingBallPosition) * wreckingBallDistance;
             wreckingBallInstance.transform.localPosition = new Vector3(x, y);
@@ -447,5 +457,21 @@ namespace Playniax.Pyro
         float wreckingBallPosition;
 
         SpriteRenderer _spriteRenderer;
+
+        void AdjustQuadCannonsBulletProperties(GameObject bullet)
+        {
+            float sizeMultiplier = 0.8f;    // Fixed size for super skill
+            bullet.transform.localScale *= sizeMultiplier;
+
+            float lifespan = 0.2f;         // Fixed lifespan for super skill
+            Destroy(bullet, lifespan);
+
+            var scoreBase = bullet.GetComponent<IScoreBase>();
+            if (scoreBase != null)
+            {
+                float structuralIntegrity = Random.Range(10f, 15f); // Fixed high damage for super skill
+                scoreBase.structuralIntegrity = structuralIntegrity;
+            }
+        }
     }
 }
