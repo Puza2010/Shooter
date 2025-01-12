@@ -303,6 +303,27 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Missile Barrage", missileBarrageSkill);
+
+        // Add Recurring Shield super skill
+        List<SuperSkillRequirement> recurringShieldReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Health Upgrade", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Shield", requiredLevel = 5 }
+        };
+        
+        List<string> recurringShieldDisables = new List<string>
+        {
+            "Shield"
+        };
+
+        SuperSkill recurringShieldSkill = new SuperSkill(
+            "Recurring Shield",
+            "Automatically activates a shield every minute for 20 seconds!",
+            recurringShieldReqs,
+            recurringShieldDisables
+        );
+
+        availableSuperSkills.Add("Recurring Shield", recurringShieldSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -417,6 +438,15 @@ public class PlayerProgression : MonoBehaviour
                 missileBarrageSpawner.timer.interval = 0.5f;
                 missileBarrageSpawner.timer.counter = -1;
                 Debug.Log("Enabled Missile Barrage");
+            }
+            else if (superSkillName == "Recurring Shield")
+            {
+                var collisionState = player.GetComponent<CollisionState>();
+                if (collisionState != null)
+                {
+                    // Activate recurring shield
+                    collisionState.ActivateRecurringShield();
+                }
             }
 
             // Enable the super skill

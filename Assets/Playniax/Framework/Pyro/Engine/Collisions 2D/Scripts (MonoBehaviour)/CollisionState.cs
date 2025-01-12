@@ -20,6 +20,8 @@ namespace Playniax.Pyro
         private GameObject shieldVisual; // Instance of the shield visual
         private Coroutine shieldCoroutine;
         private bool isShieldActive = false;
+        private bool isRecurringShieldActive = false;
+        private Coroutine recurringShieldCoroutine;
         
         [System.Serializable]
         // Cargo is released when an object is destroyed.
@@ -634,6 +636,44 @@ namespace Playniax.Pyro
             isShieldActive = false;
             suspended = false; // Allow collisions again
             shieldCoroutine = null;
+        }
+
+        public void ActivateRecurringShield()
+        {
+            if (recurringShieldCoroutine != null)
+            {
+                StopCoroutine(recurringShieldCoroutine);
+            }
+            
+            isRecurringShieldActive = true;
+            recurringShieldCoroutine = StartCoroutine(RecurringShieldCoroutine());
+        }
+
+        private IEnumerator RecurringShieldCoroutine()
+        {
+            while (isRecurringShieldActive)
+            {
+                // Activate shield for 20 seconds
+                ActivateShield(5); // Use level 5 shield duration (20 seconds)
+                
+                // Wait for shield duration (20s) + cooldown (40s)
+                yield return new WaitForSeconds(60f);
+            }
+        }
+
+        public void DeactivateRecurringShield()
+        {
+            isRecurringShieldActive = false;
+            if (recurringShieldCoroutine != null)
+            {
+                StopCoroutine(recurringShieldCoroutine);
+                recurringShieldCoroutine = null;
+            }
+        }
+
+        void OnDestroy()
+        {
+            DeactivateRecurringShield();
         }
 
 #if UNITY_EDITOR

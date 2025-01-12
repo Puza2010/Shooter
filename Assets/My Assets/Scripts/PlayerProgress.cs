@@ -61,19 +61,19 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 1");
         // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 2");
         // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 3");
-        // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 4");
+        EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 4");
         // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 5");
 
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 1");
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 2");
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 3");
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 4");
-        EasyGameUI.instance.OnSkillSelected("Homing Missile Level 5");
+        // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 5");
 
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 1");
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 2");
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 3");
-        EasyGameUI.instance.OnSkillSelected("Homing Gun Level 4");
+        // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 4");
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 5");
 
         // EasyGameUI.instance.OnSkillSelected("Wrecking Ball Level 1");
@@ -85,7 +85,7 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Shield Level 1");
         // EasyGameUI.instance.OnSkillSelected("Shield Level 2");
         // EasyGameUI.instance.OnSkillSelected("Shield Level 3");
-        // EasyGameUI.instance.OnSkillSelected("Shield Level 4");
+        EasyGameUI.instance.OnSkillSelected("Shield Level 4");
         // EasyGameUI.instance.OnSkillSelected("Shield Level 5");
 
         // EasyGameUI.instance.OnSkillSelected("Slow Enemies Level 1");
