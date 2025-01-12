@@ -282,6 +282,27 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Quad Cannons", quadCannonsSkill);
+
+        // Initialize Missile Barrage super skill
+        List<SuperSkillRequirement> missileBarrageReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Homing Missile", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Homing Gun", requiredLevel = 5 }
+        };
+
+        List<string> missileBarrageDisables = new List<string>
+        {
+            "Homing Missile"
+        };
+
+        SuperSkill missileBarrageSkill = new SuperSkill(
+            "Missile Barrage",
+            "Launch three powerful homing missiles at once!",
+            missileBarrageReqs,
+            missileBarrageDisables
+        );
+
+        availableSuperSkills.Add("Missile Barrage", missileBarrageSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -377,6 +398,25 @@ public class PlayerProgression : MonoBehaviour
                         Debug.Log("Enabled Quad Cannons");
                     }
                 }
+            }
+            else if (superSkillName == "Missile Barrage")
+            {
+                // Disable regular Homing Missiles
+                var missileSpawner = player.GetComponent<SimpleBulletSpawner>();
+                if (missileSpawner != null && missileSpawner.id == "Missiles")
+                {
+                    missileSpawner.timer.counter = 0;
+                    Debug.Log("Disabled regular Homing Missiles");
+                }
+
+                // Enable Missile Barrage
+                var missileBarrageSpawner = player.AddComponent<SimpleBulletSpawner>();
+                missileBarrageSpawner.id = "Missile Barrage";
+                missileBarrageSpawner.prefab = missileSpawner.prefab; // Use same prefab as regular missiles
+                missileBarrageSpawner.timer = new Timer();
+                missileBarrageSpawner.timer.interval = 0.5f;
+                missileBarrageSpawner.timer.counter = -1;
+                Debug.Log("Enabled Missile Barrage");
             }
 
             // Enable the super skill

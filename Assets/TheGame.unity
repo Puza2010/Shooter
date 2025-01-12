@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 48525877}
   - component: {fileID: 48525878}
   - component: {fileID: 48525879}
+  - component: {fileID: 48525880}
   m_Layer: 0
   m_Name: Player (Defenstar Style Topview)
   m_TagString: Player
@@ -1998,6 +1999,33 @@ MonoBehaviour:
     prefab: {fileID: 0}
     scale: 1
   drawGizmos: 0
+--- !u!114 &48525880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48525842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eaea3e8468a2d94fa949d780056d578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootTime: 0
+  automatically: 1
+  timer:
+    timer: 0
+    interval: 0.15
+    intervalRange: 0
+    counter: 0
+  id: Missile Barrage
+  allowResidue: 1
+  onlyFireBelowMaxVelocity: 0
+  maxVelocity: 1
+  prefab: {fileID: 7145978568385870582, guid: eb719c2606074964b81a6c0925855fc8, type: 3}
+  parent: {fileID: 0}
+  position: {x: 0, y: 0, z: 0}
+  scale: 1
 --- !u!1 &102112067
 GameObject:
   m_ObjectHideFlags: 0
