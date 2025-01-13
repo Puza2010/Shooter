@@ -1865,7 +1865,7 @@ MonoBehaviour:
   minInterval: 0.01
   bulletDamage: 1
   bouncingBulletPrefab: {fileID: 0}
-  prefab: {fileID: 2810408086072053405, guid: 41ff4fa9a2cab6c4a8c0f2923dd70a58, type: 3}
+  prefab: {fileID: 3478936946234956997, guid: d305091eb5b7b21488c4ec22599e2066, type: 3}
   parent: {fileID: 0}
   ignoreParent: 0
   layer: 0
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   wreckingBallLevel: 0
   minInterval: 0.01
   group: 0
-  prefab: {fileID: 787315027656738199, guid: 19fd17be2f9fd664584feaf2cb200bcc, type: 3}
+  prefab: {fileID: 3478936946234956997, guid: d305091eb5b7b21488c4ec22599e2066, type: 3}
   parent: {fileID: 0}
   layer: 0
   inheritOrderInLayer: 1
