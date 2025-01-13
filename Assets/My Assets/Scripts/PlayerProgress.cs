@@ -110,7 +110,7 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Drone Level 2");
         // EasyGameUI.instance.OnSkillSelected("Drone Level 3");
         // EasyGameUI.instance.OnSkillSelected("Drone Level 4");
-        // EasyGameUI.instance.OnSkillSelected("Drone Level 5");
+        EasyGameUI.instance.OnSkillSelected("Drone Level 5");
 
         // EasyGameUI.instance.OnSkillSelected("Bouncing Shot Level 1");
         // EasyGameUI.instance.OnSkillSelected("Bouncing Shot Level 2");
