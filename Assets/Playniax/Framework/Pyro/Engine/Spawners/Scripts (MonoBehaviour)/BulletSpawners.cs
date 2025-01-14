@@ -373,8 +373,8 @@ namespace Playniax.Pyro
         
         void AdjustCannonBulletProperties(GameObject bullet)
         {
-            float baseSizeMultiplier = 0.5f; // Base size for level 1
-            float sizeIncrement = 0.1f;      // Increase size per level
+            float baseSizeMultiplier = 1f; // Base size for level 1
+            float sizeIncrement = 0.2f;      // Increase size per level
             float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (cannonLevel - 1);
             sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
             bullet.transform.localScale *= sizeMultiplier;
@@ -397,8 +397,8 @@ namespace Playniax.Pyro
 
         void AdjustThreeWayShooterBulletProperties(GameObject bullet)
         {
-            float baseSizeMultiplier = 0.5f; // Base size for level 1
-            float sizeIncrement = 0.1f;      // Increase size per level
+            float baseSizeMultiplier = 1f; // Base size for level 1
+            float sizeIncrement = 0.2f;      // Increase size per level
             float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (threeWayShooterLevel - 1);
             sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
             bullet.transform.localScale *= sizeMultiplier;
@@ -460,10 +460,10 @@ namespace Playniax.Pyro
 
         void AdjustQuadCannonsBulletProperties(GameObject bullet)
         {
-            float sizeMultiplier = 0.8f;    // Fixed size for super skill
+            float sizeMultiplier = 2.5f;    // Fixed size for super skill
             bullet.transform.localScale *= sizeMultiplier;
 
-            float lifespan = 0.2f;         // Fixed lifespan for super skill
+            float lifespan = 0.4f;         // Fixed lifespan for super skill
             Destroy(bullet, lifespan);
 
             var scoreBase = bullet.GetComponent<IScoreBase>();

@@ -458,16 +458,21 @@ namespace Playniax.Pyro
             float[] angles = { 45f, 135f, 180f, 225f, 270f, 315f, 360f };
             float damage = 25f;
             float speed = 10f;
+            float bulletSize = 2f; // Add a fixed size for Guns Blazing bullets
 
             foreach (float angle in angles)
             {
-                FireBulletAtAngle(angle, damage, speed);
+                var bullet = FireBulletAtAngle(angle, damage, speed);
+                if (bullet != null)
+                {
+                    bullet.transform.localScale *= bulletSize; // Apply the size multiplier
+                }
             }
         }
 
-        private void FireBulletAtAngle(float angle, float damage, float speed)
+        private GameObject FireBulletAtAngle(float angle, float damage, float speed)
         {
-            if (prefab == null) return;
+            if (prefab == null) return null;
 
             var bullet = Instantiate(prefab, transform.position, Quaternion.Euler(0, 0, angle));
 
@@ -502,6 +507,8 @@ namespace Playniax.Pyro
 
             audioProperties.Play();
             bullet.SetActive(true);
+
+            return bullet;
         }
 
         public override void OnInitialize()
@@ -1131,7 +1138,10 @@ namespace Playniax.Pyro
             bullet.transform.localScale *= sizeMultiplier;
 
             // Set up destruction after certain time
-            float lifespan = 0.1f + 0.1f * mainGunLevel; // Bullets live longer per level
+            float baseLifespan = 0.1f;       // Base lifespan for level 1
+            float lifespanIncrement = 0.1f;  // Increase lifespan per level
+            float lifespan = baseLifespan + lifespanIncrement * (mainGunLevel - 1);
+            lifespan = Mathf.Max(lifespan, baseLifespan);
             Destroy(bullet, lifespan);
 
             // Adjust structuralIntegrity based on mainGunLevel
@@ -1147,9 +1157,6 @@ namespace Playniax.Pyro
 
                 // Apply the new structuralIntegrity
                 scoreBase.structuralIntegrity = newStructuralIntegrity;
-
-                // Optionally, you can log the value for debugging
-                // Debug.Log($"Main Gun Level: {mainGunLevel}, Bullet Structural Integrity: {newStructuralIntegrity}");
             }
         }
 
@@ -1194,6 +1201,12 @@ namespace Playniax.Pyro
 
         void AdjustHomingGun(GameObject bullet)
         {
+            // Add size scaling based on level
+            float baseSizeMultiplier = 0.5f;  // Base size for level 1
+            float sizeIncrement = 0.15f;     // Size increase per level
+            float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (phaserShotsLevel - 1);
+            bullet.transform.localScale *= sizeMultiplier;
+
             // Set timer.counter to -1 for infinite firing
             timer.counter = -1;
 
@@ -1228,8 +1241,8 @@ namespace Playniax.Pyro
         void AdjustDroneBulletProperties(GameObject bullet)
         {
             // Adjust size
-            float baseSizeMultiplier = 0.5f; // Base size at level 1
-            float sizeIncrement = 0.2f;      // Increase size per level
+            float baseSizeMultiplier = 1.5f; // Base size at level 1
+            float sizeIncrement = 0.3f;      // Increase size per level
             float sizeMultiplier = baseSizeMultiplier + sizeIncrement * (droneComponent.droneLevel - 1);
             sizeMultiplier = Mathf.Max(sizeMultiplier, baseSizeMultiplier);
             bullet.transform.localScale *= sizeMultiplier;
