@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3911287246297430191}
   - component: {fileID: 3911287246297430190}
   - component: {fileID: 3911287246297430160}
+  - component: {fileID: 287315663304133937}
   m_Layer: 0
   m_Name: Big Dish Boss
   m_TagString: enemy
@@ -253,3 +254,95 @@ MonoBehaviour:
     speedRange: 4
     position: {x: 0, y: 0, z: 0}
     scale: 1
+--- !u!114 &287315663304133937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3911287246297430189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be82b93f4842c94c82743b17a137e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
+  suspended: 0
+  id: 
+  group: Enemy
+  delay: 1
+  healthUpgradeLevel: 0
+  shieldPrefab: {fileID: 0}
+  _material: Metal
+  _structuralIntegrity: 5000
+  autoPoints: 1
+  _points: 0
+  playerIndex: -1
+  playerLivesCount: 0
+  _indestructible: 0
+  _friend: {fileID: 0}
+  parent: {fileID: 0}
+  shield: {fileID: 0}
+  isParentShield: 0
+  dontDestroy: 0
+  bodyCount: 0
+  outroSettings:
+    effectsSettings:
+    - prefab: {fileID: 2106495340177213135, guid: 36edbbb7606dfc540942c39ed8250402, type: 3}
+      scale: 1
+      orderInLayer: 0
+      sizeInPixels: 80
+    - prefab: {fileID: 8625168273583106452, guid: 3219264ff126fd948a68be20b948b724, type: 3}
+      scale: 1
+      orderInLayer: 1
+      sizeInPixels: 80
+    - prefab: {fileID: 2801301447712279546, guid: 75ba59a5cb594fc44b847f27171fca66, type: 3}
+      scale: 1
+      orderInLayer: 2
+      sizeInPixels: 80
+    - prefab: {fileID: 6518993004327708206, guid: fedfe71f7676bf048a37ea33a03153b3, type: 3}
+      scale: 1
+      orderInLayer: 3
+      sizeInPixels: 80
+    - prefab: {fileID: 797004117377278665, guid: 7256fa04884c7e4418957446b28f897e, type: 3}
+      scale: 1
+      orderInLayer: 4
+      sizeInPixels: 80
+    messengerSettings:
+      messengerId: Score
+      text: 
+      enabled: 1
+    audioSettings:
+      audioClip: {fileID: 0}
+      volumeScale: 1
+      panStereo: 0
+      pitch: 1
+      enabled: 1
+    ignoreParentForEffects: 0
+    enabled: 1
+  cargoSettings:
+    prefab: []
+    scale: 1
+    effectSettings:
+      motion: 0
+      motionSpeed: 1
+      magnetic: 0
+      magneticRange: 1
+      magneticSpeed: 3
+      killOffCamera: 1
+  eventSettings:
+    onAwake:
+      m_PersistentCalls:
+        m_Calls: []
+    onGhost:
+      m_PersistentCalls:
+        m_Calls: []
+    onOutro:
+      m_PersistentCalls:
+        m_Calls: []
+  spriteRenderer: {fileID: 0}
+  generateBoxCollider: 1
+  ghostMaterial: {fileID: 0}
+  ghostSustain: 3
+  additionalSettings:
+    spriteRenderer: []

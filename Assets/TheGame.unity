@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 1
   currentCoins: 0
-  coinsRequiredForNextLevel: 1
+  coinsRequiredForNextLevel: 5
   progressBarUI: {fileID: 1755793846}
 --- !u!114 &48525875
 MonoBehaviour:

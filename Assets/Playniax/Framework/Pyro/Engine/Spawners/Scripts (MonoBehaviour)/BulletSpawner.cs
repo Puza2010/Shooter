@@ -1214,7 +1214,7 @@ namespace Playniax.Pyro
             var scoreBase = bullet.GetComponent<IScoreBase>();
             if (scoreBase != null)
             {
-                float baseDamage = Random.Range(2f, 4f);  // Base damage for level 1
+                float baseDamage = Random.Range(6f, 10f);  // Base damage for level 1
                 float damageIncrement = 3f;  // Increment per level
 
                 // Calculate the phaser's bullet damage based on the level

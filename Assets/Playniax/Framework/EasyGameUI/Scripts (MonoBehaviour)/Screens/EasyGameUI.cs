@@ -1024,11 +1024,11 @@ namespace Playniax.Ignition
             // skills.Add("Health Upgrade Level 4", new Skill(null, 0f, 0, "", "Health Upgrade Level 4", increaseHealthImage, 4, 5));
             // skills.Add("Health Upgrade Level 5", new Skill(null, 0f, 0, "", "Health Upgrade Level 5", increaseHealthImage, 5, 5));
             
-            // skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1, 5));
-            // skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2, 5));
-            // skills.Add("Homing Missile Level 3", new Skill(null, 1.0f, 0, "", "Homing Missile Level 3", missileImage, 3, 5));
-            // skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4, 5));
-            // skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5, 5));
+            skills.Add("Homing Missile Level 1", new Skill(null, 2.0f, 0, "", "Homing Missile Level 1", missileImage, 1, 5));
+            skills.Add("Homing Missile Level 2", new Skill(null, 1.5f, 0, "", "Homing Missile Level 2", missileImage, 2, 5));
+            skills.Add("Homing Missile Level 3", new Skill(null, 1.0f, 0, "", "Homing Missile Level 3", missileImage, 3, 5));
+            skills.Add("Homing Missile Level 4", new Skill(null, 0.75f, 0, "", "Homing Missile Level 4", missileImage, 4, 5));
+            skills.Add("Homing Missile Level 5", new Skill(null, 0.5f, 0, "", "Homing Missile Level 5", missileImage, 5, 5));
             
             skills.Add("Homing Gun Level 1", new Skill(null, 0f, 0, "", "Homing Gun Level 1", phaserImage, 1, 5));
             skills.Add("Homing Gun Level 2", new Skill(null, 0f, 0, "", "Homing Gun Level 2", phaserImage, 2, 5));
@@ -2066,19 +2066,19 @@ namespace Playniax.Ignition
             // acquiredSkills.Add("Blue Laser Level 4");
             // acquiredSkills.Add("Green Laser Level 4");
             // acquiredSkills.Add("Purple Laser Level 4");
-            acquiredSkills.Add("Angled Shots Level 1");
-            acquiredSkills.Add("Cannons Level 1");
-            acquiredSkills.Add("3 Way Shooter Level 1");
+            // acquiredSkills.Add("Angled Shots Level 1");
+            // acquiredSkills.Add("Cannons Level 5");
+            // acquiredSkills.Add("3 Way Shooter Level 1");
             // acquiredSkills.Add("Speed Up Level 5");
             // acquiredSkills.Add("Health Upgrade Level 4");
             // acquiredSkills.Add("Homing Missile Level 5");
-            acquiredSkills.Add("Homing Gun Level 1");
+            // acquiredSkills.Add("Homing Gun Level 5");
             // acquiredSkills.Add("Wrecking Ball Level 5");
             // acquiredSkills.Add("Shield Level 4");
             // acquiredSkills.Add("Slow Enemies Level 5");
             // acquiredSkills.Add("Slow Enemy Bullets Level 5");
             // acquiredSkills.Add("Weapon Speed Level 5");
-            acquiredSkills.Add("Drone Level 1");
+            // acquiredSkills.Add("Drone Level 5");
             // acquiredSkills.Add("Bouncing Shot Level 1");
             // acquiredSkills.Add("Engine Fire Level 5");
 
