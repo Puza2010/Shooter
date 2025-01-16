@@ -8,6 +8,8 @@ namespace Playniax.Pyro
         public int playerIndex = -1;
         public int damage = 1;
         public float ttl = 60;
+        public float fadeSpeed = 1f;
+        public bool isSuperSkill = false;
 
         public override void OnCollision(CollisionBase2D collision)
         {
@@ -23,13 +25,16 @@ namespace Playniax.Pyro
 
         void Update()
         {
-            ttl -= 1 * Time.deltaTime;
+            if (!isSuperSkill)
+            {
+                ttl -= 1 * Time.deltaTime;
+            }
 
             if (ttl < 0)
             {
                 if (_spriteRendererGroup)
                 {
-                    _spriteRendererGroup.alpha -= 1 * Time.deltaTime;
+                    _spriteRendererGroup.alpha -= fadeSpeed * Time.deltaTime;
 
                     if (_spriteRendererGroup.alpha <= 0) Destroy(gameObject);
                 }
@@ -42,7 +47,7 @@ namespace Playniax.Pyro
             {
                 if (_spriteRendererGroup.alpha < 1)
                 {
-                    _spriteRendererGroup.alpha += 1 * Time.deltaTime;
+                    _spriteRendererGroup.alpha += fadeSpeed * Time.deltaTime;
                 }
             }
         }
@@ -63,6 +68,13 @@ namespace Playniax.Pyro
 
                 CollisionState.OutroSettings.MessengerSettings.Message(collisionState);
             }
+        }
+
+        public void ActivateAsSuperSkill(float duration)
+        {
+            isSuperSkill = true;
+            ttl = duration;
+            damage *= 2;
         }
 
         SpriteRendererGroup _spriteRendererGroup;

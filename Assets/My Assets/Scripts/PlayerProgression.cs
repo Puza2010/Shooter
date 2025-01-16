@@ -31,6 +31,9 @@ public class PlayerProgression : MonoBehaviour
     public List<string> unlockedSuperSkills = new List<string>();
     public Dictionary<string, SuperSkill> availableSuperSkills = new Dictionary<string, SuperSkill>();
 
+    [Header("Super Skill Prefabs")]
+    [SerializeField] private GameObject energyBeamPrefab; // Assign in inspector
+
     void Awake()
     {
         // Singleton pattern to ensure only one instance exists
@@ -342,6 +345,28 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Extra Life", extraLifeSkill);
+
+        // Initialize Shock Wave super skill
+        List<SuperSkillRequirement> shockWaveReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Wrecking Ball", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Green Laser", requiredLevel = 4 },
+            new SuperSkillRequirement { skillName = "Blue Laser", requiredLevel = 4 }
+        };
+
+        List<string> shockWaveDisables = new List<string>
+        {
+            "Wrecking Ball"
+        };
+
+        SuperSkill shockWaveSkill = new SuperSkill(
+            "Shock Wave",
+            "Release a devastating energy wave that damages all enemies in its path!",
+            shockWaveReqs,
+            shockWaveDisables
+        );
+
+        availableSuperSkills.Add("Shock Wave", shockWaveSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -473,6 +498,19 @@ public class PlayerProgression : MonoBehaviour
                 {
                     // The actual revival logic is handled in CollisionState.Kill()
                     Debug.Log("Extra Life super skill activated");
+                }
+            }
+            else if (superSkillName == "Shock Wave")
+            {
+                if (player != null && energyBeamPrefab != null)
+                {
+                    var beam = Instantiate(energyBeamPrefab, player.transform.position, player.transform.rotation, player.transform);
+                    var energyBeam = beam.GetComponent<EnergyBeam>();
+                    if (energyBeam != null)
+                    {
+                        energyBeam.ActivateAsSuperSkill(30f); // 30 seconds duration
+                        energyBeam.gameObject.SetActive(true);
+                    }
                 }
             }
 
