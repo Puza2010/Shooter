@@ -1625,6 +1625,8 @@ MonoBehaviour:
   unlockedSkills:
   - Main Gun
   unlockedSuperSkills: []
+  energyBeamPrefab: {fileID: 8105222091345716376, guid: 9918a3a8eb8db784abe5cabab38a2cf0, type: 3}
+  laserRingPrefab: {fileID: 1090343130174680105, guid: bb2de48e0c2973c46a576a8240518fee, type: 3}
 --- !u!4 &328617819
 Transform:
   m_ObjectHideFlags: 0

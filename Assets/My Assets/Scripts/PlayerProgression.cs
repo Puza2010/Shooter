@@ -34,6 +34,9 @@ public class PlayerProgression : MonoBehaviour
     [Header("Super Skill Prefabs")]
     [SerializeField] private GameObject energyBeamPrefab; // Assign in inspector
 
+    [Header("Laser Ring Settings")]
+    [SerializeField] private GameObject laserRingPrefab; // Assign in inspector
+
     void Awake()
     {
         // Singleton pattern to ensure only one instance exists
@@ -367,6 +370,26 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Shock Wave", shockWaveSkill);
+
+        // Initialize Laser Ring super skill
+        List<SuperSkillRequirement> laserRingReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Red Laser", requiredLevel = 4 },
+            new SuperSkillRequirement { skillName = "Blue Laser", requiredLevel = 4 },
+            new SuperSkillRequirement { skillName = "Green Laser", requiredLevel = 4 },
+            new SuperSkillRequirement { skillName = "Purple Laser", requiredLevel = 4 }
+        };
+
+        List<string> laserRingDisables = new List<string>();  // No skills need to be disabled
+
+        SuperSkill laserRingSkill = new SuperSkill(
+            "Laser Ring",
+            "Create a rotating ring of pure energy that damages enemies!",
+            laserRingReqs,
+            laserRingDisables
+        );
+
+        availableSuperSkills.Add("Laser Ring", laserRingSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -510,6 +533,20 @@ public class PlayerProgression : MonoBehaviour
                     {
                         energyBeam.ActivateAsSuperSkill(30f); // 30 seconds duration
                         energyBeam.gameObject.SetActive(true);
+                    }
+                }
+            }
+            else if (superSkillName == "Laser Ring")
+            {
+                if (player != null && laserRingPrefab != null)
+                {
+                    // Create the laser ring as a child of the player
+                    var ring = Instantiate(laserRingPrefab, player.transform.position, Quaternion.identity, player.transform);
+                    var ringController = ring.GetComponent<RotatingRingController>();
+                    if (ringController != null)
+                    {
+                        // Base damage 50 per second
+                        ringController.SetDamage(50f);
                     }
                 }
             }

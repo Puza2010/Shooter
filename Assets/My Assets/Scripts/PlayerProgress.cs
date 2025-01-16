@@ -13,10 +13,10 @@ public class PlayerProgress : MonoBehaviour
     void Start()
     {
         EasyGameUI.instance.OnSkillSelected("Main Gun Level 1");
-        // EasyGameUI.instance.OnSkillSelected("Red Laser Level 1");
-        EasyGameUI.instance.OnSkillSelected("Blue Laser Level 3");
-        EasyGameUI.instance.OnSkillSelected("Green Laser Level 3");
-        // EasyGameUI.instance.OnSkillSelected("Purple Laser Level 1");
+        EasyGameUI.instance.OnSkillSelected("Red Laser Level 4");
+        EasyGameUI.instance.OnSkillSelected("Blue Laser Level 4");
+        EasyGameUI.instance.OnSkillSelected("Green Laser Level 4");
+        EasyGameUI.instance.OnSkillSelected("Purple Laser Level 4");
         // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 5");
         // EasyGameUI.instance.OnSkillSelected("Cannons Level 5");
         // EasyGameUI.instance.OnSkillSelected("3 Way Shooter Level 5");
@@ -24,7 +24,7 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 4");
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 5");
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 5");
-        EasyGameUI.instance.OnSkillSelected("Wrecking Ball Level 4");
+        // EasyGameUI.instance.OnSkillSelected("Wrecking Ball Level 4");
         // EasyGameUI.instance.OnSkillSelected("Shield Level 1");
         // EasyGameUI.instance.OnSkillSelected("Slow Enemies Level 1");
         // EasyGameUI.instance.OnSkillSelected("Slow Enemy Bullets Level 1");
