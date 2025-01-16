@@ -22,6 +22,11 @@ namespace Playniax.Pyro
         private bool isShieldActive = false;
         private bool isRecurringShieldActive = false;
         private Coroutine recurringShieldCoroutine;
+        private bool hasExtraLife = false;
+        private bool isInvulnerable = false;
+        private float invulnerabilityDuration = 3f;
+        private float blinkInterval = 0.1f;
+        private Coroutine invulnerabilityCoroutine;
         
         [System.Serializable]
         // Cargo is released when an object is destroyed.
@@ -500,6 +505,16 @@ namespace Playniax.Pyro
         {
             GameData.bodyCount += bodyCount ? 1 : 0;
 
+            // Check if player has Extra Life super skill active
+            if (gameObject.CompareTag("Player") && !hasExtraLife && 
+                PlayerProgression.Instance.unlockedSuperSkills.Contains("Extra Life"))
+            {
+                hasExtraLife = true; // Use up the extra life
+                structuralIntegrity = _maxStructuralIntegrity; // Restore full health
+                StartInvulnerability(); // Start invulnerability period
+                return; // Don't proceed with regular death
+            }
+
             OnOutro();
 
             cargoSettings.Release(this);
@@ -530,8 +545,8 @@ namespace Playniax.Pyro
         }
         public override void OnCollision(CollisionBase2D collision)
         {
+            if (isInvulnerable) return; // Skip collision if invulnerable
             _UpdateState(collision);
-
         }
         public virtual void OnOutro()
         {
@@ -868,5 +883,62 @@ namespace Playniax.Pyro
 
         Material _defaultMaterial;
         int _frameCount;
+
+        private void StartInvulnerability()
+        {
+            if (invulnerabilityCoroutine != null)
+            {
+                StopCoroutine(invulnerabilityCoroutine);
+            }
+            invulnerabilityCoroutine = StartCoroutine(InvulnerabilityRoutine());
+        }
+
+        private IEnumerator InvulnerabilityRoutine()
+        {
+            isInvulnerable = true;
+            suspended = true; // Make immune to collisions
+
+            float elapsedTime = 0f;
+            bool isVisible = true;
+
+            // Blink effect
+            while (elapsedTime < invulnerabilityDuration)
+            {
+                isVisible = !isVisible;
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.enabled = isVisible;
+                }
+
+                // Also handle additional renderers if any
+                foreach (var renderer in additionalSettings.spriteRenderer)
+                {
+                    if (renderer != null)
+                    {
+                        renderer.enabled = isVisible;
+                    }
+                }
+
+                yield return new WaitForSeconds(blinkInterval);
+                elapsedTime += blinkInterval;
+            }
+
+            // Ensure sprite is visible at the end
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = true;
+            }
+            foreach (var renderer in additionalSettings.spriteRenderer)
+            {
+                if (renderer != null)
+                {
+                    renderer.enabled = true;
+                }
+            }
+
+            isInvulnerable = false;
+            suspended = false; // Allow collisions again
+            invulnerabilityCoroutine = null;
+        }
     }
 }

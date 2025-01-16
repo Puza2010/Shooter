@@ -21,7 +21,7 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Cannons Level 1");
         // EasyGameUI.instance.OnSkillSelected("3 Way Shooter Level 1");
         // EasyGameUI.instance.OnSkillSelected("Speed Up Level 1");
-        // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 1");
+        EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 4");
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 5");
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 5");
         // EasyGameUI.instance.OnSkillSelected("Wrecking Ball Level 1");
@@ -31,7 +31,7 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Weapon Speed Level 1");
         // EasyGameUI.instance.OnSkillSelected("Drone Level 5");
         // EasyGameUI.instance.OnSkillSelected("Bouncing Shot Level 1");
-        // EasyGameUI.instance.OnSkillSelected("Engine Fire Level 1");
+        EasyGameUI.instance.OnSkillSelected("Engine Fire Level 5");
 
         // Initialize the correct coins required for the next level
         coinsRequiredForNextLevel = coinsRequiredForNextLevel + currentLevel; // This will correctly set it to 5 for level 1

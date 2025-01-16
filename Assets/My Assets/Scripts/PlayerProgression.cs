@@ -324,6 +324,24 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Recurring Shield", recurringShieldSkill);
+
+        // Initialize Extra Life super skill
+        List<SuperSkillRequirement> extraLifeReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Health Upgrade", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Engine Fire", requiredLevel = 5 }
+        };
+
+        List<string> extraLifeDisables = new List<string>();  // No skills need to be disabled
+
+        SuperSkill extraLifeSkill = new SuperSkill(
+            "Extra Life",
+            "Get a second chance! When fatal damage is taken, revive with temporary invulnerability!",
+            extraLifeReqs,
+            extraLifeDisables
+        );
+
+        availableSuperSkills.Add("Extra Life", extraLifeSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -446,6 +464,15 @@ public class PlayerProgression : MonoBehaviour
                 {
                     // Activate recurring shield
                     collisionState.ActivateRecurringShield();
+                }
+            }
+            else if (superSkillName == "Extra Life")
+            {
+                var collisionState = player.GetComponent<CollisionState>();
+                if (collisionState != null)
+                {
+                    // The actual revival logic is handled in CollisionState.Kill()
+                    Debug.Log("Extra Life super skill activated");
                 }
             }
 
