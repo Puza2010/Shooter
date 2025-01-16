@@ -13,9 +13,30 @@ public class IntroVideoManager : MonoBehaviour
         videoPlayer.loopPointReached += OnVideoFinished;
     }
 
+    void Update()
+    {
+        // Check if Escape key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Stop the video
+            if (videoPlayer != null)
+            {
+                videoPlayer.Stop();
+            }
+            
+            // Load the next scene
+            LoadNextScene();
+        }
+    }
+
     private void OnVideoFinished(VideoPlayer vp)
     {
-        // Load the next scene once the video is done
+        LoadNextScene();
+    }
+
+    private void LoadNextScene()
+    {
+        // Load the next scene
         SceneManager.LoadScene(nextSceneName);
     }
 }
