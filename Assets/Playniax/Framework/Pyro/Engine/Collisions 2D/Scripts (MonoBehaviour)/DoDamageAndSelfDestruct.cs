@@ -37,10 +37,10 @@ namespace Playniax.Pyro
         public OutroSettings outroSettings;
         public override void OnCollision(CollisionBase2D collision)
         {
-            // Check if collision is with the player
-            if (collision.CompareTag("Player"))
+            // Check if collision is with the player or energy beam
+            if (collision.CompareTag("Player") || collision is EnergyBeam)
             {
-                // Do not apply damage or effects to the player
+                // Do not apply damage or effects
                 return;
             }
 

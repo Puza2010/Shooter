@@ -13,6 +13,14 @@ namespace Playniax.Pyro
 
         public override void OnCollision(CollisionBase2D collision)
         {
+            // Skip collision processing if it's a player bullet or player
+            if (collision.group == "Player Bullet" || 
+                collision.gameObject.CompareTag("Player") || 
+                (collision is CollisionState state && state.friend != null))
+            {
+                return;
+            }
+
             _UpdateState(collision);
         }
 
