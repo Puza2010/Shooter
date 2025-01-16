@@ -17,19 +17,19 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Blue Laser Level 1");
         // EasyGameUI.instance.OnSkillSelected("Green Laser Level 1");
         // EasyGameUI.instance.OnSkillSelected("Purple Laser Level 1");
-        // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 1");
-        // EasyGameUI.instance.OnSkillSelected("Cannons Level 1");
-        // EasyGameUI.instance.OnSkillSelected("3 Way Shooter Level 1");
+        // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 5");
+        EasyGameUI.instance.OnSkillSelected("Cannons Level 5");
+        // EasyGameUI.instance.OnSkillSelected("3 Way Shooter Level 5");
         // EasyGameUI.instance.OnSkillSelected("Speed Up Level 1");
         EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 4");
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 5");
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 5");
-        // EasyGameUI.instance.OnSkillSelected("Wrecking Ball Level 1");
+        // EasyGameUI.instance.OnSkillSelected("Wrecking Ball Level 5");
         // EasyGameUI.instance.OnSkillSelected("Shield Level 1");
         // EasyGameUI.instance.OnSkillSelected("Slow Enemies Level 1");
         // EasyGameUI.instance.OnSkillSelected("Slow Enemy Bullets Level 1");
-        // EasyGameUI.instance.OnSkillSelected("Weapon Speed Level 1");
-        // EasyGameUI.instance.OnSkillSelected("Drone Level 5");
+        // EasyGameUI.instance.OnSkillSelected("Weapon Speed Level 5");
+        EasyGameUI.instance.OnSkillSelected("Drone Level 5");
         // EasyGameUI.instance.OnSkillSelected("Bouncing Shot Level 1");
         EasyGameUI.instance.OnSkillSelected("Engine Fire Level 5");
 

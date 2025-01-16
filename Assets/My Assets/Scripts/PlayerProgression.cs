@@ -521,4 +521,11 @@ public class PlayerProgression : MonoBehaviour
         int level = currentSkill?.level ?? 0;
         return level;
     }
+
+    // Add this new method to PlayerProgression class
+    public void ResetSuperSkills()
+    {
+        unlockedSuperSkills.Clear();
+        SavePlayerProgress();
+    }
 }

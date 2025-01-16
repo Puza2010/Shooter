@@ -1000,11 +1000,11 @@ namespace Playniax.Ignition
             // skills.Add("Angled Shots Level 4", new Skill(null, 0f, 0, "", "Angled Shots Level 4", angledShotsImage, 4, 5));
             // skills.Add("Angled Shots Level 5", new Skill(null, 0f, 0, "", "Angled Shots Level 5", angledShotsImage, 5, 5));
             
-            // skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1, 5));
-            // skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2, 5));
-            // skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3, 5));
-            // skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4, 5));
-            // skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5, 5));
+            skills.Add("Cannons Level 1", new Skill(null, 0f, 0, "", "Cannons Level 1", cannonImage, 1, 5));
+            skills.Add("Cannons Level 2", new Skill(null, 0f, 0, "", "Cannons Level 2", cannonImage, 2, 5));
+            skills.Add("Cannons Level 3", new Skill(null, 0f, 0, "", "Cannons Level 3", cannonImage, 3, 5));
+            skills.Add("Cannons Level 4", new Skill(null, 0f, 0, "", "Cannons Level 4", cannonImage, 4, 5));
+            skills.Add("Cannons Level 5", new Skill(null, 0f, 0, "", "Cannons Level 5", cannonImage, 5, 5));
             
             // skills.Add("3 Way Shooter Level 1", new Skill(null, 0f, 0, "", "3 Way Shooter Level 1", threeWayShooterImage, 1, 5));
             // skills.Add("3 Way Shooter Level 2", new Skill(null, 0f, 0, "", "3 Way Shooter Level 2", threeWayShooterImage, 2, 5));
@@ -1066,11 +1066,11 @@ namespace Playniax.Ignition
             // skills.Add("Weapon Speed Level 4", new Skill(null, 0f, 0, "", "Weapon Speed Level 4", weaponSpeedImage, 4, 5));
             // skills.Add("Weapon Speed Level 5", new Skill(null, 0f, 0, "", "Weapon Speed Level 5", weaponSpeedImage, 5, 5));
             
-            // skills.Add("Drone Level 1", new Skill(null, 0f, 0, "", "Drone Level 1", droneSkillImage, 1, 5));
-            // skills.Add("Drone Level 2", new Skill(null, 0f, 0, "", "Drone Level 2", droneSkillImage, 2, 5));
-            // skills.Add("Drone Level 3", new Skill(null, 0f, 0, "", "Drone Level 3", droneSkillImage, 3, 5));
-            // skills.Add("Drone Level 4", new Skill(null, 0f, 0, "", "Drone Level 4", droneSkillImage, 4, 5));
-            // skills.Add("Drone Level 5", new Skill(null, 0f, 0, "", "Drone Level 5", droneSkillImage, 5, 5));
+            skills.Add("Drone Level 1", new Skill(null, 0f, 0, "", "Drone Level 1", droneSkillImage, 1, 5));
+            skills.Add("Drone Level 2", new Skill(null, 0f, 0, "", "Drone Level 2", droneSkillImage, 2, 5));
+            skills.Add("Drone Level 3", new Skill(null, 0f, 0, "", "Drone Level 3", droneSkillImage, 3, 5));
+            skills.Add("Drone Level 4", new Skill(null, 0f, 0, "", "Drone Level 4", droneSkillImage, 4, 5));
+            skills.Add("Drone Level 5", new Skill(null, 0f, 0, "", "Drone Level 5", droneSkillImage, 5, 5));
             
             // skills.Add("Bouncing Shot Level 1", new Skill(null, 0f, 0, "", "Bouncing Shot Level 1", bouncingShotsImage, 1, 5));
             // skills.Add("Bouncing Shot Level 2", new Skill(null, 0f, 0, "", "Bouncing Shot Level 2", bouncingShotsImage, 2, 5));
@@ -1134,6 +1134,18 @@ namespace Playniax.Ignition
             
             // Get the player's score
             int playerScore = PlayerData.Get(0).scoreboard;
+
+            // Reset super skills unless player has Extra Life and it's their first death
+            var player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                var collisionState = player.GetComponent<CollisionState>();
+                // Only reset super skills if player doesn't have Extra Life or has already used it
+                if (collisionState == null || !collisionState.HasExtraLife() || collisionState.HasUsedExtraLife())
+                {
+                    PlayerProgression.Instance.ResetSuperSkills();
+                }
+            }
 
             // Call GameOverUI.ShowGameOver
             GameOverUI gameOverUI = FindObjectOfType<GameOverUI>();
@@ -2059,6 +2071,18 @@ namespace Playniax.Ignition
             
             // Clear any existing skills
             acquiredSkills.Clear();
+            
+            // Reset super skills (unless player has Extra Life and it's their first death)
+            var player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                var collisionState = player.GetComponent<CollisionState>();
+                // Only reset super skills if player doesn't have Extra Life or has already used it
+                if (collisionState == null || !collisionState.HasExtraLife() || collisionState.HasUsedExtraLife())
+                {
+                    PlayerProgression.Instance.ResetSuperSkills();
+                }
+            }
 
             // Add the starting skill(s)
             acquiredSkills.Add("Main Gun Level 1");
@@ -2066,9 +2090,9 @@ namespace Playniax.Ignition
             // acquiredSkills.Add("Blue Laser Level 4");
             // acquiredSkills.Add("Green Laser Level 4");
             // acquiredSkills.Add("Purple Laser Level 4");
-            // acquiredSkills.Add("Angled Shots Level 1");
-            // acquiredSkills.Add("Cannons Level 5");
-            // acquiredSkills.Add("3 Way Shooter Level 1");
+            // acquiredSkills.Add("Angled Shots Level 5");
+            acquiredSkills.Add("Cannons Level 5");
+            // acquiredSkills.Add("3 Way Shooter Level 5");
             // acquiredSkills.Add("Speed Up Level 5");
             acquiredSkills.Add("Health Upgrade Level 4");
             // acquiredSkills.Add("Homing Missile Level 5");
@@ -2078,7 +2102,7 @@ namespace Playniax.Ignition
             // acquiredSkills.Add("Slow Enemies Level 5");
             // acquiredSkills.Add("Slow Enemy Bullets Level 5");
             // acquiredSkills.Add("Weapon Speed Level 5");
-            // acquiredSkills.Add("Drone Level 5");
+            acquiredSkills.Add("Drone Level 5");
             // acquiredSkills.Add("Bouncing Shot Level 1");
             acquiredSkills.Add("Engine Fire Level 5");
 

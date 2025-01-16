@@ -940,5 +940,16 @@ namespace Playniax.Pyro
             suspended = false; // Allow collisions again
             invulnerabilityCoroutine = null;
         }
+
+        public bool HasExtraLife()
+        {
+            return hasExtraLife;
+        }
+
+        public bool HasUsedExtraLife()
+        {
+            // If hasExtraLife is false, it means we either never had it or have used it
+            return !hasExtraLife;
+        }
     }
 }
