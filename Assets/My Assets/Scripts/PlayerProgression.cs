@@ -390,6 +390,24 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Laser Ring", laserRingSkill);
+
+        // Initialize Auto Repair super skill
+        List<SuperSkillRequirement> autoRepairReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Health Upgrade", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Slow Enemies", requiredLevel = 5 }
+        };
+
+        List<string> autoRepairDisables = new List<string>();  // No skills need to be disabled
+
+        SuperSkill autoRepairSkill = new SuperSkill(
+            "Auto Repair",
+            "Your ship automatically repairs itself, healing 10% of max health every 20 seconds!",
+            autoRepairReqs,
+            autoRepairDisables
+        );
+
+        availableSuperSkills.Add("Auto Repair", autoRepairSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -548,6 +566,14 @@ public class PlayerProgression : MonoBehaviour
                         // Base damage 50 per second
                         ringController.SetDamage(50f);
                     }
+                }
+            }
+            else if (superSkillName == "Auto Repair")
+            {
+                var collisionState = player.GetComponent<CollisionState>();
+                if (collisionState != null)
+                {
+                    collisionState.StartAutoRepair();
                 }
             }
 

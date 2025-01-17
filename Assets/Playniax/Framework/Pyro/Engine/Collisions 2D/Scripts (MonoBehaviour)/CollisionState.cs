@@ -27,6 +27,10 @@ namespace Playniax.Pyro
         private float invulnerabilityDuration = 3f;
         private float blinkInterval = 0.1f;
         private Coroutine invulnerabilityCoroutine;
+        private bool isAutoRepairActive = false;
+        private Coroutine autoRepairCoroutine;
+        private const float AUTO_REPAIR_INTERVAL = 2f; // Check every 2 seconds
+        private const float AUTO_REPAIR_PERCENT = 0.01f; // 1% per check (10% over 20 seconds)
         
         [System.Serializable]
         // Cargo is released when an object is destroyed.
@@ -689,6 +693,7 @@ namespace Playniax.Pyro
         void OnDestroy()
         {
             DeactivateRecurringShield();
+            StopAutoRepair();
         }
 
 #if UNITY_EDITOR
@@ -950,6 +955,43 @@ namespace Playniax.Pyro
         {
             // If hasExtraLife is false, it means we either never had it or have used it
             return !hasExtraLife;
+        }
+
+        public void StartAutoRepair()
+        {
+            if (autoRepairCoroutine != null)
+            {
+                StopCoroutine(autoRepairCoroutine);
+            }
+            isAutoRepairActive = true;
+            autoRepairCoroutine = StartCoroutine(AutoRepairCoroutine());
+        }
+
+        public void StopAutoRepair()
+        {
+            isAutoRepairActive = false;
+            if (autoRepairCoroutine != null)
+            {
+                StopCoroutine(autoRepairCoroutine);
+                autoRepairCoroutine = null;
+            }
+        }
+
+        private IEnumerator AutoRepairCoroutine()
+        {
+            while (isAutoRepairActive)
+            {
+                if (structuralIntegrity < _maxStructuralIntegrity)
+                {
+                    // Calculate repair amount (1% of max health)
+                    float repairAmount = _maxStructuralIntegrity * AUTO_REPAIR_PERCENT;
+                    
+                    // Apply repair
+                    structuralIntegrity = Mathf.Min(_maxStructuralIntegrity, structuralIntegrity + repairAmount);
+                }
+                
+                yield return new WaitForSeconds(AUTO_REPAIR_INTERVAL);
+            }
         }
     }
 }
