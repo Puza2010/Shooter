@@ -3,13 +3,11 @@ using Playniax.Pyro;
 using Playniax.Ignition;
 using System.Collections.Generic;
 
-public class EngineFireZone : MonoBehaviour
+public class DamageZone : MonoBehaviour
 {
-    public float damage = 1f;
-    public float damageInterval = 0.5f;
+    public float damage = 2f;
+    public float damageInterval = 0.25f;
     private float damageTimer;
-    private float lifetimeTimer;
-    public float lifetime = 2f;
     
     // Keep track of when enemies were last damaged
     private static Dictionary<CollisionState, float> lastDamageTimes = new Dictionary<CollisionState, float>();
@@ -17,31 +15,10 @@ public class EngineFireZone : MonoBehaviour
     private void Start()
     {
         damageTimer = damageInterval;
-        lifetimeTimer = lifetime;
     }
 
     private void Update()
     {
-        // Only check lifetime if it's not infinite
-        if (!float.IsPositiveInfinity(lifetime))
-        {
-            lifetimeTimer -= Time.deltaTime;
-            if (lifetimeTimer <= 0)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            // Make the zone slowly fade out
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                Color color = spriteRenderer.color;
-                color.a = lifetimeTimer / lifetime;
-                spriteRenderer.color = color;
-            }
-        }
-
         // Check for collisions and apply damage
         damageTimer -= Time.deltaTime;
         if (damageTimer <= 0)

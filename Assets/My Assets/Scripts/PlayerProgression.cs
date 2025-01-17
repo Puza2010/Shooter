@@ -37,6 +37,10 @@ public class PlayerProgression : MonoBehaviour
     [Header("Laser Ring Settings")]
     [SerializeField] private GameObject laserRingPrefab; // Assign in inspector
 
+    [Header("Damage Zone Settings")]
+    [SerializeField] private GameObject glowPrefab; // Assign Glow prefab in inspector
+    [SerializeField] private Sprite yellowGlowSprite; // Assign yellow glow sprite in inspector
+
     void Awake()
     {
         // Singleton pattern to ensure only one instance exists
@@ -408,6 +412,24 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Auto Repair", autoRepairSkill);
+
+        // Initialize Damage Zone super skill
+        List<SuperSkillRequirement> damageZoneReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Shield", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Engine Fire", requiredLevel = 5 }
+        };
+
+        List<string> damageZoneDisables = new List<string>();  // No skills need to be disabled
+
+        SuperSkill damageZoneSkill = new SuperSkill(
+            "Damage Zone",
+            "Create a permanent damaging aura around your ship that harms enemies!",
+            damageZoneReqs,
+            damageZoneDisables
+        );
+
+        availableSuperSkills.Add("Damage Zone", damageZoneSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -574,6 +596,40 @@ public class PlayerProgression : MonoBehaviour
                 if (collisionState != null)
                 {
                     collisionState.StartAutoRepair();
+                }
+            }
+            else if (superSkillName == "Damage Zone")
+            {
+                // Find or create the glow effect
+                var existingGlow = player.transform.Find("DamageZoneGlow");
+                if (existingGlow == null && glowPrefab != null)
+                {
+                    // Instantiate the glow as a child of the player
+                    var glow = Instantiate(glowPrefab, player.transform.position, Quaternion.identity, player.transform);
+                    glow.name = "DamageZoneGlow";
+                    
+                    // Set up the sprite renderer with yellow glow
+                    var spriteRenderer = glow.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer != null && yellowGlowSprite != null)
+                    {
+                        spriteRenderer.sprite = yellowGlowSprite;
+                        spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f); // Semi-transparent
+                    }
+                    
+                    // Add the damage zone component
+                    var damageZone = glow.AddComponent<DamageZone>();
+                    
+                    // Scale the glow appropriately
+                    glow.transform.localScale = new Vector3(3f, 3f, 3f);
+                    
+                    // Add circle collider for damage zone if it doesn't exist
+                    var collider = glow.GetComponent<CircleCollider2D>();
+                    if (collider == null)
+                    {
+                        collider = glow.AddComponent<CircleCollider2D>();
+                        collider.isTrigger = true;
+                        collider.radius = 2f;
+                    }
                 }
             }
 
