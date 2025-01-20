@@ -8,13 +8,17 @@ public class UnlocksMenuUI : MonoBehaviour
     public GameObject unlocksPanel; // Assign the UnlocksPanel in the Inspector
     public GameObject skillSlotPrefab; // Assign the SkillSlot prefab
     public Transform skillGrid; // Assign the SkillGrid transform
+    public Transform superSkillGrid; // Assign in Inspector
+    public GameObject superSkillSlotPrefab; // Assign in Inspector
 
     private List<GameObject> skillSlots = new List<GameObject>();
+    private List<GameObject> superSkillSlots = new List<GameObject>();
 
     void Start()
     {
         unlocksPanel.SetActive(false);
         PopulateSkillGrid();
+        PopulateSuperSkillGrid();
     }
 
     // Open the UnlocksPanel
@@ -38,6 +42,17 @@ public class UnlocksMenuUI : MonoBehaviour
         {
             GameObject slot = Instantiate(skillSlotPrefab, skillGrid);
             skillSlots.Add(slot);
+        }
+    }
+
+    // Populate the super skill grid with slots
+    void PopulateSuperSkillGrid()
+    {
+        int totalSuperSkills = 9; // Total number of super skills
+        for (int i = 0; i < totalSuperSkills; i++)
+        {
+            GameObject slot = Instantiate(superSkillSlotPrefab, superSkillGrid);
+            superSkillSlots.Add(slot);
         }
     }
 
@@ -115,6 +130,55 @@ public class UnlocksMenuUI : MonoBehaviour
                 slot.SetActive(false);
             }
         }
+
+        UpdateSuperSkillsDisplay();
+    }
+
+    // Update super skills display
+    void UpdateSuperSkillsDisplay()
+    {
+        var playerProgression = PlayerProgression.Instance;
+        var unlockedSuperSkills = playerProgression.unlockedSuperSkills;
+        var availableSuperSkills = playerProgression.availableSuperSkills;
+
+        int index = 0;
+        foreach (var superSkill in availableSuperSkills)
+        {
+            if (index < superSkillSlots.Count)
+            {
+                GameObject slot = superSkillSlots[index];
+                Image skillIcon = slot.transform.Find("SkillIcon").GetComponent<Image>();
+                TMP_Text skillNameText = slot.transform.Find("SkillName").GetComponent<TMP_Text>();
+                TMP_Text requirementsText = slot.transform.Find("Requirements").GetComponent<TMP_Text>();
+
+                bool isUnlocked = unlockedSuperSkills.Contains(superSkill.Key);
+
+                if (isUnlocked)
+                {
+                    // Show the super skill icon and details
+                    skillIcon.sprite = GetSuperSkillIcon(superSkill.Key);
+                    skillIcon.color = Color.white;
+                    skillNameText.text = superSkill.Key;
+                    
+                    // Create requirements text
+                    string reqText = "Requires:\n";
+                    foreach (var req in superSkill.Value.requirements)
+                    {
+                        reqText += $"{req.skillName} Lvl {req.requiredLevel}\n";
+                    }
+                    requirementsText.text = reqText;
+                }
+                else
+                {
+                    // Show question mark
+                    skillIcon.sprite = GetQuestionMarkIcon();
+                    skillIcon.color = Color.gray;
+                    skillNameText.text = "";
+                    requirementsText.text = "";
+                }
+            }
+            index++;
+        }
     }
 
     // Helper method to get the skill icon sprite
@@ -130,6 +194,12 @@ public class UnlocksMenuUI : MonoBehaviour
     {
         // Return a sprite representing a question mark
         return SkillIconManager.Instance.questionMarkIcon;
+    }
+
+    // Helper method to get the super skill icon sprite
+    Sprite GetSuperSkillIcon(string superSkillName)
+    {
+        return SkillIconManager.Instance.GetSuperSkillIcon(superSkillName);
     }
 }
 

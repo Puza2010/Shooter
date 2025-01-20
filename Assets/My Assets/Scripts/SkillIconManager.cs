@@ -27,8 +27,18 @@ public class SkillIconManager : MonoBehaviour
     public Sprite purpleLaserIcon; // Assign in Inspector
     public Sprite randomBouncingShotIcon; // Assign in Inspector
     public Sprite engineFireIcon; // Assign in Inspector
+    public Sprite gunsBlazingIcon; // Assign in Inspector
+    public Sprite quadCannonsIcon; // Assign in Inspector
+    public Sprite missileBarrageIcon; // Assign in Inspector
+    public Sprite recurringShieldIcon; // Assign in Inspector
+    public Sprite extraLifeIcon; // Assign in Inspector
+    public Sprite shockWaveIcon; // Assign in Inspector
+    public Sprite laserRingIcon; // Assign in Inspector
+    public Sprite autoRepairIcon; // Assign in Inspector
+    public Sprite damageZoneIcon; // Assign in Inspector
 
     private Dictionary<string, Sprite> skillIcons = new Dictionary<string, Sprite>();
+    private Dictionary<string, Sprite> superSkillIcons = new Dictionary<string, Sprite>();
 
     void Awake()
     {
@@ -67,19 +77,36 @@ public class SkillIconManager : MonoBehaviour
         skillIcons["Purple Laser"] = purpleLaserIcon;
         skillIcons["Bouncing Shot"] = randomBouncingShotIcon;
         skillIcons["Engine Fire"] = engineFireIcon;
+
+        superSkillIcons["Guns Blazing"] = gunsBlazingIcon;
+        superSkillIcons["Quad Cannons"] = quadCannonsIcon;
+        superSkillIcons["Missile Barrage"] = missileBarrageIcon;
+        superSkillIcons["Recurring Shield"] = recurringShieldIcon;
+        superSkillIcons["Extra Life"] = extraLifeIcon;
+        superSkillIcons["Shock Wave"] = shockWaveIcon;
+        superSkillIcons["Laser Ring"] = laserRingIcon;
+        superSkillIcons["Auto Repair"] = autoRepairIcon;
+        superSkillIcons["Damage Zone"] = damageZoneIcon;
     }
 
     public Sprite GetSkillIcon(string skillName)
     {
         if (skillIcons.ContainsKey(skillName))
         {
-            Debug.Log($"Skill icon found for {skillName}");
             return skillIcons[skillName];
         }
         else
         {
-            Debug.LogWarning($"No skill icon found for {skillName}, returning question mark icon");
             return questionMarkIcon;
         }
+    }
+
+    public Sprite GetSuperSkillIcon(string superSkillName)
+    {
+        if (superSkillIcons.ContainsKey(superSkillName))
+        {
+            return superSkillIcons[superSkillName];
+        }
+        return questionMarkIcon;
     }
 }
