@@ -4,6 +4,7 @@ using Playniax.Ignition.UI;
 
 public class PlayerProgress : MonoBehaviour
 {
+
     public int currentLevel = 1;
     public int currentCoins = 0;
     // public int coinsRequiredForNextLevel = 5; // Set this to the correct initial value for the first level
@@ -18,20 +19,22 @@ public class PlayerProgress : MonoBehaviour
         // EasyGameUI.instance.OnSkillSelected("Green Laser Level 4");
         // EasyGameUI.instance.OnSkillSelected("Purple Laser Level 4");
         // EasyGameUI.instance.OnSkillSelected("Angled Shots Level 5");
-        // EasyGameUI.instance.OnSkillSelected("Cannons Level 5");
+        // EasyGameUI.instance.OnSkillSelected("Cannons Level 1");
         // EasyGameUI.instance.OnSkillSelected("3 Way Shooter Level 5");
-        // EasyGameUI.instance.OnSkillSelected("Speed Up Level 1");
+        // EasyGameUI.instance.OnSkillSelected("Speed Up Level 5");
         // EasyGameUI.instance.OnSkillSelected("Health Upgrade Level 5");
         // EasyGameUI.instance.OnSkillSelected("Homing Missile Level 5");
         // EasyGameUI.instance.OnSkillSelected("Homing Gun Level 5");
         // EasyGameUI.instance.OnSkillSelected("Wrecking Ball Level 5");
-        EasyGameUI.instance.OnSkillSelected("Shield Level 4");
+        // EasyGameUI.instance.OnSkillSelected("Shield Level 5");
         // EasyGameUI.instance.OnSkillSelected("Slow Enemies Level 5");
-        // EasyGameUI.instance.OnSkillSelected("Slow Enemy Bullets Level 1");
+        // EasyGameUI.instance.OnSkillSelected("Slow Enemy Bullets Level 5");
         // EasyGameUI.instance.OnSkillSelected("Weapon Speed Level 5");
         // EasyGameUI.instance.OnSkillSelected("Drone Level 5");
-        // EasyGameUI.instance.OnSkillSelected("Bouncing Shot Level 1");
-        EasyGameUI.instance.OnSkillSelected("Engine Fire Level 5");
+        // EasyGameUI.instance.OnSkillSelected("Bouncing Shot Level 5");
+        // EasyGameUI.instance.OnSkillSelected("Engine Fire Level 5");
+
+        InitializeSuperSkillsForTesting();
 
         // Initialize the correct coins required for the next level
         coinsRequiredForNextLevel = coinsRequiredForNextLevel + currentLevel; // This will correctly set it to 5 for level 1
@@ -40,6 +43,24 @@ public class PlayerProgress : MonoBehaviour
         if (progressBarUI != null)
         {
             progressBarUI.SetProgress(currentCoins, coinsRequiredForNextLevel);
+        }
+    }
+
+    private void InitializeSuperSkillsForTesting()
+    {
+        // First, make sure PlayerProgression exists
+        if (PlayerProgression.Instance != null)
+        {
+            // Activate all super skills
+            // PlayerProgression.Instance.ActivateSuperSkill("Guns Blazing");
+            // PlayerProgression.Instance.ActivateSuperSkill("Quad Cannons");
+            // PlayerProgression.Instance.ActivateSuperSkill("Missile Barrage");
+            // PlayerProgression.Instance.ActivateSuperSkill("Recurring Shield");
+            // PlayerProgression.Instance.ActivateSuperSkill("Extra Life");
+            // PlayerProgression.Instance.ActivateSuperSkill("Shock Wave");
+            // PlayerProgression.Instance.ActivateSuperSkill("Laser Ring");
+            // PlayerProgression.Instance.ActivateSuperSkill("Auto Repair");
+            // PlayerProgression.Instance.ActivateSuperSkill("Damage Zone");
         }
     }
 
