@@ -127,6 +127,17 @@ public class PlayerProgression : MonoBehaviour
             unlockedSkills = new List<string> { "Main Gun" }; // Main Gun is unlocked by default
         }
 
+        // Load unlocked super skills
+        string unlockedSuperSkillsString = PlayerPrefs.GetString("UnlockedSuperSkills", "");
+        if (!string.IsNullOrEmpty(unlockedSuperSkillsString))
+        {
+            unlockedSuperSkills = new List<string>(unlockedSuperSkillsString.Split(','));
+        }
+        else
+        {
+            unlockedSuperSkills = new List<string>();
+        }
+
         // Load hasPlayedGame flag
         hasPlayedGame = PlayerPrefs.GetInt("HasPlayedGame", 0) == 1;
 
@@ -146,6 +157,7 @@ public class PlayerProgression : MonoBehaviour
         PlayerPrefs.SetInt("PlayerLevel", playerLevel);
         PlayerPrefs.SetInt("TotalXP", totalXP);
         PlayerPrefs.SetString("UnlockedSkills", string.Join(",", unlockedSkills));
+        PlayerPrefs.SetString("UnlockedSuperSkills", string.Join(",", unlockedSuperSkills));
         PlayerPrefs.SetInt("HasPlayedGame", hasPlayedGame ? 1 : 0);
         PlayerPrefs.Save();
     }
@@ -239,6 +251,7 @@ public class PlayerProgression : MonoBehaviour
         playerLevel = 1;
         totalXP = 0;
         unlockedSkills = new List<string> { "Main Gun" }; // Reset to default unlocked skills
+        unlockedSuperSkills = new List<string>(); // Reset super skills
         SavePlayerProgress();
     }
     
@@ -353,6 +366,42 @@ public class PlayerProgression : MonoBehaviour
 
         availableSuperSkills.Add("Extra Life", extraLifeSkill);
 
+        // Initialize Auto Repair super skill
+        List<SuperSkillRequirement> autoRepairReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Health Upgrade", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Slow Enemies", requiredLevel = 5 }
+        };
+
+        List<string> autoRepairDisables = new List<string>();  // No skills need to be disabled
+
+        SuperSkill autoRepairSkill = new SuperSkill(
+            "Auto Repair",
+            "Your ship automatically repairs itself, healing 10% of max health every 20 seconds!",
+            autoRepairReqs,
+            autoRepairDisables
+        );
+
+        availableSuperSkills.Add("Auto Repair", autoRepairSkill);
+
+        // Initialize Damage Zone super skill
+        List<SuperSkillRequirement> damageZoneReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Shield", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "Engine Fire", requiredLevel = 5 }
+        };
+
+        List<string> damageZoneDisables = new List<string>();  // No skills need to be disabled
+
+        SuperSkill damageZoneSkill = new SuperSkill(
+            "Damage Zone",
+            "Create a permanent damaging aura around your ship that harms enemies!",
+            damageZoneReqs,
+            damageZoneDisables
+        );
+
+        availableSuperSkills.Add("Damage Zone", damageZoneSkill);
+
         // Initialize Shock Wave super skill
         List<SuperSkillRequirement> shockWaveReqs = new List<SuperSkillRequirement>
         {
@@ -394,42 +443,6 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Laser Ring", laserRingSkill);
-
-        // Initialize Auto Repair super skill
-        List<SuperSkillRequirement> autoRepairReqs = new List<SuperSkillRequirement>
-        {
-            new SuperSkillRequirement { skillName = "Health Upgrade", requiredLevel = 5 },
-            new SuperSkillRequirement { skillName = "Slow Enemies", requiredLevel = 5 }
-        };
-
-        List<string> autoRepairDisables = new List<string>();  // No skills need to be disabled
-
-        SuperSkill autoRepairSkill = new SuperSkill(
-            "Auto Repair",
-            "Your ship automatically repairs itself, healing 10% of max health every 20 seconds!",
-            autoRepairReqs,
-            autoRepairDisables
-        );
-
-        availableSuperSkills.Add("Auto Repair", autoRepairSkill);
-
-        // Initialize Damage Zone super skill
-        List<SuperSkillRequirement> damageZoneReqs = new List<SuperSkillRequirement>
-        {
-            new SuperSkillRequirement { skillName = "Shield", requiredLevel = 5 },
-            new SuperSkillRequirement { skillName = "Engine Fire", requiredLevel = 5 }
-        };
-
-        List<string> damageZoneDisables = new List<string>();  // No skills need to be disabled
-
-        SuperSkill damageZoneSkill = new SuperSkill(
-            "Damage Zone",
-            "Create a permanent damaging aura around your ship that harms enemies!",
-            damageZoneReqs,
-            damageZoneDisables
-        );
-
-        availableSuperSkills.Add("Damage Zone", damageZoneSkill);
     }
 
     // Add this method to check for newly unlocked super skills

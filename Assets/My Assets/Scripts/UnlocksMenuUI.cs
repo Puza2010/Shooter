@@ -21,6 +21,15 @@ public class UnlocksMenuUI : MonoBehaviour
         PopulateSuperSkillGrid();
     }
 
+    void Update()
+    {
+        // Check if the panel is active and Enter key is pressed
+        if (unlocksPanel.activeInHierarchy && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
+        {
+            CloseUnlocksPanel();
+        }
+    }
+
     // Open the UnlocksPanel
     public void OpenUnlocksPanel()
     {
@@ -160,12 +169,17 @@ public class UnlocksMenuUI : MonoBehaviour
                     skillIcon.color = Color.white;
                     skillNameText.text = superSkill.Key;
                     
-                    // Create requirements text
-                    string reqText = "Requires:\n";
-                    foreach (var req in superSkill.Value.requirements)
+                    // Create requirements text with new format
+                    string reqText = "(";
+                    for (int i = 0; i < superSkill.Value.requirements.Count; i++)
                     {
-                        reqText += $"{req.skillName} Lvl {req.requiredLevel}\n";
+                        reqText += superSkill.Value.requirements[i].skillName;
+                        if (i < superSkill.Value.requirements.Count - 1)
+                        {
+                            reqText += " + ";
+                        }
                     }
+                    reqText += ")";
                     requirementsText.text = reqText;
                 }
                 else
