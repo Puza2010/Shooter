@@ -41,6 +41,17 @@ public class PlayerProgression : MonoBehaviour
     [SerializeField] private GameObject glowPrefab; // Assign Glow prefab in inspector
     [SerializeField] private Sprite yellowGlowSprite; // Assign yellow glow sprite in inspector
 
+    [Header("Super Skill Icons")]
+    public Sprite gunsBlazingIcon;
+    public Sprite quadCannonsIcon;
+    public Sprite missileBarrageIcon;
+    public Sprite recurringShieldIcon;
+    public Sprite extraLifeIcon;
+    public Sprite autoRepairIcon;
+    public Sprite damageZoneIcon;
+    public Sprite shockWaveIcon;
+    public Sprite laserRingIcon;
+
     void Awake()
     {
         // Singleton pattern to ensure only one instance exists
@@ -280,7 +291,8 @@ public class PlayerProgression : MonoBehaviour
             "Guns Blazing",
             "Unleash a devastating barrage of bullets in 7 directions!",
             gunsBlazingReqs,
-            gunsBlazingDisables
+            gunsBlazingDisables,
+            gunsBlazingIcon
         );
 
         availableSuperSkills.Add("Guns Blazing", gunsBlazingSkill);
@@ -301,7 +313,8 @@ public class PlayerProgression : MonoBehaviour
             "Quad Cannons",
             "Double your side firepower with four devastating cannons!",
             quadCannonsReqs,
-            quadCannonsDisables
+            quadCannonsDisables,
+            quadCannonsIcon
         );
 
         availableSuperSkills.Add("Quad Cannons", quadCannonsSkill);
@@ -322,7 +335,8 @@ public class PlayerProgression : MonoBehaviour
             "Missile Barrage",
             "Launch three powerful homing missiles at once!",
             missileBarrageReqs,
-            missileBarrageDisables
+            missileBarrageDisables,
+            missileBarrageIcon
         );
 
         availableSuperSkills.Add("Missile Barrage", missileBarrageSkill);
@@ -343,7 +357,8 @@ public class PlayerProgression : MonoBehaviour
             "Recurring Shield",
             "Automatically activates a shield every minute for 20 seconds!",
             recurringShieldReqs,
-            recurringShieldDisables
+            recurringShieldDisables,
+            recurringShieldIcon
         );
 
         availableSuperSkills.Add("Recurring Shield", recurringShieldSkill);
@@ -361,7 +376,8 @@ public class PlayerProgression : MonoBehaviour
             "Extra Life",
             "Get a second chance! When fatal damage is taken, revive with temporary invulnerability!",
             extraLifeReqs,
-            extraLifeDisables
+            extraLifeDisables,
+            extraLifeIcon
         );
 
         availableSuperSkills.Add("Extra Life", extraLifeSkill);
@@ -379,7 +395,8 @@ public class PlayerProgression : MonoBehaviour
             "Auto Repair",
             "Your ship automatically repairs itself, healing 10% of max health every 20 seconds!",
             autoRepairReqs,
-            autoRepairDisables
+            autoRepairDisables,
+            autoRepairIcon
         );
 
         availableSuperSkills.Add("Auto Repair", autoRepairSkill);
@@ -397,7 +414,8 @@ public class PlayerProgression : MonoBehaviour
             "Damage Zone",
             "Create a permanent damaging aura around your ship that harms enemies!",
             damageZoneReqs,
-            damageZoneDisables
+            damageZoneDisables,
+            damageZoneIcon
         );
 
         availableSuperSkills.Add("Damage Zone", damageZoneSkill);
@@ -419,7 +437,8 @@ public class PlayerProgression : MonoBehaviour
             "Shock Wave",
             "Release a devastating energy wave that damages all enemies in its path!",
             shockWaveReqs,
-            shockWaveDisables
+            shockWaveDisables,
+            shockWaveIcon
         );
 
         availableSuperSkills.Add("Shock Wave", shockWaveSkill);
@@ -439,7 +458,8 @@ public class PlayerProgression : MonoBehaviour
             "Laser Ring",
             "Create a rotating ring of pure energy that damages enemies!",
             laserRingReqs,
-            laserRingDisables
+            laserRingDisables,
+            laserRingIcon
         );
 
         availableSuperSkills.Add("Laser Ring", laserRingSkill);

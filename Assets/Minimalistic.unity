@@ -1765,6 +1765,15 @@ MonoBehaviour:
   laserRingPrefab: {fileID: 1090343130174680105, guid: bb2de48e0c2973c46a576a8240518fee, type: 3}
   glowPrefab: {fileID: 7001988896493139752, guid: c3866ff8690e1d441834d6968c5437b0, type: 3}
   yellowGlowSprite: {fileID: 21300000, guid: 9a34e4ce08fd01e4baa264369c9e4284, type: 3}
+  gunsBlazingIcon: {fileID: 21300000, guid: 9c0e8f7865eda9847afe0ce5d4fbfa3f, type: 3}
+  quadCannonsIcon: {fileID: 21300000, guid: 565a9c23804381142b25c4b5f20fa7c3, type: 3}
+  missileBarrageIcon: {fileID: 21300000, guid: 4551ba17dd29ffd4c930700df4f0a5f7, type: 3}
+  recurringShieldIcon: {fileID: 21300000, guid: 9f67fe371bb48a643ac81658d7b864e9, type: 3}
+  extraLifeIcon: {fileID: 21300000, guid: d8b20d349b5c6fb4aabacb9543d63ef4, type: 3}
+  autoRepairIcon: {fileID: 21300000, guid: 4598d613b8fefd542a433ef3cdf04e06, type: 3}
+  damageZoneIcon: {fileID: 21300000, guid: f870f1007c1969247b40689e36562a2b, type: 3}
+  shockWaveIcon: {fileID: 21300000, guid: 239d9de72c7b39a41a458821bc336074, type: 3}
+  laserRingIcon: {fileID: 21300000, guid: 8ffef549572feca49b1d11b8190b72d7, type: 3}
 --- !u!4 &328617819
 Transform:
   m_ObjectHideFlags: 0
@@ -3302,7 +3311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &822612137
 RectTransform:
   m_ObjectHideFlags: 0

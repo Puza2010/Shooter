@@ -1510,12 +1510,12 @@ namespace Playniax.Ignition
             // Instantiate the super skill button
             GameObject skillButton = Instantiate(superSkillButtonPrefab, skillButtonContainer);
             
-            // Get components
-            Image skillImage = skillButton.GetComponentInChildren<Image>();
-            TextMeshProUGUI skillTitle = skillButton.GetComponentInChildren<TextMeshProUGUI>();
+            // Get components - Update these lines to match your prefab structure
+            Image skillImage = skillButton.transform.Find("SkillImage")?.GetComponent<Image>();
+            TMP_Text skillTitle = skillButton.transform.Find("SkillTextBackground/SkillTitle")?.GetComponent<TMP_Text>();
 
             // Set the skill image and name
-            if (skillImage != null)
+            if (skillImage != null && superSkill.icon != null)
             {
                 skillImage.sprite = superSkill.icon;
                 skillImage.color = Color.white;
@@ -1539,7 +1539,7 @@ namespace Playniax.Ignition
                 });
             }
 
-            skillButtons.Add(skillButton); // Add to the list of buttons
+            skillButtons.Add(skillButton);
         }
         
         public void OnSkillSelected(string skillName)

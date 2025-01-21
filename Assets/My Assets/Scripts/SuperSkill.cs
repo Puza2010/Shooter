@@ -17,11 +17,12 @@ public class SuperSkill
     public List<string> skillsToDisable;
     public Sprite icon;
 
-    public SuperSkill(string name, string description, List<SuperSkillRequirement> requirements, List<string> skillsToDisable)
+    public SuperSkill(string name, string description, List<SuperSkillRequirement> requirements, List<string> skillsToDisable, Sprite icon)
     {
         this.name = name;
         this.description = description;
         this.requirements = requirements;
         this.skillsToDisable = skillsToDisable;
+        this.icon = icon;
     }
 } 
