@@ -1408,10 +1408,21 @@ namespace Playniax.Ignition
 
             // Check for super skills first
             var newSuperSkills = PlayerProgression.Instance.CheckNewlyUnlockedSuperSkills();
+            
+            // Randomize super skills if there are more than 3
+            if (newSuperSkills.Count > 3)
+            {
+                newSuperSkills = newSuperSkills.OrderBy(x => UnityEngine.Random.value).Take(3).ToList();
+            }
+
+            // Add super skills (up to 3)
             foreach (var superSkillName in newSuperSkills)
             {
-                AddSuperSkillOption(superSkillName);
-                availableSkills.Add(superSkillName);
+                if (availableSkills.Count < 3)
+                {
+                    AddSuperSkillOption(superSkillName);
+                    availableSkills.Add(superSkillName);
+                }
             }
 
             // Get all available regular skills and randomize them
