@@ -1524,7 +1524,7 @@ namespace Playniax.Ignition
             if (skillTitle != null)
             {
                 skillTitle.text = superSkill.name;
-                skillTitle.color = Color.yellow; // Make super skills stand out
+                skillTitle.color = Color.blue; // Make super skills stand out
             }
 
             // Set the button's onClick event
