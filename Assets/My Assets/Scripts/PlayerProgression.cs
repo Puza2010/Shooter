@@ -266,6 +266,7 @@ public class PlayerProgression : MonoBehaviour
         totalXP = 0;
         unlockedSkills = new List<string> { "Main Gun" }; // Reset to default unlocked skills
         unlockedSuperSkills = new List<string>(); // Reset super skills
+        ResetDisplayedSuperSkills(); // Also reset the displayed super skills
         SavePlayerProgress();
     }
     
@@ -748,5 +749,12 @@ public class PlayerProgression : MonoBehaviour
         return !string.IsNullOrEmpty(displayList) 
             ? new List<string>(displayList.Split(',')) 
             : new List<string>();
+    }
+
+    // Add this method to reset displayed super skills
+    public void ResetDisplayedSuperSkills()
+    {
+        PlayerPrefs.DeleteKey(UNLOCKED_SUPER_SKILLS_DISPLAY_KEY);
+        PlayerPrefs.Save();
     }
 }
