@@ -52,6 +52,9 @@ public class PlayerProgression : MonoBehaviour
     public Sprite shockWaveIcon;
     public Sprite laserRingIcon;
 
+    // Add this field to track which super skills have been unlocked for display
+    private const string UNLOCKED_SUPER_SKILLS_DISPLAY_KEY = "UnlockedSuperSkillsDisplay";
+
     void Awake()
     {
         // Singleton pattern to ensure only one instance exists
@@ -514,6 +517,9 @@ public class PlayerProgression : MonoBehaviour
     // Add this method to handle super skill activation
     public void ActivateSuperSkill(string superSkillName)
     {
+        // Add to display list when activated
+        AddUnlockedSuperSkillDisplay(superSkillName);
+
         if (!availableSuperSkills.ContainsKey(superSkillName)) return;
 
         var player = GameObject.FindWithTag("Player");
@@ -717,5 +723,30 @@ public class PlayerProgression : MonoBehaviour
     {
         unlockedSuperSkills.Clear();
         SavePlayerProgress();
+    }
+
+    // Add this method to track when a super skill is unlocked
+    public void AddUnlockedSuperSkillDisplay(string superSkillName)
+    {
+        string displayList = PlayerPrefs.GetString(UNLOCKED_SUPER_SKILLS_DISPLAY_KEY, "");
+        List<string> displayedSkills = !string.IsNullOrEmpty(displayList) 
+            ? new List<string>(displayList.Split(',')) 
+            : new List<string>();
+
+        if (!displayedSkills.Contains(superSkillName))
+        {
+            displayedSkills.Add(superSkillName);
+            PlayerPrefs.SetString(UNLOCKED_SUPER_SKILLS_DISPLAY_KEY, string.Join(",", displayedSkills));
+            PlayerPrefs.Save();
+        }
+    }
+
+    // Add this method to get the list of all unlocked super skills for display
+    public List<string> GetUnlockedSuperSkillsDisplay()
+    {
+        string displayList = PlayerPrefs.GetString(UNLOCKED_SUPER_SKILLS_DISPLAY_KEY, "");
+        return !string.IsNullOrEmpty(displayList) 
+            ? new List<string>(displayList.Split(',')) 
+            : new List<string>();
     }
 }

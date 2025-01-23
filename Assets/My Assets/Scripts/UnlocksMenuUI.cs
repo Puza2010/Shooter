@@ -147,7 +147,7 @@ public class UnlocksMenuUI : MonoBehaviour
     void UpdateSuperSkillsDisplay()
     {
         var playerProgression = PlayerProgression.Instance;
-        var unlockedSuperSkills = playerProgression.unlockedSuperSkills;
+        var displayedSuperSkills = playerProgression.GetUnlockedSuperSkillsDisplay();
         var availableSuperSkills = playerProgression.availableSuperSkills;
 
         int index = 0;
@@ -160,7 +160,7 @@ public class UnlocksMenuUI : MonoBehaviour
                 TMP_Text skillNameText = slot.transform.Find("SkillName").GetComponent<TMP_Text>();
                 TMP_Text requirementsText = slot.transform.Find("Requirements").GetComponent<TMP_Text>();
 
-                bool isUnlocked = unlockedSuperSkills.Contains(superSkill.Key);
+                bool isUnlocked = displayedSuperSkills.Contains(superSkill.Key);
 
                 if (isUnlocked)
                 {
