@@ -57,7 +57,7 @@ public class UnlocksMenuUI : MonoBehaviour
     // Populate the super skill grid with slots
     void PopulateSuperSkillGrid()
     {
-        int totalSuperSkills = 9; // Total number of super skills
+        int totalSuperSkills = 10; // Increased from 9 to include Double Wrecking Ball
         for (int i = 0; i < totalSuperSkills; i++)
         {
             GameObject slot = Instantiate(superSkillSlotPrefab, superSkillGrid);

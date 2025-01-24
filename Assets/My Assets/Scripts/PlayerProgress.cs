@@ -61,7 +61,7 @@ public class PlayerProgress : MonoBehaviour
             // PlayerProgression.Instance.ActivateSuperSkill("Laser Ring");
             // PlayerProgression.Instance.ActivateSuperSkill("Auto Repair");
             // PlayerProgression.Instance.ActivateSuperSkill("Damage Zone");
-            PlayerProgression.Instance.ActivateSuperSkill("Double Wrecking Ball");
+            // PlayerProgression.Instance.ActivateSuperSkill("Double Wrecking Ball");
         }
     }
 

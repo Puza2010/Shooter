@@ -36,6 +36,7 @@ public class SkillIconManager : MonoBehaviour
     public Sprite laserRingIcon; // Assign in Inspector
     public Sprite autoRepairIcon; // Assign in Inspector
     public Sprite damageZoneIcon; // Assign in Inspector
+    public Sprite doubleWreckingBallIcon; // Assign in Inspector
 
     private Dictionary<string, Sprite> skillIcons = new Dictionary<string, Sprite>();
     private Dictionary<string, Sprite> superSkillIcons = new Dictionary<string, Sprite>();
@@ -87,6 +88,7 @@ public class SkillIconManager : MonoBehaviour
         superSkillIcons["Laser Ring"] = laserRingIcon;
         superSkillIcons["Auto Repair"] = autoRepairIcon;
         superSkillIcons["Damage Zone"] = damageZoneIcon;
+        superSkillIcons["Double Wrecking Ball"] = doubleWreckingBallIcon;
     }
 
     public Sprite GetSkillIcon(string skillName)
