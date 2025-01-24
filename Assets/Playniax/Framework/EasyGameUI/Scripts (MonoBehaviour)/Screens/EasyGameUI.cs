@@ -981,14 +981,14 @@ namespace Playniax.Ignition
             // skills.Add("Red Laser Level 2", new Skill(redLaserPrefab, 0.7f, 30, "genericBulletRed", "Red Laser Level 2", redLaserImage, 2, 4));
             // skills.Add("Red Laser Level 3", new Skill(redLaserPrefab, 0.4f, 50, "genericBulletRed", "Red Laser Level 3", redLaserImage, 3, 4));
             // skills.Add("Red Laser Level 4", new Skill(redLaserPrefab, 0.2f, 100, "genericBulletRed", "Red Laser Level 4", redLaserImage, 4, 4));
-            // skills.Add("Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage, 1, 4));
-            // skills.Add("Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage, 2, 4));
-            // skills.Add("Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage, 3, 4));
-            // skills.Add("Blue Laser Level 4", new Skill(blueLaserPrefab, 0.2f, 100, "bulletBlue", "Blue Laser Level 4", blueLaserImage, 4, 4));
-            // skills.Add("Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 10, "genericBulletGreen", "Green Laser Level 1", greenLaserImage, 1, 4));
-            // skills.Add("Green Laser Level 2", new Skill(greenLaserPrefab, 0.7f, 30, "genericBulletGreen", "Green Laser Level 2", greenLaserImage, 2, 4));
-            // skills.Add("Green Laser Level 3", new Skill(greenLaserPrefab, 0.4f, 50, "genericBulletGreen", "Green Laser Level 3", greenLaserImage, 3, 4));
-            // skills.Add("Green Laser Level 4", new Skill(greenLaserPrefab, 0.2f, 100, "genericBulletGreen", "Green Laser Level 4", greenLaserImage, 4, 4));
+            skills.Add("Blue Laser Level 1", new Skill(blueLaserPrefab, 1.0f, 10, "bulletBlue", "Blue Laser Level 1", blueLaserImage, 1, 4));
+            skills.Add("Blue Laser Level 2", new Skill(blueLaserPrefab, 0.7f, 30, "bulletBlue", "Blue Laser Level 2", blueLaserImage, 2, 4));
+            skills.Add("Blue Laser Level 3", new Skill(blueLaserPrefab, 0.4f, 50, "bulletBlue", "Blue Laser Level 3", blueLaserImage, 3, 4));
+            skills.Add("Blue Laser Level 4", new Skill(blueLaserPrefab, 0.2f, 100, "bulletBlue", "Blue Laser Level 4", blueLaserImage, 4, 4));
+            skills.Add("Green Laser Level 1", new Skill(greenLaserPrefab, 1.0f, 10, "genericBulletGreen", "Green Laser Level 1", greenLaserImage, 1, 4));
+            skills.Add("Green Laser Level 2", new Skill(greenLaserPrefab, 0.7f, 30, "genericBulletGreen", "Green Laser Level 2", greenLaserImage, 2, 4));
+            skills.Add("Green Laser Level 3", new Skill(greenLaserPrefab, 0.4f, 50, "genericBulletGreen", "Green Laser Level 3", greenLaserImage, 3, 4));
+            skills.Add("Green Laser Level 4", new Skill(greenLaserPrefab, 0.2f, 100, "genericBulletGreen", "Green Laser Level 4", greenLaserImage, 4, 4));
             // skills.Add("Purple Laser Level 1", new Skill(purpleLaserPrefab, 1.0f, 10, "bulletPurple", "Purple Laser Level 1", purpleLaserImage, 1, 4));
             // skills.Add("Purple Laser Level 2", new Skill(purpleLaserPrefab, 0.7f, 30, "bulletPurple", "Purple Laser Level 2", purpleLaserImage, 2, 4));
             // skills.Add("Purple Laser Level 3", new Skill(purpleLaserPrefab, 0.4f, 50, "bulletPurple", "Purple Laser Level 3", purpleLaserImage, 3, 4));
@@ -2098,8 +2098,8 @@ namespace Playniax.Ignition
             // Add the starting skill(s)
             acquiredSkills.Add("Main Gun Level 1");
             // acquiredSkills.Add("Red Laser Level 4");
-            // acquiredSkills.Add("Blue Laser Level 4");
-            // acquiredSkills.Add("Green Laser Level 4");
+            acquiredSkills.Add("Blue Laser Level 4");
+            acquiredSkills.Add("Green Laser Level 4");
             // acquiredSkills.Add("Purple Laser Level 4");
             // acquiredSkills.Add("Angled Shots Level 5");
             // acquiredSkills.Add("Cannons Level 5");

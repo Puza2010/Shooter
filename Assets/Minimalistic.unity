@@ -1774,6 +1774,7 @@ MonoBehaviour:
   damageZoneIcon: {fileID: 21300000, guid: f870f1007c1969247b40689e36562a2b, type: 3}
   shockWaveIcon: {fileID: 21300000, guid: 239d9de72c7b39a41a458821bc336074, type: 3}
   laserRingIcon: {fileID: 21300000, guid: 8ffef549572feca49b1d11b8190b72d7, type: 3}
+  wreckingBallImage: {fileID: 21300000, guid: f39f0f13e65634842a40f0ff82b0d8f7, type: 3}
 --- !u!4 &328617819
 Transform:
   m_ObjectHideFlags: 0

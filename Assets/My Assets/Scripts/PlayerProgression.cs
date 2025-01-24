@@ -433,10 +433,7 @@ public class PlayerProgression : MonoBehaviour
             new SuperSkillRequirement { skillName = "Blue Laser", requiredLevel = 4 }
         };
 
-        List<string> shockWaveDisables = new List<string>
-        {
-            "Wrecking Ball"
-        };
+        List<string> shockWaveDisables = new List<string>();
 
         SuperSkill shockWaveSkill = new SuperSkill(
             "Shock Wave",
