@@ -51,6 +51,7 @@ public class PlayerProgression : MonoBehaviour
     public Sprite damageZoneIcon;
     public Sprite shockWaveIcon;
     public Sprite laserRingIcon;
+    public Sprite wreckingBallImage;
 
     // Add this field to track which super skills have been unlocked for display
     private const string UNLOCKED_SUPER_SKILLS_DISPLAY_KEY = "UnlockedSuperSkillsDisplay";
@@ -467,6 +468,28 @@ public class PlayerProgression : MonoBehaviour
         );
 
         availableSuperSkills.Add("Laser Ring", laserRingSkill);
+
+        // Initialize Double Wrecking Ball super skill
+        List<SuperSkillRequirement> doubleWreckingBallReqs = new List<SuperSkillRequirement>
+        {
+            new SuperSkillRequirement { skillName = "Wrecking Ball", requiredLevel = 5 },
+            new SuperSkillRequirement { skillName = "3 Way Shooter", requiredLevel = 5 }
+        };
+
+        List<string> doubleWreckingBallDisables = new List<string>
+        {
+            "Wrecking Ball"
+        };
+
+        SuperSkill doubleWreckingBallSkill = new SuperSkill(
+            "Double Wrecking Ball",
+            "Double the destruction with two orbiting wrecking balls!",
+            doubleWreckingBallReqs,
+            doubleWreckingBallDisables,
+            wreckingBallImage  // Reuse the existing wrecking ball image
+        );
+
+        availableSuperSkills.Add("Double Wrecking Ball", doubleWreckingBallSkill);
     }
 
     // Add this method to check for newly unlocked super skills
@@ -669,6 +692,22 @@ public class PlayerProgression : MonoBehaviour
                         collider = glow.AddComponent<CircleCollider2D>();
                         collider.isTrigger = true;
                         collider.radius = 2f;
+                    }
+                }
+            }
+            else if (superSkillName == "Double Wrecking Ball")
+            {
+                if (player != null)
+                {
+                    // Disable regular Wrecking Ball
+                    var multiSpawners = player.GetComponentsInChildren<BulletSpawners>();
+                    foreach (var spawner in multiSpawners)
+                    {
+                        if (spawner.id == "Wrecking Ball")
+                        {
+                            spawner.SetDoubleWreckingBall(true);
+                            Debug.Log("Enabled Double Wrecking Ball");
+                        }
                     }
                 }
             }

@@ -17,6 +17,11 @@ namespace Playniax.Pyro
         private float baseInterval;
         public float minInterval = 0.01f; // Minimum firing interval
 
+        private GameObject wreckingBallInstance;  // First wrecking ball instance
+        private IScoreBase wreckingBallScoreBase;
+        private float wreckingBallPosition;
+        private bool isDoubleWreckingBall = false;
+
         void Awake()
         {
             baseInterval = timer.interval;
@@ -421,6 +426,7 @@ namespace Playniax.Pyro
         
         void _UpdateWreckingBall()
         {
+            // First wrecking ball
             if (wreckingBallInstance == null)
             {
                 wreckingBallInstance = Instantiate(prefab, transform);
@@ -428,7 +434,20 @@ namespace Playniax.Pyro
                 wreckingBallScoreBase = wreckingBallInstance.GetComponent<IScoreBase>();
                 if (wreckingBallScoreBase == null) return;
             }
-            
+
+            // Second wrecking ball (for super skill)
+            if (isDoubleWreckingBall && wreckingBallInstance2 == null)
+            {
+                wreckingBallInstance2 = Instantiate(prefab, transform);
+                wreckingBallInstance2.SetActive(true);
+                wreckingBallScoreBase2 = wreckingBallInstance2.GetComponent<IScoreBase>();
+                if (wreckingBallScoreBase2 == null) return;
+                
+                // Start the second ball at the opposite position
+                wreckingBallPosition2 = wreckingBallPosition + Mathf.PI;
+            }
+
+            // Update first wrecking ball
             wreckingBallScoreBase.friend = gameObject;
 
             var playerCollider = gameObject.GetComponent<Collider2D>();
@@ -443,18 +462,37 @@ namespace Playniax.Pyro
             float damageIncrement = 5f;
             wreckingBallScoreBase.structuralIntegrity = baseDamage + damageIncrement * (wreckingBallLevel - 1);
 
+            float speedIncrementPerLevel = 2f;
+            float currentSpeed = wreckingBallSpeed + (wreckingBallLevel - 1) * speedIncrementPerLevel;
+
+            wreckingBallPosition += currentSpeed * Time.deltaTime;
             var x = Mathf.Cos(wreckingBallPosition) * wreckingBallDistance;
             var y = Mathf.Sin(wreckingBallPosition) * wreckingBallDistance;
             wreckingBallInstance.transform.localPosition = new Vector3(x, y);
 
-            float speedIncrementPerLevel = 2f;
-            float currentSpeed = wreckingBallSpeed + (wreckingBallLevel - 1) * speedIncrementPerLevel;
-            wreckingBallPosition += currentSpeed * Time.deltaTime;
+            // Update second wrecking ball if super skill is active
+            if (isDoubleWreckingBall && wreckingBallInstance2 != null)
+            {
+                wreckingBallScoreBase2.friend = gameObject;
+
+                var wreckingBallCollider2 = wreckingBallInstance2.GetComponent<Collider2D>();
+                if (playerCollider != null && wreckingBallCollider2 != null)
+                {
+                    Physics2D.IgnoreCollision(playerCollider, wreckingBallCollider2);
+                }
+
+                wreckingBallScoreBase2.structuralIntegrity = baseDamage + damageIncrement * (wreckingBallLevel - 1);
+
+                wreckingBallPosition2 += currentSpeed * Time.deltaTime;
+                var x2 = Mathf.Cos(wreckingBallPosition2) * wreckingBallDistance;
+                var y2 = Mathf.Sin(wreckingBallPosition2) * wreckingBallDistance;
+                wreckingBallInstance2.transform.localPosition = new Vector3(x2, y2);
+            }
         }
 
-        GameObject wreckingBallInstance;
-        IScoreBase wreckingBallScoreBase;
-        float wreckingBallPosition;
+        GameObject wreckingBallInstance2;  // Second wrecking ball instance
+        IScoreBase wreckingBallScoreBase2;
+        float wreckingBallPosition2;
 
         SpriteRenderer _spriteRenderer;
 
@@ -471,6 +509,19 @@ namespace Playniax.Pyro
             {
                 float structuralIntegrity = Random.Range(10f, 15f); // Fixed high damage for super skill
                 scoreBase.structuralIntegrity = structuralIntegrity;
+            }
+        }
+
+        // Add this method to enable/disable double wrecking ball mode
+        public void SetDoubleWreckingBall(bool enabled)
+        {
+            isDoubleWreckingBall = enabled;
+            
+            if (!enabled && wreckingBallInstance2 != null)
+            {
+                Destroy(wreckingBallInstance2);
+                wreckingBallInstance2 = null;
+                wreckingBallScoreBase2 = null;
             }
         }
     }
